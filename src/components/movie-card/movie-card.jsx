@@ -26,7 +26,7 @@ export const MovieCard = ({ movie, onMovieClick }) => {
         Birth: PropTypes.string 
       }),
       ImagePath: PropTypes.string,
-      Featured: PropTypes.string,
+      Featured: PropTypes.bool,
       Actors: PropTypes.array,
       Rating: PropTypes.string,
       ReleaseDate: PropTypes.string

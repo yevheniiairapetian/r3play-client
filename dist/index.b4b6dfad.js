@@ -27423,7 +27423,7 @@ MovieCard.propTypes = {
             Birth: (0, _propTypesDefault.default).string
         }),
         ImagePath: (0, _propTypesDefault.default).string,
-        Featured: (0, _propTypesDefault.default).string,
+        Featured: (0, _propTypesDefault.default).bool,
         Actors: (0, _propTypesDefault.default).array,
         Rating: (0, _propTypesDefault.default).string,
         ReleaseDate: (0, _propTypesDefault.default).string
