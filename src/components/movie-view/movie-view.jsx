@@ -4,7 +4,7 @@
     return (
       <div>
         <div>
-          <img src={movie.image} />
+          <img src={movie.ImagePath} />
         </div>
         <div>
           <span>Title: </span>
