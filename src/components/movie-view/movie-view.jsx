@@ -1,53 +1,50 @@
-
-
-  export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movie, onBackClick }) => {
     return (
       <div>
         <div>
-          <img src={movie.image} />
+          <img src={movie.imagePath} />
         </div>
         <div>
           <span>Title: </span>
-            <span>{movie.Title}</span>
+          <span>{movie.title}</span>
         </div>
         <div>
           <span>Description: </span>
-            <span>{movie.Description}</span>
+          <span>{movie.description}</span>
         </div>
         <div>
           <span>Genre: </span>
-            <span>{movie.Genre.Name}</span><br/>
+          <span>{movie.genre.name}</span>
           <span>Desciption: </span>
-            <span>{movie.Genre.Description}</span>
+          <span>{movie.genre.description}</span>
         </div>
         <div>
           <span>Director: </span>
-            <span>{movie.Director.Name}</span><br/>
+          <span>{movie.director.name}</span>
           <span>Biography: </span>
-            <span>{movie.Director.Bio}</span><br/>
+          <span>{movie.director.bio}</span>
           <span>Birth: </span>
-            <span>{movie.Director.Birth}</span>
+          <span>{movie.director.birth}</span>
         </div>
         <div>
           <span>Actors: </span>
-            <span>{movie.Actors.join(', ')}</span>
+          <span>{movie.actors}</span>
         </div>
         <div>
           <span>Featured: </span>
-            <span>{String(movie.Featured)}</span>
+          <span>{movie.featured}</span>
         </div>
         <div>
           <span>Rating: </span>
-            <span>{movie.Rating}</span>
+          <span>{movie.rating}</span>
         </div>
         <div>
           <span>Release Date: </span>
-            <span>{movie.ReleaseDate}</span>
+          <span>{movie.releaseDate}</span>
         </div>
 
         <button onClick={onBackClick}>Back to list</button>
       </div>
     );
   };
-  
   
