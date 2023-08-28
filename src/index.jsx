@@ -7,6 +7,7 @@ import "./index.scss";
 // Main component (will eventually use all the others)
 const MyR3playApplication = () => {
   return (
+  
   <MainView />
   );
 };

@@ -4,6 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 
 
 export const MainView = () => {
+  
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     fetch("https://r3play-934f9ea5664d.herokuapp.com/movies")
