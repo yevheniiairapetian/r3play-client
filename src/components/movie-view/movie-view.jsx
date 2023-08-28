@@ -4,11 +4,7 @@
     return (
       <div>
         <div>
-            <img src={movie.ImagePath} />
-        </div>
-        <div>
-          <span>Movie ID: </span>
-          <span>{movie.id}</span>
+          <img src={movie.image} />
         </div>
         <div>
           <span>Title: </span>
