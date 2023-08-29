@@ -26,9 +26,9 @@ export const LoginView = ({ onLoggedIn }) => {
                     localStorage.setItem("user", JSON.stringify(data.user));
                     localStorage.setItem("token", data.token);
                     onLoggedIn(data.user, data.token);
-                  } else {
+                } else {
                     alert("No such user");
-                  }
+                }
             })
             .catch((e) => {
                 alert("Something went wrong");
@@ -36,7 +36,7 @@ export const LoginView = ({ onLoggedIn }) => {
     }
     return (
         <form onSubmit={handleSubmit}>
-        <h4>Login Form</h4>
+            <h4>Login Form</h4>
             <label>
                 Username:
                 <input type="text"
@@ -46,7 +46,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     minLength={5}
                     required
                 />
-            </label><br/>
+            </label><br />
             <label>
                 Password:
                 <input type="password"
@@ -55,8 +55,8 @@ export const LoginView = ({ onLoggedIn }) => {
                     placeholder="GoJonnyGo123"
                     required
                 />
-            </label><br/>
-            <button type="submit">Log In</button><br/>
+            </label><br />
+            <button type="submit">Log In</button><br />
         </form>
     )
 }

@@ -8,32 +8,32 @@ export const SignupView = () => {
     const [birthday, setBirthday] = useState("");
     const handleSubmit = (event) => {
         event.preventDefault();
-    
+
         const data = {
-          Username: username,
-          Password: password,
-          Email: email,
-          Birthday: birthday
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
         };
-    
+
         fetch("https://r3play-934f9ea5664d.herokuapp.com/users", {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json"
-          }
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
         }).then((response) => {
-          if (response.ok) {
-            alert("Signup successful");
-            window.location.reload();
-          } else {
-            alert("Signup failed");
-          }
+            if (response.ok) {
+                alert("Signup successful");
+                window.location.reload();
+            } else {
+                alert("Signup failed");
+            }
         });
-      };
+    };
     return (
         <form onSubmit={handleSubmit}>
-        
+
             <h4>Sign Up Form</h4>
             <label>
                 Username *:
