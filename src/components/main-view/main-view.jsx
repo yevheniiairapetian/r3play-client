@@ -4,7 +4,93 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 
+/* 
+import { useState, useEffect } from "react";
+import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../movie-view/movie-view";
+import { TVseriesCard } from "../tvseries-card/tvseries-card";
+import { TVseriesView } from "../tvseries-view/tvseries-view";
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
 
+
+export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
+  const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  // const [TVeries, setTVseries] = useState([]);
+  // const [selectedTVseries, setSelectedTVseries] = useState(null);
+  const [tvseries, setTVseries] = useState([]);
+  const [selectedTVseries, setSelectedTVseries] = useState(null);
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    fetch("https://r3play-934f9ea5664d.herokuapp.com/movies", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.map((movie) => {
+          return {
+            id: movie._id,
+            Title: movie.Title,
+            Description: movie.Description,
+            Season: {},
+            Genre: {
+              Name: movie.Genre.Name,
+              Description: movie.Genre.Description
+            },
+            Director: {
+              Name: movie.Director.Name,
+              Bio: movie.Director.Bio,
+              Birth: movie.Director.Birth,
+              Death: movie.Director.Death
+            },
+            ImagePath: movie.ImagePath,
+            Featured: movie.Featured,
+            Actors: movie.Actors,
+            Rating: movie.Rating,
+            ReleaseDate: movie.ReleaseDate,
+          };
+        })
+        setMovies(moviesFromApi);
+      },
+
+        fetch("https://r3play-934f9ea5664d.herokuapp.com/tvseries", {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const TVseriesFromApi = data.map((tvseries) => {
+              return {
+                id: tvseries._id,
+                Title: tvseries.Title,
+                Description: tvseries.Description,
+                Genre: {
+                  Name: tvseries.Genre.Name,
+                  Description: tvseries.Genre.Description
+                },
+                Director: {
+                  Name: tvseries.Director.Name,
+                  Bio: tvseries.Director.Bio,
+                  Birth: tvseries.Director.Birth,
+                  Death: tvseries.Director.Death
+                },
+                ImagePath: tvseries.ImagePath,
+                Featured: tvseries.Featured,
+                Actors: tvseries.Actors,
+                Rating: tvseries.Rating,
+                ReleaseDate: tvseries.ReleaseDate,
+              };
+            })
+            setTVseries(TVseriesFromApi);
+          }), [token]);
+        
+*/
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
