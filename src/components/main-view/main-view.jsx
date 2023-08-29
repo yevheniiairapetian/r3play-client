@@ -33,7 +33,8 @@ export const MainView = () => {
             Director: {
               Name: movie.Director.Name,
               Bio: movie.Director.Bio,
-              Birth: movie.Director.Birth
+              Birth: movie.Director.Birth,
+              Death: movie.Director.Death
             },
             ImagePath: movie.ImagePath,
             Featured: movie.Featured,
