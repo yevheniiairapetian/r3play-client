@@ -37,7 +37,7 @@
             <span>{String(movie.Featured)}</span>
         </div>
         <div>
-          <span>Rating: </span>
+          <span>Rotten Tomatoes Audience Rating: </span>
             <span>{movie.Rating}</span>
         </div>
         <div>
