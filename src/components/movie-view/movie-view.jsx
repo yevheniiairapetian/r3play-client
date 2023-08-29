@@ -25,8 +25,10 @@
             <span>{movie.Director.Name}</span><br/>
           <span>Biography: </span>
             <span>{movie.Director.Bio}</span><br/>
-          <span>Birth: </span>
-            <span>{movie.Director.Birth}</span>
+          <span>Birth year: </span>
+            <span>{movie.Director.Birth}</span><br/>
+            <span>Death year: </span>
+            <span>{movie.Director.Death}</span><br/>
         </div>
         <div>
           <span>Actors: </span>
@@ -45,7 +47,7 @@
             <span>{movie.ReleaseDate}</span>
         </div>
 
-        <button onClick={onBackClick}>Back to list</button>
+        <button onClick={onBackClick}>Back to movies list</button>
       </div>
     );
   };
