@@ -27368,7 +27368,7 @@ const MainView = ()=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
                 lineNumber: 58,
-                columnNumber: 11
+                columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("em", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
@@ -27403,24 +27403,24 @@ const MainView = ()=>{
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 72,
-                    columnNumber: 7
+                    columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 73,
-                    columnNumber: 7
+                    columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 74,
-                    columnNumber: 7
+                    columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "Similar Movies"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 75,
-                    columnNumber: 7
+                    columnNumber: 9
                 }, undefined),
                 similarMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                         movie: movie,
@@ -27428,14 +27428,14 @@ const MainView = ()=>{
                     }, movie.id, false, {
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 77,
-                        columnNumber: 9
+                        columnNumber: 11
                     }, undefined)),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "Movies with the Same Rating"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 80,
-                    columnNumber: 7
+                    columnNumber: 9
                 }, undefined),
                 sameRating.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                         movie: movie,
@@ -27443,14 +27443,14 @@ const MainView = ()=>{
                     }, movie.id, false, {
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 82,
-                        columnNumber: 9
+                        columnNumber: 11
                     }, undefined)),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "Movies of the same director"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 93,
-                    columnNumber: 7
+                    columnNumber: 9
                 }, undefined),
                 sameDirector.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                         movie: movie,
@@ -27458,7 +27458,7 @@ const MainView = ()=>{
                     }, movie.id, false, {
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 95,
-                        columnNumber: 9
+                        columnNumber: 11
                     }, undefined))
             ]
         }, void 0, true);
@@ -28677,7 +28677,7 @@ const LoginView = ({ onLoggedIn })=>{
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
                 lineNumber: 39,
-                columnNumber: 9
+                columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 children: [
