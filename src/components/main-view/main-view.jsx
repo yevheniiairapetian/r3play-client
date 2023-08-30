@@ -172,12 +172,12 @@ export const MainView = () => {
         }
 
 
-        <h2>Movies starring the same actors</h2>
+        <h2>Movies Starring the Same Actors</h2>
       {sameActors.map((movie) => (
         <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
       ))
       }
-        <h2>Movies of the same director</h2>
+        <h2>Movies of the Same Director</h2>
         {sameDirector.map((movie) => (
           <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
         ))

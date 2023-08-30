@@ -27447,7 +27447,7 @@ const MainView = ()=>{
                         columnNumber: 11
                     }, undefined)),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                    children: "Movies starring the same actors"
+                    children: "Movies Starring the Same Actors"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 175,
@@ -27462,7 +27462,7 @@ const MainView = ()=>{
                         columnNumber: 9
                     }, undefined)),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                    children: "Movies of the same director"
+                    children: "Movies of the Same Director"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 180,
