@@ -27394,7 +27394,7 @@ const MainView = ()=>{
     if (selectedMovie) {
         let similarMovies = movies.filter((movie)=>movie.id !== selectedMovie.id && movie.Genre.Name === selectedMovie.Genre.Name);
         let sameDirector = movies.filter((movie)=>movie.id !== selectedMovie.id && movie.Director.Name === selectedMovie.Director.Name);
-        // let sameActors = movies.filter(movie => movie.id !== selectedMovie.id && selectedMovie.Actors.includes(movie.Actors) === true);
+        let sameActors = movies.filter((movie)=>movie.id !== selectedMovie.id && selectedMovie.Actors.some((actor)=>movie.Actors.includes(actor)));
         let sameRating = movies.filter((movie)=>movie.id !== selectedMovie.id && movie.Rating === selectedMovie.Rating);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
             children: [
@@ -27445,6 +27445,21 @@ const MainView = ()=>{
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 169,
                         columnNumber: 11
+                    }, undefined)),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    children: "Movies starring the same actors"
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 175,
+                    columnNumber: 9
+                }, undefined),
+                sameActors.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                        movie: movie,
+                        onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
+                    }, movie.id, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 177,
+                        columnNumber: 9
                     }, undefined)),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "Movies of the same director"

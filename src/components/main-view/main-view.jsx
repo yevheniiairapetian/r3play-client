@@ -152,7 +152,7 @@ export const MainView = () => {
   if (selectedMovie) {
     let similarMovies = movies.filter(movie => movie.id !== selectedMovie.id && movie.Genre.Name === selectedMovie.Genre.Name);
     let sameDirector = movies.filter(movie => movie.id !== selectedMovie.id && movie.Director.Name === selectedMovie.Director.Name);
-    // let sameActors = movies.filter(movie => movie.id !== selectedMovie.id && selectedMovie.Actors.includes(movie.Actors) === true);
+    let sameActors = movies.filter(movie => movie.id !== selectedMovie.id && selectedMovie.Actors.some(actor => movie.Actors.includes(actor)));
     let sameRating = movies.filter(movie => movie.id !== selectedMovie.id && movie.Rating === selectedMovie.Rating);
     return (
       <>
@@ -172,11 +172,11 @@ export const MainView = () => {
         }
 
 
-        {/* <h2>Movies starring the same actors</h2>
+        <h2>Movies starring the same actors</h2>
       {sameActors.map((movie) => (
         <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
       ))
-      } */}
+      }
         <h2>Movies of the same director</h2>
         {sameDirector.map((movie) => (
           <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
