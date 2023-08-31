@@ -127,6 +127,8 @@ export const MainView = () => {
             Actors: movie.Actors,
             Rating: movie.Rating,
             ReleaseDate: movie.ReleaseDate,
+            Duration: movie.Duration,
+            IMDbRating: movie.IMDbRating
           };
         });
 

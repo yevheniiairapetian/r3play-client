@@ -15,6 +15,10 @@
             <span>{movie.Description}</span>
         </div>
         <div>
+          <span>Duration: </span>
+            <span>{movie.Duration}</span>
+        </div>
+        <div>
           <span>Genre: </span>
             <span>{movie.Genre.Name}</span><br/>
           <span>Desciption: </span>
@@ -35,8 +39,8 @@
             <span>{movie.Actors.join(', ')}</span>
         </div>
         <div>
-          <span>Featured: </span>
-            <span>{String(movie.Featured)}</span>
+          <span>IMDb Rating: </span>
+            <span>{movie.IMDbRating}</span>
         </div>
         <div>
           <span>Rotten Tomatoes Audience Rating: </span>

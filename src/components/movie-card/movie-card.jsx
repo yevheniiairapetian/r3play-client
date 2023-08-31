@@ -30,7 +30,9 @@ export const MovieCard = ({ movie, onMovieClick }) => {
       Featured: PropTypes.bool,
       Actors: PropTypes.array,
       Rating: PropTypes.string,
-      ReleaseDate: PropTypes.string
+      ReleaseDate: PropTypes.string,
+      Duration: PropTypes.string,
+      IMDbRating: PropTypes.string
 }).isRequired,
     onMovieClick: PropTypes.func.isRequired
   };
