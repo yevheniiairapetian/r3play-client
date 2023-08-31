@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {Row, Button} from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
@@ -136,74 +137,86 @@ export const MainView = () => {
       });
   }, [token]);
 
-  if (!user) {
-    return (
-      <>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }} />
-        <br />
-        <em><strong>or</strong></em>
-        <SignupView />
-      </>)
+  return (
+    <>
+        <Row>
+      {!user ? (
 
-  }
+        <>
+          <LoginView
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
+            }} />
+          or
+          <SignupView />
+        </>
+        ) : selectedMovie ? (
+          <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+        ) : movies.length === 0 ? (
+          <div>The movie list is empty!</div>
+        ) : (
+        <>  {movies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            onMovieClick={(newSelectedMovie) => {
+              setSelectedMovie(newSelectedMovie);
+            }}
+          />
+        ))}
+        </> 
+        )}
+        </Row>
+        <Row>
 
-  if (selectedMovie) {
-    let similarMovies = movies.filter(movie => movie.id !== selectedMovie.id && movie.Genre.Name === selectedMovie.Genre.Name);
+        {/* Test code
+        Test code */}
+
+
+    {/* let similarMovies = movies.filter(movie => movie.id !== selectedMovie.id && movie.Genre.Name === selectedMovie.Genre.Name);
     let sameDirector = movies.filter(movie => movie.id !== selectedMovie.id && movie.Director.Name === selectedMovie.Director.Name);
     let sameActors = movies.filter(movie => movie.id !== selectedMovie.id && selectedMovie.Actors.some(actor => movie.Actors.includes(actor)));
-    let sameRating = movies.filter(movie => movie.id !== selectedMovie.id && movie.Rating === selectedMovie.Rating);
-    return (
-      <>
-        <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-        <hr />
-        <br />
-        <h2>Similar Movies</h2>
-        {similarMovies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
-        ))
-        }
-        <h2>Movies with the Same Rating</h2>
-        {sameRating.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
+    let sameRating = movies.filter(movie => movie.id !== selectedMovie.id && movie.Rating === selectedMovie.Rating); */}
 
-        ))
-        }
+    {/* Test code
+    Test code */}
 
+      <Button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+      <hr />
+      <br />
+      </Row>
+      <Row>
+      <h2>Similar Movies</h2>
+      {similarMovies.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
+      ))
+      }
+      </Row>
+      <Row>
+      <h2>Movies with the Same Rating</h2>
+      {sameRating.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
 
-        <h2>Movies Starring the Same Actors</h2>
+      ))
+      }
+      </Row>
+
+<Row>
+      <h2>Movies Starring the Same Actors</h2>
       {sameActors.map((movie) => (
         <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
       ))
       }
-        <h2>Movies of the Same Director</h2>
-        {sameDirector.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
-        ))
-        }
-      </>
-    );
-  }
+      </Row>
+      <Row>
+      <h2>Movies of the Same Director</h2>
+      {sameDirector.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
+      ))
+      }
+</Row>
+    </>  
 
-  if (movies.length === 0) {
-    return <div>The movie list is empty!</div>;
-  }
-
-  return (
-    <div>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      ))}
-      <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
-    </div>
-  );
-};
+  )
+    }
