@@ -4,5 +4,7 @@ $body-color: whitesmoke;
 $secondary: rgb(54, 57, 57);
 $text-primary: rgb(67, 64, 64);
 $btn-secondary: rgb(54, 57, 57);
-
+.pointer{
+ cursor: pointer;
+}
 @import '~bootstrap/scss/bootstrap.scss';
