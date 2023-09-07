@@ -5,8 +5,8 @@ export const TVseriesCard = ({ tvseries, onTVseriesClick }) => {
         <Card className="h-100" onClick={() => { onTVseriesClick(tvseries); }}>
       <Card.Img src={tvseries.ImagePath} />
       <Card.Body>
-        <Card.Title>{tvseries.Title}</Card.Title>
-        <Card.Text>{tvseries.Description}</Card.Text>
+        <Card.Title className="bg-secondary p-2">{tvseries.Title}</Card.Title>
+        <Card.Text className="text-primary">{tvseries.Description}</Card.Text>
       </Card.Body>
     </Card>
    

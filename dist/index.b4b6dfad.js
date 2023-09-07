@@ -42168,6 +42168,7 @@ const TVseriesCard = ({ tvseries, onTVseriesClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Card.Body, {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Card.Title, {
+                        className: "bg-secondary p-2",
                         children: tvseries.Title
                     }, void 0, false, {
                         fileName: "src/components/tvseries-card/tvseries-card.jsx",
@@ -42175,6 +42176,7 @@ const TVseriesCard = ({ tvseries, onTVseriesClick })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Card.Text, {
+                        className: "text-primary",
                         children: tvseries.Description
                     }, void 0, false, {
                         fileName: "src/components/tvseries-card/tvseries-card.jsx",
@@ -42240,6 +42242,7 @@ parcelHelpers.export(exports, "TVseriesView", ()=>TVseriesView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 const TVseriesView = ({ tvseries, onBackClick })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "text-primary",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
@@ -42257,7 +42260,14 @@ const TVseriesView = ({ tvseries, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Title: "
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Title: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 8,
+                            columnNumber: 17
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 8,
@@ -42279,7 +42289,14 @@ const TVseriesView = ({ tvseries, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Description: "
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Description: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 12,
+                            columnNumber: 17
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 12,
@@ -42301,7 +42318,14 @@ const TVseriesView = ({ tvseries, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Season: "
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Season: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 16,
+                            columnNumber: 17
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 16,
@@ -42323,36 +42347,24 @@ const TVseriesView = ({ tvseries, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Genre: "
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Duration: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 20,
+                            columnNumber: 17
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 20,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: tvseries.Genre.Name
+                        children: tvseries.Duration
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 21,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 21,
-                        columnNumber: 47
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Desciption: "
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 22,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: tvseries.Genre.Description
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 23,
                         columnNumber: 13
                     }, undefined)
                 ]
@@ -42364,52 +42376,76 @@ const TVseriesView = ({ tvseries, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Director: "
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Genre: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 24,
+                            columnNumber: 17
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 24,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: tvseries.Genre.Name
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 25,
+                        columnNumber: 13
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 25,
+                        columnNumber: 47
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Desciption: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 26,
+                            columnNumber: 17
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 26,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: tvseries.Director.Name
+                        children: movie.Genre.Description
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 27,
                         columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 27,
-                        columnNumber: 50
-                    }, undefined),
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                lineNumber: 23,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Biography: "
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 28,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: tvseries.Director.Bio
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 29,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 29,
-                        columnNumber: 49
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Birth year: "
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Director: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 30,
+                            columnNumber: 17
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 30,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: tvseries.Director.Birth
+                        children: tvseries.Director.Name
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 31,
@@ -42418,66 +42454,110 @@ const TVseriesView = ({ tvseries, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 31,
-                        columnNumber: 51
+                        columnNumber: 50
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Death year: "
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Biography: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 32,
+                            columnNumber: 17
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 32,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: tvseries.Director.Bio
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 33,
+                        columnNumber: 13
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 33,
+                        columnNumber: 49
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Birth year: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 34,
+                            columnNumber: 17
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 34,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: tvseries.Director.Birth
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 35,
+                        columnNumber: 13
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 35,
+                        columnNumber: 51
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Death year: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 36,
+                            columnNumber: 19
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 36,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: tvseries.Director.Death
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 33,
+                        lineNumber: 37,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 33,
+                        lineNumber: 37,
                         columnNumber: 51
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 25,
+                lineNumber: 29,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Actors: "
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 36,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: tvseries.Actors.join(", ")
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 37,
-                        columnNumber: 13
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 35,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Featured: "
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Actors: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 40,
+                            columnNumber: 17
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 40,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: String(tvseries.Featured)
+                        children: tvseries.Actors.join(", ")
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 41,
@@ -42492,14 +42572,21 @@ const TVseriesView = ({ tvseries, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Rotten Tomatoes Audience Rating: "
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "IMDb Rating: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 44,
+                            columnNumber: 17
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 44,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: tvseries.Rating
+                        children: tvseries.IMDbRating
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 45,
@@ -42514,14 +42601,21 @@ const TVseriesView = ({ tvseries, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Release Date: "
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary",
+                            children: "Rotten Tomatoes Audience Rating: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 48,
+                            columnNumber: 17
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 48,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: tvseries.ReleaseDate
+                        children: tvseries.Rating
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 49,
@@ -42533,12 +42627,52 @@ const TVseriesView = ({ tvseries, onBackClick })=>{
                 lineNumber: 47,
                 columnNumber: 9
             }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Badge, {
+                            bg: "secondary p-2",
+                            children: "Release Date: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 52,
+                            columnNumber: 17
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 52,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: tvseries.ReleaseDate
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 53,
+                        columnNumber: 13
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                lineNumber: 51,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                lineNumber: 55,
+                columnNumber: 9
+            }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                class: "btn btn-secondary",
                 onClick: onBackClick,
                 children: "Back to movies list"
             }, void 0, false, {
                 fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 52,
+                lineNumber: 56,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                lineNumber: 57,
                 columnNumber: 9
             }, undefined)
         ]
