@@ -141,7 +141,7 @@ export const MainView = () => {
             />
             </Col>
 
-          ))}) : (
+          ))}
             {tvseries.map((tvseries) => (
               <Col md={4} key={tvseries.id}>
               <TVseriesCard
