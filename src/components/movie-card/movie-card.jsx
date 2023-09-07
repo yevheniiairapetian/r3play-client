@@ -4,11 +4,11 @@ import { Button, Card } from "react-bootstrap";
 
 export const MovieCard = ({ movie, onMovieClick }) => {
   return (
-    <Card onClick={() => { onMovieClick(movie); }}>
+    <Card className="h-100" onClick={() => { onMovieClick(movie); }}>
       <Card.Img src={movie.ImagePath} />
       <Card.Body>
-        <Card.Title>{movie.Title}</Card.Title>
-        <Card.Text>{movie.Description}</Card.Text>
+        <Card.Title className="bg-secondary p-2">{movie.Title}</Card.Title>
+        <Card.Text className="text-primary">{movie.Description}</Card.Text>
       </Card.Body>
     </Card>
   );
