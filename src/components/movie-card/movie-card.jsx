@@ -8,7 +8,7 @@ export const MovieCard = ({ movie, onMovieClick }) => {
       <Card.Img src={movie.ImagePath} />
       <Card.Body>
         <Card.Title className="bg-secondary p-2">{movie.Title}</Card.Title>
-        <Card.Text className="text-primary">{movie.Description}</Card.Text>
+        <Card.Text color="text-secondary">{movie.Description}</Card.Text>
       </Card.Body>
     </Card>
   );

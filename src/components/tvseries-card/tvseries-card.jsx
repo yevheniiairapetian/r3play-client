@@ -6,7 +6,7 @@ export const TVseriesCard = ({ tvseries, onTVseriesClick }) => {
       <Card.Img src={tvseries.ImagePath} />
       <Card.Body>
         <Card.Title className="bg-secondary p-2">{tvseries.Title}</Card.Title>
-        <Card.Text className="text-primary">{tvseries.Description}</Card.Text>
+        <Card.Text className="text-secondary">{tvseries.Description}</Card.Text>
       </Card.Body>
     </Card>
    
