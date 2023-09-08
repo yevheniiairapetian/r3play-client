@@ -27546,12 +27546,13 @@ const MainView = ()=>{
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
                             bg: "secondary",
                             children: "Similar Movies"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 169,
-                            columnNumber: 13
+                            columnNumber: 14
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
@@ -27583,6 +27584,7 @@ const MainView = ()=>{
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
                             bg: "secondary",
                             children: "Similar TV series"
                         }, void 0, false, {
@@ -27620,6 +27622,7 @@ const MainView = ()=>{
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
                             bg: "secondary",
                             children: "Movies with the Same Rating"
                         }, void 0, false, {
@@ -27657,6 +27660,7 @@ const MainView = ()=>{
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
                             bg: "secondary",
                             children: "TV series with the Same Rating"
                         }, void 0, false, {
@@ -27694,6 +27698,7 @@ const MainView = ()=>{
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
                             bg: "secondary",
                             children: "Movies Starring the Same Actors"
                         }, void 0, false, {
@@ -27731,6 +27736,7 @@ const MainView = ()=>{
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
                             bg: "secondary",
                             children: "TV series Starring the Same Actors"
                         }, void 0, false, {
@@ -27768,6 +27774,7 @@ const MainView = ()=>{
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
                             bg: "secondary",
                             children: "Movies of the Same Director"
                         }, void 0, false, {
@@ -27805,6 +27812,7 @@ const MainView = ()=>{
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
                             bg: "secondary",
                             children: "TV series of the Same Director"
                         }, void 0, false, {

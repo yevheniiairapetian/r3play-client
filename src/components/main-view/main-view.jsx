@@ -166,7 +166,7 @@ export const MainView = () => {
         <br />
       </Row>
       <Row>
-        <h2><Badge bg="secondary">Similar Movies</Badge></h2>
+        <h2 ><Badge className="w-100" bg="secondary">Similar Movies</Badge></h2>
         {similarMovies.map((movie) => (
           <Col md={4}>
           <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
@@ -176,7 +176,7 @@ export const MainView = () => {
 
       </Row>
       <Row>
-        <h2><Badge bg="secondary">Similar TV series</Badge></h2>
+        <h2><Badge className="w-100" bg="secondary">Similar TV series</Badge></h2>
         {similarTVseries.map((tvseries) => (
           <Col md={4}>
           <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
@@ -186,7 +186,7 @@ export const MainView = () => {
 
       </Row>
       <Row>
-        <h2><Badge bg="secondary">Movies with the Same Rating</Badge></h2>
+        <h2><Badge className="w-100" bg="secondary">Movies with the Same Rating</Badge></h2>
         {sameRating.map((movie) => (
           <Col md={4}>
           <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
@@ -195,7 +195,7 @@ export const MainView = () => {
         }
       </Row>
       <Row>
-        <h2><Badge bg="secondary">TV series with the Same Rating</Badge></h2>
+        <h2><Badge className="w-100" bg="secondary">TV series with the Same Rating</Badge></h2>
         {sameTVRating.map((tvseries) => (
           <Col md={4}>
           <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
@@ -205,7 +205,7 @@ export const MainView = () => {
       </Row>
 
       <Row>
-        <h2><Badge bg="secondary">Movies Starring the Same Actors</Badge></h2>
+        <h2><Badge className="w-100" bg="secondary">Movies Starring the Same Actors</Badge></h2>
         {sameActors.map((movie) => (
           <Col md={4}>
           <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
@@ -215,7 +215,7 @@ export const MainView = () => {
       </Row>
 
       <Row>
-        <h2><Badge bg="secondary">TV series Starring the Same Actors</Badge></h2>
+        <h2><Badge className="w-100" bg="secondary">TV series Starring the Same Actors</Badge></h2>
         {sameTVActors.map((tvseries) => (
           <Col md={4}>
           <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
@@ -224,7 +224,7 @@ export const MainView = () => {
         }
       </Row>
       <Row>
-        <h2><Badge bg="secondary">Movies of the Same Director</Badge></h2>
+        <h2><Badge className="w-100" bg="secondary">Movies of the Same Director</Badge></h2>
         {sameDirector.map((movie) => (
           <Col md={4}>
           <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
@@ -233,7 +233,7 @@ export const MainView = () => {
         }
       </Row>
       <Row>
-        <h2><Badge bg="secondary">TV series of the Same Director</Badge></h2>
+        <h2><Badge className="w-100" bg="secondary">TV series of the Same Director</Badge></h2>
         {sameTVDirector.map((tvseries) => (
           <Col md={4}>
           <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
