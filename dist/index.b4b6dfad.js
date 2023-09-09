@@ -41391,7 +41391,8 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Title: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41404,6 +41405,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3 title-color",
                         "secondary-color": "text-secondary",
                         children: movie.Title
                     }, void 0, false, {
@@ -41422,7 +41424,8 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Description: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41435,6 +41438,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.Description
                     }, void 0, false, {
@@ -41453,7 +41457,8 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Duration: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41466,6 +41471,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.Duration
                     }, void 0, false, {
@@ -41484,7 +41490,8 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Genre: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41497,6 +41504,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.Genre.Name
                     }, void 0, false, {
@@ -41507,12 +41515,13 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 22,
-                        columnNumber: 77
+                        columnNumber: 94
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Desciption: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41525,6 +41534,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.Genre.Description
                     }, void 0, false, {
@@ -41543,7 +41553,8 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Director: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41556,6 +41567,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.Director.Name
                     }, void 0, false, {
@@ -41566,12 +41578,13 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 28,
-                        columnNumber: 80
+                        columnNumber: 97
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Biography: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41584,6 +41597,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.Director.Bio
                     }, void 0, false, {
@@ -41594,12 +41608,13 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 30,
-                        columnNumber: 79
+                        columnNumber: 96
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Birth year: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41612,6 +41627,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.Director.Birth
                     }, void 0, false, {
@@ -41622,12 +41638,13 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 32,
-                        columnNumber: 81
+                        columnNumber: 98
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Death year: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41640,6 +41657,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.Director.Death
                     }, void 0, false, {
@@ -41650,7 +41668,7 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 34,
-                        columnNumber: 81
+                        columnNumber: 98
                     }, undefined)
                 ]
             }, void 0, true, {
@@ -41663,7 +41681,8 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Actors: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41676,6 +41695,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.Actors.join(", ")
                     }, void 0, false, {
@@ -41694,7 +41714,8 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "IMDb Rating: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41707,6 +41728,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.IMDbRating
                     }, void 0, false, {
@@ -41738,6 +41760,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.Rating
                     }, void 0, false, {
@@ -41756,7 +41779,8 @@ const MovieView = ({ movie, onBackClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
                             color: "text-primary",
-                            bg: "secondary p-2",
+                            bg: "secondary",
+                            className: "pl-3 pr-3 pt-3 pb-3",
                             children: "Release Date: "
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -41769,6 +41793,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "pl-3",
                         "secondary-color": "text-secondary",
                         children: movie.ReleaseDate
                     }, void 0, false, {
