@@ -41885,6 +41885,7 @@ const LoginView = ({ onLoggedIn })=>{
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+        class: "pb-4 pt-4",
         onSubmit: handleSubmit,
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
@@ -42031,6 +42032,7 @@ const SignupView = ()=>{
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+        class: "pt-4",
         onSubmit: handleSubmit,
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {

@@ -33,7 +33,7 @@ export const SignupView = () => {
         });
     };
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form class="pt-4" onSubmit={handleSubmit}>
 
             <h4>Sign Up Form</h4>
             <Form.Group controlId="formUsername">
