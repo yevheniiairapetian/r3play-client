@@ -1,4 +1,6 @@
+
 import PropTypes from "prop-types";
+import { Card } from "react-bootstrap";
 
 export const TVseriesCard = ({ tvseries, onTVseriesClick }) => {
     return (

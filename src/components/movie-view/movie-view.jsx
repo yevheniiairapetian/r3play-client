@@ -50,7 +50,7 @@
             <span className="pl-3" secondary-color="text-secondary">{movie.ReleaseDate}</span>
         </div>
         <br/>
-        <button class="btn btn-secondary" onClick={onBackClick}>Back to the list</button>
+        <button className="btn btn-secondary" onClick={onBackClick}>Back to the list</button>
         <hr/>
       </div>
       

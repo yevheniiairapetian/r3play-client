@@ -1,3 +1,5 @@
+import {Badge} from "react-bootstrap";
+
 export const TVseriesView = ({ tvseries, onBackClick }) => {
   return (
     <div bg-color="body-bg">
