@@ -40,7 +40,7 @@ export const MainView = () => {
 
   
   useEffect(() => {
-    if (!token) {
+    if (!user) {
       return;
     }
     fetch("https://r3play-934f9ea5664d.herokuapp.com/movies", {

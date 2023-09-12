@@ -27353,7 +27353,7 @@ const MainView = ()=>{
     //   sameTVRating = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Rating === selectedTVseries.Rating);
     // }
     (0, _react.useEffect)(()=>{
-        if (!token) return;
+        if (!user) return;
         fetch("https://r3play-934f9ea5664d.herokuapp.com/movies", {
             headers: {
                 Authorization: `Bearer ${token}`
