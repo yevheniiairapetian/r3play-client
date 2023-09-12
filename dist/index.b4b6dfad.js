@@ -42296,7 +42296,7 @@ $RefreshReg$(_c, "TVseriesCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"f0qZn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"alGHL","react-bootstrap":"3AD9A"}],"7plUY":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"f0qZn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"alGHL"}],"7plUY":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad81 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42787,6 +42787,6 @@ $RefreshReg$(_c, "TVseriesView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"f0qZn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"alGHL","react-bootstrap":"3AD9A"}]},["d5pIo","26T53","d8Dch"], "d8Dch", "parcelRequire245c")
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"f0qZn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"alGHL"}]},["d5pIo","26T53","d8Dch"], "d8Dch", "parcelRequire245c")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
