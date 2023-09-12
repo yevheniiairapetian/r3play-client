@@ -37,6 +37,8 @@ export const MainView = () => {
     sameTVActors = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && selectedTVseries.Actors.some(actor => tvseries.Actors.includes(actor)));
     sameTVRating = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Rating === selectedTVseries.Rating);
   }
+
+  
   useEffect(() => {
     if (!token) {
       return;
@@ -107,6 +109,7 @@ export const MainView = () => {
   }, [token]);
 
   return (
+    
     <>
       {!user ? (
         <>
@@ -121,25 +124,38 @@ export const MainView = () => {
             <SignupView />
           </Col>
         </>
+
+      ) :( selectedMovie ? (
+    <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+    ) : selectedTVseries ? (
+    <TVseriesView tvseries={selectedTVseries} onBackClick={() => setSelectedTVseries(null)} />
+    ) : movies.length === 0 ? (
+    <div>The movie list is empty!</div>):
         
-      ) : (
         <>
+        
+
+
+
+
+          <Row>
             {movies.map((movie) => (
 
-            <Col md={3} key={movie.id}>
-              <MovieCard
+              <Col md={3} key={movie.id}>
+                <MovieCard
 
-                movie={movie}
-                onMovieClick={(newSelectedMovie) => {
-                  setSelectedMovie(newSelectedMovie);
-                }}
-              />
-            </Col>
+                  movie={movie}
+                  onMovieClick={(newSelectedMovie) => {
+                    setSelectedMovie(newSelectedMovie);
+                  }}
+                />
+              </Col>
+
+
+            ))}
             
-
-          ))}
             {tvseries.map((tvseries) => (
-              
+
               <Col md={3} key={tvseries.id}>
                 <TVseriesCard
 
@@ -149,115 +165,109 @@ export const MainView = () => {
                   }}
                 />
               </Col>
-              
+
 
 
             ))}
+            
+          </Row>
+          
+
+
           
           
+            <Row>
+              <h2 ><Badge className="w-100" bg="secondary">Similar Movies</Badge></h2>
+              {similarMovies.map((movie) => (
+                <Col md={4}>
+                  <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
+                </Col>
+              ))
+              }
 
-      
+            </Row>
+            <Row>
+              <h2><Badge className="w-100" bg="secondary">Similar TV series</Badge></h2>
+              {similarTVseries.map((tvseries) => (
+                <Col md={4}>
+                  <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
+                </Col>
+              ))
+              }
 
-          {selectedMovie ? (
-            <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-          ) : selectedTVseries ? (
-            <TVseriesView tvseries={selectedTVseries} onBackClick={() => setSelectedTVseries(null)} />
-          ) : movies.length === 0 ? (
-            <div>The movie list is empty!</div>
-          ) : (
-            <>
-              <Row>
-                <h2 ><Badge className="w-100" bg="secondary">Similar Movies</Badge></h2>
-                {similarMovies.map((movie) => (
-                  <Col md={4}>
-                    <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
-                  </Col>
-                ))
-                }
+            </Row>
+            <Row>
+              <h2><Badge className="w-100" bg="secondary">Movies with the Same Rating</Badge></h2>
+              {sameRating.map((movie) => (
+                <Col md={4}>
+                  <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
+                </Col>
+              ))
+              }
+            </Row>
+            <Row>
+              <h2><Badge className="w-100" bg="secondary">TV series with the Same Rating</Badge></h2>
+              {sameTVRating.map((tvseries) => (
+                <Col md={4}>
+                  <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
+                </Col>
+              ))
+              }
+            </Row>
 
-              </Row>
-              <Row>
-                <h2><Badge className="w-100" bg="secondary">Similar TV series</Badge></h2>
-                {similarTVseries.map((tvseries) => (
-                  <Col md={4}>
-                    <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
-                  </Col>
-                ))
-                }
+            <Row>
+              <h2><Badge className="w-100" bg="secondary">Movies Starring the Same Actors</Badge></h2>
+              {sameActors.map((movie) => (
+                <Col md={4}>
+                  <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
+                </Col>
+              ))
+              }
+            </Row>
 
-              </Row>
-              <Row>
-                <h2><Badge className="w-100" bg="secondary">Movies with the Same Rating</Badge></h2>
-                {sameRating.map((movie) => (
-                  <Col md={4}>
-                    <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
-                  </Col>
-                ))
-                }
-              </Row>
-              <Row>
-                <h2><Badge className="w-100" bg="secondary">TV series with the Same Rating</Badge></h2>
-                {sameTVRating.map((tvseries) => (
-                  <Col md={4}>
-                    <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
-                  </Col>
-                ))
-                }
-              </Row>
-
-              <Row>
-                <h2><Badge className="w-100" bg="secondary">Movies Starring the Same Actors</Badge></h2>
-                {sameActors.map((movie) => (
-                  <Col md={4}>
-                    <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
-                  </Col>
-                ))
-                }
-              </Row>
-
-              <Row>
-                <h2><Badge className="w-100" bg="secondary">TV series Starring the Same Actors</Badge></h2>
-                {sameTVActors.map((tvseries) => (
-                  <Col md={4}>
-                    <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
-                  </Col>
-                ))
-                }
-              </Row>
-              <Row>
-                <h2><Badge className="w-100" bg="secondary">Movies of the Same Director</Badge></h2>
-                {sameDirector.map((movie) => (
-                  <Col md={4}>
-                    <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
-                  </Col>
-                ))
-                }
-              </Row>
-              <Row>
-                <h2><Badge className="w-100" bg="secondary">TV series of the Same Director</Badge></h2>
-                {sameTVDirector.map((tvseries) => (
-                  <Col md={4}>
-                    <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
-                  </Col>
-                ))
-                }
-              </Row>
+            <Row>
+              <h2><Badge className="w-100" bg="secondary">TV series Starring the Same Actors</Badge></h2>
+              {sameTVActors.map((tvseries) => (
+                <Col md={4}>
+                  <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
+                </Col>
+              ))
+              }
+            </Row>
+            <Row>
+              <h2><Badge className="w-100" bg="secondary">Movies of the Same Director</Badge></h2>
+              {sameDirector.map((movie) => (
+                <Col md={4}>
+                  <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
+                </Col>
+              ))
+              }
+            </Row>
+            <Row>
+              <h2><Badge className="w-100" bg="secondary">TV series of the Same Director</Badge></h2>
+              {sameTVDirector.map((tvseries) => (
+                <Col md={4}>
+                  <TVseriesCard key={tvseries.id} tvseries={tvseries} onTVseriesClick={(newSelectedTVseries) => setSelectedTVseries(newSelectedTVseries)} />
+                </Col>
+              ))
+              }
+            </Row>
 
 
-              <Row>
+            <Row>
 
-                <Button className="btn-secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
-                <hr />
-                <br />
-                </Row>
-                
-      </>
-    )}
-    
-  </>
-  
+              <Button className="btn-secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+              <hr />
+              <br />
+            </Row>
+            
+          
+            
+        </>
+            
+
       )}
 
-      </>
-  )}  
-      
+    </>
+  )
+}
