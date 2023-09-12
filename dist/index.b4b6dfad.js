@@ -27329,29 +27329,29 @@ const MainView = ()=>{
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     const [movies, setMovies] = (0, _react.useState)([]);
-    const [tvseries, setTVSeries] = (0, _react.useState)([]);
+    // const [tvseries, setTVSeries] = useState([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    const [selectedTVseries, setSelectedTVseries] = (0, _react.useState)(null);
-    let similarMovies = [];
-    let sameDirector = [];
-    let sameActors = [];
-    let sameRating = [];
-    let similarTVseries = [];
-    let sameTVDirector = [];
-    let sameTVRating = [];
-    let sameTVActors = [];
+    // const [selectedTVseries, setSelectedTVseries] = useState(null);
+    // let similarMovies = [];
+    // let sameDirector = [];
+    // let sameActors = [];
+    // let sameRating = [];
+    // let similarTVseries = [];
+    // let sameTVDirector = [];
+    // let sameTVRating = [];
+    // let sameTVActors = [];
     if (selectedMovie) {
         similarMovies = movies.filter((movie)=>movie.id !== selectedMovie.id && movie.Genre.Name === selectedMovie.Genre.Name);
         sameDirector = movies.filter((movie)=>movie.id !== selectedMovie.id && movie.Director.Name === selectedMovie.Director.Name);
         sameActors = movies.filter((movie)=>movie.id !== selectedMovie.id && selectedMovie.Actors.some((actor)=>movie.Actors.includes(actor)));
         sameRating = movies.filter((movie)=>movie.id !== selectedMovie.id && movie.Rating === selectedMovie.Rating);
     }
-    if (selectedTVseries) {
-        similarTVseries = tvseries.filter((tvseries)=>tvseries.id !== selectedTVseries.id && tvseries.Genre.Name === selectedTVseries.Genre.Name);
-        sameTVDirector = tvseries.filter((tvseries)=>tvseries.id !== selectedTVseries.id && tvseries.Director.Name === selectedTVseries.Director.Name);
-        sameTVActors = tvseries.filter((tvseries)=>tvseries.id !== selectedTVseries.id && selectedTVseries.Actors.some((actor)=>tvseries.Actors.includes(actor)));
-        sameTVRating = tvseries.filter((tvseries)=>tvseries.id !== selectedTVseries.id && tvseries.Rating === selectedTVseries.Rating);
-    }
+    // if (selectedTVseries) {
+    //   similarTVseries = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Genre.Name === selectedTVseries.Genre.Name);
+    //   sameTVDirector = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Director.Name === selectedTVseries.Director.Name);
+    //   sameTVActors = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && selectedTVseries.Actors.some(actor => tvseries.Actors.includes(actor)));
+    //   sameTVRating = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Rating === selectedTVseries.Rating);
+    // }
     (0, _react.useEffect)(()=>{
         if (!token) return;
         fetch("https://r3play-934f9ea5664d.herokuapp.com/movies", {
@@ -27384,38 +27384,39 @@ const MainView = ()=>{
                 };
             });
             setMovies(moviesFromApi);
-        }).then(()=>{
-            fetch("r3play-934f9ea5664d.herokuapp.com/tvseries", {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }).then((response)=>response.json()).then((data)=>{
-                const TVseriesFromApi = data.map((tvseries)=>{
-                    return {
-                        id: tvseries._id,
-                        Title: tvseries.Title,
-                        Description: tvseries.Description,
-                        Genre: {
-                            Name: tvseries.Genre.Name,
-                            Description: tvseries.Genre.Description
-                        },
-                        Season: {},
-                        Director: {
-                            Name: tvseries.Director.Name,
-                            Bio: tvseries.Director.Bio,
-                            Birth: tvseries.Director.Birth,
-                            Death: tvseries.Director.Death
-                        },
-                        ImagePath: tvseries.ImagePath,
-                        Featured: tvseries.Featured,
-                        Actors: tvseries.Actors,
-                        Rating: tvseries.Rating,
-                        ReleaseDate: tvseries.ReleaseDate
-                    };
-                });
-                setTVSeries(TVseriesFromApi);
-            });
         });
+    // .then(() => {
+    //   fetch("r3play-934f9ea5664d.herokuapp.com/tvseries", {
+    //     headers: { Authorization: `Bearer ${token}` }
+    //   })
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       const TVseriesFromApi = data.map((tvseries) => {
+    //         return {
+    //           id: tvseries._id,
+    //           Title: tvseries.Title,
+    //           Description: tvseries.Description,
+    //           Genre: {
+    //             Name: tvseries.Genre.Name,
+    //             Description: tvseries.Genre.Description
+    //           },
+    //           Season: {},
+    //           Director: {
+    //             Name: tvseries.Director.Name,
+    //             Bio: tvseries.Director.Bio,
+    //             Birth: tvseries.Director.Birth,
+    //             Death: tvseries.Director.Death
+    //           },
+    //           ImagePath: tvseries.ImagePath,
+    //           Featured: tvseries.Featured,
+    //           Actors: tvseries.Actors,
+    //           Rating: tvseries.Rating,
+    //           ReleaseDate: tvseries.ReleaseDate,
+    //         };
+    //       })
+    //       setTVSeries(TVseriesFromApi);
+    //     });
+    // })
     }, [
         token
     ]);
@@ -27431,25 +27432,25 @@ const MainView = ()=>{
                         }
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 117,
+                        lineNumber: 118,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: "or you can"
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 123,
+                        lineNumber: 124,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 124,
+                        lineNumber: 125,
                         columnNumber: 13
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 116,
+                lineNumber: 117,
                 columnNumber: 11
             }, undefined)
         }, void 0, false) : selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
@@ -27457,368 +27458,38 @@ const MainView = ()=>{
             onBackClick: ()=>setSelectedMovie(null)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 129,
-            columnNumber: 5
-        }, undefined) : selectedTVseries ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesView.TVseriesView), {
-            tvseries: selectedTVseries,
-            onBackClick: ()=>setSelectedTVseries(null)
-        }, void 0, false, {
-            fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 131,
+            lineNumber: 130,
             columnNumber: 5
         }, undefined) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             children: "The movie list is empty!"
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 133,
+            lineNumber: 136,
             columnNumber: 5
         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 3,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie,
-                                    onMovieClick: (newSelectedMovie)=>{
-                                        setSelectedMovie(newSelectedMovie);
-                                    }
-                                }, void 0, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 145,
-                                    columnNumber: 17
-                                }, undefined)
-                            }, movie.id, false, {
+                    children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 3,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                movie: movie,
+                                onMovieClick: (newSelectedMovie)=>{
+                                    setSelectedMovie(newSelectedMovie);
+                                }
+                            }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 144,
-                                columnNumber: 15
-                            }, undefined)),
-                        tvseries.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 3,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
-                                    tvseries: tvseries,
-                                    onTVseriesClick: (newSelectedTVseries)=>{
-                                        setSelectedTVseries(newSelectedTVseries);
-                                    }
-                                }, void 0, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 160,
-                                    columnNumber: 17
-                                }, undefined)
-                            }, tvseries.id, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 159,
-                                columnNumber: 15
-                            }, undefined))
-                    ]
-                }, void 0, true, {
+                                lineNumber: 148,
+                                columnNumber: 17
+                            }, undefined)
+                        }, movie.id, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 147,
+                            columnNumber: 15
+                        }, undefined))
+                }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 141,
+                    lineNumber: 144,
                     columnNumber: 11
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "Similar Movies"
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 180,
-                                columnNumber: 20
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 180,
-                            columnNumber: 15
-                        }, undefined),
-                        similarMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie,
-                                    onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
-                                }, movie.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 183,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 182,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 179,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "Similar TV series"
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 190,
-                                columnNumber: 19
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 190,
-                            columnNumber: 15
-                        }, undefined),
-                        similarTVseries.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
-                                    tvseries: tvseries,
-                                    onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
-                                }, tvseries.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 193,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 192,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 189,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "Movies with the Same Rating"
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 200,
-                                columnNumber: 19
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 200,
-                            columnNumber: 15
-                        }, undefined),
-                        sameRating.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie,
-                                    onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
-                                }, movie.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 203,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 202,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 199,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "TV series with the Same Rating"
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 209,
-                                columnNumber: 19
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 209,
-                            columnNumber: 15
-                        }, undefined),
-                        sameTVRating.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
-                                    tvseries: tvseries,
-                                    onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
-                                }, tvseries.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 212,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 211,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 208,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "Movies Starring the Same Actors"
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 219,
-                                columnNumber: 19
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 219,
-                            columnNumber: 15
-                        }, undefined),
-                        sameActors.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie,
-                                    onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
-                                }, movie.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 222,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 221,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 218,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "TV series Starring the Same Actors"
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 229,
-                                columnNumber: 19
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 229,
-                            columnNumber: 15
-                        }, undefined),
-                        sameTVActors.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
-                                    tvseries: tvseries,
-                                    onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
-                                }, tvseries.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 232,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 231,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 228,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "Movies of the Same Director"
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 238,
-                                columnNumber: 19
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 238,
-                            columnNumber: 15
-                        }, undefined),
-                        sameDirector.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie,
-                                    onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
-                                }, movie.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 241,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 240,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 237,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "TV series of the Same Director"
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 247,
-                                columnNumber: 19
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 247,
-                            columnNumber: 15
-                        }, undefined),
-                        sameTVDirector.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
-                                    tvseries: tvseries,
-                                    onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
-                                }, tvseries.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 250,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 249,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 246,
-                    columnNumber: 13
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
                     children: [
@@ -27832,30 +27503,30 @@ const MainView = ()=>{
                             children: "Logout"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 259,
+                            lineNumber: 262,
                             columnNumber: 15
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 260,
+                            lineNumber: 263,
                             columnNumber: 15
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 261,
+                            lineNumber: 264,
                             columnNumber: 15
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 257,
+                    lineNumber: 260,
                     columnNumber: 13
                 }, undefined)
             ]
         }, void 0, true)
     }, void 0, false);
 };
-_s(MainView, "ZFCU9rYq736m5hWufSv3P23bD6o=");
+_s(MainView, "9wJBvfUyU2IigbyWC+M5y3EH9h4=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");

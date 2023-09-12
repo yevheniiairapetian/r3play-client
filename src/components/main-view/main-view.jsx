@@ -13,17 +13,17 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [tvseries, setTVSeries] = useState([]);
+  // const [tvseries, setTVSeries] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [selectedTVseries, setSelectedTVseries] = useState(null);
-  let similarMovies = [];
-  let sameDirector = [];
-  let sameActors = [];
-  let sameRating = [];
-  let similarTVseries = [];
-  let sameTVDirector = [];
-  let sameTVRating = [];
-  let sameTVActors = [];
+  // const [selectedTVseries, setSelectedTVseries] = useState(null);
+  // let similarMovies = [];
+  // let sameDirector = [];
+  // let sameActors = [];
+  // let sameRating = [];
+  // let similarTVseries = [];
+  // let sameTVDirector = [];
+  // let sameTVRating = [];
+  // let sameTVActors = [];
   if (selectedMovie) {
     similarMovies = movies.filter(movie => movie.id !== selectedMovie.id && movie.Genre.Name === selectedMovie.Genre.Name);
     sameDirector = movies.filter(movie => movie.id !== selectedMovie.id && movie.Director.Name === selectedMovie.Director.Name);
@@ -31,12 +31,12 @@ export const MainView = () => {
     sameRating = movies.filter(movie => movie.id !== selectedMovie.id && movie.Rating === selectedMovie.Rating);
   }
 
-  if (selectedTVseries) {
-    similarTVseries = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Genre.Name === selectedTVseries.Genre.Name);
-    sameTVDirector = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Director.Name === selectedTVseries.Director.Name);
-    sameTVActors = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && selectedTVseries.Actors.some(actor => tvseries.Actors.includes(actor)));
-    sameTVRating = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Rating === selectedTVseries.Rating);
-  }
+  // if (selectedTVseries) {
+  //   similarTVseries = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Genre.Name === selectedTVseries.Genre.Name);
+  //   sameTVDirector = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Director.Name === selectedTVseries.Director.Name);
+  //   sameTVActors = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && selectedTVseries.Actors.some(actor => tvseries.Actors.includes(actor)));
+  //   sameTVRating = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Rating === selectedTVseries.Rating);
+  // }
 
   
   useEffect(() => {
@@ -74,38 +74,39 @@ export const MainView = () => {
         });
 
         setMovies(moviesFromApi);
-      }).then(() => {
-        fetch("r3play-934f9ea5664d.herokuapp.com/tvseries", {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            const TVseriesFromApi = data.map((tvseries) => {
-              return {
-                id: tvseries._id,
-                Title: tvseries.Title,
-                Description: tvseries.Description,
-                Genre: {
-                  Name: tvseries.Genre.Name,
-                  Description: tvseries.Genre.Description
-                },
-                Season: {},
-                Director: {
-                  Name: tvseries.Director.Name,
-                  Bio: tvseries.Director.Bio,
-                  Birth: tvseries.Director.Birth,
-                  Death: tvseries.Director.Death
-                },
-                ImagePath: tvseries.ImagePath,
-                Featured: tvseries.Featured,
-                Actors: tvseries.Actors,
-                Rating: tvseries.Rating,
-                ReleaseDate: tvseries.ReleaseDate,
-              };
-            })
-            setTVSeries(TVseriesFromApi);
-          });
       })
+      // .then(() => {
+      //   fetch("r3play-934f9ea5664d.herokuapp.com/tvseries", {
+      //     headers: { Authorization: `Bearer ${token}` }
+      //   })
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       const TVseriesFromApi = data.map((tvseries) => {
+      //         return {
+      //           id: tvseries._id,
+      //           Title: tvseries.Title,
+      //           Description: tvseries.Description,
+      //           Genre: {
+      //             Name: tvseries.Genre.Name,
+      //             Description: tvseries.Genre.Description
+      //           },
+      //           Season: {},
+      //           Director: {
+      //             Name: tvseries.Director.Name,
+      //             Bio: tvseries.Director.Bio,
+      //             Birth: tvseries.Director.Birth,
+      //             Death: tvseries.Director.Death
+      //           },
+      //           ImagePath: tvseries.ImagePath,
+      //           Featured: tvseries.Featured,
+      //           Actors: tvseries.Actors,
+      //           Rating: tvseries.Rating,
+      //           ReleaseDate: tvseries.ReleaseDate,
+      //         };
+      //       })
+      //       setTVSeries(TVseriesFromApi);
+      //     });
+      // })
   }, [token]);
 
   return (
@@ -125,11 +126,13 @@ export const MainView = () => {
           </Col>
         </>
 
-      ) :( selectedMovie ? (
+      ) : ( selectedMovie ? (
     <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-    ) : selectedTVseries ? (
-    <TVseriesView tvseries={selectedTVseries} onBackClick={() => setSelectedTVseries(null)} />
-    ) : movies.length === 0 ? (
+    ) 
+    //: selectedTVseries ? (
+    //<TVseriesView tvseries={selectedTVseries} onBackClick={() => setSelectedTVseries(null)} />
+    //) 
+    : movies.length === 0 ? (
     <div>The movie list is empty!</div>):
         
         <>
@@ -154,7 +157,7 @@ export const MainView = () => {
 
             ))}
             
-            {tvseries.map((tvseries) => (
+            {/* {tvseries.map((tvseries) => (
 
               <Col md={3} key={tvseries.id}>
                 <TVseriesCard
@@ -168,7 +171,7 @@ export const MainView = () => {
 
 
 
-            ))}
+            ))} */}
             
           </Row>
           
@@ -176,7 +179,7 @@ export const MainView = () => {
 
           
           
-            <Row>
+            {/* <Row>
               <h2 ><Badge className="w-100" bg="secondary">Similar Movies</Badge></h2>
               {similarMovies.map((movie) => (
                 <Col md={4}>
@@ -251,7 +254,7 @@ export const MainView = () => {
                 </Col>
               ))
               }
-            </Row>
+            </Row> */}
 
 
             <Row>
