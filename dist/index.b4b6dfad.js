@@ -27340,12 +27340,12 @@ const MainView = ()=>{
     // let sameTVDirector = [];
     // let sameTVRating = [];
     // let sameTVActors = [];
-    if (selectedMovie) {
-        similarMovies = movies.filter((movie)=>movie.id !== selectedMovie.id && movie.Genre.Name === selectedMovie.Genre.Name);
-        sameDirector = movies.filter((movie)=>movie.id !== selectedMovie.id && movie.Director.Name === selectedMovie.Director.Name);
-        sameActors = movies.filter((movie)=>movie.id !== selectedMovie.id && selectedMovie.Actors.some((actor)=>movie.Actors.includes(actor)));
-        sameRating = movies.filter((movie)=>movie.id !== selectedMovie.id && movie.Rating === selectedMovie.Rating);
-    }
+    // if (selectedMovie) {
+    //   similarMovies = movies.filter(movie => movie.id !== selectedMovie.id && movie.Genre.Name === selectedMovie.Genre.Name);
+    //   sameDirector = movies.filter(movie => movie.id !== selectedMovie.id && movie.Director.Name === selectedMovie.Director.Name);
+    //   sameActors = movies.filter(movie => movie.id !== selectedMovie.id && selectedMovie.Actors.some(actor => movie.Actors.includes(actor)));
+    //   sameRating = movies.filter(movie => movie.id !== selectedMovie.id && movie.Rating === selectedMovie.Rating);
+    // }
     // if (selectedTVseries) {
     //   similarTVseries = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Genre.Name === selectedTVseries.Genre.Name);
     //   sameTVDirector = tvseries.filter(tvseries => tvseries.id !== selectedTVseries.id && tvseries.Director.Name === selectedTVseries.Director.Name);
