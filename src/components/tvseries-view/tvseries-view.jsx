@@ -1,13 +1,25 @@
 import {Badge} from "react-bootstrap";
 
-export const TVseriesView = ({ tvseries, onBackClick }) => {
+export const TVseriesView = ({ tvseries, onBackClick, tv }) => {
+  let similarTVSeries = [];
+    let sameTVDirector = [];
+    let sameTVActors = [];
+    let sameTVRating = [];
+
+    if (tvseries && tv) {
+      similarTVSeries = tvseries.filter((tv) => tv.id !== tvseries.id && tv.Genre.Name === tvseries.Genre.Name);
+      sameTVDirector = tvseries.filter((tv) => tv.id !== tvseries.id && tv.Director.Name === tvseries.Director.Name);
+      sameTVActors = tvseries.filter((tv) => tv.id !== tvseries.id && tv.Actors.some((actor) => tv.Actors.includes(actor)));
+      sameTVRating = tvseries.filter((tv) => tv.id !== tvseries.id && tv.Rating === tvseries.Rating);
+    }
   return (
+    <>
     <div bg-color="body-bg">
       <div>
-        <img src={movie.ImagePath} />
+        <img src={tvseries.ImagePath} />
       </div>
       <div>
-        <span><Badge color="text-primary" bg="secondary p-2">Title: </Badge></span>
+        <span className="title-color"><Badge  bg="secondary p-2">Title: </Badge></span>
           <span secondary-color="text-secondary">{tvseries.Title}</span>
       </div>
       <div>
@@ -58,6 +70,8 @@ export const TVseriesView = ({ tvseries, onBackClick }) => {
       <button class="btn btn-secondary" onClick={onBackClick}>Back to the list</button>
       <hr/>
     </div>
+    
+      </>
     
   );
   };

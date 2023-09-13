@@ -27385,11 +27385,15 @@ const MainView = ()=>{
             });
             setMovies(moviesFromApi);
         }).then(()=>{
-            fetch("r3play-934f9ea5664d.herokuapp.com/tvseries", {
+            fetch("https://r3play-934f9ea5664d.herokuapp.com/tvseries", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            }).then((response)=>response.json()).then((data)=>{
+            }).then((response)=>{
+                console.log("Response status:", response.status);
+                return response.json();
+            }).then((data)=>{
+                console.log("data", data);
                 const TVseriesFromApi = data.map((tvseries)=>{
                     return {
                         id: tvseries._id,
@@ -27399,7 +27403,6 @@ const MainView = ()=>{
                             Name: tvseries.Genre.Name,
                             Description: tvseries.Genre.Description
                         },
-                        Season: {},
                         Director: {
                             Name: tvseries.Director.Name,
                             Bio: tvseries.Director.Bio,
@@ -27414,70 +27417,68 @@ const MainView = ()=>{
                     };
                 });
                 setTVSeries(TVseriesFromApi);
-            });
+                console.log(tvseries);
+            }).catch((e)=>console.error(e));
         });
     }, [
         token
     ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                md: 5,
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
-                        onLoggedIn: (user, token)=>{
-                            setUser(user);
-                            setToken(token);
-                        }
-                    }, void 0, false, {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                        md: 5,
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
+                                onLoggedIn: (user, token)=>{
+                                    setUser(user);
+                                    setToken(token);
+                                }
+                            }, void 0, false, {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 123,
+                                columnNumber: 13
+                            }, undefined),
+                            "or",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 130,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 117,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "or you can"
-                    }, void 0, false, {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 123,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 124,
-                        columnNumber: 13
+                        lineNumber: 122,
+                        columnNumber: 11
                     }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 116,
-                columnNumber: 11
-            }, undefined)
-        }, void 0, false) : selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-            movie: selectedMovie,
-            onBackClick: ()=>setSelectedMovie(null)
-        }, void 0, false, {
-            fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 129,
-            columnNumber: 5
-        }, undefined) : selectedTVseries ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesView.TVseriesView), {
-            tvseries: selectedTVseries,
-            onBackClick: ()=>setSelectedTVseries(null)
-        }, void 0, false, {
-            fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 131,
-            columnNumber: 5
-        }, undefined) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            children: "The movie list is empty!"
-        }, void 0, false, {
-            fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 133,
-            columnNumber: 5
-        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                }, void 0, false) : selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+                    movie: selectedMovie,
+                    onBackClick: ()=>setSelectedMovie(null),
+                    movies: movies,
+                    tvseries: tvseries
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 134,
+                    columnNumber: 11
+                }, undefined) : selectedTVseries ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesView.TVseriesView), {
+                    tvseries: selectedTVseries,
+                    onBackClick: ()=>setSelectedTVseries(null)
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 136,
+                    columnNumber: 11
+                }, undefined) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: "The movie list is empty!"
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 138,
+                    columnNumber: 11
+                }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                     children: [
+                        "  ",
                         movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 3,
+                                md: 4,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                     movie: movie,
                                     onMovieClick: (newSelectedMovie)=>{
@@ -27485,16 +27486,16 @@ const MainView = ()=>{
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 145,
-                                    columnNumber: 17
+                                    lineNumber: 143,
+                                    columnNumber: 13
                                 }, undefined)
                             }, movie.id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 144,
-                                columnNumber: 15
+                                lineNumber: 142,
+                                columnNumber: 13
                             }, undefined)),
                         tvseries.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 3,
+                                md: 4,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
                                     tvseries: tvseries,
                                     onTVseriesClick: (newSelectedTVseries)=>{
@@ -27502,358 +27503,358 @@ const MainView = ()=>{
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 160,
-                                    columnNumber: 17
+                                    lineNumber: 155,
+                                    columnNumber: 15
                                 }, undefined)
                             }, tvseries.id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 159,
+                                lineNumber: 154,
                                 columnNumber: 15
                             }, undefined))
                     ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 141,
-                    columnNumber: 11
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "Similar Movies"
-                            }, void 0, false, {
+                }, void 0, true)
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 118,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                        className: "btn-secondary",
+                        onClick: ()=>{
+                            setUser(null);
+                            setToken(null);
+                            localStorage.clear();
+                        },
+                        children: "Logout"
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 172,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 173,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 174,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 170,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
+                            bg: "secondary",
+                            children: "Similar Movies"
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 177,
+                            columnNumber: 14
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 177,
+                        columnNumber: 9
+                    }, undefined),
+                    similarMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 4,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                movie: movie,
+                                onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
+                            }, movie.id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 180,
-                                columnNumber: 20
+                                columnNumber: 11
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 180,
-                            columnNumber: 15
-                        }, undefined),
-                        similarMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie,
-                                    onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
-                                }, movie.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 183,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 182,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 179,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "Similar TV series"
-                            }, void 0, false, {
+                            lineNumber: 179,
+                            columnNumber: 11
+                        }, undefined))
+                ]
+            }, void 0, true, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 176,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
+                            bg: "secondary",
+                            children: "Similar TV series"
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 187,
+                            columnNumber: 13
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 187,
+                        columnNumber: 9
+                    }, undefined),
+                    similarTVseries.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 4,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
+                                tvseries: tvseries,
+                                onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
+                            }, tvseries.id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 190,
-                                columnNumber: 19
+                                columnNumber: 11
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 190,
-                            columnNumber: 15
-                        }, undefined),
-                        similarTVseries.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
-                                    tvseries: tvseries,
-                                    onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
-                                }, tvseries.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 193,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 192,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 189,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "Movies with the Same Rating"
-                            }, void 0, false, {
+                            lineNumber: 189,
+                            columnNumber: 11
+                        }, undefined))
+                ]
+            }, void 0, true, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 186,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
+                            bg: "secondary",
+                            children: "Movies with the Same Rating"
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 197,
+                            columnNumber: 13
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 197,
+                        columnNumber: 9
+                    }, undefined),
+                    sameRating.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 4,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                movie: movie,
+                                onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
+                            }, movie.id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 200,
-                                columnNumber: 19
+                                columnNumber: 11
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 200,
-                            columnNumber: 15
-                        }, undefined),
-                        sameRating.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie,
-                                    onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
-                                }, movie.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 203,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 202,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 199,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "TV series with the Same Rating"
-                            }, void 0, false, {
+                            lineNumber: 199,
+                            columnNumber: 11
+                        }, undefined))
+                ]
+            }, void 0, true, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 196,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
+                            bg: "secondary",
+                            children: "TV series with the Same Rating"
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 206,
+                            columnNumber: 13
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 206,
+                        columnNumber: 9
+                    }, undefined),
+                    sameTVRating.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 4,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
+                                tvseries: tvseries,
+                                onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
+                            }, tvseries.id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 209,
-                                columnNumber: 19
+                                columnNumber: 11
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 209,
-                            columnNumber: 15
-                        }, undefined),
-                        sameTVRating.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
-                                    tvseries: tvseries,
-                                    onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
-                                }, tvseries.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 212,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 211,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 208,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "Movies Starring the Same Actors"
-                            }, void 0, false, {
+                            lineNumber: 208,
+                            columnNumber: 11
+                        }, undefined))
+                ]
+            }, void 0, true, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 205,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
+                            bg: "secondary",
+                            children: "Movies Starring the Same Actors"
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 216,
+                            columnNumber: 13
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 216,
+                        columnNumber: 9
+                    }, undefined),
+                    sameActors.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 4,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                movie: movie,
+                                onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
+                            }, movie.id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 219,
-                                columnNumber: 19
+                                columnNumber: 11
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 219,
-                            columnNumber: 15
-                        }, undefined),
-                        sameActors.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie,
-                                    onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
-                                }, movie.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 222,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 221,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 218,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "TV series Starring the Same Actors"
-                            }, void 0, false, {
+                            lineNumber: 218,
+                            columnNumber: 11
+                        }, undefined))
+                ]
+            }, void 0, true, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 215,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
+                            bg: "secondary",
+                            children: "TV series Starring the Same Actors"
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 226,
+                            columnNumber: 13
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 226,
+                        columnNumber: 9
+                    }, undefined),
+                    sameTVActors.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 4,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
+                                tvseries: tvseries,
+                                onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
+                            }, tvseries.id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 229,
-                                columnNumber: 19
+                                columnNumber: 11
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 229,
-                            columnNumber: 15
-                        }, undefined),
-                        sameTVActors.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
-                                    tvseries: tvseries,
-                                    onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
-                                }, tvseries.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 232,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 231,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 228,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "Movies of the Same Director"
-                            }, void 0, false, {
+                            lineNumber: 228,
+                            columnNumber: 11
+                        }, undefined))
+                ]
+            }, void 0, true, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 225,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
+                            bg: "secondary",
+                            children: "Movies of the Same Director"
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 235,
+                            columnNumber: 13
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 235,
+                        columnNumber: 9
+                    }, undefined),
+                    sameDirector.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 4,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                movie: movie,
+                                onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
+                            }, movie.id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 238,
-                                columnNumber: 19
+                                columnNumber: 11
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 238,
-                            columnNumber: 15
-                        }, undefined),
-                        sameDirector.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie,
-                                    onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
-                                }, movie.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 241,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 240,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 237,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                                className: "w-100",
-                                bg: "secondary",
-                                children: "TV series of the Same Director"
-                            }, void 0, false, {
+                            lineNumber: 237,
+                            columnNumber: 11
+                        }, undefined))
+                ]
+            }, void 0, true, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 234,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                            className: "w-100",
+                            bg: "secondary",
+                            children: "TV series of the Same Director"
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 244,
+                            columnNumber: 13
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 244,
+                        columnNumber: 9
+                    }, undefined),
+                    sameTVDirector.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 4,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
+                                tvseries: tvseries,
+                                onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
+                            }, tvseries.id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 247,
-                                columnNumber: 19
+                                columnNumber: 11
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 247,
-                            columnNumber: 15
-                        }, undefined),
-                        sameTVDirector.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
-                                    tvseries: tvseries,
-                                    onTVseriesClick: (newSelectedTVseries)=>setSelectedTVseries(newSelectedTVseries)
-                                }, tvseries.id, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 250,
-                                    columnNumber: 19
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 249,
-                                columnNumber: 17
-                            }, undefined))
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 246,
-                    columnNumber: 13
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            className: "btn-secondary",
-                            onClick: ()=>{
-                                setUser(null);
-                                setToken(null);
-                                localStorage.clear();
-                            },
-                            children: "Logout"
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 259,
-                            columnNumber: 15
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 260,
-                            columnNumber: 15
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 261,
-                            columnNumber: 15
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 257,
-                    columnNumber: 13
-                }, undefined)
-            ]
-        }, void 0, true)
-    }, void 0, false);
+                            lineNumber: 246,
+                            columnNumber: 11
+                        }, undefined))
+                ]
+            }, void 0, true, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 243,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true);
 };
 _s(MainView, "ZFCU9rYq736m5hWufSv3P23bD6o=");
 _c = MainView;
@@ -41375,467 +41376,481 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MovieView", ()=>MovieView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactBootstrap = require("react-bootstrap");
-const MovieView = ({ movie, onBackClick })=>{
+const MovieView = ({ movie, onBackClick, movies })=>{
+    let similarMovies = [];
+    let sameDirector = [];
+    let sameActors = [];
+    let sameRating = [];
+    if (movies && movie) {
+        similarMovies = movies.filter((m)=>m.id !== movie.id && m.Genre.Name === movie.Genre.Name);
+        sameDirector = movies.filter((m)=>m.id !== movie.id && m.Director.Name === movie.Director.Name);
+        sameActors = movies.filter((m)=>m.id !== movie.id && movie.Actors.some((actor)=>m.Actors.includes(actor)));
+        sameRating = movies.filter((m)=>m.id !== movie.id && m.Rating === movie.Rating);
+    }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        "bg-color": "body-bg",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                    src: movie.ImagePath
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 6,
-                    columnNumber: 11
-                }, undefined)
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 5,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                "bg-color": "body-bg",
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Title: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 9,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 9,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3 title-color",
-                        "secondary-color": "text-secondary",
-                        children: movie.Title
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 10,
-                        columnNumber: 13
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 8,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Description: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 13,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 13,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.Description
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 14,
-                        columnNumber: 13
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 12,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Duration: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 17,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 17,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.Duration
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 18,
-                        columnNumber: 13
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 16,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Genre: "
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            src: movie.ImagePath
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 21,
-                            columnNumber: 17
+                            columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 21,
-                        columnNumber: 11
+                        lineNumber: 20,
+                        columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.Genre.Name
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 22,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 22,
-                        columnNumber: 94
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Desciption: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 23,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                className: "title-color",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Title: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 24,
+                                    columnNumber: 41
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 24,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Title
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 25,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 23,
-                        columnNumber: 11
+                        columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.Genre.Description
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 24,
-                        columnNumber: 13
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 20,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Director: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 27,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Description: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 28,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 28,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Description
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 29,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 27,
-                        columnNumber: 11
+                        columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.Director.Name
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 28,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 28,
-                        columnNumber: 97
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Biography: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 29,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 29,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.Director.Bio
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 30,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 30,
-                        columnNumber: 96
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Birth year: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 31,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Duration: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 32,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 32,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Duration
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 33,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 31,
-                        columnNumber: 11
+                        columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.Director.Birth
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Genre: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 36,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 36,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Genre.Name
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 37,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 37,
+                                columnNumber: 77
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Desciption: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 38,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 38,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Genre.Description
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 39,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 32,
-                        columnNumber: 13
+                        lineNumber: 35,
+                        columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 32,
-                        columnNumber: 98
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Death year: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 33,
-                            columnNumber: 19
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 33,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.Director.Death
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 34,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 34,
-                        columnNumber: 98
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 26,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Actors: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 37,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 37,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.Actors.join(", ")
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 38,
-                        columnNumber: 13
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 36,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "IMDb Rating: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 41,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Director: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 42,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 42,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Director.Name
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 43,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 43,
+                                columnNumber: 80
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Biography: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 44,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 44,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Director.Bio
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 45,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 45,
+                                columnNumber: 79
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Birth year: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 46,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 46,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Director.Birth
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 47,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 47,
+                                columnNumber: 81
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Death year: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 48,
+                                    columnNumber: 19
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 48,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Director.Death
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 49,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 49,
+                                columnNumber: 81
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 41,
-                        columnNumber: 11
+                        columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.IMDbRating
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Actors: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 52,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 52,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Actors.join(", ")
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 53,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 51,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "IMDb Rating: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 56,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 56,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.IMDbRating
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 57,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 55,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary",
+                                    children: "Rotten Tomatoes Audience Rating: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 60,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 60,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.Rating
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 61,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 59,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                    color: "text-primary",
+                                    bg: "secondary p-2",
+                                    children: "Release Date: "
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 64,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 64,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                "secondary-color": "text-secondary",
+                                children: movie.ReleaseDate
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 65,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 63,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 67,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        class: "btn btn-secondary",
+                        onClick: onBackClick,
+                        children: "Back to the list"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 42,
-                        columnNumber: 13
+                        lineNumber: 68,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 69,
+                        columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 40,
-                columnNumber: 9
+                lineNumber: 19,
+                columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            children: "Rotten Tomatoes Audience Rating: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 45,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 45,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.Rating
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 46,
-                        columnNumber: 13
-                    }, undefined)
-                ]
-            }, void 0, true, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 44,
-                columnNumber: 9
+                lineNumber: 71,
+                columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            className: "pl-3 pr-3 pt-3 pb-3",
-                            children: "Release Date: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 49,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 49,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "pl-3",
-                        "secondary-color": "text-secondary",
-                        children: movie.ReleaseDate
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 50,
-                        columnNumber: 13
-                    }, undefined)
-                ]
-            }, void 0, true, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 48,
-                columnNumber: 9
+                lineNumber: 74,
+                columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 52,
-                columnNumber: 9
+                lineNumber: 77,
+                columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                className: "btn btn-secondary",
-                onClick: onBackClick,
-                children: "Back to the list"
-            }, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 53,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 54,
-                columnNumber: 9
+                lineNumber: 80,
+                columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-view/movie-view.jsx",
-        lineNumber: 4,
+        lineNumber: 18,
         columnNumber: 7
     }, undefined);
 };
@@ -42308,475 +42323,487 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "TVseriesView", ()=>TVseriesView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactBootstrap = require("react-bootstrap");
-const TVseriesView = ({ tvseries, onBackClick })=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        "bg-color": "body-bg",
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                    src: movie.ImagePath
-                }, void 0, false, {
-                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                    lineNumber: 7,
-                    columnNumber: 9
-                }, undefined)
-            }, void 0, false, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 6,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Title: "
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                            lineNumber: 10,
-                            columnNumber: 15
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 10,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Title
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 11,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 9,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Description: "
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                            lineNumber: 14,
-                            columnNumber: 15
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 14,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Description
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 15,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 13,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Season: "
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                            lineNumber: 18,
-                            columnNumber: 15
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 18,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Season
+const TVseriesView = ({ tvseries, onBackClick, tv })=>{
+    let similarTVSeries = [];
+    let sameTVDirector = [];
+    let sameTVActors = [];
+    let sameTVRating = [];
+    if (tvseries && tv) {
+        similarTVSeries = tvseries.filter((tv)=>tv.id !== tvseries.id && tv.Genre.Name === tvseries.Genre.Name);
+        sameTVDirector = tvseries.filter((tv)=>tv.id !== tvseries.id && tv.Director.Name === tvseries.Director.Name);
+        sameTVActors = tvseries.filter((tv)=>tv.id !== tvseries.id && tv.Actors.some((actor)=>tv.Actors.includes(actor)));
+        sameTVRating = tvseries.filter((tv)=>tv.id !== tvseries.id && tv.Rating === tvseries.Rating);
+    }
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            "bg-color": "body-bg",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                        src: tvseries.ImagePath
                     }, void 0, false, {
                         fileName: "src/components/tvseries-view/tvseries-view.jsx",
                         lineNumber: 19,
-                        columnNumber: 11
+                        columnNumber: 9
                     }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 17,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Duration: "
+                }, void 0, false, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 18,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "title-color",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                bg: "secondary p-2",
+                                children: "Title: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 22,
+                                columnNumber: 39
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
                             lineNumber: 22,
-                            columnNumber: 15
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Title
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 23,
+                            columnNumber: 11
                         }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 22,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Duration
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 23,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 21,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Genre: "
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 21,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Description: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 26,
+                                columnNumber: 15
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
                             lineNumber: 26,
-                            columnNumber: 15
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 26,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Genre.Name
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 27,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 27,
-                        columnNumber: 78
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Desciption: "
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Description
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                            lineNumber: 28,
-                            columnNumber: 15
+                            lineNumber: 27,
+                            columnNumber: 11
                         }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 28,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Genre.Description
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 29,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 25,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Director: "
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 25,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Season: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 30,
+                                columnNumber: 15
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                            lineNumber: 32,
-                            columnNumber: 15
+                            lineNumber: 30,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Season
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 31,
+                            columnNumber: 11
                         }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 32,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Director.Name
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 33,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 33,
-                        columnNumber: 81
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Biography: "
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 29,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Duration: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 34,
+                                columnNumber: 15
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
                             lineNumber: 34,
-                            columnNumber: 15
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 34,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Director.Bio
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 35,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 35,
-                        columnNumber: 80
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Birth year: "
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Duration
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                            lineNumber: 36,
-                            columnNumber: 15
+                            lineNumber: 35,
+                            columnNumber: 11
                         }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 36,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Director.Birth
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 37,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 37,
-                        columnNumber: 82
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Death year: "
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 33,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Genre: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 38,
+                                columnNumber: 15
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
                             lineNumber: 38,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 38,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Director.Death
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 39,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 39,
-                        columnNumber: 82
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 31,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Actors: "
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Genre.Name
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                            lineNumber: 42,
-                            columnNumber: 15
+                            lineNumber: 39,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 39,
+                            columnNumber: 78
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Desciption: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 40,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 40,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Genre.Description
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 41,
+                            columnNumber: 11
                         }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 42,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Actors.join(", ")
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 43,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 41,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "IMDb Rating: "
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 37,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Director: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 44,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 44,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Director.Name
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 45,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 45,
+                            columnNumber: 81
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Biography: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 46,
+                                columnNumber: 15
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
                             lineNumber: 46,
-                            columnNumber: 15
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 46,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.IMDbRating
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 47,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 45,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary",
-                            children: "Rotten Tomatoes Audience Rating: "
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Director.Bio
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 47,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 47,
+                            columnNumber: 80
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Birth year: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 48,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 48,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Director.Birth
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 49,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 49,
+                            columnNumber: 82
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Death year: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 50,
+                                columnNumber: 17
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
                             lineNumber: 50,
-                            columnNumber: 15
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Director.Death
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 51,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 51,
+                            columnNumber: 82
                         }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 50,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.Rating
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 51,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 49,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
-                            color: "text-primary",
-                            bg: "secondary p-2",
-                            children: "Release Date: "
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 43,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Actors: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 54,
+                                columnNumber: 15
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
                             lineNumber: 54,
-                            columnNumber: 15
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Actors.join(", ")
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 55,
+                            columnNumber: 11
                         }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 54,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        "secondary-color": "text-secondary",
-                        children: tvseries.ReleaseDate
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 55,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 53,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 57,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                class: "btn btn-secondary",
-                onClick: onBackClick,
-                children: "Back to the list"
-            }, void 0, false, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 58,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 59,
-                columnNumber: 7
-            }, undefined)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-        lineNumber: 5,
-        columnNumber: 5
-    }, undefined);
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 53,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "IMDb Rating: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 58,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 58,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.IMDbRating
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 59,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 57,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary",
+                                children: "Rotten Tomatoes Audience Rating: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 62,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 62,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.Rating
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 63,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 61,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Badge), {
+                                color: "text-primary",
+                                bg: "secondary p-2",
+                                children: "Release Date: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 66,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 66,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            "secondary-color": "text-secondary",
+                            children: tvseries.ReleaseDate
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 67,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 65,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 69,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    class: "btn btn-secondary",
+                    onClick: onBackClick,
+                    children: "Back to the list"
+                }, void 0, false, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 70,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 71,
+                    columnNumber: 7
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+            lineNumber: 17,
+            columnNumber: 5
+        }, undefined)
+    }, void 0, false);
 };
 _c = TVseriesView;
 var _c;
