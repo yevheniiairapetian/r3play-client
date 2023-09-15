@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
+
 export const SignupView = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -21,21 +22,21 @@ export const SignupView = () => {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                "Content-Type": "application/json"
+              "Content-Type": "application/json"
             }
-        }).then((response) => {
+          }).then((response) => {
             if (response.ok) {
-                alert("Signup successful");
-                window.location.reload();
+              alert("Signup successful. You can login now");
+              window.location.reload();
             } else {
-                alert("Signup failed");
+              alert("Signup failed");
             }
-        });
-    };
+          });
+        };
     return (
         <Form className="pt-4" onSubmit={handleSubmit}>
 
-            <h4>Sign Up Form</h4>
+            <h4 className="text-success">Sign Up Form</h4>
             <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
@@ -55,10 +56,10 @@ export const SignupView = () => {
                     required
                 />
             </Form.Group><br />
-            <Form.Group controlId="formPassword">
+            <Form.Group controlId="formEmail">
                 <Form.Label>Email:</Form.Label>
                 <Form.Control
-                    type="password"
+                    type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -69,11 +70,12 @@ export const SignupView = () => {
                 <Form.Control
                     type="date"
                     value={birthday}
-                    onChange={(e) => setDate(e.target.value)}
+                    onChange={(e) => setBirthday(e.target.value)}
                     required
+                    
                 />
             </Form.Group><br />
-            <Button variant="secondary" type="submit">
+            <Button className="bg-success" variant="secondary" type="submit">
                 Submit
             </Button><br /><br />
         </Form>

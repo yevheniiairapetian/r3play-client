@@ -1,22 +1,102 @@
-import PropTypes from "prop-types";
-import { Card } from "react-bootstrap";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
+export const MovieCard = ({ movie, user, token, setUser }) => {
+  const [isFavorite, setIsFavorite] = useState(
+    user.FavoriteMovies.includes(movie._id)
+  );
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+  const addFavoriteMovie = () => {
+    fetch(
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert('Failed');
+          return false;
+        }
+      })
+      .then((user) => {
+        if (user) {
+          alert('Successfully added to favorites');
+          localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+          setUser(user); // updating the react application
+          setIsFavorite(true);
+        }
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
+
+  const removeFavoriteMovie = () => {
+    fetch(
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert('Failed');
+          return false;
+        }
+      })
+      .then((user) => {
+        if (user) {
+          alert('Successfully deleted from favorites');
+          localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+          setUser(user); // updating the react application
+          setIsFavorite(false);
+        }
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
+
   return (
-    <Card className="h-100 pointer" onClick={() => { onMovieClick(movie); }}>
-      <Card.Img src={movie.ImagePath} />
-      <Card.Body>
-        <Card.Title className="bg-secondary p-2">{movie.Title}</Card.Title>
-        <Card.Text color="text-secondary">{movie.Description}</Card.Text>
-      </Card.Body>
-    </Card>
+    <>
+      <Card className='h-100 card text-bg-dark mb-3' >
+        <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
+        <Card.Body>
+            {isFavorite ? (
+              <Button variant='danger' className="w-100" onClick={removeFavoriteMovie}>
+                Remove from favorites
+              </Button>
+            ) : (
+              <Button className="bg-success w-100" onClick={addFavoriteMovie}>
+              Add to favorites
+              </Button>
+            )}
+        </Card.Body>
+
+        <Card.Body>
+          <Link to={`/movies/${movie._id}`}>
+            <Button className='info-button w-100' variant='outline-light'>More Info</Button>
+          </Link>
+        </Card.Body>
+
+      </Card>
+    </>
   );
 };
 
+
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     Genre: PropTypes.shape({
@@ -37,5 +117,4 @@ MovieCard.propTypes = {
     Duration: PropTypes.string,
     IMDbRating: PropTypes.string
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired
 };
