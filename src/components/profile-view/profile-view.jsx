@@ -73,12 +73,13 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 			
 			<Row>
 				<Col >
-					<Form onSubmit={handleSubmit} >
-					<h1 className='text-success text-center pt-4 pb-2'>My Profile</h1>
+					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
+					<h3 className='text-success text-center pt-4 pb-2'>My Profile</h3>
 						<Form.Group controlId="formUsername" className='form-group pb-4'>
 							<Form.Label>Username:</Form.Label>
 							<Form.Control
 								type="text"
+								placeholder="Your username"
 								value={username}
 								onChange={(e) => setUsername(e.target.value)}
 								required
@@ -89,6 +90,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 							<Form.Label>Password:</Form.Label>
 							<Form.Control
 								type="password"
+								placeholder="Your password"
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 								required
@@ -99,6 +101,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 							<Form.Label>Email:</Form.Label>
 							<Form.Control
 								type="email"
+								placeholder="Your email address"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								required

@@ -34,13 +34,14 @@ export const SignupView = () => {
           });
         };
     return (
-        <Form className="pt-4" onSubmit={handleSubmit}>
+        <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
 
-            <h4 className="text-success">Sign Up Form</h4>
+            <h4 className="text-success text-center pb-2 pt-4">Sign Up Form</h4>
             <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                     type="text"
+                    placeholder="Your username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
@@ -51,6 +52,7 @@ export const SignupView = () => {
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                     type="password"
+                    placeholder="Your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -60,6 +62,7 @@ export const SignupView = () => {
                 <Form.Label>Email:</Form.Label>
                 <Form.Control
                     type="email"
+                    placeholder="Your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -75,7 +78,7 @@ export const SignupView = () => {
                     
                 />
             </Form.Group><br />
-            <Button className="bg-success" variant="secondary" type="submit">
+            <Button className="bg-success w-100" variant="secondary" type="submit">
                 Submit
             </Button><br /><br />
         </Form>
