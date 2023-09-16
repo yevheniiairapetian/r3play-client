@@ -4,13 +4,13 @@ import { Button, Col, Form, Row, Modal } from 'react-bootstrap';
 
 
 export const ProfileView = ({ user, token, setUser, movies }) => {
-    
+
 	const [username, setUsername] = useState(user.Username);
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState(user.Email);
 	const [birthday, setBirthday] = useState(user.Birthday);
 	const [showModal, setShowModal] = useState(false);
-    
+
 	let result = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
 
 	const handleShowModal = () => setShowModal(true);
@@ -24,11 +24,11 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 			Email: email,
 			Birthday: birthday
 		};
-		if(password) {
+		if (password) {
 			data['Password'] = password
-            data['Email'] = email
-            data['Birthday'] = birthday
-            alert("Data successfully changed");
+			data['Email'] = email
+			data['Birthday'] = birthday
+			alert("Data successfully changed");
 		}
 
 		fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}`, {
@@ -70,11 +70,11 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 
 	return (
 		<>
-			
+
 			<Row>
 				<Col >
 					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
-					<h3 className='text-success text-center pt-4 pb-2'>My Profile</h3>
+						<h3 className='text-success text-center pt-4 pb-2'>My Profile</h3>
 						<Form.Group controlId="formUsername" className='form-group pb-4'>
 							<Form.Label>Username:</Form.Label>
 							<Form.Control
@@ -124,7 +124,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 
 			<Row>
 				<Col>
-					<Button  className="bg-success w-100 mb-1" type="submit" onClick={handleSubmit}>Save changes</Button>
+					<Button className="bg-success w-100 mb-1" type="submit" onClick={handleSubmit}>Save changes</Button>
 				</Col>
 			</Row>
 
@@ -141,13 +141,13 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 					<h3 className="text-success pt-4 pb-4 text-center">Favorite movies:</h3>
 				</Col>
 			</Row>
-			<Row >	
+			<Row >
 				{result.map((movie) => (
-					<Col  key={movie._id} md={6}>
-						<MovieCard  
-							movie={movie} 
+					<Col key={movie._id} md={6}>
+						<MovieCard
+							movie={movie}
 							user={user}
-                            token={token}
+							token={token}
 							setUser={setUser}
 						>
 						</MovieCard>
