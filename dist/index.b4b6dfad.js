@@ -46973,9 +46973,10 @@ const MovieView = ({ movies })=>{
                         columnNumber: 7
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                        className: "card-bg-color",
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color text-center mb-2 text-muted pt-3",
+                                className: "title-color text-center mb-2 text-info pt-3",
                                 children: "Title:"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -46991,7 +46992,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 9
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: " mb-2 text-info pt-3",
                                 children: "Description: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -47007,7 +47008,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 9
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: " Duration: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -47023,7 +47024,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: "Genre: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -47044,7 +47045,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 92
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: "Desciption: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -47060,7 +47061,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: "Director: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -47081,7 +47082,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 95
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: "Biography: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -47102,7 +47103,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 94
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: [
                                     movie.Director.Name,
                                     "'s Birth year: "
@@ -47126,7 +47127,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 96
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: [
                                     movie.Director.Name,
                                     "'s Death year: "
@@ -47150,7 +47151,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 131
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: "Actors: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -47166,7 +47167,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: "IMDb Rating: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -47182,7 +47183,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: "Rotten Tomatoes Audience Rating: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -47198,7 +47199,7 @@ const MovieView = ({ movies })=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-muted pt-3",
+                                className: "title-color mb-2 text-info pt-3",
                                 children: "Release Date: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -47669,7 +47670,8 @@ var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 const NavigationBar = ({ user, onLoggedOut })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
-        bg: "light",
+        bg: "dark",
+        color: "light",
         expand: "lg",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
             children: [
@@ -47684,7 +47686,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Toggle, {
-                    "aria-controls": "basic-navbar-nav"
+                    "aria-controls": "basic-navbar-nav "
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
                     lineNumber: 11,
@@ -47696,6 +47698,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                         children: !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
+                                    className: "text-light",
                                     as: (0, _reactRouterDom.Link),
                                     to: "/",
                                     children: "Home"
@@ -47705,6 +47708,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                     columnNumber: 9
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
+                                    className: "text-light",
                                     as: (0, _reactRouterDom.Link),
                                     to: "/profile",
                                     children: "My Profile"
@@ -47714,6 +47718,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                     columnNumber: 9
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
+                                    className: "text-light",
                                     as: (0, _reactRouterDom.Link),
                                     to: "/login",
                                     children: "Login"
@@ -47723,6 +47728,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                     columnNumber: 9
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
+                                    className: "text-light",
                                     as: (0, _reactRouterDom.Link),
                                     to: "/signup",
                                     children: "Signup"
@@ -47732,6 +47738,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                     columnNumber: 9
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
+                                    className: "text-light",
                                     onClick: onLoggedOut,
                                     children: "Logout"
                                 }, void 0, false, {
