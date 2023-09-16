@@ -1,14 +1,17 @@
-
 import PropTypes from "prop-types";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export const TVseriesCard = ({ tvseries, onTVseriesClick }) => {
+export const TVseriesCard = ({ tvseries }) => {
     return (
-        <Card className="h-100" onClick={() => { onTVseriesClick(tvseries); }}>
+        <Card className="h-100" >
       <Card.Img src={tvseries.ImagePath} />
       <Card.Body>
         <Card.Title className="bg-secondary p-2">{tvseries.Title}</Card.Title>
         <Card.Text className="text-secondary">{tvseries.Description}</Card.Text>
+        <Link to={`/tvseries/${encodeURIComponent(tvseries.id)}`}>
+          <Button variant="link">Open</Button>
+        </Link>
       </Card.Body>
     </Card>
    
@@ -38,5 +41,4 @@ export const TVseriesCard = ({ tvseries, onTVseriesClick }) => {
       Rating: PropTypes.string,
       ReleaseDate: PropTypes.string
 }).isRequired,
-    onTVseriesClick: PropTypes.func.isRequired
   };

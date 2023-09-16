@@ -1,19 +1,11 @@
-import {Badge} from "react-bootstrap";
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import { Badge, Button, Row, Col } from "react-bootstrap";
 
-  export const MovieView = ({movie, onBackClick, movies}) => {
-    let similarMovies = [];
-    let sameDirector = [];
-    let sameActors = [];
-    let sameRating = [];
-
-    if (movies && movie) {
-      similarMovies = movies.filter((m) => m.id !== movie.id && m.Genre.Name === movie.Genre.Name);
-      sameDirector = movies.filter((m) => m.id !== movie.id && m.Director.Name === movie.Director.Name);
-      sameActors = movies.filter((m) => m.id !== movie.id && movie.Actors.some((actor) => m.Actors.includes(actor)));
-      sameRating = movies.filter((m) => m.id !== movie.id && m.Rating === movie.Rating);
-    }
-
-
+  export const MovieView = ({movies}) => {
+    const {movieId} = useParams();
+    const movie = movies.find((m) => m._id === movieId);
+    
     return (
       <div>
       <div bg-color="body-bg">
@@ -22,7 +14,7 @@ import {Badge} from "react-bootstrap";
         </div>
         <div>
           <span className="title-color"><Badge  color="text-primary" bg="secondary p-2">Title: </Badge></span>
-            <span secondary-color="text-secondary">{movie.Title}</span>
+            <span className="text-success">{movie.Title}</span>
         </div>
         <div>
           <span><Badge color="text-primary" bg="secondary p-2">Description: </Badge></span>
@@ -65,7 +57,9 @@ import {Badge} from "react-bootstrap";
             <span secondary-color="text-secondary">{movie.ReleaseDate}</span>
         </div>
         <br/>
-        <button class="btn btn-secondary" onClick={onBackClick}>Back to the list</button>
+        <Link to={`/`}>
+        <button className="text-secondary bg-success p-2">Back to the list</button>
+        </Link>
         <hr/>
       </div>
       <div>
