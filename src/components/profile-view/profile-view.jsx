@@ -10,11 +10,18 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 	const [email, setEmail] = useState(user.Email);
 	const [birthday, setBirthday] = useState(user.Birthday);
 	const [showModal, setShowModal] = useState(false);
+	const [showUpdateModal, setShowUpdateModal] = useState(false);
+	const [showUpdateFailedModal, setShowUpdateFailedModal] = useState(false);
+	
 
 	let result = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
 
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
+	const handleShowUpdateModal = () => setShowUpdateModal(true);
+	const handleCloseUpdateModal = () => setShowUpdateModal(false);
+	const handleShowUpdateFailedModal = () => setShowUpdateFailedModal(true);
+	const handleCloseUpdateFailedModal = () => setShowUpdateFailedModal(false);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -28,7 +35,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 			data['Password'] = password
 			data['Email'] = email
 			data['Birthday'] = birthday
-			alert("Data successfully changed");
+			handleShowUpdateModal();
 		}
 
 		fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}`, {
@@ -42,7 +49,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 			if (response.ok) {
 				return response.json();
 			} else {
-				alert("Update failed.")
+				handleShowUpdateFailedModal();
 			}
 		}).then((data) => {
 			if (data) {
@@ -61,7 +68,6 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 		}).then((response) => {
 			if (response.ok) {
 				setUser(null);
-				alert("Your account has been deleted");
 			} else {
 				alert("something went wrong.")
 			}
@@ -163,6 +169,26 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 				<Modal.Footer>
 					<Button className="bg-success" onClick={handleDeleteUser}>Yes</Button>
 					<Button className="bg-danger" onClick={handleCloseModal}>No</Button>
+				</Modal.Footer>
+			</Modal>
+
+			<Modal show={showUpdateModal} onHide={handleCloseUpdateModal}>
+				<Modal.Header closeButton>
+					<Modal.Title className="text-danger">Update Account</Modal.Title>
+				</Modal.Header>
+				<Modal.Body className="text-warning">Successfully updated user details</Modal.Body>
+				<Modal.Footer>
+					<Button className="bg-success" onClick={handleCloseUpdateModal}>OK</Button>
+				</Modal.Footer>
+			</Modal>
+
+			<Modal show={showUpdateFailedModal} onHide={handleCloseUpdateFailedModal}>
+				<Modal.Header closeButton>
+					<Modal.Title className="text-danger">Update Account</Modal.Title>
+				</Modal.Header>
+				<Modal.Body className="text-warning">Failed. The defined user already exists. Please choose another username</Modal.Body>
+				<Modal.Footer>
+					<Button className="bg-success" onClick={handleCloseUpdateFailedModal}>OK</Button>
 				</Modal.Footer>
 			</Modal>
 		</>

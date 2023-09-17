@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 
 
 export const SignupView = () => {
@@ -8,6 +8,12 @@ export const SignupView = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
+    const [showSignupModal, setShowSignupModal] = useState(false);
+    const [showFailedSignupModal, setShowFailedSignupModal] = useState(false);
+    const handleShowSignupModal = () => setShowSignupModal(true);
+	const handleCloseSignupModal = () => setShowSignupModal(false);
+    const handleShowFailedSignupModal = () => setShowFailedSignupModal(true);
+	const handleCloseFailedSignupModal = () => setShowFailedSignupModal(false);
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -26,14 +32,15 @@ export const SignupView = () => {
             }
           }).then((response) => {
             if (response.ok) {
-              alert("Signup successful. You can login now");
+            handleShowSignupModal();
               window.location.reload();
             } else {
-              alert("Signup failed");
+                handleShowFailedSignupModal();
             }
           });
         };
     return (
+        <>
         <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
 
             <h4 className="text-success text-center pb-2 pt-4">Sign Up Form</h4>
@@ -82,5 +89,28 @@ export const SignupView = () => {
                 Submit
             </Button><br /><br />
         </Form>
+
+        <Modal show={showSignupModal} onHide={handleCloseSignupModal}>
+				<Modal.Header closeButton>
+					<Modal.Title className="text-danger">Signup</Modal.Title>
+				</Modal.Header>
+				<Modal.Body className="text-warning">Signup Successful</Modal.Body>
+				<Modal.Footer>
+					<Button className="bg-success" onClick={handleCloseSignupModal}>OK</Button>
+					
+				</Modal.Footer>
+			</Modal>
+
+            <Modal show={showFailedSignupModal} onHide={handleCloseFailedSignupModal}>
+				<Modal.Header closeButton>
+					<Modal.Title className="text-danger">Signup</Modal.Title>
+				</Modal.Header>
+				<Modal.Body className="text-warning">Signup failed</Modal.Body>
+				<Modal.Footer>
+					<Button className="bg-success" onClick={handleCloseFailedSignupModal}>OK</Button>
+					
+				</Modal.Footer>
+			</Modal>
+	</>
     )
 }
