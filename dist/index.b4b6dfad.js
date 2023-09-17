@@ -48316,7 +48316,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
                         className: "text-warning",
-                        children: "Failed. The defined user already exists. Please choose another username"
+                        children: "Failed. The defined user already exists. Please choose another username and email"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
                         lineNumber: 189,
