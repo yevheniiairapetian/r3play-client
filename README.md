@@ -2,15 +2,15 @@
 ## This project contains the front-end part of the R3play back-end ([here](https://github.com/yevheniiairapetian/r3play)) for displaying the information about movies.
 
 ## Technologies Used
-Javascript/React
-React Bootstrap
-SCSS
-HTML
+- Javascript/React
+- React Bootstrap
+- SCSS
+- HTML
 
 ## Project Dependencies
-React
-React Bootstrap
-Parcel
+- React
+- React Bootstrap
+- Parcel
 ## Views & Features:
 ### Main view
 Returns ALL movies to the user (each movie item with an image)
@@ -40,4 +40,5 @@ The App is live [here](https://r3play.netlify.app/)
 To clone the app use the following command: `console git clone git@github.com:yevheniiairapetian/r3play-client.git` Or download directly by clicking on <> Code button > Download ZIP. Install the required dependencies using the `npm install command`.
 
 ## Contact
-Feel free to contact me via email or LinkedIn. Have a nice day!
+Feel free to contact me via [email](mailto:sonkozhenia11@gmail.com) or [LinkedIn](https://www.linkedin.com/in/yevhenii-airapetian/). 
+Have a nice day!
