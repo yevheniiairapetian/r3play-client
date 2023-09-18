@@ -48220,7 +48220,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                 className: "bg-success",
                                 onClick: handleDeleteUser,
-                                children: "Yes"
+                                children: "Confirm"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
                                 lineNumber: 170,
@@ -48229,7 +48229,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                 className: "bg-danger",
                                 onClick: handleCloseModal,
-                                children: "No"
+                                children: "Cancel"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
                                 lineNumber: 171,
@@ -48254,7 +48254,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Header, {
                         closeButton: true,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Title, {
-                            className: "text-danger",
+                            className: "text-success",
                             children: "Update Account"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
@@ -48316,8 +48316,22 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
                         className: "text-warning",
-                        children: "Failed. The defined user and email already exist. Please choose another username and/or email"
-                    }, void 0, false, {
+                        children: [
+                            "Update failed. This may be due to: ",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 189,
+                                columnNumber: 77
+                            }, undefined),
+                            "1. The defined user and/or email already exist. ",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 189,
+                                columnNumber: 130
+                            }, undefined),
+                            "2. You didn't enter your password"
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
                         lineNumber: 189,
                         columnNumber: 5

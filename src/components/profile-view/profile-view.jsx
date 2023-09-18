@@ -167,14 +167,14 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 				</Modal.Header>
 				<Modal.Body className="text-warning">Are you sure you want to delete your account? It can't be reverted</Modal.Body>
 				<Modal.Footer>
-					<Button className="bg-success" onClick={handleDeleteUser}>Yes</Button>
-					<Button className="bg-danger" onClick={handleCloseModal}>No</Button>
+					<Button className="bg-success" onClick={handleDeleteUser}>Confirm</Button>
+					<Button className="bg-danger" onClick={handleCloseModal}>Cancel</Button>
 				</Modal.Footer>
 			</Modal>
 
 			<Modal show={showUpdateModal} onHide={handleCloseUpdateModal}>
 				<Modal.Header closeButton>
-					<Modal.Title className="text-danger">Update Account</Modal.Title>
+					<Modal.Title className="text-success">Update Account</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className="text-warning">Successfully updated user details</Modal.Body>
 				<Modal.Footer>
@@ -186,7 +186,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 				<Modal.Header closeButton>
 					<Modal.Title className="text-danger">Update Account</Modal.Title>
 				</Modal.Header>
-				<Modal.Body className="text-warning">Failed. The defined user and email already exist. Please choose another username and/or email</Modal.Body>
+				<Modal.Body className="text-warning">Update failed. This may be due to: <br/>1. The defined user and/or email already exist. <br/>2. You didn't enter your password</Modal.Body>
 				<Modal.Footer>
 					<Button className="bg-success" onClick={handleCloseUpdateFailedModal}>OK</Button>
 				</Modal.Footer>
