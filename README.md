@@ -1,15 +1,27 @@
 # r3play-client
-## This project will contain the front-end part of the R3play back-end for displaying the information about movies. More information to come.
+## This project contains the front-end part of the R3play back-end ([here](https://github.com/yevheniiairapetian/r3play)) for displaying the information about movies.
+
+## Technologies Used
+Javascript/React
+React Bootstrap
+SCSS
+HTML
+
+## Project Dependencies
+React
+React Bootstrap
+Parcel
 ## Views & Features:
 ### Main view
-Returns ALL movies to the user (each movie item with an image, title, and description)
-Filtering the list of movies with a “search” feature
+Returns ALL movies to the user (each movie item with an image)
+Filtering the list of movies with a "search" feature
 Ability to select a movie for more details
 Ability to log out
 Ability to navigate to Profile view
+Ability to add a movie to favorites/delete a movie from favorites
 ### Single Movie view
-Returns data (description, genre, director, image) about a single movie to the user
-Allows users to add a movie to their list of favorites
+Returns data (description, genre, director, image, release year, rating, actors etc) about a single movie to the user
+Ability to return back to the movies list
 ### Login view
 Allows users to log in with a username and password
 ### Signup view
@@ -20,24 +32,12 @@ Allows users to update their info (username, password, email, date of birth)
 Displays favorite movies
 Allows users to remove a movie from their list of favorites
 Allows existing users to deregister
-## Possible Future Views & Features:
-### Actors view
-Allows users to view information about different actors
-### Genre view
-Returns data about a genre, with a name and description
-Displays example movies
-### Director view
-Returns data about a director (name, bio, birth year, death year)
-Displays example movies from the director
-### Single Movie view
-Allow users to see which actors star in which movies
-Allow users to view more information about different movies, such as the release date and
-the movie rating
-Allow users to access different movie information, such as genre description and director bio,
-without leaving the view (e.g., tooltips)
-Allow users to share a movie
-Display a list of related or similar movies
-### Main view
-Allow users to sort movies based on different criteria
-Profile, Single Movie, and Main views (optional features)
-Allow users to create a “To Watch” list in addition to their “Favorite Movies” list
+
+## Live Version
+The App is live [here](https://r3play.netlify.app/)
+
+## Clone and Preview
+To clone the app use the following command: `console git clone git@github.com:yevheniiairapetian/r3play-client.git` Or download directly by clicking on <> Code button > Download ZIP. Install the required dependencies using the `npm install command`.
+
+## Contact
+Feel free to contact me via email or LinkedIn. Have a nice day!
