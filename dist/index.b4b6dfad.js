@@ -27563,7 +27563,6 @@ const MovieCard = ({ movie, user, token, setUser })=>{
             }
         }).then((user)=>{
             if (user) {
-                alert("Successfully added to favorites");
                 localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
                 setUser(user); // updating the react application
                 setIsFavorite(true);
@@ -27586,7 +27585,6 @@ const MovieCard = ({ movie, user, token, setUser })=>{
             }
         }).then((user)=>{
             if (user) {
-                alert("Successfully deleted from favorites");
                 localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
                 setUser(user); // updating the react application
                 setIsFavorite(false);
@@ -27605,7 +27603,7 @@ const MovieCard = ({ movie, user, token, setUser })=>{
                     src: movie.ImagePath
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 72,
+                    lineNumber: 70,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -27616,7 +27614,7 @@ const MovieCard = ({ movie, user, token, setUser })=>{
                         children: "Remove from favorites"
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 75,
+                        lineNumber: 73,
                         columnNumber: 15
                     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         className: "bg-success w-100",
@@ -27624,12 +27622,12 @@ const MovieCard = ({ movie, user, token, setUser })=>{
                         children: "Add to favorites"
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 79,
+                        lineNumber: 77,
                         columnNumber: 15
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 73,
+                    lineNumber: 71,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -27641,23 +27639,23 @@ const MovieCard = ({ movie, user, token, setUser })=>{
                             children: "More Info"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 87,
+                            lineNumber: 85,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 86,
+                        lineNumber: 84,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 85,
+                    lineNumber: 83,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 71,
+            lineNumber: 69,
             columnNumber: 7
         }, undefined)
     }, void 0, false);
@@ -48316,7 +48314,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
                         className: "text-warning",
-                        children: "Failed. The defined user already exists. Please choose another username and email"
+                        children: "Failed. The defined user and email already exist. Please choose another username and/or email"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
                         lineNumber: 189,

@@ -186,7 +186,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 				<Modal.Header closeButton>
 					<Modal.Title className="text-danger">Update Account</Modal.Title>
 				</Modal.Header>
-				<Modal.Body className="text-warning">Failed. The defined user already exists. Please choose another username and email</Modal.Body>
+				<Modal.Body className="text-warning">Failed. The defined user and email already exist. Please choose another username and/or email</Modal.Body>
 				<Modal.Footer>
 					<Button className="bg-success" onClick={handleCloseUpdateFailedModal}>OK</Button>
 				</Modal.Footer>

@@ -131,18 +131,7 @@ export const MainView = () => {
           </Routes>
         </Row>
       </BrowserRouter>
-      
-      
-
-
-
-        
-      
-      
-
-
-      
-      
+     
     </>
 
   )
