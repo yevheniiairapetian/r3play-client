@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
+import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { Button, Col, Form, Row, Modal } from 'react-bootstrap';
 
 
-export const ProfileView = ({ user, token, setUser, movies }) => {
+export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 
 	const [username, setUsername] = useState(user.Username);
 	const [password, setPassword] = useState("");
@@ -15,7 +16,8 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 
 
 	let result = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
-
+	let resultTV = tvseries.filter((tvseries) => user.FavoriteTV.includes(tvseries._id));
+	
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
 	const handleShowUpdateModal = () => setShowUpdateModal(true);
@@ -75,8 +77,8 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 	}
 
 	return (
-		<>
-
+		
+<>
 			<Row>
 				<Col >
 					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
@@ -149,6 +151,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 			</Row>
 			<Row >
 				{result.map((movie) => (
+					
 					<Col key={movie._id} md={6}>
 						<MovieCard
 							movie={movie}
@@ -159,8 +162,22 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 						</MovieCard>
 					</Col>
 				))}
-			</Row>
-
+				 {resultTV.map((tvseries) => (
+					<Col key={tvseries._id} md={6}>
+						<TVseriesCard
+							tvseries={tvseries}
+							user={user}
+							token={token}
+							setUser={setUser}
+						>
+						</TVseriesCard>
+					</Col>))
+				
+				
+				
+				
+				} 
+</Row>
 			<Modal show={showModal} onHide={handleCloseModal}>
 				<Modal.Header closeButton>
 					<Modal.Title className="text-danger">Delete my account</Modal.Title>
@@ -192,5 +209,5 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 				</Modal.Footer>
 			</Modal>
 		</>
-	)
+		)
 }

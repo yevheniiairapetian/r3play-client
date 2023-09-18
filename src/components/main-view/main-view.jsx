@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { TVseriesCard } from '../tvseries-card/tvseries-card';
+import { TVseriesView } from '../tvseries-view/tvseries-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
@@ -15,6 +17,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [tvseries, setTVSeries] = useState([]);
 
 
 
@@ -23,11 +26,20 @@ export const MainView = () => {
 
     fetch('https://r3play-934f9ea5664d.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
-    })
-      .then((response) => response.json())
+    }).then((response) => response.json())
       .then((data) => {
         setMovies(data);
-      });
+      })
+      .then(() => {
+        fetch("https://r3play-934f9ea5664d.herokuapp.com/tvseries", {
+          headers: { Authorization: `Bearer ${token}` }
+        }).then((response) => response.json())
+          .then((data) => {
+            setTVSeries(data);
+
+          })
+
+      })
   }, [token]);
 
   return (
@@ -80,12 +92,29 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <Col md={8}>
-                      <MovieView movies={movies} />
+                      <MovieView movies={movies} tvseries={tvseries}/>
+                      <TVseriesView movies={movies} tvseries={tvseries}/>
                     </Col>
                   )}
                 </>
               }
             />
+            {/* <Route
+              path='/tvseries/:TVId'
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to='/login' replace />
+                  ) : movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    <Col md={8}>
+                      <TVseriesView movies={movies} tvseries={tvseries}/>
+                    </Col>
+                  )}
+                </>
+              }
+            /> */}
             <Route
               path="/"
               element={
@@ -117,6 +146,22 @@ export const MainView = () => {
                         <Col className="mb-4" key={movie._id} md={3} xl={4} lg={4} sm={4} xs={10}>
                           <MovieCard
                             movie={movie}
+                            user={user}
+                            token={token}
+                            setUser={setUser}
+                          />
+                        </Col>
+                      ))}
+                      {tvseries.filter((tvseries) => {
+                        return search === "" ?
+                          tvseries :
+                          tvseries.Title.toLowerCase().includes(search.toLowerCase());
+                      }
+
+                      ).map((tvseries) => (
+                        <Col className="mb-4" key={tvseries._id} md={3} xl={4} lg={4} sm={4} xs={10}>
+                          <TVseriesCard
+                            tvseries={tvseries}
                             user={user}
                             token={token}
                             setUser={setUser}

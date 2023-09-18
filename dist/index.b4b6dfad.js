@@ -27316,6 +27316,8 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
+var _tvseriesCard = require("../tvseries-card/tvseries-card");
+var _tvseriesView = require("../tvseries-view/tvseries-view");
 var _loginView = require("../login-view/login-view");
 var _signupView = require("../signup-view/signup-view");
 var _navigationBar = require("../navigation-bar/navigation-bar");
@@ -27331,6 +27333,7 @@ const MainView = ()=>{
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     const [movies, setMovies] = (0, _react.useState)([]);
+    const [tvseries, setTVSeries] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
         if (!token) return;
         fetch("https://r3play-934f9ea5664d.herokuapp.com/movies", {
@@ -27339,6 +27342,14 @@ const MainView = ()=>{
             }
         }).then((response)=>response.json()).then((data)=>{
             setMovies(data);
+        }).then(()=>{
+            fetch("https://r3play-934f9ea5664d.herokuapp.com/tvseries", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((response)=>response.json()).then((data)=>{
+                setTVSeries(data);
+            });
         });
     }, [
         token
@@ -27354,7 +27365,7 @@ const MainView = ()=>{
                     }
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 36,
+                    lineNumber: 48,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -27375,7 +27386,7 @@ const MainView = ()=>{
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 45,
+                                lineNumber: 57,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27397,7 +27408,7 @@ const MainView = ()=>{
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 59,
+                                lineNumber: 71,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27410,14 +27421,21 @@ const MainView = ()=>{
                                         children: "The list is empty!"
                                     }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                         md: 8,
-                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-                                            movies: movies
-                                        }, void 0, false, void 0, void 0)
-                                    }, void 0, false, void 0, void 0)
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+                                                movies: movies,
+                                                tvseries: tvseries
+                                            }, void 0, false, void 0, void 0),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesView.TVseriesView), {
+                                                movies: movies,
+                                                tvseries: tvseries
+                                            }, void 0, false, void 0, void 0)
+                                        ]
+                                    }, void 0, true, void 0, void 0)
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 73,
+                                lineNumber: 85,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27457,13 +27475,29 @@ const MainView = ()=>{
                                                         token: token,
                                                         setUser: setUser
                                                     }, void 0, false, void 0, void 0)
-                                                }, movie._id, false, void 0, void 0))
+                                                }, movie._id, false, void 0, void 0)),
+                                            tvseries.filter((tvseries)=>{
+                                                return search === "" ? tvseries : tvseries.Title.toLowerCase().includes(search.toLowerCase());
+                                            }).map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                                    className: "mb-4",
+                                                    md: 3,
+                                                    xl: 4,
+                                                    lg: 4,
+                                                    sm: 4,
+                                                    xs: 10,
+                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
+                                                        tvseries: tvseries,
+                                                        user: user,
+                                                        token: token,
+                                                        setUser: setUser
+                                                    }, void 0, false, void 0, void 0)
+                                                }, tvseries._id, false, void 0, void 0))
                                         ]
                                     }, void 0, true)
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 89,
+                                lineNumber: 118,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27484,29 +27518,29 @@ const MainView = ()=>{
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 131,
+                                lineNumber: 176,
                                 columnNumber: 13
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 44,
+                        lineNumber: 56,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 43,
+                    lineNumber: 55,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 35,
+            lineNumber: 47,
             columnNumber: 7
         }, undefined)
     }, void 0, false);
 };
-_s(MainView, "ndBWBbcwSYSZivILRJA+v5Cq2V0=");
+_s(MainView, "0/oqJsYWNVv978d2gXa9w9Hf1+s=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27516,7 +27550,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","../navigation-bar/navigation-bar":"bsPVM","../profile-view/profile-view":"2vVqf"}],"gkKU3":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","../navigation-bar/navigation-bar":"bsPVM","../profile-view/profile-view":"2vVqf","../tvseries-card/tvseries-card":"bnLbM","../tvseries-view/tvseries-view":"7plUY"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -47966,9 +48000,10 @@ parcelHelpers.export(exports, "ProfileView", ()=>ProfileView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _movieCard = require("../movie-card/movie-card");
+var _tvseriesCard = require("../tvseries-card/tvseries-card");
 var _reactBootstrap = require("react-bootstrap");
 var _s = $RefreshSig$();
-const ProfileView = ({ user, token, setUser, movies })=>{
+const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
     _s();
     const [username, setUsername] = (0, _react.useState)(user.Username);
     const [password, setPassword] = (0, _react.useState)("");
@@ -47978,6 +48013,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
     const [showUpdateModal, setShowUpdateModal] = (0, _react.useState)(false);
     const [showUpdateFailedModal, setShowUpdateFailedModal] = (0, _react.useState)(false);
     let result = movies.filter((movie)=>user.FavoriteMovies.includes(movie._id));
+    let resultTV = tvseries.filter((tvseries)=>user.FavoriteTV.includes(tvseries._id));
     const handleShowModal = ()=>setShowModal(true);
     const handleCloseModal = ()=>setShowModal(false);
     const handleShowUpdateModal = ()=>setShowUpdateModal(true);
@@ -48038,7 +48074,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                 children: "My Profile"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 83,
+                                lineNumber: 85,
                                 columnNumber: 7
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -48049,7 +48085,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                         children: "Username:"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 85,
+                                        lineNumber: 87,
                                         columnNumber: 8
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -48060,13 +48096,13 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                         required: true
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 86,
+                                        lineNumber: 88,
                                         columnNumber: 8
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 84,
+                                lineNumber: 86,
                                 columnNumber: 7
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -48077,7 +48113,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                         children: "Password:"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 96,
+                                        lineNumber: 98,
                                         columnNumber: 8
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -48088,13 +48124,13 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                         required: true
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 97,
+                                        lineNumber: 99,
                                         columnNumber: 8
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 95,
+                                lineNumber: 97,
                                 columnNumber: 7
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -48105,7 +48141,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                         children: "Email:"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 107,
+                                        lineNumber: 109,
                                         columnNumber: 8
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -48116,13 +48152,13 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                         required: true
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 108,
+                                        lineNumber: 110,
                                         columnNumber: 8
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 106,
+                                lineNumber: 108,
                                 columnNumber: 7
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -48133,7 +48169,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                         children: "Birthday:"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 118,
+                                        lineNumber: 120,
                                         columnNumber: 8
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -48143,29 +48179,29 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                         required: true
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 119,
+                                        lineNumber: 121,
                                         columnNumber: 8
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 117,
+                                lineNumber: 119,
                                 columnNumber: 7
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 82,
+                        lineNumber: 84,
                         columnNumber: 6
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 81,
+                    lineNumber: 83,
                     columnNumber: 5
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 80,
+                lineNumber: 82,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -48177,17 +48213,17 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                         children: "Save changes"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 133,
+                        lineNumber: 135,
                         columnNumber: 6
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 132,
+                    lineNumber: 134,
                     columnNumber: 5
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 131,
+                lineNumber: 133,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -48200,17 +48236,17 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                         children: "Delete my account"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 139,
+                        lineNumber: 141,
                         columnNumber: 6
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 138,
+                    lineNumber: 140,
                     columnNumber: 5
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 137,
+                lineNumber: 139,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -48220,40 +48256,59 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                         children: "Favorite movies:"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 147,
+                        lineNumber: 149,
                         columnNumber: 6
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 146,
+                    lineNumber: 148,
                     columnNumber: 5
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 145,
+                lineNumber: 147,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                children: result.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                        md: 6,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                            movie: movie,
-                            user: user,
-                            token: token,
-                            setUser: setUser
-                        }, void 0, false, {
+                children: [
+                    result.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 6,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                movie: movie,
+                                user: user,
+                                token: token,
+                                setUser: setUser
+                            }, void 0, false, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 156,
+                                columnNumber: 7
+                            }, undefined)
+                        }, movie._id, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 153,
-                            columnNumber: 7
-                        }, undefined)
-                    }, movie._id, false, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 152,
-                        columnNumber: 6
-                    }, undefined))
-            }, void 0, false, {
+                            lineNumber: 155,
+                            columnNumber: 6
+                        }, undefined)),
+                    resultTV.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            md: 6,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
+                                tvseries: tvseries,
+                                user: user,
+                                token: token,
+                                setUser: setUser
+                            }, void 0, false, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 167,
+                                columnNumber: 7
+                            }, undefined)
+                        }, tvseries._id, false, {
+                            fileName: "src/components/profile-view/profile-view.jsx",
+                            lineNumber: 166,
+                            columnNumber: 6
+                        }, undefined))
+                ]
+            }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 150,
+                lineNumber: 152,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal), {
@@ -48267,12 +48322,12 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                             children: "Delete my account"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 166,
+                            lineNumber: 183,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 165,
+                        lineNumber: 182,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
@@ -48280,7 +48335,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                         children: "Are you sure you want to delete your account? It can't be reverted"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 168,
+                        lineNumber: 185,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Footer, {
@@ -48291,7 +48346,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                 children: "Confirm"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 170,
+                                lineNumber: 187,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -48300,19 +48355,19 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                 children: "Cancel"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 171,
+                                lineNumber: 188,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 169,
+                        lineNumber: 186,
                         columnNumber: 5
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 164,
+                lineNumber: 181,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal), {
@@ -48326,12 +48381,12 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                             children: "Update Account"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 177,
+                            lineNumber: 194,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 176,
+                        lineNumber: 193,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
@@ -48339,7 +48394,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                         children: "Successfully updated user details"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 179,
+                        lineNumber: 196,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Footer, {
@@ -48349,18 +48404,18 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                             children: "OK"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 181,
+                            lineNumber: 198,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 180,
+                        lineNumber: 197,
                         columnNumber: 5
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 175,
+                lineNumber: 192,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal), {
@@ -48374,12 +48429,12 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                             children: "Update Account"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 187,
+                            lineNumber: 204,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 186,
+                        lineNumber: 203,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
@@ -48388,20 +48443,20 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                             "Update failed. This may be due to: ",
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 189,
+                                lineNumber: 206,
                                 columnNumber: 77
                             }, undefined),
                             "1. The defined user and/or email already exist. ",
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 189,
+                                lineNumber: 206,
                                 columnNumber: 130
                             }, undefined),
                             "2. You didn't enter your password, and/or email, and/or username."
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 189,
+                        lineNumber: 206,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Footer, {
@@ -48411,18 +48466,18 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                             children: "OK"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 191,
+                            lineNumber: 208,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 190,
+                        lineNumber: 207,
                         columnNumber: 5
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 185,
+                lineNumber: 202,
                 columnNumber: 4
             }, undefined)
         ]
@@ -48438,6 +48493,572 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequire245c")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../tvseries-card/tvseries-card":"bnLbM"}],"bnLbM":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$42a4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$42a4.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TVseriesCard", ()=>TVseriesCard);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
+const TVseriesCard = ({ tvseries, user, token, setUser })=>{
+    // const [isFavorite, setIsFavorite] = useState(
+    //   user.FavoriteTV.includes(tvseries._id)
+    // );
+    // const addFavoriteTV = () => {
+    //   fetch(
+    //     `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`,
+    //     {
+    //       method: 'POST',
+    //       headers: { Authorization: `Bearer ${token}` }
+    //     }
+    //   )
+    //     .then((response) => {
+    //       if (response.ok) {
+    //         return response.json();
+    //       } else {
+    //         alert('Failed');
+    //         return false;
+    //       }
+    //     })
+    //     .then((user) => {
+    //       if (user) {
+    //         localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+    //         setUser(user); // updating the react application
+    //         setIsFavorite(true);
+    //       }
+    //     })
+    //     .catch((e) => {
+    //       alert(e);
+    //     });
+    // };
+    // const removeFavoriteTV = () => {
+    //   fetch(
+    //     `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`,
+    //     {
+    //       method: 'DELETE',
+    //       headers: { Authorization: `Bearer ${token}` }
+    //     }
+    //   )
+    //     .then((response) => {
+    //       if (response.ok) {
+    //         return response.json();
+    //       } else {
+    //         alert('Failed');
+    //         return false;
+    //       }
+    //     })
+    //     .then((user) => {
+    //       if (user) {
+    //         localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+    //         setUser(user); // updating the react application
+    //         setIsFavorite(false);
+    //       }
+    //     })
+    //     .catch((e) => {
+    //       alert(e);
+    //     });
+    // };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
+            className: "h-100 card text-bg-dark mb-3",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
+                    className: "w-100",
+                    variant: "top",
+                    src: tvseries.ImagePath
+                }, void 0, false, {
+                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                    lineNumber: 70,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            className: "text-success text-center pb-3",
+                            children: tvseries.Title
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 72,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Genre: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 73,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvseries.Genre.Name
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 74,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Release Date: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 75,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvseries.ReleaseDate.slice(0, 4)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 76,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Desciption: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 77,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvseries.Description
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 78,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 78,
+                            columnNumber: 96
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                    lineNumber: 71,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                        to: `/tvseries/$tvseries._id}`,
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                            className: "info-button w-100",
+                            variant: "outline-light",
+                            children: "More Info"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 92,
+                            columnNumber: 13
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                        lineNumber: 91,
+                        columnNumber: 11
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                    lineNumber: 90,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+            lineNumber: 69,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false);
+};
+_c = TVseriesCard;
+TVseriesCard.propTypes = {
+    tvseries: (0, _propTypesDefault.default).shape({
+        id: (0, _propTypesDefault.default).string,
+        Title: (0, _propTypesDefault.default).string.isRequired,
+        Description: (0, _propTypesDefault.default).string.isRequired,
+        Season: (0, _propTypesDefault.default).shape({}),
+        Genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired,
+            Description: (0, _propTypesDefault.default).string.isRequired
+        }),
+        Director: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired,
+            Bio: (0, _propTypesDefault.default).string.isRequired,
+            Birth: (0, _propTypesDefault.default).string,
+            Death: (0, _propTypesDefault.default).string
+        }),
+        ImagePath: (0, _propTypesDefault.default).string,
+        Featured: (0, _propTypesDefault.default).bool,
+        Actors: (0, _propTypesDefault.default).array,
+        Rating: (0, _propTypesDefault.default).string,
+        ReleaseDate: (0, _propTypesDefault.default).string
+    }).isRequired
+};
+var _c;
+$RefreshReg$(_c, "TVseriesCard");
+
+  $parcel$ReactRefreshHelpers$42a4.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"7plUY":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$ad81 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$ad81.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TVseriesView", ()=>TVseriesView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactRouter = require("react-router");
+var _reactRouterDom = require("react-router-dom");
+var _reactBootstrap = require("react-bootstrap");
+var _s = $RefreshSig$();
+const TVseriesView = ({ tvseries })=>{
+    _s();
+    const { TVId } = (0, _reactRouter.useParams)();
+    const tvser = tvseries.find((tv)=>tv.id === TVId);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
+                        className: "h-100 card text-bg-dark mb-3",
+                        variant: top,
+                        src: tvser.ImagePath
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 12,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                        className: "card-bg-color",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color text-center mb-2 text-info pt-3",
+                                children: "Title:"
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 15,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                className: "text-success text-center pb-3",
+                                children: tvser.Title
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 16,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Release Date: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 17,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.ReleaseDate.slice(0, 4)
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 18,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: " mb-2 text-info pt-3",
+                                children: "Description: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 20,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.Description
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 21,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: " Duration: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 24,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.Duration
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 25,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Genre: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 28,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.Genre.Name
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 29,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 29,
+                                columnNumber: 92
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Desciption: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 30,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.Genre.Description
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 31,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Director: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 34,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.Director.Name
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 35,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 35,
+                                columnNumber: 95
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Biography: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 36,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.Director.Bio
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 37,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 37,
+                                columnNumber: 94
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: [
+                                    tvser.Director.Name,
+                                    "'s Birth year: "
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 38,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.Director.Birth
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 39,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 39,
+                                columnNumber: 96
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: [
+                                    tvser.Director.Name,
+                                    "'s Death year: "
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 40,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.Director.Death ? tvser.Director.Death : "No data"
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 41,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 41,
+                                columnNumber: 131
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Actors: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 44,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.Actors.join(", ")
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 45,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "IMDb Rating: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 48,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.IMDbRating
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 49,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Rotten Tomatoes Audience Rating: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 52,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvser.Rating
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 53,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 55,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                to: `/`,
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                    className: "bg-success p-2 w-100",
+                                    children: "Back to the list"
+                                }, void 0, false, {
+                                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                    lineNumber: 58,
+                                    columnNumber: 13
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 57,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 14,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                        lineNumber: 61,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                lineNumber: 11,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                lineNumber: 64,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                lineNumber: 67,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                lineNumber: 70,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                lineNumber: 73,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true);
+};
+_s(TVseriesView, "+C+Cn040EyRH5J+CMnk24vuBn4M=", false, function() {
+    return [
+        (0, _reactRouter.useParams)
+    ];
+});
+_c = TVseriesView;
+var _c;
+$RefreshReg$(_c, "TVseriesView");
+
+  $parcel$ReactRefreshHelpers$ad81.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react-router":"dbWyW","react-router-dom":"9xmpe","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequire245c")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
