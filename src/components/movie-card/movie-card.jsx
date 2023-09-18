@@ -70,6 +70,10 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
         <Card.Title className="text-success text-center pb-3">{movie.Title}</Card.Title>
+        <Card.Subtitle className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.Genre.Name}</Card.Title>
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title><br/>
           {isFavorite ? (
             <Button variant='danger' className="w-100" onClick={removeFavoriteMovie}>
               Remove from favorites
