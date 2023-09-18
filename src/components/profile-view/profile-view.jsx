@@ -15,8 +15,8 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 	const [showUpdateFailedModal, setShowUpdateFailedModal] = useState(false);
 
 
-	let result = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
-	let resultTV = tvseries.filter((tvseries) => user.FavoriteTV.includes(tvseries._id));
+	let result = movies.filter((movie) => user.FavoriteMovies.includes(movie._id)); 
+	// let result2 = tvseries.filter((tvseries) => user.FavoriteTV.includes(tvseries._id));
 	
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
@@ -151,7 +151,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 			</Row>
 			<Row >
 				{result.map((movie) => (
-					
+					<>
 					<Col key={movie._id} md={6}>
 						<MovieCard
 							movie={movie}
@@ -160,10 +160,12 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 							setUser={setUser}
 						>
 						</MovieCard>
-					</Col>
+						</Col>
+						</>
 				))}
-				 {resultTV.map((tvseries) => (
-					<Col key={tvseries._id} md={6}>
+						{/* {result2.map((tvseries) => (
+						<>
+						<Col key={tvseries._id} md={6}>
 						<TVseriesCard
 							tvseries={tvseries}
 							user={user}
@@ -171,12 +173,11 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 							setUser={setUser}
 						>
 						</TVseriesCard>
-					</Col>))
+					</Col>
+					</>
+						))} */}
 				
-				
-				
-				
-				} 
+				 
 </Row>
 			<Modal show={showModal} onHide={handleCloseModal}>
 				<Modal.Header closeButton>

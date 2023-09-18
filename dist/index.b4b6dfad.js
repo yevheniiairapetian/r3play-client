@@ -27421,22 +27421,35 @@ const MainView = ()=>{
                                         children: "The list is empty!"
                                     }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                         md: 8,
-                                        children: [
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-                                                movies: movies,
-                                                tvseries: tvseries
-                                            }, void 0, false, void 0, void 0),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesView.TVseriesView), {
-                                                movies: movies,
-                                                tvseries: tvseries
-                                            }, void 0, false, void 0, void 0)
-                                        ]
-                                    }, void 0, true, void 0, void 0)
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+                                            movies: movies
+                                        }, void 0, false, void 0, void 0)
+                                    }, void 0, false, void 0, void 0)
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 85,
                                 columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                                path: "/tvseries/:TVId",
+                                element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                    children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                                        to: "/login",
+                                        replace: true
+                                    }, void 0, false, void 0, void 0) : tvseries.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                        children: "The list is empty!"
+                                    }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                        md: 8,
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesView.TVseriesView), {
+                                            tvseries: tvseries
+                                        }, void 0, false, void 0, void 0)
+                                    }, void 0, false, void 0, void 0)
+                                }, void 0, false)
+                            }, void 0, false, {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 102,
+                                columnNumber: 14
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                 path: "/",
@@ -48013,7 +48026,7 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
     const [showUpdateModal, setShowUpdateModal] = (0, _react.useState)(false);
     const [showUpdateFailedModal, setShowUpdateFailedModal] = (0, _react.useState)(false);
     let result = movies.filter((movie)=>user.FavoriteMovies.includes(movie._id));
-    let resultTV = tvseries.filter((tvseries)=>user.FavoriteTV.includes(tvseries._id));
+    // let result2 = tvseries.filter((tvseries) => user.FavoriteTV.includes(tvseries._id));
     const handleShowModal = ()=>setShowModal(true);
     const handleCloseModal = ()=>setShowModal(false);
     const handleShowUpdateModal = ()=>setShowUpdateModal(true);
@@ -48270,8 +48283,8 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                children: [
-                    result.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                children: result.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                             md: 6,
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                 movie: movie,
@@ -48287,26 +48300,9 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                             fileName: "src/components/profile-view/profile-view.jsx",
                             lineNumber: 155,
                             columnNumber: 6
-                        }, undefined)),
-                    resultTV.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                            md: 6,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
-                                tvseries: tvseries,
-                                user: user,
-                                token: token,
-                                setUser: setUser
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 167,
-                                columnNumber: 7
-                            }, undefined)
-                        }, tvseries._id, false, {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 166,
-                            columnNumber: 6
-                        }, undefined))
-                ]
-            }, void 0, true, {
+                        }, undefined)
+                    }, void 0, false))
+            }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
                 lineNumber: 152,
                 columnNumber: 4
@@ -48322,12 +48318,12 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                             children: "Delete my account"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 183,
+                            lineNumber: 184,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 182,
+                        lineNumber: 183,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
@@ -48335,7 +48331,7 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                         children: "Are you sure you want to delete your account? It can't be reverted"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 185,
+                        lineNumber: 186,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Footer, {
@@ -48346,7 +48342,7 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                                 children: "Confirm"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 187,
+                                lineNumber: 188,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -48355,19 +48351,19 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                                 children: "Cancel"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 188,
+                                lineNumber: 189,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 186,
+                        lineNumber: 187,
                         columnNumber: 5
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 181,
+                lineNumber: 182,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal), {
@@ -48381,12 +48377,12 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                             children: "Update Account"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 194,
+                            lineNumber: 195,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 193,
+                        lineNumber: 194,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
@@ -48394,7 +48390,7 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                         children: "Successfully updated user details"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 196,
+                        lineNumber: 197,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Footer, {
@@ -48404,18 +48400,18 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                             children: "OK"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 198,
+                            lineNumber: 199,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 197,
+                        lineNumber: 198,
                         columnNumber: 5
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 192,
+                lineNumber: 193,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal), {
@@ -48429,12 +48425,12 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                             children: "Update Account"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 204,
+                            lineNumber: 205,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 203,
+                        lineNumber: 204,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
@@ -48443,20 +48439,20 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                             "Update failed. This may be due to: ",
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 206,
+                                lineNumber: 207,
                                 columnNumber: 77
                             }, undefined),
                             "1. The defined user and/or email already exist. ",
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 206,
+                                lineNumber: 207,
                                 columnNumber: 130
                             }, undefined),
                             "2. You didn't enter your password, and/or email, and/or username."
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 206,
+                        lineNumber: 207,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Footer, {
@@ -48466,18 +48462,18 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                             children: "OK"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 208,
+                            lineNumber: 209,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 207,
+                        lineNumber: 208,
                         columnNumber: 5
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 202,
+                lineNumber: 203,
                 columnNumber: 4
             }, undefined)
         ]
@@ -48510,63 +48506,53 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 const TVseriesCard = ({ tvseries, user, token, setUser })=>{
-    // const [isFavorite, setIsFavorite] = useState(
+    // const [isFav, setIsFav] = useState(
     //   user.FavoriteTV.includes(tvseries._id)
     // );
-    // const addFavoriteTV = () => {
-    //   fetch(
-    //     `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`,
-    //     {
-    //       method: 'POST',
-    //       headers: { Authorization: `Bearer ${token}` }
-    //     }
-    //   )
-    //     .then((response) => {
-    //       if (response.ok) {
-    //         return response.json();
-    //       } else {
-    //         alert('Failed');
-    //         return false;
-    //       }
-    //     })
-    //     .then((user) => {
-    //       if (user) {
-    //         localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-    //         setUser(user); // updating the react application
-    //         setIsFavorite(true);
-    //       }
-    //     })
-    //     .catch((e) => {
-    //       alert(e);
-    //     });
-    // };
-    // const removeFavoriteTV = () => {
-    //   fetch(
-    //     `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`,
-    //     {
-    //       method: 'DELETE',
-    //       headers: { Authorization: `Bearer ${token}` }
-    //     }
-    //   )
-    //     .then((response) => {
-    //       if (response.ok) {
-    //         return response.json();
-    //       } else {
-    //         alert('Failed');
-    //         return false;
-    //       }
-    //     })
-    //     .then((user) => {
-    //       if (user) {
-    //         localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-    //         setUser(user); // updating the react application
-    //         setIsFavorite(false);
-    //       }
-    //     })
-    //     .catch((e) => {
-    //       alert(e);
-    //     });
-    // };
+    const addFavoriteTV = ()=>{
+        fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            if (response.ok) return response.json();
+            else {
+                alert("Failed");
+                return false;
+            }
+        }).then((user)=>{
+            if (user) {
+                localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+                setUser(user); // updating the react application
+                setIsFav(true);
+            }
+        }).catch((e)=>{
+            alert(e);
+        });
+    };
+    const removeFavoriteTV = ()=>{
+        fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            if (response.ok) return response.json();
+            else {
+                alert("Failed");
+                return false;
+            }
+        }).then((user)=>{
+            if (user) {
+                localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+                setUser(user); // updating the react application
+                setIsFavorite(false);
+            }
+        }).catch((e)=>{
+            alert(e);
+        });
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
             className: "h-100 card text-bg-dark mb-3",
@@ -48651,7 +48637,7 @@ const TVseriesCard = ({ tvseries, user, token, setUser })=>{
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: `/tvseries/$tvseries._id}`,
+                        to: `/tvseries/${tvseries._id}`,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             className: "info-button w-100",
                             variant: "outline-light",
@@ -48729,7 +48715,7 @@ var _s = $RefreshSig$();
 const TVseriesView = ({ tvseries })=>{
     _s();
     const { TVId } = (0, _reactRouter.useParams)();
-    const tvser = tvseries.find((tv)=>tv.id === TVId);
+    const tvser = tvseries.find((tv)=>tv._id === TVId);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {

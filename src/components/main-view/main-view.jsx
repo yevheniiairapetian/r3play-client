@@ -92,29 +92,29 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <Col md={8}>
-                      <MovieView movies={movies} tvseries={tvseries}/>
-                      <TVseriesView movies={movies} tvseries={tvseries}/>
+                      <MovieView movies={movies}/>
+                    
                     </Col>
                   )}
                 </>
               }
             />
-            {/* <Route
+             <Route
               path='/tvseries/:TVId'
               element={
                 <>
                   {!user ? (
                     <Navigate to='/login' replace />
-                  ) : movies.length === 0 ? (
+                  ) : tvseries.length === 0 ? (
                     <Col>The list is empty!</Col>
                   ) : (
                     <Col md={8}>
-                      <TVseriesView movies={movies} tvseries={tvseries}/>
+                      <TVseriesView tvseries={tvseries}/>
                     </Col>
                   )}
                 </>
               }
-            /> */}
+            /> 
             <Route
               path="/"
               element={

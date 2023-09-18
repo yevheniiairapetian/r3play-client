@@ -4,7 +4,7 @@ import { Button, Card } from "react-bootstrap";
 
 export const TVseriesView = ({ tvseries }) => {
   const { TVId } = useParams();
-  const tvser = tvseries.find((tv) => tv.id === TVId);
+  const tvser = tvseries.find((tv) => tv._id === TVId);
 
   return (
     <>

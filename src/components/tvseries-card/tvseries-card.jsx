@@ -4,65 +4,65 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
-  // const [isFavorite, setIsFavorite] = useState(
+  // const [isFav, setIsFav] = useState(
   //   user.FavoriteTV.includes(tvseries._id)
   // );
 
-  // const addFavoriteTV = () => {
-  //   fetch(
-  //     `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`,
-  //     {
-  //       method: 'POST',
-  //       headers: { Authorization: `Bearer ${token}` }
-  //     }
-  //   )
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         alert('Failed');
-  //         return false;
-  //       }
-  //     })
-  //     .then((user) => {
-  //       if (user) {
-  //         localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-  //         setUser(user); // updating the react application
-  //         setIsFavorite(true);
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       alert(e);
-  //     });
-  // };
+  const addFavoriteTV = () => {
+    fetch(
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`,
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert('Failed');
+          return false;
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+          setUser(user); // updating the react application
+          setIsFav(true);
+        }
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
 
-  // const removeFavoriteTV = () => {
-  //   fetch(
-  //     `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`,
-  //     {
-  //       method: 'DELETE',
-  //       headers: { Authorization: `Bearer ${token}` }
-  //     }
-  //   )
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         alert('Failed');
-  //         return false;
-  //       }
-  //     })
-  //     .then((user) => {
-  //       if (user) {
-  //         localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-  //         setUser(user); // updating the react application
-  //         setIsFavorite(false);
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       alert(e);
-  //     });
-  // };
+  const removeFavoriteTV = () => {
+    fetch(
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert('Failed');
+          return false;
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+          setUser(user); // updating the react application
+          setIsFavorite(false);
+        }
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
 
   return (
     <>
@@ -76,7 +76,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
           <Card.Title secondary-color="text-secondary pb-3">{tvseries.ReleaseDate.slice(0, 4)}</Card.Title>
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{tvseries.Description}</Card.Title><br/>
-            {/* {isFavorite ? (
+             {/* {isFav ? (
             <Button variant='danger' className="w-100" onClick={removeFavoriteTV}>
               Remove from favorites
             </Button>
@@ -84,11 +84,11 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
             <Button className="bg-success w-100" onClick={addFavoriteTV}>
               Add to favorites
             </Button>
-          )}   */}
+          )}    */}
         </Card.Body>
 
         <Card.Body>
-          <Link to={`/tvseries/$tvseries._id}`}>
+          <Link to={`/tvseries/${tvseries._id}`}>
             <Button className='info-button w-100' variant='outline-light'>More Info</Button>
           </Link>
         </Card.Body>
