@@ -72,6 +72,8 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
         <Card.Title className="text-success text-center pb-3">{movie.Title}</Card.Title>
         <Card.Subtitle className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Genre.Name}</Card.Title>
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.ReleaseDate}</Card.Title>
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title><br/>
           {isFavorite ? (
