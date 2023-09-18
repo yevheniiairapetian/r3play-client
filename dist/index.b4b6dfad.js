@@ -47599,7 +47599,7 @@ const SignupView = ()=>{
                         controlId: "formDate",
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                                children: "Date:"
+                                children: "Date of birth:"
                             }, void 0, false, {
                                 fileName: "src/components/signup-view/signup-view.jsx",
                                 lineNumber: 79,
