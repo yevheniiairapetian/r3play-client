@@ -5,15 +5,17 @@ import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from "../profile-view/profile-view";
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, InputGroup, Form } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
+  const [search, setSearch] = useState("");
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+
 
 
   useEffect(() => {
@@ -94,7 +96,24 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <>
-                      {movies.map((movie) => (
+                    <Row className="my-3">
+                        <form>
+                          <InputGroup>
+                            <Form.Control
+                              onChange={(e) => setSearch(e.target.value)}
+                              placeholder="Movie Search"
+                              aria-label="Movie Search"
+                            />
+                          </InputGroup>
+                        </form>
+                      </Row>
+                      {movies.filter((movie) => {
+                        return search === "" ?
+                          movie :
+                          movie.Title.toLowerCase().includes(search.toLowerCase());
+                      }
+
+                      ).map((movie) => (
                         <Col className="mb-4" key={movie._id} md={3} xl={4} lg={4} sm={4} xs={10}>
                           <MovieCard
                             movie={movie}
