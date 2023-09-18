@@ -14,6 +14,8 @@ export const MovieView = ({ movies }) => {
         <Card.Body className="card-bg-color">
           <Card.Subtitle className="title-color text-center mb-2 text-info pt-3">Title:</Card.Subtitle>
           <Card.Title className="text-success text-center pb-3">{movie.Title}</Card.Title>
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.ReleaseDate.slice(0, 4)}</Card.Title>
 
           <Card.Subtitle className=" mb-2 text-info pt-3">Description: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title>
@@ -49,10 +51,6 @@ export const MovieView = ({ movies }) => {
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Rating}</Card.Title>
-
-
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.ReleaseDate}</Card.Title>
 
           <br />
 
