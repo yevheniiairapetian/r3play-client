@@ -48218,7 +48218,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Footer, {
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                className: "bg-success",
+                                className: "bg-danger",
                                 onClick: handleDeleteUser,
                                 children: "Confirm"
                             }, void 0, false, {
@@ -48227,7 +48227,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                className: "bg-danger",
+                                className: "bg-success",
                                 onClick: handleCloseModal,
                                 children: "Cancel"
                             }, void 0, false, {

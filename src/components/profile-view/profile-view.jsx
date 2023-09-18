@@ -167,8 +167,8 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 				</Modal.Header>
 				<Modal.Body className="text-warning">Are you sure you want to delete your account? It can't be reverted</Modal.Body>
 				<Modal.Footer>
-					<Button className="bg-success" onClick={handleDeleteUser}>Confirm</Button>
-					<Button className="bg-danger" onClick={handleCloseModal}>Cancel</Button>
+					<Button className="bg-danger" onClick={handleDeleteUser}>Confirm</Button>
+					<Button className="bg-success" onClick={handleCloseModal}>Cancel</Button>
 				</Modal.Footer>
 			</Modal>
 
