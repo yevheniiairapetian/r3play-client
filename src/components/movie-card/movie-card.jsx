@@ -69,15 +69,15 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
       <Card className='h-100 card text-bg-dark mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-            {isFavorite ? (
-              <Button variant='danger' className="w-100" onClick={removeFavoriteMovie}>
-                Remove from favorites
-              </Button>
-            ) : (
-              <Button className="bg-success w-100" onClick={addFavoriteMovie}>
+          {isFavorite ? (
+            <Button variant='danger' className="w-100" onClick={removeFavoriteMovie}>
+              Remove from favorites
+            </Button>
+          ) : (
+            <Button className="bg-success w-100" onClick={addFavoriteMovie}>
               Add to favorites
-              </Button>
-            )}
+            </Button>
+          )}
         </Card.Body>
 
         <Card.Body>

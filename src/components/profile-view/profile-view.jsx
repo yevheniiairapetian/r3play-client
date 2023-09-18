@@ -12,7 +12,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 	const [showModal, setShowModal] = useState(false);
 	const [showUpdateModal, setShowUpdateModal] = useState(false);
 	const [showUpdateFailedModal, setShowUpdateFailedModal] = useState(false);
-	
+
 
 	let result = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
 

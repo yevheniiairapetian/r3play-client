@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import {Button, Form} from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
 export const LoginView = ({ onLoggedIn }) => {
@@ -40,29 +40,29 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
             <h4 className="text-success text-center pb-2 pt-4">Login Form</h4>
             <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          placeholder="Your username"
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="5" 
-        />
-      </Form.Group><br />
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          placeholder="Your password"
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </Form.Group><br />
-      <Button className="bg-success w-100" variant="secondary" type="submit">
-        Submit
-      </Button><br />
+                <Form.Label>Username:</Form.Label>
+                <Form.Control
+                    type="text"
+                    value={username}
+                    placeholder="Your username"
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                    minLength="5"
+                />
+            </Form.Group><br />
+            <Form.Group controlId="formPassword">
+                <Form.Label>Password:</Form.Label>
+                <Form.Control
+                    type="password"
+                    value={password}
+                    placeholder="Your password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+            </Form.Group><br />
+            <Button className="bg-success w-100" variant="secondary" type="submit">
+                Submit
+            </Button><br />
         </Form>
     )
 }

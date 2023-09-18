@@ -11,9 +11,9 @@ export const SignupView = () => {
     const [showSignupModal, setShowSignupModal] = useState(false);
     const [showFailedSignupModal, setShowFailedSignupModal] = useState(false);
     const handleShowSignupModal = () => setShowSignupModal(true);
-	const handleCloseSignupModal = () => setShowSignupModal(false);
+    const handleCloseSignupModal = () => setShowSignupModal(false);
     const handleShowFailedSignupModal = () => setShowFailedSignupModal(true);
-	const handleCloseFailedSignupModal = () => setShowFailedSignupModal(false);
+    const handleCloseFailedSignupModal = () => setShowFailedSignupModal(false);
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -28,89 +28,89 @@ export const SignupView = () => {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-              "Content-Type": "application/json"
+                "Content-Type": "application/json"
             }
-          }).then((response) => {
+        }).then((response) => {
             if (response.ok) {
-            handleShowSignupModal();
-              window.location.reload();
+                handleShowSignupModal();
+                window.location.reload();
             } else {
                 handleShowFailedSignupModal();
             }
-          });
-        };
+        });
+    };
     return (
         <>
-        <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
+            <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
 
-            <h4 className="text-success text-center pb-2 pt-4">Sign Up Form</h4>
-            <Form.Group controlId="formUsername">
-                <Form.Label>Username:</Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="Your username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                    minLength="5"
-                />
-            </Form.Group><br />
-            <Form.Group controlId="formPassword">
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                    type="password"
-                    placeholder="Your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </Form.Group><br />
-            <Form.Group controlId="formEmail">
-                <Form.Label>Email:</Form.Label>
-                <Form.Control
-                    type="email"
-                    placeholder="Your email address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-            </Form.Group>
-            <Form.Group controlId="formDate">
-                <Form.Label>Date:</Form.Label>
-                <Form.Control
-                    type="date"
-                    value={birthday}
-                    onChange={(e) => setBirthday(e.target.value)}
-                    required
-                    
-                />
-            </Form.Group><br />
-            <Button className="bg-success w-100" variant="secondary" type="submit">
-                Submit
-            </Button><br /><br />
-        </Form>
+                <h4 className="text-success text-center pb-2 pt-4">Sign Up Form</h4>
+                <Form.Group controlId="formUsername">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Your username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                        minLength="5"
+                    />
+                </Form.Group><br />
+                <Form.Group controlId="formPassword">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                        type="password"
+                        placeholder="Your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </Form.Group><br />
+                <Form.Group controlId="formEmail">
+                    <Form.Label>Email:</Form.Label>
+                    <Form.Control
+                        type="email"
+                        placeholder="Your email address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group controlId="formDate">
+                    <Form.Label>Date:</Form.Label>
+                    <Form.Control
+                        type="date"
+                        value={birthday}
+                        onChange={(e) => setBirthday(e.target.value)}
+                        required
 
-        <Modal show={showSignupModal} onHide={handleCloseSignupModal}>
-				<Modal.Header closeButton>
-					<Modal.Title className="text-danger">Signup</Modal.Title>
-				</Modal.Header>
-				<Modal.Body className="text-warning">Signup Successful</Modal.Body>
-				<Modal.Footer>
-					<Button className="bg-success" onClick={handleCloseSignupModal}>OK</Button>
-					
-				</Modal.Footer>
-			</Modal>
+                    />
+                </Form.Group><br />
+                <Button className="bg-success w-100" variant="secondary" type="submit">
+                    Submit
+                </Button><br /><br />
+            </Form>
+
+            <Modal show={showSignupModal} onHide={handleCloseSignupModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title className="text-danger">Signup</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="text-warning">Signup Successful</Modal.Body>
+                <Modal.Footer>
+                    <Button className="bg-success" onClick={handleCloseSignupModal}>OK</Button>
+
+                </Modal.Footer>
+            </Modal>
 
             <Modal show={showFailedSignupModal} onHide={handleCloseFailedSignupModal}>
-				<Modal.Header closeButton>
-					<Modal.Title className="text-danger">Signup</Modal.Title>
-				</Modal.Header>
-				<Modal.Body className="text-warning">Signup failed</Modal.Body>
-				<Modal.Footer>
-					<Button className="bg-success" onClick={handleCloseFailedSignupModal}>OK</Button>
-					
-				</Modal.Footer>
-			</Modal>
-	</>
+                <Modal.Header closeButton>
+                    <Modal.Title className="text-danger">Signup</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="text-warning">Signup failed</Modal.Body>
+                <Modal.Footer>
+                    <Button className="bg-success" onClick={handleCloseFailedSignupModal}>OK</Button>
+
+                </Modal.Footer>
+            </Modal>
+        </>
     )
 }

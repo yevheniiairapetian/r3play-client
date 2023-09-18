@@ -7,19 +7,19 @@ export const MovieView = ({ movies }) => {
   const movie = movies.find((m) => m._id === movieId);
 
   return (
-<>
-    <Card>
-      <Card.Img className='h-100 card text-bg-dark mb-3' variant={top} src={movie.ImagePath} />
+    <>
+      <Card>
+        <Card.Img className='h-100 card text-bg-dark mb-3' variant={top} src={movie.ImagePath} />
 
-      <Card.Body className="card-bg-color">
-        <Card.Subtitle className="title-color text-center mb-2 text-info pt-3">Title:</Card.Subtitle>
-        <Card.Title className="text-success text-center pb-3">{movie.Title}</Card.Title>
+        <Card.Body className="card-bg-color">
+          <Card.Subtitle className="title-color text-center mb-2 text-info pt-3">Title:</Card.Subtitle>
+          <Card.Title className="text-success text-center pb-3">{movie.Title}</Card.Title>
 
-        <Card.Subtitle className=" mb-2 text-info pt-3">Description: </Card.Subtitle>
-        <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title>
+          <Card.Subtitle className=" mb-2 text-info pt-3">Description: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title>
 
 
-        <Card.Subtitle className="title-color mb-2 text-info pt-3"> Duration: </Card.Subtitle>
+          <Card.Subtitle className="title-color mb-2 text-info pt-3"> Duration: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Duration}</Card.Title>
 
 
@@ -59,24 +59,24 @@ export const MovieView = ({ movies }) => {
           <Link to={`/`}>
             <Button className="bg-success p-2 w-100">Back to the list</Button>
           </Link>
-          </Card.Body>
-          <hr />
-        </Card>
+        </Card.Body>
+        <hr />
+      </Card>
 
-        <div>
+      <div>
 
-        </div>
-        <div>
+      </div>
+      <div>
 
-        </div>
-        <div>
+      </div>
+      <div>
 
-        </div>
-        <div>
+      </div>
+      <div>
 
-        </div>
-</>
+      </div>
+    </>
 
 
-        );
+  );
 };
