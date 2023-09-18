@@ -96,7 +96,7 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <>
-                    <Row className="my-3">
+                      <Row className="my-3">
                         <form>
                           <InputGroup>
                             <Form.Control
