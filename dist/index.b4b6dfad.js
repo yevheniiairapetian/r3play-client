@@ -48329,7 +48329,7 @@ const ProfileView = ({ user, token, setUser, movies })=>{
                                 lineNumber: 189,
                                 columnNumber: 130
                             }, undefined),
-                            "2. You didn't enter your password"
+                            "2. You didn't enter your password, and/or email, and/or username."
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
