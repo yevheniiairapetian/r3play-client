@@ -7,11 +7,14 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 
 	const [username, setUsername] = useState(user.Username);
 	const [password, setPassword] = useState("");
+	const [showWentWrongModal, setShowWentWrongModal] = useState(false);
 	const [email, setEmail] = useState(user.Email);
 	const [birthday, setBirthday] = useState(user.Birthday);
 	const [showModal, setShowModal] = useState(false);
 	const [showUpdateModal, setShowUpdateModal] = useState(false);
 	const [showUpdateFailedModal, setShowUpdateFailedModal] = useState(false);
+	const handleShowWentWrongModal = () => setShowWentWrongModal(true);
+    const handleCloseWentWrongModal = () => setShowWentWrongModal(false);
 
 
 	let result = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
@@ -35,7 +38,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 			data['Password'] = password
 			data['Email'] = email
 			data['Birthday'] = birthday
-			handleShowUpdateModal();
+			
 		}
 
 		fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}`, {
@@ -47,7 +50,8 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 			}
 		}).then((response) => {
 			if (response.ok) {
-				return response.json();
+				return (handleShowUpdateModal(),
+					response.json());
 			} else {
 				handleShowUpdateFailedModal();
 			}
@@ -69,7 +73,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 			if (response.ok) {
 				setUser(null);
 			} else {
-				alert("something went wrong.")
+				handleShowWentWrongModal();
 			}
 		})
 	}
@@ -191,6 +195,16 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 					<Button className="bg-success" onClick={handleCloseUpdateFailedModal}>OK</Button>
 				</Modal.Footer>
 			</Modal>
+			<Modal show={showWentWrongModal} onHide={handleCloseWentWrongModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title className="text-danger">Information</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="text-warning">Something went wrong.</Modal.Body>
+                <Modal.Footer>
+                    <Button className="bg-success" onClick={handleCloseWentWrongModal}>OK</Button>
+
+                </Modal.Footer>
+            </Modal>
 		</>
 	)
 }

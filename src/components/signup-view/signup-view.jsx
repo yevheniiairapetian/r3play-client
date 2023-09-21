@@ -32,8 +32,8 @@ export const SignupView = () => {
             }
         }).then((response) => {
             if (response.ok) {
-                handleShowSignupModal();
                 window.location.reload();
+                handleShowSignupModal();
             } else {
                 handleShowFailedSignupModal();
             }
@@ -92,9 +92,9 @@ export const SignupView = () => {
 
             <Modal show={showSignupModal} onHide={handleCloseSignupModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title className="text-danger">Signup</Modal.Title>
+                    <Modal.Title className="text-success">Signup</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="text-warning">Signup Successful</Modal.Body>
+                <Modal.Body className="text-success">Signup Successful</Modal.Body>
                 <Modal.Footer>
                     <Button className="bg-success" onClick={handleCloseSignupModal}>OK</Button>
 
@@ -105,7 +105,7 @@ export const SignupView = () => {
                 <Modal.Header closeButton>
                     <Modal.Title className="text-danger">Signup</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="text-warning">Signup failed</Modal.Body>
+                <Modal.Body className="text-warning">Signup failed<br/> This may be due to: <br/> 1. The defined username already exists. <br/>2.The defined email already exists.</Modal.Body>
                 <Modal.Footer>
                     <Button className="bg-success" onClick={handleCloseFailedSignupModal}>OK</Button>
 
