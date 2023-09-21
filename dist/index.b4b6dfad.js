@@ -27525,7 +27525,8 @@ const MainView = ()=>{
                                             user: user,
                                             token: token,
                                             setUser: setUser,
-                                            movies: movies
+                                            movies: movies,
+                                            tvseries: tvseries
                                         }, void 0, false, void 0, void 0)
                                     }, void 0, false, void 0, void 0)
                                 }, void 0, false)
@@ -48026,7 +48027,7 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
     const [showUpdateModal, setShowUpdateModal] = (0, _react.useState)(false);
     const [showUpdateFailedModal, setShowUpdateFailedModal] = (0, _react.useState)(false);
     let result = movies.filter((movie)=>user.FavoriteMovies.includes(movie._id));
-    // let result2 = tvseries.filter((tvseries) => user.FavoriteTV.includes(tvseries._id));
+    let result2 = tvseries.filter((tvseries)=>user.FavoriteMovies.includes(tvseries._id));
     const handleShowModal = ()=>setShowModal(true);
     const handleCloseModal = ()=>setShowModal(false);
     const handleShowUpdateModal = ()=>setShowUpdateModal(true);
@@ -48283,26 +48284,47 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                children: result.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                            md: 6,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                movie: movie,
-                                user: user,
-                                token: token,
-                                setUser: setUser
-                            }, void 0, false, {
+                children: [
+                    result.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                md: 6,
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                    movie: movie,
+                                    user: user,
+                                    token: token,
+                                    setUser: setUser
+                                }, void 0, false, {
+                                    fileName: "src/components/profile-view/profile-view.jsx",
+                                    lineNumber: 156,
+                                    columnNumber: 7
+                                }, undefined)
+                            }, movie._id, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 156,
+                                lineNumber: 155,
+                                columnNumber: 6
+                            }, undefined)
+                        }, void 0, false)),
+                    result2.map((tvseries)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                md: 6,
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tvseriesCard.TVseriesCard), {
+                                    tvseries: tvseries,
+                                    user: user,
+                                    token: token,
+                                    setUser: setUser
+                                }, void 0, false, {
+                                    fileName: "src/components/profile-view/profile-view.jsx",
+                                    lineNumber: 169,
+                                    columnNumber: 7
+                                }, undefined)
+                            }, tvseries._id, false, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 168,
                                 columnNumber: 7
                             }, undefined)
-                        }, movie._id, false, {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 155,
-                            columnNumber: 6
-                        }, undefined)
-                    }, void 0, false))
-            }, void 0, false, {
+                        }, void 0, false))
+                ]
+            }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
                 lineNumber: 152,
                 columnNumber: 4
@@ -48505,10 +48527,10 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
 const TVseriesCard = ({ tvseries, user, token, setUser })=>{
-    // const [isFav, setIsFav] = useState(
-    //   user.FavoriteTV.includes(tvseries._id)
-    // );
+    _s();
+    const [isFavorite, setIsFavorite] = (0, _react.useState)(user.FavoriteMovies.includes(tvseries._id));
     const addFavoriteTV = ()=>{
         fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`, {
             method: "POST",
@@ -48525,7 +48547,7 @@ const TVseriesCard = ({ tvseries, user, token, setUser })=>{
             if (user) {
                 localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
                 setUser(user); // updating the react application
-                setIsFav(true);
+                setIsFavorite(true);
             }
         }).catch((e)=>{
             alert(e);
@@ -48628,6 +48650,24 @@ const TVseriesCard = ({ tvseries, user, token, setUser })=>{
                             fileName: "src/components/tvseries-card/tvseries-card.jsx",
                             lineNumber: 78,
                             columnNumber: 96
+                        }, undefined),
+                        isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                            variant: "danger",
+                            className: "w-100",
+                            onClick: removeFavoriteTV,
+                            children: "Remove from favorites"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 80,
+                            columnNumber: 13
+                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                            className: "bg-success w-100",
+                            onClick: addFavoriteTV,
+                            children: "Add to favorites"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 84,
+                            columnNumber: 13
                         }, undefined)
                     ]
                 }, void 0, true, {
@@ -48665,6 +48705,7 @@ const TVseriesCard = ({ tvseries, user, token, setUser })=>{
         }, undefined)
     }, void 0, false);
 };
+_s(TVseriesCard, "Yvdk+J6AG3o+DGPLCkX1u34Q+8k=");
 _c = TVseriesCard;
 TVseriesCard.propTypes = {
     tvseries: (0, _propTypesDefault.default).shape({
@@ -48697,7 +48738,7 @@ $RefreshReg$(_c, "TVseriesCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"7plUY":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7plUY":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad81 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

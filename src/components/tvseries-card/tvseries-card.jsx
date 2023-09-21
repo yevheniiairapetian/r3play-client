@@ -4,9 +4,9 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
-  // const [isFav, setIsFav] = useState(
-  //   user.FavoriteTV.includes(tvseries._id)
-  // );
+  const [isFavorite, setIsFavorite] = useState(
+  user.FavoriteMovies.includes(tvseries._id)
+  );
 
   const addFavoriteTV = () => {
     fetch(
@@ -28,7 +28,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
         if (user) {
           localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
           setUser(user); // updating the react application
-          setIsFav(true);
+          setIsFavorite(true);
         }
       })
       .catch((e) => {
@@ -76,7 +76,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
           <Card.Title secondary-color="text-secondary pb-3">{tvseries.ReleaseDate.slice(0, 4)}</Card.Title>
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{tvseries.Description}</Card.Title><br/>
-             {/* {isFav ? (
+              {isFavorite ? (
             <Button variant='danger' className="w-100" onClick={removeFavoriteTV}>
               Remove from favorites
             </Button>
@@ -84,7 +84,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
             <Button className="bg-success w-100" onClick={addFavoriteTV}>
               Add to favorites
             </Button>
-          )}    */}
+          )}    
         </Card.Body>
 
         <Card.Body>

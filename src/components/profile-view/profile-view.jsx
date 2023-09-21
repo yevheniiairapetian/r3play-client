@@ -16,7 +16,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 
 
 	let result = movies.filter((movie) => user.FavoriteMovies.includes(movie._id)); 
-	// let result2 = tvseries.filter((tvseries) => user.FavoriteTV.includes(tvseries._id));
+	let result2 = tvseries.filter((tvseries) => user.FavoriteMovies.includes(tvseries._id));
 	
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
@@ -163,7 +163,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 						</Col>
 						</>
 				))}
-						{/* {result2.map((tvseries) => (
+						 {result2.map((tvseries) => (
 						<>
 						<Col key={tvseries._id} md={6}>
 						<TVseriesCard
@@ -175,7 +175,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 						</TVseriesCard>
 					</Col>
 					</>
-						))} */}
+						))} 
 				
 				 
 </Row>
