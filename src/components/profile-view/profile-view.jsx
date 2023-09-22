@@ -80,7 +80,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 		
 <>
 			<Row>
-				<Col >
+				<Col>
 					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
 						<h3 className='text-success text-center pt-4 pb-2'>My Profile</h3>
 						<Form.Group controlId="formUsername" className='form-group pb-4'>
@@ -152,7 +152,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 			<Row >
 				{result.map((movie) => (
 					<>
-					<Col key={movie._id} md={6}>
+					<Col key={movie._id} xs={12} sm={6 }md={6} lg={6}>
 						<MovieCard
 							movie={movie}
 							user={user}

@@ -77,21 +77,20 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{tvseries.Description}</Card.Title><br/>
               {isFavorite ? (
-            <Button variant='danger' className="w-100" onClick={removeFavoriteTV}>
+            <Button variant='danger' className="w-100 mb-2" onClick={removeFavoriteTV}>
               Remove from favorites
             </Button>
           ) : (
-            <Button className="bg-success w-100" onClick={addFavoriteTV}>
+            <Button className="bg-success w-100 mb-2" onClick={addFavoriteTV}>
               Add to favorites
             </Button>
           )}    
-        </Card.Body>
-
-        <Card.Body>
           <Link to={`/tvseries/${tvseries._id}`}>
             <Button className='info-button w-100' variant='outline-light'>More Info</Button>
           </Link>
         </Card.Body>
+
+        
 
       </Card>
     </>

@@ -27520,7 +27520,9 @@ const MainView = ()=>{
                                         to: "/login",
                                         replace: true
                                     }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                        md: 5,
+                                        md: 12,
+                                        lg: 8,
+                                        sm: 12,
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
                                             user: user,
                                             token: token,
@@ -27736,7 +27738,7 @@ const MovieCard = ({ movie, user, token, setUser })=>{
                         }, undefined),
                         isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             variant: "danger",
-                            className: "w-100",
+                            className: "w-100 mb-2",
                             onClick: removeFavoriteMovie,
                             children: "Remove from favorites"
                         }, void 0, false, {
@@ -27744,40 +27746,34 @@ const MovieCard = ({ movie, user, token, setUser })=>{
                             lineNumber: 80,
                             columnNumber: 13
                         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            className: "bg-success w-100",
+                            className: "bg-success w-100 mb-2",
                             onClick: addFavoriteMovie,
                             children: "Add to favorites"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
                             lineNumber: 84,
                             columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                            to: `/movies/${movie._id}`,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                className: "info-button w-100",
+                                variant: "outline-light",
+                                children: "More Info"
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 89,
+                                columnNumber: 13
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/movie-card/movie-card.jsx",
+                            lineNumber: 88,
+                            columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movie-card/movie-card.jsx",
                     lineNumber: 71,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: `/movies/${movie._id}`,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            className: "info-button w-100",
-                            variant: "outline-light",
-                            children: "More Info"
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 92,
-                            columnNumber: 13
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 91,
-                        columnNumber: 11
-                    }, undefined)
-                }, void 0, false, {
-                    fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 90,
                     columnNumber: 9
                 }, undefined)
             ]
@@ -48287,7 +48283,10 @@ const ProfileView = ({ user, token, setUser, movies, tvseries })=>{
                 children: [
                     result.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                xs: 12,
+                                sm: 6,
                                 md: 6,
+                                lg: 6,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                     movie: movie,
                                     user: user,
@@ -48653,7 +48652,7 @@ const TVseriesCard = ({ tvseries, user, token, setUser })=>{
                         }, undefined),
                         isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             variant: "danger",
-                            className: "w-100",
+                            className: "w-100 mb-2",
                             onClick: removeFavoriteTV,
                             children: "Remove from favorites"
                         }, void 0, false, {
@@ -48661,40 +48660,34 @@ const TVseriesCard = ({ tvseries, user, token, setUser })=>{
                             lineNumber: 80,
                             columnNumber: 13
                         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            className: "bg-success w-100",
+                            className: "bg-success w-100 mb-2",
                             onClick: addFavoriteTV,
                             children: "Add to favorites"
                         }, void 0, false, {
                             fileName: "src/components/tvseries-card/tvseries-card.jsx",
                             lineNumber: 84,
                             columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                            to: `/tvseries/${tvseries._id}`,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                className: "info-button w-100",
+                                variant: "outline-light",
+                                children: "More Info"
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 89,
+                                columnNumber: 13
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 88,
+                            columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/tvseries-card/tvseries-card.jsx",
                     lineNumber: 71,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: `/tvseries/${tvseries._id}`,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            className: "info-button w-100",
-                            variant: "outline-light",
-                            children: "More Info"
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 92,
-                            columnNumber: 13
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                        lineNumber: 91,
-                        columnNumber: 11
-                    }, undefined)
-                }, void 0, false, {
-                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                    lineNumber: 90,
                     columnNumber: 9
                 }, undefined)
             ]
