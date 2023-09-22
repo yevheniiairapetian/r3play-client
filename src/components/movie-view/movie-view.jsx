@@ -15,14 +15,14 @@ export const MovieView = ({ movies }) => {
           <Card.Subtitle className="title-color text-center mb-2 text-info pt-3">Title:</Card.Subtitle>
           <Card.Title className="text-success text-center pb-3">{movie.Title}</Card.Title>
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.ReleaseDate.slice(0, 4)}</Card.Title>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.ReleaseDate ? movie.ReleaseDate.slice(0, 4) : "No data yet"}</Card.Title>
 
           <Card.Subtitle className=" mb-2 text-info pt-3">Description: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title>
 
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3"> Duration: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.Duration}</Card.Title>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.Duration ? movie.Duration : "No data yet" }</Card.Title>
 
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
@@ -36,7 +36,7 @@ export const MovieView = ({ movies }) => {
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Biography: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Director.Bio}</Card.Title><br />
           <Card.Subtitle className="title-color mb-2 text-info pt-3">{movie.Director.Name}'s Birth year: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.Director.Birth}</Card.Title><br />
+          <Card.Title secondary-color="text-secondary pb-3">{movie.Director.Birth ? movie.Director.Birth : "No data"}</Card.Title><br />
           <Card.Subtitle className="title-color mb-2 text-info pt-3">{movie.Director.Name}'s Death year: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Director.Death ? movie.Director.Death : "No data"}</Card.Title><br />
 
@@ -46,11 +46,11 @@ export const MovieView = ({ movies }) => {
 
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">IMDb Rating: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.IMDbRating}</Card.Title>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.IMDbRating ? movie.IMDbRating : "No data yet" }</Card.Title>
 
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.Rating}</Card.Title>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.Rating ? movie.Rating : "No data yet"}</Card.Title>
 
           <br />
 

@@ -103,9 +103,7 @@ TVseriesCard.propTypes = {
     id: PropTypes.string,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    Season: PropTypes.shape({
-
-    }),
+    Season: PropTypes.array,
     Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired,
       Description: PropTypes.string.isRequired
