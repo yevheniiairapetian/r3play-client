@@ -47327,7 +47327,7 @@ const MovieView = ({ movies })=>{
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
                                 className: "title-color mb-3 text-info pt-3",
-                                children: "Trailer: "
+                                children: "Watch the official trailer: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
                                 lineNumber: 56,
@@ -49778,7 +49778,7 @@ const TVseriesView = ({ tvseries })=>{
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                                 fileName: "src/components/tvseries-view/tvseries-view.jsx",
                                                 lineNumber: 22,
-                                                columnNumber: 111
+                                                columnNumber: 115
                                             }, undefined)
                                         ]
                                     }, void 0, true)) : "No data yet",
@@ -49998,7 +49998,7 @@ const TVseriesView = ({ tvseries })=>{
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
                             className: "title-color mb-3 text-info pt-3",
-                            children: "Trailer: "
+                            children: "Watch the official trailer: "
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
                             lineNumber: 57,
@@ -50011,7 +50011,7 @@ const TVseriesView = ({ tvseries })=>{
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
                             lineNumber: 58,
-                            columnNumber: 7
+                            columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",

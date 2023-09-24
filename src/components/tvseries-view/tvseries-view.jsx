@@ -19,7 +19,7 @@ export const TVseriesView = ({ tvseries }) => {
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{tvser.ReleaseDate ? tvser.ReleaseDate.slice(0, 4) : "No data yet"}</Card.Title>
           <Card.Subtitle className=" mb-2 text-info pt-3">Episodes: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Season.length>0 ? tvser.Season.map(s=><>{s}<br/></>): "No data yet"} </Card.Title>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Season.length > 0 ? tvser.Season.map(s => <>{s}<br /></>) : "No data yet"} </Card.Title>
           <Card.Subtitle className=" mb-2 text-info pt-3">Description: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{tvser.Description}</Card.Title>
 
@@ -54,26 +54,26 @@ export const TVseriesView = ({ tvseries }) => {
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{tvser.Rating ? tvser.Rating : "No data yet"}</Card.Title>
-          <Card.Subtitle className="title-color mb-3 text-info pt-3">Trailer: </Card.Subtitle>
-      <ReactPlayer className="m-auto" controls
-      
-        url={tvser.Trailer}>
-      </ReactPlayer>
+          <Card.Subtitle className="title-color mb-3 text-info pt-3">Watch the official trailer: </Card.Subtitle>
+          <ReactPlayer className="m-auto" controls
+
+            url={tvser.Trailer}>
+          </ReactPlayer>
           <br />
           <div>
-      
-    </div>
+
+          </div>
 
           <Link to={`/`}>
             <Button className="bg-success p-2 w-100">Back to the list</Button>
           </Link>
         </Card.Body>
         <hr />
-        
+
       </Card>
-      
-      
-      
+
+
+
     </>
 
 
