@@ -54,7 +54,7 @@ export const MovieView = ({ movies }) => {
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Rating ? movie.Rating : "No data yet"}</Card.Title>
           <Card.Subtitle className="title-color mb-3 text-info pt-3">Watch the official trailer: </Card.Subtitle>
-          <ReactPlayer className="m-auto w-auto h-auto" controls
+          <ReactPlayer className="m-auto w-auto" controls
 
             url={movie.Trailer}>
           </ReactPlayer>
