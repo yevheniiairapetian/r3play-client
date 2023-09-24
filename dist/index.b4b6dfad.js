@@ -50023,7 +50023,7 @@ const TVseriesView = ({ tvseries })=>{
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactPlayerDefault.default), {
-                            className: "m-auto w-auto h-100",
+                            className: "m-auto w-auto",
                             controls: true,
                             url: tvser.Trailer
                         }, void 0, false, {
