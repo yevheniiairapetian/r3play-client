@@ -1,6 +1,8 @@
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Card } from "react-bootstrap";
+import ReactPlayer from "react-player";
+import React from 'react';
 
 export const TVseriesView = ({ tvseries }) => {
   const { TVId } = useParams();
@@ -52,28 +54,26 @@ export const TVseriesView = ({ tvseries }) => {
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{tvser.Rating ? tvser.Rating : "No data yet"}</Card.Title>
-
+          <Card.Subtitle className="title-color mb-3 text-info pt-3">Trailer: </Card.Subtitle>
+      <ReactPlayer className="m-auto" controls
+      
+        url={tvser.Trailer}>
+      </ReactPlayer>
           <br />
+          <div>
+      
+    </div>
 
           <Link to={`/`}>
             <Button className="bg-success p-2 w-100">Back to the list</Button>
           </Link>
         </Card.Body>
         <hr />
+        
       </Card>
-
-      <div>
-
-      </div>
-      <div>
-
-      </div>
-      <div>
-
-      </div>
-      <div>
-
-      </div>
+      
+      
+      
     </>
 
 

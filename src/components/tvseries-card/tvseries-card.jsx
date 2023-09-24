@@ -117,6 +117,7 @@ TVseriesCard.propTypes = {
     Featured: PropTypes.bool,
     Actors: PropTypes.array,
     Rating: PropTypes.string,
-    ReleaseDate: PropTypes.string
+    ReleaseDate: PropTypes.string,
+    Trailer: PropTypes.string
   }).isRequired,
 };

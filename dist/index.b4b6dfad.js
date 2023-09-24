@@ -2979,7 +2979,7 @@ $RefreshReg$(_c, "MyR3playApplication");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../src/components/main-view/main-view":"4gflv","react-bootstrap":"3AD9A"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","../src/components/main-view/main-view":"4gflv","react-bootstrap":"3AD9A","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("ee51401569654d91");
 
@@ -27164,145 +27164,7 @@ module.exports = require("ef03b89c8fe2794e");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{}],"lJZlQ":[function() {},{}],"km3Ru":[function(require,module,exports) {
-"use strict";
-var Refresh = require("7422ead32dcc1e6b");
-function debounce(func, delay) {
-    {
-        let timeout = undefined;
-        let lastTime = 0;
-        return function(args) {
-            // Call immediately if last call was more than the delay ago.
-            // Otherwise, set a timeout. This means the first call is fast
-            // (for the common case of a single update), and subsequent updates
-            // are batched.
-            let now = Date.now();
-            if (now - lastTime > delay) {
-                lastTime = now;
-                func.call(null, args);
-            } else {
-                clearTimeout(timeout);
-                timeout = setTimeout(function() {
-                    timeout = undefined;
-                    lastTime = Date.now();
-                    func.call(null, args);
-                }, delay);
-            }
-        };
-    }
-}
-var enqueueUpdate = debounce(function() {
-    Refresh.performReactRefresh();
-}, 30);
-// Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-module.exports.prelude = function(module1) {
-    window.$RefreshReg$ = function(type, id) {
-        Refresh.register(type, module1.id + " " + id);
-    };
-    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-module.exports.postlude = function(module1) {
-    if (isReactRefreshBoundary(module1.exports)) {
-        registerExportsForReactRefresh(module1);
-        if (module1.hot) {
-            module1.hot.dispose(function(data) {
-                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
-                data.prevExports = module1.exports;
-            });
-            module1.hot.accept(function(getParents) {
-                var prevExports = module1.hot.data.prevExports;
-                var nextExports = module1.exports;
-                // Since we just executed the code for it, it's possible
-                // that the new exports make it ineligible for being a boundary.
-                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports);
-                // It can also become ineligible if its exports are incompatible
-                // with the previous exports.
-                // For example, if you add/remove/change exports, we'll want
-                // to re-execute the importing modules, and force those components
-                // to re-render. Similarly, if you convert a class component
-                // to a function, we want to invalidate the boundary.
-                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-                if (isNoLongerABoundary || didInvalidate) {
-                    // We'll be conservative. The only case in which we won't do a full
-                    // reload is if all parent modules are also refresh boundaries.
-                    // In that case we'll add them to the current queue.
-                    var parents = getParents();
-                    if (parents.length === 0) {
-                        // Looks like we bubbled to the root. Can't recover from that.
-                        window.location.reload();
-                        return;
-                    }
-                    return parents;
-                }
-                enqueueUpdate();
-            });
-        }
-    }
-};
-function isReactRefreshBoundary(exports) {
-    if (Refresh.isLikelyComponentType(exports)) return true;
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    return false;
-    var hasExports = false;
-    var areAllExportsComponents = true;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        hasExports = true;
-        if (key === "__esModule") continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
-        return false;
-        var exportValue = exports[key];
-        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
-    }
-    return hasExports && areAllExportsComponents;
-}
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-    var prevSignature = getRefreshBoundarySignature(prevExports);
-    var nextSignature = getRefreshBoundarySignature(nextExports);
-    if (prevSignature.length !== nextSignature.length) return true;
-    for(var i = 0; i < nextSignature.length; i++){
-        if (prevSignature[i] !== nextSignature[i]) return true;
-    }
-    return false;
-}
-// When this signature changes, it's unsafe to stop at this refresh boundary.
-function getRefreshBoundarySignature(exports) {
-    var signature = [];
-    signature.push(Refresh.getFamilyByType(exports));
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        if (key === "__esModule") continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        signature.push(key);
-        signature.push(Refresh.getFamilyByType(exportValue));
-    }
-    return signature;
-}
-function registerExportsForReactRefresh(module1) {
-    var exports = module1.exports, id = module1.id;
-    Refresh.register(exports, id + " %exports%");
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        var typeID = id + " %exports% " + key;
-        Refresh.register(exportValue, typeID);
-    }
-}
-
-},{"7422ead32dcc1e6b":"786KC"}],"4gflv":[function(require,module,exports) {
+},{}],"4gflv":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$f7a6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27566,37 +27428,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","../navigation-bar/navigation-bar":"bsPVM","../profile-view/profile-view":"2vVqf","../tvseries-card/tvseries-card":"bnLbM","../tvseries-view/tvseries-view":"7plUY"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../tvseries-card/tvseries-card":"bnLbM","../tvseries-view/tvseries-view":"7plUY","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","../navigation-bar/navigation-bar":"bsPVM","../profile-view/profile-view":"2vVqf","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27818,7 +27650,7 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","react":"21dqq"}],"7wKI2":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7wKI2":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -29004,7 +28836,37 @@ function _extends() {
     return _extends.apply(this, arguments);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"adHgr":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"adHgr":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>_objectWithoutPropertiesLoose);
@@ -47047,7 +46909,145 @@ function getDoneFetcher(data) {
     return fetcher;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ggaUx":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"km3Ru":[function(require,module,exports) {
+"use strict";
+var Refresh = require("7422ead32dcc1e6b");
+function debounce(func, delay) {
+    {
+        let timeout = undefined;
+        let lastTime = 0;
+        return function(args) {
+            // Call immediately if last call was more than the delay ago.
+            // Otherwise, set a timeout. This means the first call is fast
+            // (for the common case of a single update), and subsequent updates
+            // are batched.
+            let now = Date.now();
+            if (now - lastTime > delay) {
+                lastTime = now;
+                func.call(null, args);
+            } else {
+                clearTimeout(timeout);
+                timeout = setTimeout(function() {
+                    timeout = undefined;
+                    lastTime = Date.now();
+                    func.call(null, args);
+                }, delay);
+            }
+        };
+    }
+}
+var enqueueUpdate = debounce(function() {
+    Refresh.performReactRefresh();
+}, 30);
+// Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+module.exports.prelude = function(module1) {
+    window.$RefreshReg$ = function(type, id) {
+        Refresh.register(type, module1.id + " " + id);
+    };
+    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+module.exports.postlude = function(module1) {
+    if (isReactRefreshBoundary(module1.exports)) {
+        registerExportsForReactRefresh(module1);
+        if (module1.hot) {
+            module1.hot.dispose(function(data) {
+                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
+                data.prevExports = module1.exports;
+            });
+            module1.hot.accept(function(getParents) {
+                var prevExports = module1.hot.data.prevExports;
+                var nextExports = module1.exports;
+                // Since we just executed the code for it, it's possible
+                // that the new exports make it ineligible for being a boundary.
+                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports);
+                // It can also become ineligible if its exports are incompatible
+                // with the previous exports.
+                // For example, if you add/remove/change exports, we'll want
+                // to re-execute the importing modules, and force those components
+                // to re-render. Similarly, if you convert a class component
+                // to a function, we want to invalidate the boundary.
+                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+                if (isNoLongerABoundary || didInvalidate) {
+                    // We'll be conservative. The only case in which we won't do a full
+                    // reload is if all parent modules are also refresh boundaries.
+                    // In that case we'll add them to the current queue.
+                    var parents = getParents();
+                    if (parents.length === 0) {
+                        // Looks like we bubbled to the root. Can't recover from that.
+                        window.location.reload();
+                        return;
+                    }
+                    return parents;
+                }
+                enqueueUpdate();
+            });
+        }
+    }
+};
+function isReactRefreshBoundary(exports) {
+    if (Refresh.isLikelyComponentType(exports)) return true;
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    return false;
+    var hasExports = false;
+    var areAllExportsComponents = true;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        hasExports = true;
+        if (key === "__esModule") continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
+        return false;
+        var exportValue = exports[key];
+        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
+    }
+    return hasExports && areAllExportsComponents;
+}
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+    var prevSignature = getRefreshBoundarySignature(prevExports);
+    var nextSignature = getRefreshBoundarySignature(nextExports);
+    if (prevSignature.length !== nextSignature.length) return true;
+    for(var i = 0; i < nextSignature.length; i++){
+        if (prevSignature[i] !== nextSignature[i]) return true;
+    }
+    return false;
+}
+// When this signature changes, it's unsafe to stop at this refresh boundary.
+function getRefreshBoundarySignature(exports) {
+    var signature = [];
+    signature.push(Refresh.getFamilyByType(exports));
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        if (key === "__esModule") continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        signature.push(key);
+        signature.push(Refresh.getFamilyByType(exportValue));
+    }
+    return signature;
+}
+function registerExportsForReactRefresh(module1) {
+    var exports = module1.exports, id = module1.id;
+    Refresh.register(exports, id + " %exports%");
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        var typeID = id + " %exports% " + key;
+        Refresh.register(exportValue, typeID);
+    }
+}
+
+},{"7422ead32dcc1e6b":"786KC"}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47061,6 +47061,10 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactRouter = require("react-router");
 var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
+var _reactPlayer = require("react-player");
+var _reactPlayerDefault = parcelHelpers.interopDefault(_reactPlayer);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
 const MovieView = ({ movies })=>{
     _s();
@@ -47076,7 +47080,7 @@ const MovieView = ({ movies })=>{
                         src: movie.ImagePath
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 12,
+                        lineNumber: 14,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -47087,7 +47091,7 @@ const MovieView = ({ movies })=>{
                                 children: "Title:"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 15,
+                                lineNumber: 17,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47095,7 +47099,7 @@ const MovieView = ({ movies })=>{
                                 children: movie.Title
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 16,
+                                lineNumber: 18,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47103,7 +47107,7 @@ const MovieView = ({ movies })=>{
                                 children: "Release Date: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 17,
+                                lineNumber: 19,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47111,7 +47115,7 @@ const MovieView = ({ movies })=>{
                                 children: movie.ReleaseDate ? movie.ReleaseDate.slice(0, 4) : "No data yet"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 18,
+                                lineNumber: 20,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47119,7 +47123,7 @@ const MovieView = ({ movies })=>{
                                 children: "Description: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 20,
+                                lineNumber: 22,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47127,7 +47131,7 @@ const MovieView = ({ movies })=>{
                                 children: movie.Description
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 21,
+                                lineNumber: 23,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47135,7 +47139,7 @@ const MovieView = ({ movies })=>{
                                 children: " Duration: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 24,
+                                lineNumber: 26,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47143,7 +47147,7 @@ const MovieView = ({ movies })=>{
                                 children: movie.Duration ? movie.Duration : "No data yet"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 25,
+                                lineNumber: 27,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47151,7 +47155,7 @@ const MovieView = ({ movies })=>{
                                 children: "Genre: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 28,
+                                lineNumber: 30,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47159,12 +47163,12 @@ const MovieView = ({ movies })=>{
                                 children: movie.Genre.Name
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 29,
+                                lineNumber: 31,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 29,
+                                lineNumber: 31,
                                 columnNumber: 92
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47172,7 +47176,7 @@ const MovieView = ({ movies })=>{
                                 children: "Desciption: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 30,
+                                lineNumber: 32,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47180,7 +47184,7 @@ const MovieView = ({ movies })=>{
                                 children: movie.Genre.Description
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 31,
+                                lineNumber: 33,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47188,7 +47192,7 @@ const MovieView = ({ movies })=>{
                                 children: "Director: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 34,
+                                lineNumber: 36,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47196,12 +47200,12 @@ const MovieView = ({ movies })=>{
                                 children: movie.Director.Name
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 35,
+                                lineNumber: 37,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 35,
+                                lineNumber: 37,
                                 columnNumber: 95
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47209,7 +47213,7 @@ const MovieView = ({ movies })=>{
                                 children: "Biography: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 36,
+                                lineNumber: 38,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47217,12 +47221,12 @@ const MovieView = ({ movies })=>{
                                 children: movie.Director.Bio
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 37,
+                                lineNumber: 39,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 37,
+                                lineNumber: 39,
                                 columnNumber: 94
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47233,7 +47237,7 @@ const MovieView = ({ movies })=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 38,
+                                lineNumber: 40,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47241,12 +47245,12 @@ const MovieView = ({ movies })=>{
                                 children: movie.Director.Birth ? movie.Director.Birth : "No data"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 39,
+                                lineNumber: 41,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 39,
+                                lineNumber: 41,
                                 columnNumber: 131
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47257,7 +47261,7 @@ const MovieView = ({ movies })=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 40,
+                                lineNumber: 42,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47265,12 +47269,12 @@ const MovieView = ({ movies })=>{
                                 children: movie.Director.Death ? movie.Director.Death : "No data"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 41,
+                                lineNumber: 43,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 41,
+                                lineNumber: 43,
                                 columnNumber: 131
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47278,7 +47282,7 @@ const MovieView = ({ movies })=>{
                                 children: "Actors: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 44,
+                                lineNumber: 46,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47286,7 +47290,7 @@ const MovieView = ({ movies })=>{
                                 children: movie.Actors.join(", ")
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 45,
+                                lineNumber: 47,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47294,7 +47298,7 @@ const MovieView = ({ movies })=>{
                                 children: "IMDb Rating: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 48,
+                                lineNumber: 50,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47302,7 +47306,7 @@ const MovieView = ({ movies })=>{
                                 children: movie.IMDbRating ? movie.IMDbRating : "No data yet"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 49,
+                                lineNumber: 51,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -47310,7 +47314,7 @@ const MovieView = ({ movies })=>{
                                 children: "Rotten Tomatoes Audience Rating: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 52,
+                                lineNumber: 54,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -47318,12 +47322,29 @@ const MovieView = ({ movies })=>{
                                 children: movie.Rating ? movie.Rating : "No data yet"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 53,
+                                lineNumber: 55,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-3 text-info pt-3",
+                                children: "Trailer: "
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 56,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactPlayerDefault.default), {
+                                className: "m-auto",
+                                controls: true,
+                                url: movie.Trailer
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 57,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 55,
+                                lineNumber: 61,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -47333,39 +47354,29 @@ const MovieView = ({ movies })=>{
                                     children: "Back to the list"
                                 }, void 0, false, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 58,
+                                    lineNumber: 64,
                                     columnNumber: 13
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 57,
+                                lineNumber: 63,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 14,
+                        lineNumber: 16,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 61,
+                        lineNumber: 67,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 11,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 64,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 67,
+                lineNumber: 13,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
@@ -47376,6 +47387,16 @@ const MovieView = ({ movies })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
                 lineNumber: 73,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 76,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 79,
                 columnNumber: 7
             }, undefined)
         ]
@@ -47395,7 +47416,2662 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","react-router":"dbWyW"}],"9YtA0":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-router":"dbWyW","react-router-dom":"9xmpe","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-player":"6tM2f","react":"21dqq"}],"6tM2f":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports["default"] = void 0;
+var _players = _interopRequireDefault(require("4968b42a8f085a00"));
+var _ReactPlayer = require("fbd562b39fa8a07d");
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        "default": obj
+    };
+}
+// Fall back to FilePlayer if nothing else can play the URL
+var fallback = _players["default"][_players["default"].length - 1];
+var _default = (0, _ReactPlayer.createReactPlayer)(_players["default"], fallback);
+exports["default"] = _default;
+
+},{"4968b42a8f085a00":"1LIzR","fbd562b39fa8a07d":"kI1Mr"}],"1LIzR":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports["default"] = void 0;
+var _react = require("a0ce1a4f7a265597");
+var _utils = require("524a70fb5685f187");
+var _patterns = require("512a89b1995718dd");
+function _typeof(obj) {
+    "@babel/helpers - typeof";
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") _typeof = function _typeof(obj) {
+        return typeof obj;
+    };
+    else _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+    return _typeof(obj);
+}
+function _getRequireWildcardCache() {
+    if (typeof WeakMap !== "function") return null;
+    var cache = new WeakMap();
+    _getRequireWildcardCache = function _getRequireWildcardCache() {
+        return cache;
+    };
+    return cache;
+}
+function _interopRequireWildcard(obj) {
+    if (obj && obj.__esModule) return obj;
+    if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") return {
+        "default": obj
+    };
+    var cache = _getRequireWildcardCache();
+    if (cache && cache.has(obj)) return cache.get(obj);
+    var newObj = {};
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    for(var key in obj)if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
+        else newObj[key] = obj[key];
+    }
+    newObj["default"] = obj;
+    if (cache) cache.set(obj, newObj);
+    return newObj;
+}
+var _default = [
+    {
+        key: "youtube",
+        name: "YouTube",
+        canPlay: _patterns.canPlay.youtube,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("b53855a15379b350");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "soundcloud",
+        name: "SoundCloud",
+        canPlay: _patterns.canPlay.soundcloud,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("4bed75f42e7ec358");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "vimeo",
+        name: "Vimeo",
+        canPlay: _patterns.canPlay.vimeo,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("d33be58f0f7d2376");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "facebook",
+        name: "Facebook",
+        canPlay: _patterns.canPlay.facebook,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("2bc3a5d5ddb08cc3");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "streamable",
+        name: "Streamable",
+        canPlay: _patterns.canPlay.streamable,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("1de21cb0d8423fd8");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "wistia",
+        name: "Wistia",
+        canPlay: _patterns.canPlay.wistia,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("5799eff2ec4e0f10");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "twitch",
+        name: "Twitch",
+        canPlay: _patterns.canPlay.twitch,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("5ae18efaf6b60bb6");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "dailymotion",
+        name: "DailyMotion",
+        canPlay: _patterns.canPlay.dailymotion,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("ae22d5946274b8cc");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "mixcloud",
+        name: "Mixcloud",
+        canPlay: _patterns.canPlay.mixcloud,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("658cc186a6be0ec4");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "vidyard",
+        name: "Vidyard",
+        canPlay: _patterns.canPlay.vidyard,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("ec3ace2753cc05ec");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "kaltura",
+        name: "Kaltura",
+        canPlay: _patterns.canPlay.kaltura,
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("93b3e770895b2a5");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    },
+    {
+        key: "file",
+        name: "FilePlayer",
+        canPlay: _patterns.canPlay.file,
+        canEnablePIP: function canEnablePIP(url) {
+            return _patterns.canPlay.file(url) && (document.pictureInPictureEnabled || (0, _utils.supportsWebKitPresentationMode)()) && !_patterns.AUDIO_EXTENSIONS.test(url);
+        },
+        lazyPlayer: /*#__PURE__*/ (0, _react.lazy)(function() {
+            return Promise.resolve().then(function() {
+                return require("2898911cdef38cfa");
+            }).then(function(res) {
+                return _interopRequireWildcard(res);
+            });
+        })
+    }
+];
+exports["default"] = _default;
+
+},{"a0ce1a4f7a265597":"21dqq","524a70fb5685f187":"2twkn","512a89b1995718dd":"eeZWi","b53855a15379b350":"89Wzv","4bed75f42e7ec358":"gOWuA","d33be58f0f7d2376":"eIfld","2bc3a5d5ddb08cc3":"ePfjo","1de21cb0d8423fd8":"kAGK5","5799eff2ec4e0f10":"lqQc7","5ae18efaf6b60bb6":"aead6","ae22d5946274b8cc":"kwam4","658cc186a6be0ec4":"894IL","ec3ace2753cc05ec":"bwbxy","93b3e770895b2a5":"lrpRg","2898911cdef38cfa":"dC8Ky"}],"2twkn":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.parseStartTime = parseStartTime;
+exports.parseEndTime = parseEndTime;
+exports.randomString = randomString;
+exports.queryString = queryString;
+exports.getSDK = getSDK;
+exports.getConfig = getConfig;
+exports.omit = omit;
+exports.callPlayer = callPlayer;
+exports.isMediaStream = isMediaStream;
+exports.isBlobUrl = isBlobUrl;
+exports.supportsWebKitPresentationMode = supportsWebKitPresentationMode;
+var _loadScript = _interopRequireDefault(require("ce45bd65dc544519"));
+var _deepmerge = _interopRequireDefault(require("19e8894f07bd1b7a"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        "default": obj
+    };
+}
+function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
+    return arr2;
+}
+function _iterableToArrayLimit(arr, i) {
+    if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+    try {
+        for(var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true){
+            _arr.push(_s.value);
+            if (i && _arr.length === i) break;
+        }
+    } catch (err) {
+        _d = true;
+        _e = err;
+    } finally{
+        try {
+            if (!_n && _i["return"] != null) _i["return"]();
+        } finally{
+            if (_d) throw _e;
+        }
+    }
+    return _arr;
+}
+function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+}
+var MATCH_START_QUERY = /[?&#](?:start|t)=([0-9hms]+)/;
+var MATCH_END_QUERY = /[?&#]end=([0-9hms]+)/;
+var MATCH_START_STAMP = /(\d+)(h|m|s)/g;
+var MATCH_NUMERIC = /^\d+$/; // Parse YouTube URL for a start time param, ie ?t=1h14m30s
+// and return the start time in seconds
+function parseTimeParam(url, pattern) {
+    if (url instanceof Array) return undefined;
+    var match = url.match(pattern);
+    if (match) {
+        var stamp = match[1];
+        if (stamp.match(MATCH_START_STAMP)) return parseTimeString(stamp);
+        if (MATCH_NUMERIC.test(stamp)) return parseInt(stamp);
+    }
+    return undefined;
+}
+function parseTimeString(stamp) {
+    var seconds = 0;
+    var array = MATCH_START_STAMP.exec(stamp);
+    while(array !== null){
+        var _array = array, _array2 = _slicedToArray(_array, 3), count = _array2[1], period = _array2[2];
+        if (period === "h") seconds += parseInt(count, 10) * 3600;
+        if (period === "m") seconds += parseInt(count, 10) * 60;
+        if (period === "s") seconds += parseInt(count, 10);
+        array = MATCH_START_STAMP.exec(stamp);
+    }
+    return seconds;
+}
+function parseStartTime(url) {
+    return parseTimeParam(url, MATCH_START_QUERY);
+}
+function parseEndTime(url) {
+    return parseTimeParam(url, MATCH_END_QUERY);
+} // http://stackoverflow.com/a/38622545
+function randomString() {
+    return Math.random().toString(36).substr(2, 5);
+}
+function queryString(object) {
+    return Object.keys(object).map(function(key) {
+        return "".concat(key, "=").concat(object[key]);
+    }).join("&");
+}
+function getGlobal(key) {
+    if (window[key]) return window[key];
+    if (window.exports && window.exports[key]) return window.exports[key];
+    if (window.module && window.module.exports && window.module.exports[key]) return window.module.exports[key];
+    return null;
+} // Util function to load an external SDK
+// or return the SDK if it is already loaded
+var requests = {};
+function getSDK(url, sdkGlobal) {
+    var sdkReady = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    var isLoaded = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : function() {
+        return true;
+    };
+    var fetchScript = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : _loadScript["default"];
+    var existingGlobal = getGlobal(sdkGlobal);
+    if (existingGlobal && isLoaded(existingGlobal)) return Promise.resolve(existingGlobal);
+    return new Promise(function(resolve, reject) {
+        // If we are already loading the SDK, add the resolve and reject
+        // functions to the existing array of requests
+        if (requests[url]) {
+            requests[url].push({
+                resolve: resolve,
+                reject: reject
+            });
+            return;
+        }
+        requests[url] = [
+            {
+                resolve: resolve,
+                reject: reject
+            }
+        ];
+        var onLoaded = function onLoaded(sdk) {
+            // When loaded, resolve all pending request promises
+            requests[url].forEach(function(request) {
+                return request.resolve(sdk);
+            });
+        };
+        if (sdkReady) {
+            var previousOnReady = window[sdkReady];
+            window[sdkReady] = function() {
+                if (previousOnReady) previousOnReady();
+                onLoaded(getGlobal(sdkGlobal));
+            };
+        }
+        fetchScript(url, function(err) {
+            if (err) {
+                // Loading the SDK failed – reject all requests and
+                // reset the array of requests for this SDK
+                requests[url].forEach(function(request) {
+                    return request.reject(err);
+                });
+                requests[url] = null;
+            } else if (!sdkReady) onLoaded(getGlobal(sdkGlobal));
+        });
+    });
+}
+function getConfig(props, defaultProps) {
+    return (0, _deepmerge["default"])(defaultProps.config, props.config);
+}
+function omit(object) {
+    var _ref;
+    for(var _len = arguments.length, arrays = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++)arrays[_key - 1] = arguments[_key];
+    var omitKeys = (_ref = []).concat.apply(_ref, arrays);
+    var output = {};
+    var keys = Object.keys(object);
+    for(var _i2 = 0, _keys = keys; _i2 < _keys.length; _i2++){
+        var key = _keys[_i2];
+        if (omitKeys.indexOf(key) === -1) output[key] = object[key];
+    }
+    return output;
+}
+function callPlayer(method) {
+    var _this$player;
+    // Util method for calling a method on this.player
+    // but guard against errors and console.warn instead
+    if (!this.player || !this.player[method]) {
+        var message = "ReactPlayer: ".concat(this.constructor.displayName, " player could not call %c").concat(method, "%c – ");
+        if (!this.player) message += "The player was not available";
+        else if (!this.player[method]) message += "The method was not available";
+        console.warn(message, "font-weight: bold", "");
+        return null;
+    }
+    for(var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++)args[_key2 - 1] = arguments[_key2];
+    return (_this$player = this.player)[method].apply(_this$player, args);
+}
+function isMediaStream(url) {
+    return typeof window !== "undefined" && typeof window.MediaStream !== "undefined" && url instanceof window.MediaStream;
+}
+function isBlobUrl(url) {
+    return /^blob:/.test(url);
+}
+function supportsWebKitPresentationMode() {
+    var video = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.createElement("video");
+    // Check if Safari supports PiP, and is not on mobile (other than iPad)
+    // iPhone safari appears to "support" PiP through the check, however PiP does not function
+    var notMobile = /iPhone|iPod/.test(navigator.userAgent) === false;
+    return video.webkitSupportsPresentationMode && typeof video.webkitSetPresentationMode === "function" && notMobile;
+}
+
+},{"ce45bd65dc544519":"8eVCX","19e8894f07bd1b7a":"ck1Q2"}],"8eVCX":[function(require,module,exports) {
+module.exports = function load(src, opts, cb) {
+    var head = document.head || document.getElementsByTagName("head")[0];
+    var script = document.createElement("script");
+    if (typeof opts === "function") {
+        cb = opts;
+        opts = {};
+    }
+    opts = opts || {};
+    cb = cb || function() {};
+    script.type = opts.type || "text/javascript";
+    script.charset = opts.charset || "utf8";
+    script.async = "async" in opts ? !!opts.async : true;
+    script.src = src;
+    if (opts.attrs) setAttributes(script, opts.attrs);
+    if (opts.text) script.text = "" + opts.text;
+    var onend = "onload" in script ? stdOnEnd : ieOnEnd;
+    onend(script, cb);
+    // some good legacy browsers (firefox) fail the 'in' detection above
+    // so as a fallback we always set onload
+    // old IE will ignore this and new IE will set onload
+    if (!script.onload) stdOnEnd(script, cb);
+    head.appendChild(script);
+};
+function setAttributes(script, attrs) {
+    for(var attr in attrs)script.setAttribute(attr, attrs[attr]);
+}
+function stdOnEnd(script, cb) {
+    script.onload = function() {
+        this.onerror = this.onload = null;
+        cb(null, script);
+    };
+    script.onerror = function() {
+        // this.onload = null here is necessary
+        // because even IE9 works not like others
+        this.onerror = this.onload = null;
+        cb(new Error("Failed to load " + this.src), script);
+    };
+}
+function ieOnEnd(script, cb) {
+    script.onreadystatechange = function() {
+        if (this.readyState != "complete" && this.readyState != "loaded") return;
+        this.onreadystatechange = null;
+        cb(null, script) // there is no way to catch loading errors in IE8
+        ;
+    };
+}
+
+},{}],"ck1Q2":[function(require,module,exports) {
+"use strict";
+var isMergeableObject = function isMergeableObject(value) {
+    return isNonNullObject(value) && !isSpecial(value);
+};
+function isNonNullObject(value) {
+    return !!value && typeof value === "object";
+}
+function isSpecial(value) {
+    var stringValue = Object.prototype.toString.call(value);
+    return stringValue === "[object RegExp]" || stringValue === "[object Date]" || isReactElement(value);
+}
+// see https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25
+var canUseSymbol = typeof Symbol === "function" && Symbol.for;
+var REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for("react.element") : 0xeac7;
+function isReactElement(value) {
+    return value.$$typeof === REACT_ELEMENT_TYPE;
+}
+function emptyTarget(val) {
+    return Array.isArray(val) ? [] : {};
+}
+function cloneUnlessOtherwiseSpecified(value, options) {
+    return options.clone !== false && options.isMergeableObject(value) ? deepmerge(emptyTarget(value), value, options) : value;
+}
+function defaultArrayMerge(target, source, options) {
+    return target.concat(source).map(function(element) {
+        return cloneUnlessOtherwiseSpecified(element, options);
+    });
+}
+function getMergeFunction(key, options) {
+    if (!options.customMerge) return deepmerge;
+    var customMerge = options.customMerge(key);
+    return typeof customMerge === "function" ? customMerge : deepmerge;
+}
+function getEnumerableOwnPropertySymbols(target) {
+    return Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(target).filter(function(symbol) {
+        return Object.propertyIsEnumerable.call(target, symbol);
+    }) : [];
+}
+function getKeys(target) {
+    return Object.keys(target).concat(getEnumerableOwnPropertySymbols(target));
+}
+function propertyIsOnObject(object, property) {
+    try {
+        return property in object;
+    } catch (_) {
+        return false;
+    }
+}
+// Protects from prototype poisoning and unexpected merging up the prototype chain.
+function propertyIsUnsafe(target, key) {
+    return propertyIsOnObject(target, key) // Properties are safe to merge if they don't exist in the target yet,
+     && !(Object.hasOwnProperty.call(target, key) // unsafe if they exist up the prototype chain,
+     && Object.propertyIsEnumerable.call(target, key) // and also unsafe if they're nonenumerable.
+    );
+}
+function mergeObject(target, source, options) {
+    var destination = {};
+    if (options.isMergeableObject(target)) getKeys(target).forEach(function(key) {
+        destination[key] = cloneUnlessOtherwiseSpecified(target[key], options);
+    });
+    getKeys(source).forEach(function(key) {
+        if (propertyIsUnsafe(target, key)) return;
+        if (propertyIsOnObject(target, key) && options.isMergeableObject(source[key])) destination[key] = getMergeFunction(key, options)(target[key], source[key], options);
+        else destination[key] = cloneUnlessOtherwiseSpecified(source[key], options);
+    });
+    return destination;
+}
+function deepmerge(target, source, options) {
+    options = options || {};
+    options.arrayMerge = options.arrayMerge || defaultArrayMerge;
+    options.isMergeableObject = options.isMergeableObject || isMergeableObject;
+    // cloneUnlessOtherwiseSpecified is added to `options` so that custom arrayMerge()
+    // implementations can use it. The caller may not replace it.
+    options.cloneUnlessOtherwiseSpecified = cloneUnlessOtherwiseSpecified;
+    var sourceIsArray = Array.isArray(source);
+    var targetIsArray = Array.isArray(target);
+    var sourceAndTargetTypesMatch = sourceIsArray === targetIsArray;
+    if (!sourceAndTargetTypesMatch) return cloneUnlessOtherwiseSpecified(source, options);
+    else if (sourceIsArray) return options.arrayMerge(target, source, options);
+    else return mergeObject(target, source, options);
+}
+deepmerge.all = function deepmergeAll(array, options) {
+    if (!Array.isArray(array)) throw new Error("first argument should be an array");
+    return array.reduce(function(prev, next) {
+        return deepmerge(prev, next, options);
+    }, {});
+};
+var deepmerge_1 = deepmerge;
+module.exports = deepmerge_1;
+
+},{}],"eeZWi":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.canPlay = exports.FLV_EXTENSIONS = exports.DASH_EXTENSIONS = exports.HLS_EXTENSIONS = exports.VIDEO_EXTENSIONS = exports.AUDIO_EXTENSIONS = exports.MATCH_URL_KALTURA = exports.MATCH_URL_VIDYARD = exports.MATCH_URL_MIXCLOUD = exports.MATCH_URL_DAILYMOTION = exports.MATCH_URL_TWITCH_CHANNEL = exports.MATCH_URL_TWITCH_VIDEO = exports.MATCH_URL_WISTIA = exports.MATCH_URL_STREAMABLE = exports.MATCH_URL_FACEBOOK_WATCH = exports.MATCH_URL_FACEBOOK = exports.MATCH_URL_VIMEO = exports.MATCH_URL_SOUNDCLOUD = exports.MATCH_URL_YOUTUBE = void 0;
+var _utils = require("9dba0db61cf8dc32");
+function _createForOfIteratorHelper(o, allowArrayLike) {
+    var it;
+    if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
+        if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+            if (it) o = it;
+            var i = 0;
+            var F = function F() {};
+            return {
+                s: F,
+                n: function n() {
+                    if (i >= o.length) return {
+                        done: true
+                    };
+                    return {
+                        done: false,
+                        value: o[i++]
+                    };
+                },
+                e: function e(_e) {
+                    throw _e;
+                },
+                f: F
+            };
+        }
+        throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    }
+    var normalCompletion = true, didErr = false, err;
+    return {
+        s: function s() {
+            it = o[Symbol.iterator]();
+        },
+        n: function n() {
+            var step = it.next();
+            normalCompletion = step.done;
+            return step;
+        },
+        e: function e(_e2) {
+            didErr = true;
+            err = _e2;
+        },
+        f: function f() {
+            try {
+                if (!normalCompletion && it["return"] != null) it["return"]();
+            } finally{
+                if (didErr) throw err;
+            }
+        }
+    };
+}
+function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
+    return arr2;
+}
+var MATCH_URL_YOUTUBE = /(?:youtu\.be\/|youtube(?:-nocookie|education)?\.com\/(?:embed\/|v\/|watch\/|watch\?v=|watch\?.+&v=|shorts\/|live\/))((\w|-){11})|youtube\.com\/playlist\?list=|youtube\.com\/user\//;
+exports.MATCH_URL_YOUTUBE = MATCH_URL_YOUTUBE;
+var MATCH_URL_SOUNDCLOUD = /(?:soundcloud\.com|snd\.sc)\/[^.]+$/;
+exports.MATCH_URL_SOUNDCLOUD = MATCH_URL_SOUNDCLOUD;
+var MATCH_URL_VIMEO = /vimeo\.com\/(?!progressive_redirect).+/;
+exports.MATCH_URL_VIMEO = MATCH_URL_VIMEO;
+var MATCH_URL_FACEBOOK = /^https?:\/\/(www\.)?facebook\.com.*\/(video(s)?|watch|story)(\.php?|\/).+$/;
+exports.MATCH_URL_FACEBOOK = MATCH_URL_FACEBOOK;
+var MATCH_URL_FACEBOOK_WATCH = /^https?:\/\/fb\.watch\/.+$/;
+exports.MATCH_URL_FACEBOOK_WATCH = MATCH_URL_FACEBOOK_WATCH;
+var MATCH_URL_STREAMABLE = /streamable\.com\/([a-z0-9]+)$/;
+exports.MATCH_URL_STREAMABLE = MATCH_URL_STREAMABLE;
+var MATCH_URL_WISTIA = /(?:wistia\.(?:com|net)|wi\.st)\/(?:medias|embed)\/(?:iframe\/)?([^?]+)/;
+exports.MATCH_URL_WISTIA = MATCH_URL_WISTIA;
+var MATCH_URL_TWITCH_VIDEO = /(?:www\.|go\.)?twitch\.tv\/videos\/(\d+)($|\?)/;
+exports.MATCH_URL_TWITCH_VIDEO = MATCH_URL_TWITCH_VIDEO;
+var MATCH_URL_TWITCH_CHANNEL = /(?:www\.|go\.)?twitch\.tv\/([a-zA-Z0-9_]+)($|\?)/;
+exports.MATCH_URL_TWITCH_CHANNEL = MATCH_URL_TWITCH_CHANNEL;
+var MATCH_URL_DAILYMOTION = /^(?:(?:https?):)?(?:\/\/)?(?:www\.)?(?:(?:dailymotion\.com(?:\/embed)?\/video)|dai\.ly)\/([a-zA-Z0-9]+)(?:_[\w_-]+)?(?:[\w.#_-]+)?/;
+exports.MATCH_URL_DAILYMOTION = MATCH_URL_DAILYMOTION;
+var MATCH_URL_MIXCLOUD = /mixcloud\.com\/([^/]+\/[^/]+)/;
+exports.MATCH_URL_MIXCLOUD = MATCH_URL_MIXCLOUD;
+var MATCH_URL_VIDYARD = /vidyard.com\/(?:watch\/)?([a-zA-Z0-9-_]+)/;
+exports.MATCH_URL_VIDYARD = MATCH_URL_VIDYARD;
+var MATCH_URL_KALTURA = /^https?:\/\/[a-zA-Z]+\.kaltura.(com|org)\/p\/([0-9]+)\/sp\/([0-9]+)00\/embedIframeJs\/uiconf_id\/([0-9]+)\/partner_id\/([0-9]+)(.*)entry_id.([a-zA-Z0-9-_].*)$/;
+exports.MATCH_URL_KALTURA = MATCH_URL_KALTURA;
+var AUDIO_EXTENSIONS = /\.(m4a|m4b|mp4a|mpga|mp2|mp2a|mp3|m2a|m3a|wav|weba|aac|oga|spx)($|\?)/i;
+exports.AUDIO_EXTENSIONS = AUDIO_EXTENSIONS;
+var VIDEO_EXTENSIONS = /\.(mp4|og[gv]|webm|mov|m4v)(#t=[,\d+]+)?($|\?)/i;
+exports.VIDEO_EXTENSIONS = VIDEO_EXTENSIONS;
+var HLS_EXTENSIONS = /\.(m3u8)($|\?)/i;
+exports.HLS_EXTENSIONS = HLS_EXTENSIONS;
+var DASH_EXTENSIONS = /\.(mpd)($|\?)/i;
+exports.DASH_EXTENSIONS = DASH_EXTENSIONS;
+var FLV_EXTENSIONS = /\.(flv)($|\?)/i;
+exports.FLV_EXTENSIONS = FLV_EXTENSIONS;
+var canPlayFile = function canPlayFile(url) {
+    if (url instanceof Array) {
+        var _iterator = _createForOfIteratorHelper(url), _step;
+        try {
+            for(_iterator.s(); !(_step = _iterator.n()).done;){
+                var item = _step.value;
+                if (typeof item === "string" && canPlayFile(item)) return true;
+                if (canPlayFile(item.src)) return true;
+            }
+        } catch (err) {
+            _iterator.e(err);
+        } finally{
+            _iterator.f();
+        }
+        return false;
+    }
+    if ((0, _utils.isMediaStream)(url) || (0, _utils.isBlobUrl)(url)) return true;
+    return AUDIO_EXTENSIONS.test(url) || VIDEO_EXTENSIONS.test(url) || HLS_EXTENSIONS.test(url) || DASH_EXTENSIONS.test(url) || FLV_EXTENSIONS.test(url);
+};
+var canPlay = {
+    youtube: function youtube(url) {
+        if (url instanceof Array) return url.every(function(item) {
+            return MATCH_URL_YOUTUBE.test(item);
+        });
+        return MATCH_URL_YOUTUBE.test(url);
+    },
+    soundcloud: function soundcloud(url) {
+        return MATCH_URL_SOUNDCLOUD.test(url) && !AUDIO_EXTENSIONS.test(url);
+    },
+    vimeo: function vimeo(url) {
+        return MATCH_URL_VIMEO.test(url) && !VIDEO_EXTENSIONS.test(url) && !HLS_EXTENSIONS.test(url);
+    },
+    facebook: function facebook(url) {
+        return MATCH_URL_FACEBOOK.test(url) || MATCH_URL_FACEBOOK_WATCH.test(url);
+    },
+    streamable: function streamable(url) {
+        return MATCH_URL_STREAMABLE.test(url);
+    },
+    wistia: function wistia(url) {
+        return MATCH_URL_WISTIA.test(url);
+    },
+    twitch: function twitch(url) {
+        return MATCH_URL_TWITCH_VIDEO.test(url) || MATCH_URL_TWITCH_CHANNEL.test(url);
+    },
+    dailymotion: function dailymotion(url) {
+        return MATCH_URL_DAILYMOTION.test(url);
+    },
+    mixcloud: function mixcloud(url) {
+        return MATCH_URL_MIXCLOUD.test(url);
+    },
+    vidyard: function vidyard(url) {
+        return MATCH_URL_VIDYARD.test(url);
+    },
+    kaltura: function kaltura(url) {
+        return MATCH_URL_KALTURA.test(url);
+    },
+    file: canPlayFile
+};
+exports.canPlay = canPlay;
+
+},{"9dba0db61cf8dc32":"2twkn"}],"89Wzv":[function(require,module,exports) {
+module.exports = require("3c3ebbb232de7c0f")(require("3dd4740aa1b4f1c3").getBundleURL("byUka") + "YouTube.8443fbc2.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("ldM4q"));
+
+},{"3c3ebbb232de7c0f":"61B45","3dd4740aa1b4f1c3":"lgJ39"}],"61B45":[function(require,module,exports) {
+"use strict";
+var cacheLoader = require("ca2a84f7fa4a3bb0");
+module.exports = cacheLoader(function(bundle) {
+    return new Promise(function(resolve, reject) {
+        // Don't insert the same script twice (e.g. if it was already in the HTML)
+        var existingScripts = document.getElementsByTagName("script");
+        if ([].concat(existingScripts).some(function isCurrentBundle(script) {
+            return script.src === bundle;
+        })) {
+            resolve();
+            return;
+        }
+        var preloadLink = document.createElement("link");
+        preloadLink.href = bundle;
+        preloadLink.rel = "preload";
+        preloadLink.as = "script";
+        document.head.appendChild(preloadLink);
+        var script = document.createElement("script");
+        script.async = true;
+        script.type = "text/javascript";
+        script.src = bundle;
+        script.onerror = function(e) {
+            var error = new TypeError("Failed to fetch dynamically imported module: ".concat(bundle, ". Error: ").concat(e.message));
+            script.onerror = script.onload = null;
+            script.remove();
+            reject(error);
+        };
+        script.onload = function() {
+            script.onerror = script.onload = null;
+            resolve();
+        };
+        document.getElementsByTagName("head")[0].appendChild(script);
+    });
+});
+
+},{"ca2a84f7fa4a3bb0":"j49pS"}],"j49pS":[function(require,module,exports) {
+"use strict";
+var cachedBundles = {};
+var cachedPreloads = {};
+var cachedPrefetches = {};
+function getCache(type) {
+    switch(type){
+        case "preload":
+            return cachedPreloads;
+        case "prefetch":
+            return cachedPrefetches;
+        default:
+            return cachedBundles;
+    }
+}
+module.exports = function(loader, type) {
+    return function(bundle) {
+        var cache = getCache(type);
+        if (cache[bundle]) return cache[bundle];
+        return cache[bundle] = loader.apply(null, arguments).catch(function(e) {
+            delete cache[bundle];
+            throw e;
+        });
+    };
+};
+
+},{}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+}
+// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"gOWuA":[function(require,module,exports) {
+module.exports = require("764620460ff9d271")(require("7c0afea9e756fd4f").getBundleURL("byUka") + "SoundCloud.7588e177.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("lkFXm"));
+
+},{"764620460ff9d271":"61B45","7c0afea9e756fd4f":"lgJ39"}],"eIfld":[function(require,module,exports) {
+module.exports = require("2ffb658db4dad2a0")(require("ec8d5283ddf1f1f5").getBundleURL("byUka") + "Vimeo.137fd17f.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("3S8pC"));
+
+},{"2ffb658db4dad2a0":"61B45","ec8d5283ddf1f1f5":"lgJ39"}],"ePfjo":[function(require,module,exports) {
+module.exports = require("a0731d96a95fbf9d")(require("b64b2dfecf3a00e6").getBundleURL("byUka") + "Facebook.25f11ec1.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("jPrAJ"));
+
+},{"a0731d96a95fbf9d":"61B45","b64b2dfecf3a00e6":"lgJ39"}],"kAGK5":[function(require,module,exports) {
+module.exports = require("5f40ef822058b84b")(require("d705f43109500789").getBundleURL("byUka") + "Streamable.a3c8bbdc.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("iXIpc"));
+
+},{"5f40ef822058b84b":"61B45","d705f43109500789":"lgJ39"}],"lqQc7":[function(require,module,exports) {
+module.exports = require("e4f7316f757c265b")(require("76711b4868b3f299").getBundleURL("byUka") + "Wistia.aaeb84b7.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("f3sjL"));
+
+},{"e4f7316f757c265b":"61B45","76711b4868b3f299":"lgJ39"}],"aead6":[function(require,module,exports) {
+module.exports = require("97d9c1ed827d6f4c")(require("708d89b623310b0").getBundleURL("byUka") + "Twitch.38e5261d.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("d7V7U"));
+
+},{"97d9c1ed827d6f4c":"61B45","708d89b623310b0":"lgJ39"}],"kwam4":[function(require,module,exports) {
+module.exports = require("a6cc5b4ec78df476")(require("eb52e065a1b60a30").getBundleURL("byUka") + "DailyMotion.f88d8793.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("hmJJN"));
+
+},{"a6cc5b4ec78df476":"61B45","eb52e065a1b60a30":"lgJ39"}],"894IL":[function(require,module,exports) {
+module.exports = require("4feb50d2fc0052db")(require("f99c9a8e57f23b1").getBundleURL("byUka") + "Mixcloud.1c899b38.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("gqJxL"));
+
+},{"4feb50d2fc0052db":"61B45","f99c9a8e57f23b1":"lgJ39"}],"bwbxy":[function(require,module,exports) {
+module.exports = require("d8fbdf9314c48449")(require("309527569c042be8").getBundleURL("byUka") + "Vidyard.1ae288bb.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("7qYee"));
+
+},{"d8fbdf9314c48449":"61B45","309527569c042be8":"lgJ39"}],"lrpRg":[function(require,module,exports) {
+module.exports = require("9a5576b8bf8ea4c7")(require("ed68bbde9f4bf882").getBundleURL("byUka") + "Kaltura.4d8ea33a.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("ikVK4"));
+
+},{"9a5576b8bf8ea4c7":"61B45","ed68bbde9f4bf882":"lgJ39"}],"dC8Ky":[function(require,module,exports) {
+module.exports = require("de77d61fafad3708")(require("8e4c911871ed6825").getBundleURL("byUka") + "FilePlayer.71beb3e5.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("k0ASP"));
+
+},{"de77d61fafad3708":"61B45","8e4c911871ed6825":"lgJ39"}],"kI1Mr":[function(require,module,exports) {
+var global = arguments[3];
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.createReactPlayer = void 0;
+var _react = _interopRequireWildcard(require("52c614f996e70f9b"));
+var _deepmerge = _interopRequireDefault(require("a53c9ded270ad2b9"));
+var _memoizeOne = _interopRequireDefault(require("56bb1fe1c28e91da"));
+var _reactFastCompare = _interopRequireDefault(require("7e91a19fe0e5ab0"));
+var _props = require("578f06ec4400f197");
+var _utils = require("48c4f21680308504");
+var _Player3 = _interopRequireDefault(require("f5b645677e3bc4f7"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        "default": obj
+    };
+}
+function _typeof(obj) {
+    "@babel/helpers - typeof";
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") _typeof = function _typeof(obj) {
+        return typeof obj;
+    };
+    else _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+    return _typeof(obj);
+}
+function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+        var symbols = Object.getOwnPropertySymbols(object);
+        if (enumerableOnly) symbols = symbols.filter(function(sym) {
+            return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+        keys.push.apply(keys, symbols);
+    }
+    return keys;
+}
+function _objectSpread(target) {
+    for(var i = 1; i < arguments.length; i++){
+        var source = arguments[i] != null ? arguments[i] : {};
+        if (i % 2) ownKeys(Object(source), true).forEach(function(key) {
+            _defineProperty(target, key, source[key]);
+        });
+        else if (Object.getOwnPropertyDescriptors) Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+        else ownKeys(Object(source)).forEach(function(key) {
+            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+    }
+    return target;
+}
+function _extends() {
+    _extends = Object.assign || function(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+        }
+        return target;
+    };
+    return _extends.apply(this, arguments);
+}
+function _toConsumableArray(arr) {
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+function _nonIterableSpread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+function _iterableToArray(iter) {
+    if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+function _arrayWithoutHoles(arr) {
+    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
+    return arr2;
+}
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+}
+function _defineProperties(target, props) {
+    for(var i = 0; i < props.length; i++){
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+    }
+}
+function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+}
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) throw new TypeError("Super expression must either be null or a function");
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+        constructor: {
+            value: subClass,
+            writable: true,
+            configurable: true
+        }
+    });
+    if (superClass) _setPrototypeOf(subClass, superClass);
+}
+function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+        o.__proto__ = p;
+        return o;
+    };
+    return _setPrototypeOf(o, p);
+}
+function _createSuper(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+    return function _createSuperInternal() {
+        var Super = _getPrototypeOf(Derived), result;
+        if (hasNativeReflectConstruct) {
+            var NewTarget = _getPrototypeOf(this).constructor;
+            result = Reflect.construct(Super, arguments, NewTarget);
+        } else result = Super.apply(this, arguments);
+        return _possibleConstructorReturn(this, result);
+    };
+}
+function _possibleConstructorReturn(self, call) {
+    if (call && (_typeof(call) === "object" || typeof call === "function")) return call;
+    return _assertThisInitialized(self);
+}
+function _assertThisInitialized(self) {
+    if (self === void 0) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    return self;
+}
+function _isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+    try {
+        Date.prototype.toString.call(Reflect.construct(Date, [], function() {}));
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+function _getPrototypeOf(o) {
+    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+        return o.__proto__ || Object.getPrototypeOf(o);
+    };
+    return _getPrototypeOf(o);
+}
+function _defineProperty(obj, key, value) {
+    if (key in obj) Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+    });
+    else obj[key] = value;
+    return obj;
+}
+function _getRequireWildcardCache() {
+    if (typeof WeakMap !== "function") return null;
+    var cache = new WeakMap();
+    _getRequireWildcardCache = function _getRequireWildcardCache() {
+        return cache;
+    };
+    return cache;
+}
+function _interopRequireWildcard(obj) {
+    if (obj && obj.__esModule) return obj;
+    if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") return {
+        "default": obj
+    };
+    var cache = _getRequireWildcardCache();
+    if (cache && cache.has(obj)) return cache.get(obj);
+    var newObj = {};
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    for(var key in obj)if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
+        else newObj[key] = obj[key];
+    }
+    newObj["default"] = obj;
+    if (cache) cache.set(obj, newObj);
+    return newObj;
+}
+var Preview = /*#__PURE__*/ (0, _react.lazy)(function() {
+    return Promise.resolve().then(function() {
+        return require("1d0511c04b6487f");
+    }).then(function(res) {
+        return _interopRequireWildcard(res);
+    });
+});
+var IS_BROWSER = typeof window !== "undefined" && window.document;
+var IS_GLOBAL = typeof global !== "undefined" && global.window && global.window.document;
+var SUPPORTED_PROPS = Object.keys(_props.propTypes); // Return null when rendering on the server
+// as Suspense is not supported yet
+var UniversalSuspense = IS_BROWSER || IS_GLOBAL ? _react.Suspense : function() {
+    return null;
+};
+var customPlayers = [];
+var createReactPlayer = function createReactPlayer(players, fallback) {
+    var _class, _temp;
+    return _temp = _class = /*#__PURE__*/ function(_Component) {
+        _inherits(ReactPlayer, _Component);
+        var _super = _createSuper(ReactPlayer);
+        function ReactPlayer() {
+            var _this;
+            _classCallCheck(this, ReactPlayer);
+            for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++)args[_key] = arguments[_key];
+            _this = _super.call.apply(_super, [
+                this
+            ].concat(args));
+            _defineProperty(_assertThisInitialized(_this), "state", {
+                showPreview: !!_this.props.light
+            });
+            _defineProperty(_assertThisInitialized(_this), "references", {
+                wrapper: function wrapper(_wrapper) {
+                    _this.wrapper = _wrapper;
+                },
+                player: function player(_player) {
+                    _this.player = _player;
+                }
+            });
+            _defineProperty(_assertThisInitialized(_this), "handleClickPreview", function(e) {
+                _this.setState({
+                    showPreview: false
+                });
+                _this.props.onClickPreview(e);
+            });
+            _defineProperty(_assertThisInitialized(_this), "showPreview", function() {
+                _this.setState({
+                    showPreview: true
+                });
+            });
+            _defineProperty(_assertThisInitialized(_this), "getDuration", function() {
+                if (!_this.player) return null;
+                return _this.player.getDuration();
+            });
+            _defineProperty(_assertThisInitialized(_this), "getCurrentTime", function() {
+                if (!_this.player) return null;
+                return _this.player.getCurrentTime();
+            });
+            _defineProperty(_assertThisInitialized(_this), "getSecondsLoaded", function() {
+                if (!_this.player) return null;
+                return _this.player.getSecondsLoaded();
+            });
+            _defineProperty(_assertThisInitialized(_this), "getInternalPlayer", function() {
+                var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "player";
+                if (!_this.player) return null;
+                return _this.player.getInternalPlayer(key);
+            });
+            _defineProperty(_assertThisInitialized(_this), "seekTo", function(fraction, type, keepPlaying) {
+                if (!_this.player) return null;
+                _this.player.seekTo(fraction, type, keepPlaying);
+            });
+            _defineProperty(_assertThisInitialized(_this), "handleReady", function() {
+                _this.props.onReady(_assertThisInitialized(_this));
+            });
+            _defineProperty(_assertThisInitialized(_this), "getActivePlayer", (0, _memoizeOne["default"])(function(url) {
+                for(var _i = 0, _arr = [].concat(customPlayers, _toConsumableArray(players)); _i < _arr.length; _i++){
+                    var player = _arr[_i];
+                    if (player.canPlay(url)) return player;
+                }
+                if (fallback) return fallback;
+                return null;
+            }));
+            _defineProperty(_assertThisInitialized(_this), "getConfig", (0, _memoizeOne["default"])(function(url, key) {
+                var config = _this.props.config;
+                return _deepmerge["default"].all([
+                    _props.defaultProps.config,
+                    _props.defaultProps.config[key] || {},
+                    config,
+                    config[key] || {}
+                ]);
+            }));
+            _defineProperty(_assertThisInitialized(_this), "getAttributes", (0, _memoizeOne["default"])(function(url) {
+                return (0, _utils.omit)(_this.props, SUPPORTED_PROPS);
+            }));
+            _defineProperty(_assertThisInitialized(_this), "renderActivePlayer", function(url) {
+                if (!url) return null;
+                var player = _this.getActivePlayer(url);
+                if (!player) return null;
+                var config = _this.getConfig(url, player.key);
+                return /*#__PURE__*/ _react["default"].createElement(_Player3["default"], _extends({}, _this.props, {
+                    key: player.key,
+                    ref: _this.references.player,
+                    config: config,
+                    activePlayer: player.lazyPlayer || player,
+                    onReady: _this.handleReady
+                }));
+            });
+            return _this;
+        }
+        _createClass(ReactPlayer, [
+            {
+                key: "shouldComponentUpdate",
+                value: function shouldComponentUpdate(nextProps, nextState) {
+                    return !(0, _reactFastCompare["default"])(this.props, nextProps) || !(0, _reactFastCompare["default"])(this.state, nextState);
+                }
+            },
+            {
+                key: "componentDidUpdate",
+                value: function componentDidUpdate(prevProps) {
+                    var light = this.props.light;
+                    if (!prevProps.light && light) this.setState({
+                        showPreview: true
+                    });
+                    if (prevProps.light && !light) this.setState({
+                        showPreview: false
+                    });
+                }
+            },
+            {
+                key: "renderPreview",
+                value: function renderPreview(url) {
+                    if (!url) return null;
+                    var _this$props = this.props, light = _this$props.light, playIcon = _this$props.playIcon, previewTabIndex = _this$props.previewTabIndex, oEmbedUrl = _this$props.oEmbedUrl;
+                    return /*#__PURE__*/ _react["default"].createElement(Preview, {
+                        url: url,
+                        light: light,
+                        playIcon: playIcon,
+                        previewTabIndex: previewTabIndex,
+                        oEmbedUrl: oEmbedUrl,
+                        onClick: this.handleClickPreview
+                    });
+                }
+            },
+            {
+                key: "render",
+                value: function render() {
+                    var _this$props2 = this.props, url = _this$props2.url, style = _this$props2.style, width = _this$props2.width, height = _this$props2.height, fallback = _this$props2.fallback, Wrapper = _this$props2.wrapper;
+                    var showPreview = this.state.showPreview;
+                    var attributes = this.getAttributes(url);
+                    var wrapperRef = typeof Wrapper === "string" ? this.references.wrapper : undefined;
+                    return /*#__PURE__*/ _react["default"].createElement(Wrapper, _extends({
+                        ref: wrapperRef,
+                        style: _objectSpread(_objectSpread({}, style), {}, {
+                            width: width,
+                            height: height
+                        })
+                    }, attributes), /*#__PURE__*/ _react["default"].createElement(UniversalSuspense, {
+                        fallback: fallback
+                    }, showPreview ? this.renderPreview(url) : this.renderActivePlayer(url)));
+                }
+            }
+        ]);
+        return ReactPlayer;
+    }(_react.Component), _defineProperty(_class, "displayName", "ReactPlayer"), _defineProperty(_class, "propTypes", _props.propTypes), _defineProperty(_class, "defaultProps", _props.defaultProps), _defineProperty(_class, "addCustomPlayer", function(player) {
+        customPlayers.push(player);
+    }), _defineProperty(_class, "removeCustomPlayers", function() {
+        customPlayers.length = 0;
+    }), _defineProperty(_class, "canPlay", function(url) {
+        for(var _i2 = 0, _arr2 = [].concat(customPlayers, _toConsumableArray(players)); _i2 < _arr2.length; _i2++){
+            var _Player = _arr2[_i2];
+            if (_Player.canPlay(url)) return true;
+        }
+        return false;
+    }), _defineProperty(_class, "canEnablePIP", function(url) {
+        for(var _i3 = 0, _arr3 = [].concat(customPlayers, _toConsumableArray(players)); _i3 < _arr3.length; _i3++){
+            var _Player2 = _arr3[_i3];
+            if (_Player2.canEnablePIP && _Player2.canEnablePIP(url)) return true;
+        }
+        return false;
+    }), _temp;
+};
+exports.createReactPlayer = createReactPlayer;
+
+},{"52c614f996e70f9b":"21dqq","a53c9ded270ad2b9":"ck1Q2","56bb1fe1c28e91da":"ajWd5","7e91a19fe0e5ab0":"isHbY","578f06ec4400f197":"aLjed","48c4f21680308504":"2twkn","f5b645677e3bc4f7":"esXfx","1d0511c04b6487f":"a20P9"}],"ajWd5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var safeIsNaN = Number.isNaN || function ponyfill(value) {
+    return typeof value === "number" && value !== value;
+};
+function isEqual(first, second) {
+    if (first === second) return true;
+    if (safeIsNaN(first) && safeIsNaN(second)) return true;
+    return false;
+}
+function areInputsEqual(newInputs, lastInputs) {
+    if (newInputs.length !== lastInputs.length) return false;
+    for(var i = 0; i < newInputs.length; i++){
+        if (!isEqual(newInputs[i], lastInputs[i])) return false;
+    }
+    return true;
+}
+function memoizeOne(resultFn, isEqual) {
+    if (isEqual === void 0) isEqual = areInputsEqual;
+    var lastThis;
+    var lastArgs = [];
+    var lastResult;
+    var calledOnce = false;
+    function memoized() {
+        var newArgs = [];
+        for(var _i = 0; _i < arguments.length; _i++)newArgs[_i] = arguments[_i];
+        if (calledOnce && lastThis === this && isEqual(newArgs, lastArgs)) return lastResult;
+        lastResult = resultFn.apply(this, newArgs);
+        calledOnce = true;
+        lastThis = this;
+        lastArgs = newArgs;
+        return lastResult;
+    }
+    return memoized;
+}
+exports.default = memoizeOne;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"isHbY":[function(require,module,exports) {
+/* global Map:readonly, Set:readonly, ArrayBuffer:readonly */ var hasElementType = typeof Element !== "undefined";
+var hasMap = typeof Map === "function";
+var hasSet = typeof Set === "function";
+var hasArrayBuffer = typeof ArrayBuffer === "function" && !!ArrayBuffer.isView;
+// Note: We **don't** need `envHasBigInt64Array` in fde es6/index.js
+function equal(a, b) {
+    // START: fast-deep-equal es6/index.js 3.1.3
+    if (a === b) return true;
+    if (a && b && typeof a == "object" && typeof b == "object") {
+        if (a.constructor !== b.constructor) return false;
+        var length, i, keys;
+        if (Array.isArray(a)) {
+            length = a.length;
+            if (length != b.length) return false;
+            for(i = length; i-- !== 0;)if (!equal(a[i], b[i])) return false;
+            return true;
+        }
+        // START: Modifications:
+        // 1. Extra `has<Type> &&` helpers in initial condition allow es6 code
+        //    to co-exist with es5.
+        // 2. Replace `for of` with es5 compliant iteration using `for`.
+        //    Basically, take:
+        //
+        //    ```js
+        //    for (i of a.entries())
+        //      if (!b.has(i[0])) return false;
+        //    ```
+        //
+        //    ... and convert to:
+        //
+        //    ```js
+        //    it = a.entries();
+        //    while (!(i = it.next()).done)
+        //      if (!b.has(i.value[0])) return false;
+        //    ```
+        //
+        //    **Note**: `i` access switches to `i.value`.
+        var it;
+        if (hasMap && a instanceof Map && b instanceof Map) {
+            if (a.size !== b.size) return false;
+            it = a.entries();
+            while(!(i = it.next()).done)if (!b.has(i.value[0])) return false;
+            it = a.entries();
+            while(!(i = it.next()).done)if (!equal(i.value[1], b.get(i.value[0]))) return false;
+            return true;
+        }
+        if (hasSet && a instanceof Set && b instanceof Set) {
+            if (a.size !== b.size) return false;
+            it = a.entries();
+            while(!(i = it.next()).done)if (!b.has(i.value[0])) return false;
+            return true;
+        }
+        // END: Modifications
+        if (hasArrayBuffer && ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
+            length = a.length;
+            if (length != b.length) return false;
+            for(i = length; i-- !== 0;)if (a[i] !== b[i]) return false;
+            return true;
+        }
+        if (a.constructor === RegExp) return a.source === b.source && a.flags === b.flags;
+        // START: Modifications:
+        // Apply guards for `Object.create(null)` handling. See:
+        // - https://github.com/FormidableLabs/react-fast-compare/issues/64
+        // - https://github.com/epoberezkin/fast-deep-equal/issues/49
+        if (a.valueOf !== Object.prototype.valueOf && typeof a.valueOf === "function" && typeof b.valueOf === "function") return a.valueOf() === b.valueOf();
+        if (a.toString !== Object.prototype.toString && typeof a.toString === "function" && typeof b.toString === "function") return a.toString() === b.toString();
+        // END: Modifications
+        keys = Object.keys(a);
+        length = keys.length;
+        if (length !== Object.keys(b).length) return false;
+        for(i = length; i-- !== 0;)if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
+        // END: fast-deep-equal
+        // START: react-fast-compare
+        // custom handling for DOM elements
+        if (hasElementType && a instanceof Element) return false;
+        // custom handling for React/Preact
+        for(i = length; i-- !== 0;){
+            if ((keys[i] === "_owner" || keys[i] === "__v" || keys[i] === "__o") && a.$$typeof) continue;
+            // all other properties should be traversed as usual
+            if (!equal(a[keys[i]], b[keys[i]])) return false;
+        }
+        // END: react-fast-compare
+        // START: fast-deep-equal
+        return true;
+    }
+    return a !== a && b !== b;
+}
+// end fast-deep-equal
+module.exports = function isEqual(a, b) {
+    try {
+        return equal(a, b);
+    } catch (error) {
+        if ((error.message || "").match(/stack|recursion/i)) {
+            // warn on circular references, don't crash
+            // browsers give this different errors name and messages:
+            // chrome/safari: "RangeError", "Maximum call stack size exceeded"
+            // firefox: "InternalError", too much recursion"
+            // edge: "Error", "Out of stack space"
+            console.warn("react-fast-compare cannot handle circular refs");
+            return false;
+        }
+        // some other error. we should definitely know about these
+        throw error;
+    }
+};
+
+},{}],"aLjed":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.defaultProps = exports.propTypes = void 0;
+var _propTypes = _interopRequireDefault(require("f85477e6e545bef0"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        "default": obj
+    };
+}
+var string = _propTypes["default"].string, bool = _propTypes["default"].bool, number = _propTypes["default"].number, array = _propTypes["default"].array, oneOfType = _propTypes["default"].oneOfType, shape = _propTypes["default"].shape, object = _propTypes["default"].object, func = _propTypes["default"].func, node = _propTypes["default"].node;
+var propTypes = {
+    url: oneOfType([
+        string,
+        array,
+        object
+    ]),
+    playing: bool,
+    loop: bool,
+    controls: bool,
+    volume: number,
+    muted: bool,
+    playbackRate: number,
+    width: oneOfType([
+        string,
+        number
+    ]),
+    height: oneOfType([
+        string,
+        number
+    ]),
+    style: object,
+    progressInterval: number,
+    playsinline: bool,
+    pip: bool,
+    stopOnUnmount: bool,
+    light: oneOfType([
+        bool,
+        string,
+        object
+    ]),
+    playIcon: node,
+    previewTabIndex: number,
+    fallback: node,
+    oEmbedUrl: string,
+    wrapper: oneOfType([
+        string,
+        func,
+        shape({
+            render: func.isRequired
+        })
+    ]),
+    config: shape({
+        soundcloud: shape({
+            options: object
+        }),
+        youtube: shape({
+            playerVars: object,
+            embedOptions: object,
+            onUnstarted: func
+        }),
+        facebook: shape({
+            appId: string,
+            version: string,
+            playerId: string,
+            attributes: object
+        }),
+        dailymotion: shape({
+            params: object
+        }),
+        vimeo: shape({
+            playerOptions: object,
+            title: string
+        }),
+        file: shape({
+            attributes: object,
+            tracks: array,
+            forceVideo: bool,
+            forceAudio: bool,
+            forceHLS: bool,
+            forceSafariHLS: bool,
+            forceDisableHls: bool,
+            forceDASH: bool,
+            forceFLV: bool,
+            hlsOptions: object,
+            hlsVersion: string,
+            dashVersion: string,
+            flvVersion: string
+        }),
+        wistia: shape({
+            options: object,
+            playerId: string,
+            customControls: array
+        }),
+        mixcloud: shape({
+            options: object
+        }),
+        twitch: shape({
+            options: object,
+            playerId: string
+        }),
+        vidyard: shape({
+            options: object
+        })
+    }),
+    onReady: func,
+    onStart: func,
+    onPlay: func,
+    onPause: func,
+    onBuffer: func,
+    onBufferEnd: func,
+    onEnded: func,
+    onError: func,
+    onDuration: func,
+    onSeek: func,
+    onPlaybackRateChange: func,
+    onPlaybackQualityChange: func,
+    onProgress: func,
+    onClickPreview: func,
+    onEnablePIP: func,
+    onDisablePIP: func
+};
+exports.propTypes = propTypes;
+var noop = function noop() {};
+var defaultProps = {
+    playing: false,
+    loop: false,
+    controls: false,
+    volume: null,
+    muted: false,
+    playbackRate: 1,
+    width: "640px",
+    height: "360px",
+    style: {},
+    progressInterval: 1000,
+    playsinline: false,
+    pip: false,
+    stopOnUnmount: true,
+    light: false,
+    fallback: null,
+    wrapper: "div",
+    previewTabIndex: 0,
+    oEmbedUrl: "https://noembed.com/embed?url={url}",
+    config: {
+        soundcloud: {
+            options: {
+                visual: true,
+                // Undocumented, but makes player fill container and look better
+                buying: false,
+                liking: false,
+                download: false,
+                sharing: false,
+                show_comments: false,
+                show_playcount: false
+            }
+        },
+        youtube: {
+            playerVars: {
+                playsinline: 1,
+                showinfo: 0,
+                rel: 0,
+                iv_load_policy: 3,
+                modestbranding: 1
+            },
+            embedOptions: {},
+            onUnstarted: noop
+        },
+        facebook: {
+            appId: "1309697205772819",
+            version: "v3.3",
+            playerId: null,
+            attributes: {}
+        },
+        dailymotion: {
+            params: {
+                api: 1,
+                "endscreen-enable": false
+            }
+        },
+        vimeo: {
+            playerOptions: {
+                autopause: false,
+                byline: false,
+                portrait: false,
+                title: false
+            },
+            title: null
+        },
+        file: {
+            attributes: {},
+            tracks: [],
+            forceVideo: false,
+            forceAudio: false,
+            forceHLS: false,
+            forceDASH: false,
+            forceFLV: false,
+            hlsOptions: {},
+            hlsVersion: "1.1.4",
+            dashVersion: "3.1.3",
+            flvVersion: "1.5.0",
+            forceDisableHls: false
+        },
+        wistia: {
+            options: {},
+            playerId: null,
+            customControls: null
+        },
+        mixcloud: {
+            options: {
+                hide_cover: 1
+            }
+        },
+        twitch: {
+            options: {},
+            playerId: null
+        },
+        vidyard: {
+            options: {}
+        }
+    },
+    onReady: noop,
+    onStart: noop,
+    onPlay: noop,
+    onPause: noop,
+    onBuffer: noop,
+    onBufferEnd: noop,
+    onEnded: noop,
+    onError: noop,
+    onDuration: noop,
+    onSeek: noop,
+    onPlaybackRateChange: noop,
+    onPlaybackQualityChange: noop,
+    onProgress: noop,
+    onClickPreview: noop,
+    onEnablePIP: noop,
+    onDisablePIP: noop
+};
+exports.defaultProps = defaultProps;
+
+},{"f85477e6e545bef0":"7wKI2"}],"esXfx":[function(require,module,exports) {
+"use strict";
+function _typeof(obj) {
+    "@babel/helpers - typeof";
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") _typeof = function _typeof(obj) {
+        return typeof obj;
+    };
+    else _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+    return _typeof(obj);
+}
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports["default"] = void 0;
+var _react = _interopRequireWildcard(require("77cb90134281bf99"));
+var _reactFastCompare = _interopRequireDefault(require("aa739bd02fbc8da5"));
+var _props = require("8015984dbd754e78");
+var _utils = require("afd9665dfa4f31f9");
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        "default": obj
+    };
+}
+function _getRequireWildcardCache() {
+    if (typeof WeakMap !== "function") return null;
+    var cache = new WeakMap();
+    _getRequireWildcardCache = function _getRequireWildcardCache() {
+        return cache;
+    };
+    return cache;
+}
+function _interopRequireWildcard(obj) {
+    if (obj && obj.__esModule) return obj;
+    if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") return {
+        "default": obj
+    };
+    var cache = _getRequireWildcardCache();
+    if (cache && cache.has(obj)) return cache.get(obj);
+    var newObj = {};
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    for(var key in obj)if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
+        else newObj[key] = obj[key];
+    }
+    newObj["default"] = obj;
+    if (cache) cache.set(obj, newObj);
+    return newObj;
+}
+function _extends() {
+    _extends = Object.assign || function(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+        }
+        return target;
+    };
+    return _extends.apply(this, arguments);
+}
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+}
+function _defineProperties(target, props) {
+    for(var i = 0; i < props.length; i++){
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+    }
+}
+function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+}
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) throw new TypeError("Super expression must either be null or a function");
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+        constructor: {
+            value: subClass,
+            writable: true,
+            configurable: true
+        }
+    });
+    if (superClass) _setPrototypeOf(subClass, superClass);
+}
+function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+        o.__proto__ = p;
+        return o;
+    };
+    return _setPrototypeOf(o, p);
+}
+function _createSuper(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+    return function _createSuperInternal() {
+        var Super = _getPrototypeOf(Derived), result;
+        if (hasNativeReflectConstruct) {
+            var NewTarget = _getPrototypeOf(this).constructor;
+            result = Reflect.construct(Super, arguments, NewTarget);
+        } else result = Super.apply(this, arguments);
+        return _possibleConstructorReturn(this, result);
+    };
+}
+function _possibleConstructorReturn(self, call) {
+    if (call && (_typeof(call) === "object" || typeof call === "function")) return call;
+    return _assertThisInitialized(self);
+}
+function _assertThisInitialized(self) {
+    if (self === void 0) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    return self;
+}
+function _isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+    try {
+        Date.prototype.toString.call(Reflect.construct(Date, [], function() {}));
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+function _getPrototypeOf(o) {
+    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+        return o.__proto__ || Object.getPrototypeOf(o);
+    };
+    return _getPrototypeOf(o);
+}
+function _defineProperty(obj, key, value) {
+    if (key in obj) Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+    });
+    else obj[key] = value;
+    return obj;
+}
+var SEEK_ON_PLAY_EXPIRY = 5000;
+var Player = /*#__PURE__*/ function(_Component) {
+    _inherits(Player, _Component);
+    var _super = _createSuper(Player);
+    function Player() {
+        var _this;
+        _classCallCheck(this, Player);
+        for(var _len = arguments.length, _args = new Array(_len), _key = 0; _key < _len; _key++)_args[_key] = arguments[_key];
+        _this = _super.call.apply(_super, [
+            this
+        ].concat(_args));
+        _defineProperty(_assertThisInitialized(_this), "mounted", false);
+        _defineProperty(_assertThisInitialized(_this), "isReady", false);
+        _defineProperty(_assertThisInitialized(_this), "isPlaying", false);
+        _defineProperty(_assertThisInitialized(_this), "isLoading", true);
+        _defineProperty(_assertThisInitialized(_this), "loadOnReady", null);
+        _defineProperty(_assertThisInitialized(_this), "startOnPlay", true);
+        _defineProperty(_assertThisInitialized(_this), "seekOnPlay", null);
+        _defineProperty(_assertThisInitialized(_this), "onDurationCalled", false);
+        _defineProperty(_assertThisInitialized(_this), "handlePlayerMount", function(player) {
+            if (_this.player) {
+                _this.progress(); // Ensure onProgress is still called in strict mode
+                return; // Return here to prevent loading twice in strict mode
+            }
+            _this.player = player;
+            _this.player.load(_this.props.url);
+            _this.progress();
+        });
+        _defineProperty(_assertThisInitialized(_this), "getInternalPlayer", function(key) {
+            if (!_this.player) return null;
+            return _this.player[key];
+        });
+        _defineProperty(_assertThisInitialized(_this), "progress", function() {
+            if (_this.props.url && _this.player && _this.isReady) {
+                var playedSeconds = _this.getCurrentTime() || 0;
+                var loadedSeconds = _this.getSecondsLoaded();
+                var duration = _this.getDuration();
+                if (duration) {
+                    var progress = {
+                        playedSeconds: playedSeconds,
+                        played: playedSeconds / duration
+                    };
+                    if (loadedSeconds !== null) {
+                        progress.loadedSeconds = loadedSeconds;
+                        progress.loaded = loadedSeconds / duration;
+                    } // Only call onProgress if values have changed
+                    if (progress.playedSeconds !== _this.prevPlayed || progress.loadedSeconds !== _this.prevLoaded) _this.props.onProgress(progress);
+                    _this.prevPlayed = progress.playedSeconds;
+                    _this.prevLoaded = progress.loadedSeconds;
+                }
+            }
+            _this.progressTimeout = setTimeout(_this.progress, _this.props.progressFrequency || _this.props.progressInterval);
+        });
+        _defineProperty(_assertThisInitialized(_this), "handleReady", function() {
+            if (!_this.mounted) return;
+            _this.isReady = true;
+            _this.isLoading = false;
+            var _this$props = _this.props, onReady = _this$props.onReady, playing = _this$props.playing, volume = _this$props.volume, muted = _this$props.muted;
+            onReady();
+            if (!muted && volume !== null) _this.player.setVolume(volume);
+            if (_this.loadOnReady) {
+                _this.player.load(_this.loadOnReady, true);
+                _this.loadOnReady = null;
+            } else if (playing) _this.player.play();
+            _this.handleDurationCheck();
+        });
+        _defineProperty(_assertThisInitialized(_this), "handlePlay", function() {
+            _this.isPlaying = true;
+            _this.isLoading = false;
+            var _this$props2 = _this.props, onStart = _this$props2.onStart, onPlay = _this$props2.onPlay, playbackRate = _this$props2.playbackRate;
+            if (_this.startOnPlay) {
+                if (_this.player.setPlaybackRate && playbackRate !== 1) _this.player.setPlaybackRate(playbackRate);
+                onStart();
+                _this.startOnPlay = false;
+            }
+            onPlay();
+            if (_this.seekOnPlay) {
+                _this.seekTo(_this.seekOnPlay);
+                _this.seekOnPlay = null;
+            }
+            _this.handleDurationCheck();
+        });
+        _defineProperty(_assertThisInitialized(_this), "handlePause", function(e) {
+            _this.isPlaying = false;
+            if (!_this.isLoading) _this.props.onPause(e);
+        });
+        _defineProperty(_assertThisInitialized(_this), "handleEnded", function() {
+            var _this$props3 = _this.props, activePlayer = _this$props3.activePlayer, loop = _this$props3.loop, onEnded = _this$props3.onEnded;
+            if (activePlayer.loopOnEnded && loop) _this.seekTo(0);
+            if (!loop) {
+                _this.isPlaying = false;
+                onEnded();
+            }
+        });
+        _defineProperty(_assertThisInitialized(_this), "handleError", function() {
+            var _this$props4;
+            _this.isLoading = false;
+            (_this$props4 = _this.props).onError.apply(_this$props4, arguments);
+        });
+        _defineProperty(_assertThisInitialized(_this), "handleDurationCheck", function() {
+            clearTimeout(_this.durationCheckTimeout);
+            var duration = _this.getDuration();
+            if (duration) {
+                if (!_this.onDurationCalled) {
+                    _this.props.onDuration(duration);
+                    _this.onDurationCalled = true;
+                }
+            } else _this.durationCheckTimeout = setTimeout(_this.handleDurationCheck, 100);
+        });
+        _defineProperty(_assertThisInitialized(_this), "handleLoaded", function() {
+            // Sometimes we know loading has stopped but onReady/onPlay are never called
+            // so this provides a way for players to avoid getting stuck
+            _this.isLoading = false;
+        });
+        return _this;
+    }
+    _createClass(Player, [
+        {
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                this.mounted = true;
+            }
+        },
+        {
+            key: "componentWillUnmount",
+            value: function componentWillUnmount() {
+                clearTimeout(this.progressTimeout);
+                clearTimeout(this.durationCheckTimeout);
+                if (this.isReady && this.props.stopOnUnmount) {
+                    this.player.stop();
+                    if (this.player.disablePIP) this.player.disablePIP();
+                }
+                this.mounted = false;
+            }
+        },
+        {
+            key: "componentDidUpdate",
+            value: function componentDidUpdate(prevProps) {
+                var _this2 = this;
+                // If there isn’t a player available, don’t do anything
+                if (!this.player) return;
+                 // Invoke player methods based on changed props
+                var _this$props5 = this.props, url = _this$props5.url, playing = _this$props5.playing, volume = _this$props5.volume, muted = _this$props5.muted, playbackRate = _this$props5.playbackRate, pip = _this$props5.pip, loop = _this$props5.loop, activePlayer = _this$props5.activePlayer, disableDeferredLoading = _this$props5.disableDeferredLoading;
+                if (!(0, _reactFastCompare["default"])(prevProps.url, url)) {
+                    if (this.isLoading && !activePlayer.forceLoad && !disableDeferredLoading && !(0, _utils.isMediaStream)(url)) {
+                        console.warn("ReactPlayer: the attempt to load ".concat(url, " is being deferred until the player has loaded"));
+                        this.loadOnReady = url;
+                        return;
+                    }
+                    this.isLoading = true;
+                    this.startOnPlay = true;
+                    this.onDurationCalled = false;
+                    this.player.load(url, this.isReady);
+                }
+                if (!prevProps.playing && playing && !this.isPlaying) this.player.play();
+                if (prevProps.playing && !playing && this.isPlaying) this.player.pause();
+                if (!prevProps.pip && pip && this.player.enablePIP) this.player.enablePIP();
+                if (prevProps.pip && !pip && this.player.disablePIP) this.player.disablePIP();
+                if (prevProps.volume !== volume && volume !== null) this.player.setVolume(volume);
+                if (prevProps.muted !== muted) {
+                    if (muted) this.player.mute();
+                    else {
+                        this.player.unmute();
+                        if (volume !== null) // Set volume next tick to fix a bug with DailyMotion
+                        setTimeout(function() {
+                            return _this2.player.setVolume(volume);
+                        });
+                    }
+                }
+                if (prevProps.playbackRate !== playbackRate && this.player.setPlaybackRate) this.player.setPlaybackRate(playbackRate);
+                if (prevProps.loop !== loop && this.player.setLoop) this.player.setLoop(loop);
+            }
+        },
+        {
+            key: "getDuration",
+            value: function getDuration() {
+                if (!this.isReady) return null;
+                return this.player.getDuration();
+            }
+        },
+        {
+            key: "getCurrentTime",
+            value: function getCurrentTime() {
+                if (!this.isReady) return null;
+                return this.player.getCurrentTime();
+            }
+        },
+        {
+            key: "getSecondsLoaded",
+            value: function getSecondsLoaded() {
+                if (!this.isReady) return null;
+                return this.player.getSecondsLoaded();
+            }
+        },
+        {
+            key: "seekTo",
+            value: function seekTo(amount, type, keepPlaying) {
+                var _this3 = this;
+                // When seeking before player is ready, store value and seek later
+                if (!this.isReady) {
+                    if (amount !== 0) {
+                        this.seekOnPlay = amount;
+                        setTimeout(function() {
+                            _this3.seekOnPlay = null;
+                        }, SEEK_ON_PLAY_EXPIRY);
+                    }
+                    return;
+                }
+                var isFraction = !type ? amount > 0 && amount < 1 : type === "fraction";
+                if (isFraction) {
+                    // Convert fraction to seconds based on duration
+                    var duration = this.player.getDuration();
+                    if (!duration) {
+                        console.warn("ReactPlayer: could not seek using fraction –\xa0duration not yet available");
+                        return;
+                    }
+                    this.player.seekTo(duration * amount, keepPlaying);
+                    return;
+                }
+                this.player.seekTo(amount, keepPlaying);
+            }
+        },
+        {
+            key: "render",
+            value: function render() {
+                var Player = this.props.activePlayer;
+                if (!Player) return null;
+                return /*#__PURE__*/ _react["default"].createElement(Player, _extends({}, this.props, {
+                    onMount: this.handlePlayerMount,
+                    onReady: this.handleReady,
+                    onPlay: this.handlePlay,
+                    onPause: this.handlePause,
+                    onEnded: this.handleEnded,
+                    onLoaded: this.handleLoaded,
+                    onError: this.handleError
+                }));
+            }
+        }
+    ]);
+    return Player;
+}(_react.Component);
+exports["default"] = Player;
+_defineProperty(Player, "displayName", "Player");
+_defineProperty(Player, "propTypes", _props.propTypes);
+_defineProperty(Player, "defaultProps", _props.defaultProps);
+
+},{"77cb90134281bf99":"21dqq","aa739bd02fbc8da5":"isHbY","8015984dbd754e78":"aLjed","afd9665dfa4f31f9":"2twkn"}],"a20P9":[function(require,module,exports) {
+module.exports = require("f044561165dc9219")(require("56b6546b43e67e27").getBundleURL("byUka") + "Preview.03bde0f9.js" + "?" + Date.now()).catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("8Vhrn"));
+
+},{"f044561165dc9219":"61B45","56b6546b43e67e27":"lgJ39"}],"bnLbM":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$42a4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$42a4.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TVseriesCard", ()=>TVseriesCard);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
+const TVseriesCard = ({ tvseries, user, token, setUser })=>{
+    _s();
+    const [isFavorite, setIsFavorite] = (0, _react.useState)(user.FavoriteMovies.includes(tvseries._id));
+    const addFavoriteTV = ()=>{
+        fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            if (response.ok) return response.json();
+            else {
+                alert("Failed");
+                return false;
+            }
+        }).then((user)=>{
+            if (user) {
+                localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+                setUser(user); // updating the react application
+                setIsFavorite(true);
+            }
+        }).catch((e)=>{
+            alert(e);
+        });
+    };
+    const removeFavoriteTV = ()=>{
+        fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            if (response.ok) return response.json();
+            else {
+                alert("Failed");
+                return false;
+            }
+        }).then((user)=>{
+            if (user) {
+                localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+                setUser(user); // updating the react application
+                setIsFavorite(false);
+            }
+        }).catch((e)=>{
+            alert(e);
+        });
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
+            className: "h-100 card text-bg-dark mb-3",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
+                    className: "w-100",
+                    variant: "top",
+                    src: tvseries.ImagePath
+                }, void 0, false, {
+                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                    lineNumber: 70,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            className: "text-success text-center pb-3",
+                            children: tvseries.Title
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 72,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Genre: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 73,
+                            columnNumber: 9
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvseries.Genre.Name
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 74,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Release Date: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 75,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvseries.ReleaseDate.slice(0, 4)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 76,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Desciption: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 77,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvseries.Description
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 78,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 78,
+                            columnNumber: 96
+                        }, undefined),
+                        isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                            variant: "danger",
+                            className: "w-100 mb-2",
+                            onClick: removeFavoriteTV,
+                            children: "Remove from favorites"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 80,
+                            columnNumber: 13
+                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                            className: "bg-success w-100 mb-2",
+                            onClick: addFavoriteTV,
+                            children: "Add to favorites"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 84,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                            to: `/tvseries/${tvseries._id}`,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                className: "info-button w-100",
+                                variant: "outline-light",
+                                children: "More Info"
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 89,
+                                columnNumber: 13
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 88,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                    lineNumber: 71,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+            lineNumber: 69,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false);
+};
+_s(TVseriesCard, "Yvdk+J6AG3o+DGPLCkX1u34Q+8k=");
+_c = TVseriesCard;
+TVseriesCard.propTypes = {
+    tvseries: (0, _propTypesDefault.default).shape({
+        id: (0, _propTypesDefault.default).string,
+        Title: (0, _propTypesDefault.default).string.isRequired,
+        Description: (0, _propTypesDefault.default).string.isRequired,
+        Season: (0, _propTypesDefault.default).array,
+        Genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired,
+            Description: (0, _propTypesDefault.default).string.isRequired
+        }),
+        Director: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired,
+            Bio: (0, _propTypesDefault.default).string.isRequired,
+            Birth: (0, _propTypesDefault.default).string,
+            Death: (0, _propTypesDefault.default).string
+        }),
+        ImagePath: (0, _propTypesDefault.default).string,
+        Featured: (0, _propTypesDefault.default).bool,
+        Actors: (0, _propTypesDefault.default).array,
+        Rating: (0, _propTypesDefault.default).string,
+        ReleaseDate: (0, _propTypesDefault.default).string,
+        Trailer: (0, _propTypesDefault.default).string
+    }).isRequired
+};
+var _c;
+$RefreshReg$(_c, "TVseriesCard");
+
+  $parcel$ReactRefreshHelpers$42a4.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7plUY":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$ad81 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$ad81.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TVseriesView", ()=>TVseriesView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactRouter = require("react-router");
+var _reactRouterDom = require("react-router-dom");
+var _reactBootstrap = require("react-bootstrap");
+var _reactPlayer = require("react-player");
+var _reactPlayerDefault = parcelHelpers.interopDefault(_reactPlayer);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _s = $RefreshSig$();
+const TVseriesView = ({ tvseries })=>{
+    _s();
+    const { TVId } = (0, _reactRouter.useParams)();
+    const tvser = tvseries.find((tv)=>tv._id === TVId);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
+                    className: "h-100 card text-bg-dark mb-3",
+                    variant: top,
+                    src: tvser.ImagePath
+                }, void 0, false, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 14,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                    className: "card-bg-color",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color text-center mb-2 text-info pt-3",
+                            children: "Title:"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 17,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            className: "text-success text-center pb-3",
+                            children: tvser.Title
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 18,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Release Date: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 19,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.ReleaseDate ? tvser.ReleaseDate.slice(0, 4) : "No data yet"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 20,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: " mb-2 text-info pt-3",
+                            children: "Episodes: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 21,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: [
+                                tvser.Season.length > 0 ? tvser.Season.map((s)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                        children: [
+                                            s,
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                                lineNumber: 22,
+                                                columnNumber: 111
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true)) : "No data yet",
+                                " "
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 22,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: " mb-2 text-info pt-3",
+                            children: "Description: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 23,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.Description
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 24,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: " Duration: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 27,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.Duration ? tvser.Duration : "No data yet"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 28,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Genre: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 31,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.Genre.Name
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 32,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 32,
+                            columnNumber: 92
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Desciption: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 33,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.Genre.Description
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 34,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Director: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 37,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.Director.Name
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 38,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 38,
+                            columnNumber: 95
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Biography: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 39,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.Director.Bio
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 40,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 40,
+                            columnNumber: 94
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: [
+                                tvser.Director.Name,
+                                "'s Birth year: "
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 41,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.Director.Birth ? tvser.Director.Birth : "No data"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 42,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 42,
+                            columnNumber: 131
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: [
+                                tvser.Director.Name,
+                                "'s Death year: "
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 43,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.Director.Death ? tvser.Director.Death : "No data"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 44,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 44,
+                            columnNumber: 131
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Actors: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 47,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.Actors.join(", ")
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 48,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "IMDb Rating: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 51,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.IMDbRating ? tvser.IMDbRating : "No data yet"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 52,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-2 text-info pt-3",
+                            children: "Rotten Tomatoes Audience Rating: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 55,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                            "secondary-color": "text-secondary pb-3",
+                            children: tvser.Rating ? tvser.Rating : "No data yet"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 56,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                            className: "title-color mb-3 text-info pt-3",
+                            children: "Trailer: "
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 57,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactPlayerDefault.default), {
+                            className: "m-auto",
+                            controls: true,
+                            url: tvser.Trailer
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 58,
+                            columnNumber: 7
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 62,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 63,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                            to: `/`,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                className: "bg-success p-2 w-100",
+                                children: "Back to the list"
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                lineNumber: 68,
+                                columnNumber: 13
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                            lineNumber: 67,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 16,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                    lineNumber: 71,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+            lineNumber: 13,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false);
+};
+_s(TVseriesView, "+C+Cn040EyRH5J+CMnk24vuBn4M=", false, function() {
+    return [
+        (0, _reactRouter.useParams)
+    ];
+});
+_c = TVseriesView;
+var _c;
+$RefreshReg$(_c, "TVseriesView");
+
+  $parcel$ReactRefreshHelpers$ad81.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react-router":"dbWyW","react-router-dom":"9xmpe","react-bootstrap":"3AD9A","react-player":"6tM2f","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"9YtA0":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47548,7 +50224,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","react-bootstrap":"3AD9A","react-bootstrap/Form":"iBZ80"}],"4OGiN":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4OGiN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$73d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47873,7 +50549,7 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","react-bootstrap":"3AD9A"}],"bsPVM":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bsPVM":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48510,603 +51186,6 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../tvseries-card/tvseries-card":"bnLbM"}],"bnLbM":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$42a4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$42a4.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TVseriesCard", ()=>TVseriesCard);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _reactBootstrap = require("react-bootstrap");
-var _reactRouterDom = require("react-router-dom");
-var _s = $RefreshSig$();
-const TVseriesCard = ({ tvseries, user, token, setUser })=>{
-    _s();
-    const [isFavorite, setIsFavorite] = (0, _react.useState)(user.FavoriteMovies.includes(tvseries._id));
-    const addFavoriteTV = ()=>{
-        fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            if (response.ok) return response.json();
-            else {
-                alert("Failed");
-                return false;
-            }
-        }).then((user)=>{
-            if (user) {
-                localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-                setUser(user); // updating the react application
-                setIsFavorite(true);
-            }
-        }).catch((e)=>{
-            alert(e);
-        });
-    };
-    const removeFavoriteTV = ()=>{
-        fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`, {
-            method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            if (response.ok) return response.json();
-            else {
-                alert("Failed");
-                return false;
-            }
-        }).then((user)=>{
-            if (user) {
-                localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-                setUser(user); // updating the react application
-                setIsFavorite(false);
-            }
-        }).catch((e)=>{
-            alert(e);
-        });
-    };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-            className: "h-100 card text-bg-dark mb-3",
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
-                    className: "w-100",
-                    variant: "top",
-                    src: tvseries.ImagePath
-                }, void 0, false, {
-                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                    lineNumber: 70,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            className: "text-success text-center pb-3",
-                            children: tvseries.Title
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 72,
-                            columnNumber: 9
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                            className: "title-color mb-2 text-info pt-3",
-                            children: "Genre: "
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 73,
-                            columnNumber: 9
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            "secondary-color": "text-secondary pb-3",
-                            children: tvseries.Genre.Name
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 74,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                            className: "title-color mb-2 text-info pt-3",
-                            children: "Release Date: "
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 75,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            "secondary-color": "text-secondary pb-3",
-                            children: tvseries.ReleaseDate.slice(0, 4)
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 76,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                            className: "title-color mb-2 text-info pt-3",
-                            children: "Desciption: "
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 77,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            "secondary-color": "text-secondary pb-3",
-                            children: tvseries.Description
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 78,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 78,
-                            columnNumber: 96
-                        }, undefined),
-                        isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            variant: "danger",
-                            className: "w-100 mb-2",
-                            onClick: removeFavoriteTV,
-                            children: "Remove from favorites"
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 80,
-                            columnNumber: 13
-                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            className: "bg-success w-100 mb-2",
-                            onClick: addFavoriteTV,
-                            children: "Add to favorites"
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 84,
-                            columnNumber: 13
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                            to: `/tvseries/${tvseries._id}`,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                className: "info-button w-100",
-                                variant: "outline-light",
-                                children: "More Info"
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                                lineNumber: 89,
-                                columnNumber: 13
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 88,
-                            columnNumber: 11
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                    lineNumber: 71,
-                    columnNumber: 9
-                }, undefined)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-            lineNumber: 69,
-            columnNumber: 7
-        }, undefined)
-    }, void 0, false);
-};
-_s(TVseriesCard, "Yvdk+J6AG3o+DGPLCkX1u34Q+8k=");
-_c = TVseriesCard;
-TVseriesCard.propTypes = {
-    tvseries: (0, _propTypesDefault.default).shape({
-        id: (0, _propTypesDefault.default).string,
-        Title: (0, _propTypesDefault.default).string.isRequired,
-        Description: (0, _propTypesDefault.default).string.isRequired,
-        Season: (0, _propTypesDefault.default).array,
-        Genre: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string.isRequired,
-            Description: (0, _propTypesDefault.default).string.isRequired
-        }),
-        Director: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string.isRequired,
-            Bio: (0, _propTypesDefault.default).string.isRequired,
-            Birth: (0, _propTypesDefault.default).string,
-            Death: (0, _propTypesDefault.default).string
-        }),
-        ImagePath: (0, _propTypesDefault.default).string,
-        Featured: (0, _propTypesDefault.default).bool,
-        Actors: (0, _propTypesDefault.default).array,
-        Rating: (0, _propTypesDefault.default).string,
-        ReleaseDate: (0, _propTypesDefault.default).string
-    }).isRequired
-};
-var _c;
-$RefreshReg$(_c, "TVseriesCard");
-
-  $parcel$ReactRefreshHelpers$42a4.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7plUY":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$ad81 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$ad81.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TVseriesView", ()=>TVseriesView);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _reactRouter = require("react-router");
-var _reactRouterDom = require("react-router-dom");
-var _reactBootstrap = require("react-bootstrap");
-var _s = $RefreshSig$();
-const TVseriesView = ({ tvseries })=>{
-    _s();
-    const { TVId } = (0, _reactRouter.useParams)();
-    const tvser = tvseries.find((tv)=>tv._id === TVId);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
-                        className: "h-100 card text-bg-dark mb-3",
-                        variant: top,
-                        src: tvser.ImagePath
-                    }, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 12,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
-                        className: "card-bg-color",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color text-center mb-2 text-info pt-3",
-                                children: "Title:"
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 15,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                className: "text-success text-center pb-3",
-                                children: tvser.Title
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 16,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: "Release Date: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 17,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.ReleaseDate ? tvser.ReleaseDate.slice(0, 4) : "No data yet"
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 18,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: " mb-2 text-info pt-3",
-                                children: "Episodes: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 19,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: [
-                                    tvser.Season.length > 0 ? tvser.Season.map((s)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                            children: [
-                                                s,
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                                                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                                    lineNumber: 20,
-                                                    columnNumber: 111
-                                                }, undefined)
-                                            ]
-                                        }, void 0, true)) : "No data yet",
-                                    " "
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 20,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: " mb-2 text-info pt-3",
-                                children: "Description: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 21,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.Description
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 22,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: " Duration: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 25,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.Duration ? tvser.Duration : "No data yet"
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 26,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: "Genre: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 29,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.Genre.Name
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 30,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 30,
-                                columnNumber: 92
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: "Desciption: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 31,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.Genre.Description
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 32,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: "Director: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 35,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.Director.Name
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 36,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 36,
-                                columnNumber: 95
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: "Biography: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 37,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.Director.Bio
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 38,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 38,
-                                columnNumber: 94
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: [
-                                    tvser.Director.Name,
-                                    "'s Birth year: "
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 39,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.Director.Birth ? tvser.Director.Birth : "No data"
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 40,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 40,
-                                columnNumber: 131
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: [
-                                    tvser.Director.Name,
-                                    "'s Death year: "
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 41,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.Director.Death ? tvser.Director.Death : "No data"
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 42,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 42,
-                                columnNumber: 131
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: "Actors: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 45,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.Actors.join(", ")
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 46,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: "IMDb Rating: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 49,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.IMDbRating ? tvser.IMDbRating : "No data yet"
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 50,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                                className: "title-color mb-2 text-info pt-3",
-                                children: "Rotten Tomatoes Audience Rating: "
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 53,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                "secondary-color": "text-secondary pb-3",
-                                children: tvser.Rating ? tvser.Rating : "No data yet"
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 54,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 56,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                                to: `/`,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                    className: "bg-success p-2 w-100",
-                                    children: "Back to the list"
-                                }, void 0, false, {
-                                    fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                    lineNumber: 59,
-                                    columnNumber: 13
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                                lineNumber: 58,
-                                columnNumber: 11
-                            }, undefined)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 14,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
-                        fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                        lineNumber: 62,
-                        columnNumber: 9
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 11,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 65,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 68,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 71,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/components/tvseries-view/tvseries-view.jsx",
-                lineNumber: 74,
-                columnNumber: 7
-            }, undefined)
-        ]
-    }, void 0, true);
-};
-_s(TVseriesView, "+C+Cn040EyRH5J+CMnk24vuBn4M=", false, function() {
-    return [
-        (0, _reactRouter.useParams)
-    ];
-});
-_c = TVseriesView;
-var _c;
-$RefreshReg$(_c, "TVseriesView");
-
-  $parcel$ReactRefreshHelpers$ad81.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react-router":"dbWyW","react-router-dom":"9xmpe","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequire245c")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../tvseries-card/tvseries-card":"bnLbM","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequire245c")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

@@ -1,6 +1,8 @@
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Card } from "react-bootstrap";
+import ReactPlayer from "react-player";
+import React from 'react';
 
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
@@ -22,7 +24,7 @@ export const MovieView = ({ movies }) => {
 
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3"> Duration: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.Duration ? movie.Duration : "No data yet" }</Card.Title>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.Duration ? movie.Duration : "No data yet"}</Card.Title>
 
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
@@ -46,12 +48,16 @@ export const MovieView = ({ movies }) => {
 
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">IMDb Rating: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.IMDbRating ? movie.IMDbRating : "No data yet" }</Card.Title>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.IMDbRating ? movie.IMDbRating : "No data yet"}</Card.Title>
 
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Rating ? movie.Rating : "No data yet"}</Card.Title>
+          <Card.Subtitle className="title-color mb-3 text-info pt-3">Trailer: </Card.Subtitle>
+          <ReactPlayer className="m-auto" controls
 
+            url={movie.Trailer}>
+          </ReactPlayer>
           <br />
 
           <Link to={`/`}>
