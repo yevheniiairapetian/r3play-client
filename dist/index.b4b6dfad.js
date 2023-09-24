@@ -47287,7 +47287,16 @@ const MovieView = ({ movies })=>{
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
                                 "secondary-color": "text-secondary pb-3",
-                                children: movie.Actors.join(", ")
+                                children: movie.Actors.length > 0 ? movie.Actors.map((a)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                        children: [
+                                            a,
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                                fileName: "src/components/movie-view/movie-view.jsx",
+                                                lineNumber: 47,
+                                                columnNumber: 115
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true)) : "No data yet"
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
                                 lineNumber: 47,
@@ -49958,7 +49967,16 @@ const TVseriesView = ({ tvseries })=>{
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
                             "secondary-color": "text-secondary pb-3",
-                            children: tvser.Actors.join(", ")
+                            children: tvser.Actors.length > 0 ? tvser.Actors.map((a)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                    children: [
+                                        a,
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                            fileName: "src/components/tvseries-view/tvseries-view.jsx",
+                                            lineNumber: 48,
+                                            columnNumber: 115
+                                        }, undefined)
+                                    ]
+                                }, void 0, true)) : "No data yet"
                         }, void 0, false, {
                             fileName: "src/components/tvseries-view/tvseries-view.jsx",
                             lineNumber: 48,

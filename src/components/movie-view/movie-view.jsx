@@ -44,7 +44,7 @@ export const MovieView = ({ movies }) => {
 
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Actors: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.Actors.join(', ')}</Card.Title>
+          <Card.Title secondary-color="text-secondary pb-3">{movie.Actors.length > 0 ? movie.Actors.map(a => <>{a}<br /></>) : "No data yet"}</Card.Title>
 
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">IMDb Rating: </Card.Subtitle>
