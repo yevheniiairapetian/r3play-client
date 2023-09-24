@@ -77,21 +77,19 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title><br/>
           {isFavorite ? (
-            <Button variant='danger' className="w-100" onClick={removeFavoriteMovie}>
+            <Button variant='danger' className="w-100 mb-2" onClick={removeFavoriteMovie}>
               Remove from favorites
             </Button>
           ) : (
-            <Button className="bg-success w-100" onClick={addFavoriteMovie}>
+            <Button className="bg-success w-100 mb-2" onClick={addFavoriteMovie}>
               Add to favorites
             </Button>
           )}
-        </Card.Body>
-
-        <Card.Body>
           <Link to={`/movies/${movie._id}`}>
             <Button className='info-button w-100' variant='outline-light'>More Info</Button>
           </Link>
         </Card.Body>
+
 
       </Card>
     </>

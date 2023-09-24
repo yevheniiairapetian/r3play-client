@@ -1,73 +1,81 @@
-import { Badge } from "react-bootstrap";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import { Button, Card } from "react-bootstrap";
+import ReactPlayer from "react-player";
+import React from 'react';
 
 export const TVseriesView = ({ tvseries }) => {
   const { TVId } = useParams();
-  const tvser = tvseries.find((tv) => tv.id === TVId);
+  const tvser = tvseries.find((tv) => tv._id === TVId);
 
   return (
     <>
-      <div bg-color="body-bg">
-        <div>
-          <img src={tvser.ImagePath} />
-        </div>
-        <div>
-          <span className="title-color"><Badge bg="secondary p-2">Title: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Title}</span>
-        </div>
-        <div>
-          <span><Badge color="text-primary" bg="secondary p-2">Description: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Description}</span>
-        </div>
-        <div>
-          <span><Badge color="text-primary" bg="secondary p-2">Season: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Season}</span>
-        </div>
-        <div>
-          <span><Badge color="text-primary" bg="secondary p-2">Duration: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Duration}</span>
-        </div>
-        <div>
-          <span><Badge color="text-primary" bg="secondary p-2">Genre: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Genre.Name}</span><br />
-          <span><Badge color="text-primary" bg="secondary p-2">Desciption: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Genre.Description}</span>
-        </div>
-        <div>
-          <span><Badge color="text-primary" bg="secondary p-2">Director: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Director.Name}</span><br />
-          <span><Badge color="text-primary" bg="secondary p-2">Biography: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Director.Bio}</span><br />
-          <span><Badge color="text-primary" bg="secondary p-2">Birth year: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Director.Birth}</span><br />
-          <span><Badge color="text-primary" bg="secondary p-2">Death year: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Director.Death}</span><br />
-        </div>
-        <div>
-          <span><Badge color="text-primary" bg="secondary p-2">Actors: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Actors.join(', ')}</span>
-        </div>
-        <div>
-          <span><Badge color="text-primary" bg="secondary p-2">IMDb Rating: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.IMDbRating}</span>
-        </div>
-        <div>
-          <span><Badge color="text-primary" bg="secondary">Rotten Tomatoes Audience Rating: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.Rating}</span>
-        </div>
-        <div>
-          <span><Badge color="text-primary" bg="secondary p-2">Release Date: </Badge></span>
-          <span secondary-color="text-secondary">{tvser.ReleaseDate}</span>
-        </div>
-        <br />
-        <Link>
-          <button class="btn btn-secondary">Back to the list</button>
-        </Link>
-        <hr />
-      </div>
+      <Card>
+        <Card.Img className='h-100 card text-bg-dark mb-3' variant={top} src={tvser.ImagePath} />
 
+        <Card.Body className="card-bg-color">
+          <Card.Subtitle className="title-color text-center mb-2 text-info pt-3">Title:</Card.Subtitle>
+          <Card.Title className="text-success text-center pb-3">{tvser.Title}</Card.Title>
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.ReleaseDate ? tvser.ReleaseDate.slice(0, 4) : "No data yet"}</Card.Title>
+          <Card.Subtitle className=" mb-2 text-info pt-3">Episodes: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Season.length>0 ? tvser.Season.map(s=><>{s}<br/></>): "No data yet"} </Card.Title>
+          <Card.Subtitle className=" mb-2 text-info pt-3">Description: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Description}</Card.Title>
+
+
+          <Card.Subtitle className="title-color mb-2 text-info pt-3"> Duration: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Duration ? tvser.Duration : "No data yet"}</Card.Title>
+
+
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Genre.Name}</Card.Title><br />
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Genre.Description}</Card.Title>
+
+
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">Director: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Director.Name}</Card.Title><br />
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">Biography: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Director.Bio}</Card.Title><br />
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">{tvser.Director.Name}'s Birth year: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Director.Birth ? tvser.Director.Birth : "No data"}</Card.Title><br />
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">{tvser.Director.Name}'s Death year: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Director.Death ? tvser.Director.Death : "No data"}</Card.Title><br />
+
+
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">Actors: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Actors.join(', ')}</Card.Title>
+
+
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">IMDb Rating: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.IMDbRating ? tvser.IMDbRating : "No data yet"}</Card.Title>
+
+
+          <Card.Subtitle className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
+          <Card.Title secondary-color="text-secondary pb-3">{tvser.Rating ? tvser.Rating : "No data yet"}</Card.Title>
+          <Card.Subtitle className="title-color mb-3 text-info pt-3">Trailer: </Card.Subtitle>
+      <ReactPlayer className="m-auto" controls
+      
+        url={tvser.Trailer}>
+      </ReactPlayer>
+          <br />
+          <div>
+      
+    </div>
+
+          <Link to={`/`}>
+            <Button className="bg-success p-2 w-100">Back to the list</Button>
+          </Link>
+        </Card.Body>
+        <hr />
+        
+      </Card>
+      
+      
+      
     </>
+
 
   );
 };
