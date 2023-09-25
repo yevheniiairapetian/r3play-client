@@ -15,6 +15,24 @@ $btn-secondary: rgb(54, 57, 57);
     color: red;
 }
 
+.bg-carousel{
+    background-color:#d9d9d9;
+    opacity:0.8;
+}
 
+@media screen and (max-width:770px){
+    .carousel-caption-header{
+        margin:0;
+        padding:0;
+        font-size: 14px;
+        display:none;
+    }
+    .carousel-caption-paragraph{
+        margin:0;
+        padding:0;
+        font-size: 12px;
+        display:none;
+    }
+}
 
 @import '~bootstrap/scss/bootstrap.scss';

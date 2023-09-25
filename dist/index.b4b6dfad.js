@@ -27186,6 +27186,7 @@ var _navigationBar = require("../navigation-bar/navigation-bar");
 var _profileView = require("../profile-view/profile-view");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
+var _carousel = require("../Carousel/carousel");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
@@ -27335,6 +27336,7 @@ const MainView = ()=>{
                                                     }, void 0, false, void 0, void 0)
                                                 }, void 0, false, void 0, void 0)
                                             }, void 0, false, void 0, void 0),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carousel.UncontrolledExample), {}, void 0, false, void 0, void 0),
                                             movies.filter((movie)=>{
                                                 return search === "" ? movie : movie.Title.toLowerCase().includes(search.toLowerCase());
                                             }).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -27396,7 +27398,7 @@ const MainView = ()=>{
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 176,
+                                lineNumber: 177,
                                 columnNumber: 13
                             }, undefined)
                         ]
@@ -27428,7 +27430,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../tvseries-card/tvseries-card":"bnLbM","../tvseries-view/tvseries-view":"7plUY","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","../navigation-bar/navigation-bar":"bsPVM","../profile-view/profile-view":"2vVqf","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../tvseries-card/tvseries-card":"bnLbM","../tvseries-view/tvseries-view":"7plUY","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","../navigation-bar/navigation-bar":"bsPVM","../profile-view/profile-view":"2vVqf","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../Carousel/carousel":"alhP9"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -36017,10 +36019,10 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 // SSR case multiple copies of React Aria is not supported.
 const $b5e257d569688ac6$var$defaultContext = {
     prefix: String(Math.round(Math.random() * 10000000000)),
-    current: 0,
-    isSSR: false
+    current: 0
 };
 const $b5e257d569688ac6$var$SSRContext = (0, _reactDefault.default).createContext($b5e257d569688ac6$var$defaultContext);
+const $b5e257d569688ac6$var$IsSSRContext = (0, _reactDefault.default).createContext(false);
 // This is only used in React < 18.
 function $b5e257d569688ac6$var$LegacySSRProvider(props) {
     let cur = (0, _react.useContext)($b5e257d569688ac6$var$SSRContext);
@@ -36030,12 +36032,10 @@ function $b5e257d569688ac6$var$LegacySSRProvider(props) {
             // If this is the first SSRProvider, start with an empty string prefix, otherwise
             // append and increment the counter.
             prefix: cur === $b5e257d569688ac6$var$defaultContext ? "" : `${cur.prefix}-${counter}`,
-            current: 0,
-            isSSR: isSSR
+            current: 0
         }), [
         cur,
-        counter,
-        isSSR
+        counter
     ]);
     // If on the client, and the component was initially server rendered,
     // then schedule a layout effect to update the component after hydration.
@@ -36044,7 +36044,9 @@ function $b5e257d569688ac6$var$LegacySSRProvider(props) {
     }, []);
     return (0, _reactDefault.default).createElement($b5e257d569688ac6$var$SSRContext.Provider, {
         value: value
-    }, props.children);
+    }, (0, _reactDefault.default).createElement($b5e257d569688ac6$var$IsSSRContext.Provider, {
+        value: isSSR
+    }, props.children));
 }
 let $b5e257d569688ac6$var$warnedAboutSSRProvider = false;
 function $b5e257d569688ac6$export$9f8ac96af4b1b2ae(props) {
@@ -36128,8 +36130,7 @@ function $b5e257d569688ac6$export$535bd6ca7f90a273() {
     // In React 18, we can use useSyncExternalStore to detect if we're server rendering or hydrating.
     if (typeof (0, _reactDefault.default)["useSyncExternalStore"] === "function") return (0, _reactDefault.default)["useSyncExternalStore"]($b5e257d569688ac6$var$subscribe, $b5e257d569688ac6$var$getSnapshot, $b5e257d569688ac6$var$getServerSnapshot);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    let cur = (0, _react.useContext)($b5e257d569688ac6$var$SSRContext);
-    return cur.isSSR;
+    return (0, _react.useContext)($b5e257d569688ac6$var$IsSSRContext);
 }
 
 },{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hDAPz":[function(require,module,exports) {
@@ -51408,6 +51409,249 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../tvseries-card/tvseries-card":"bnLbM","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequire245c")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../tvseries-card/tvseries-card":"bnLbM","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"alhP9":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$bd95 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$bd95.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "UncontrolledExample", ()=>UncontrolledExample);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _carousel = require("react-bootstrap/Carousel");
+var _carouselDefault = parcelHelpers.interopDefault(_carousel);
+var _image = require("react-bootstrap/Image");
+var _imageDefault = parcelHelpers.interopDefault(_image);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+const UncontrolledExample = ()=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default), {
+        fade: true,
+        className: "mb-3",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default).Item, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _imageDefault.default), {
+                        className: "w-100",
+                        src: "https://4.bp.blogspot.com/-3apsKyBwiqE/Vqzi45Rwj-I/AAAAAAAABUQ/lCwj83mffs8/s1600/gladiator%2B7.jpg",
+                        text: "An image showing Gladiator movie scene"
+                    }, void 0, false, {
+                        fileName: "src/components/Carousel/carousel.jsx",
+                        lineNumber: 9,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default).Caption, {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                                className: "bg-dark pt-3 pb-3 bg-carousel carousel-caption-header",
+                                children: "Gladiator 2 releases November 22, 2024"
+                            }, void 0, false, {
+                                fileName: "src/components/Carousel/carousel.jsx",
+                                lineNumber: 11,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                className: "bg-dark pt-3 pb-3 bg-carousel carousel-caption-paragraph",
+                                children: "Check out more"
+                            }, void 0, false, {
+                                fileName: "src/components/Carousel/carousel.jsx",
+                                lineNumber: 12,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Carousel/carousel.jsx",
+                        lineNumber: 10,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Carousel/carousel.jsx",
+                lineNumber: 8,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default).Item, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _imageDefault.default), {
+                        className: "w-100",
+                        src: "https://www.blogography.com/photos76/MatrixRedPill.jpg",
+                        text: "An image showing Matrix movie poster"
+                    }, void 0, false, {
+                        fileName: "src/components/Carousel/carousel.jsx",
+                        lineNumber: 16,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default).Caption, {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                                className: "bg-dark pt-3 pb-3 bg-carousel carousel-caption-header",
+                                children: "Matrix Resurrections is out now"
+                            }, void 0, false, {
+                                fileName: "src/components/Carousel/carousel.jsx",
+                                lineNumber: 18,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                className: "bg-dark pt-3 pb-3 bg-carousel carousel-caption-paragraph",
+                                children: "Head over to the movie to read more and watch the official trailer."
+                            }, void 0, false, {
+                                fileName: "src/components/Carousel/carousel.jsx",
+                                lineNumber: 19,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Carousel/carousel.jsx",
+                        lineNumber: 17,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Carousel/carousel.jsx",
+                lineNumber: 15,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default).Item, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _imageDefault.default), {
+                        className: "w-100",
+                        src: "https://c2.staticflickr.com/8/7133/7073627957_252f33f1a8_b.jpg",
+                        text: "An image showing Loki Season 2 poster"
+                    }, void 0, false, {
+                        fileName: "src/components/Carousel/carousel.jsx",
+                        lineNumber: 23,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default).Caption, {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                                className: "bg-dark pt-3 pb-3 bg-carousel carousel-caption-header",
+                                children: "Loki: Season 2 releases October 5, 2023"
+                            }, void 0, false, {
+                                fileName: "src/components/Carousel/carousel.jsx",
+                                lineNumber: 25,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                className: "bg-dark pt-3 pb-3 bg-carousel carousel-caption-paragraph",
+                                children: "Check out more."
+                            }, void 0, false, {
+                                fileName: "src/components/Carousel/carousel.jsx",
+                                lineNumber: 26,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Carousel/carousel.jsx",
+                        lineNumber: 24,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Carousel/carousel.jsx",
+                lineNumber: 22,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default).Item, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _imageDefault.default), {
+                        className: "w-100",
+                        src: "https://images.wired.it/wp-content/uploads/2021/05/28123008/118588361_screenshot2021-05-20at14.21.24-1050x590.jpg",
+                        text: "An image showing Friends Reunion photo"
+                    }, void 0, false, {
+                        fileName: "src/components/Carousel/carousel.jsx",
+                        lineNumber: 32,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default).Caption, {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                                className: "bg-dark pt-3 pb-3 bg-carousel carousel-caption-header",
+                                children: "Friends Reunion out 2021"
+                            }, void 0, false, {
+                                fileName: "src/components/Carousel/carousel.jsx",
+                                lineNumber: 34,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                className: "bg-dark pt-3 pb-3 bg-carousel carousel-caption-paragraph",
+                                children: "Check out more."
+                            }, void 0, false, {
+                                fileName: "src/components/Carousel/carousel.jsx",
+                                lineNumber: 35,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Carousel/carousel.jsx",
+                        lineNumber: 33,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Carousel/carousel.jsx",
+                lineNumber: 31,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default).Item, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _imageDefault.default), {
+                        className: "w-100",
+                        src: "https://www.film-rezensionen.de/wp-content/uploads/2007/12/The-Fast-And-The-Furious-Tokyo-Drift-Frontpage.jpg",
+                        text: "An image showing Fast and Furious: Tokyo Drift poster"
+                    }, void 0, false, {
+                        fileName: "src/components/Carousel/carousel.jsx",
+                        lineNumber: 41,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _carouselDefault.default).Caption, {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                                className: "bg-dark pt-3 pb-3 bg-carousel carousel-caption-header",
+                                children: "Recall the Fast and Furious: Tokyo Drift - the 3rd movie in the series"
+                            }, void 0, false, {
+                                fileName: "src/components/Carousel/carousel.jsx",
+                                lineNumber: 43,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                className: "bg-dark pt-3 pb-3 bg-carousel carousel-caption-paragraph",
+                                children: "Check out more."
+                            }, void 0, false, {
+                                fileName: "src/components/Carousel/carousel.jsx",
+                                lineNumber: 44,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Carousel/carousel.jsx",
+                        lineNumber: 42,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Carousel/carousel.jsx",
+                lineNumber: 40,
+                columnNumber: 9
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/Carousel/carousel.jsx",
+        lineNumber: 7,
+        columnNumber: 7
+    }, undefined);
+};
+_c = UncontrolledExample;
+var _c;
+$RefreshReg$(_c, "UncontrolledExample");
+
+  $parcel$ReactRefreshHelpers$bd95.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap/Carousel":"bsGhm","react-bootstrap/Image":"cyVPa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"lJZlQ":[function() {},{}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequire245c")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

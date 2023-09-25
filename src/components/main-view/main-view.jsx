@@ -9,7 +9,7 @@ import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from "../profile-view/profile-view";
 import { Row, Col, InputGroup, Form } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
+import {UncontrolledExample} from '../Carousel/carousel';
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
@@ -136,6 +136,7 @@ export const MainView = () => {
                           </InputGroup>
                         </form>
                       </Row>
+                      <UncontrolledExample></UncontrolledExample>
                       {movies.filter((movie) => {
                         return search === "" ?
                           movie :
