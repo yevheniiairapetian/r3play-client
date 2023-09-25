@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
   const [isFavorite, setIsFavorite] = useState(
   user.FavoriteMovies.includes(tvseries._id)
   );
-
+  const [showFailedFetchModal, setShowFailedFetchModal] = useState(false);
+  const handleShowFailedFetchModal = () => setShowFailedFetchModal(true);
+  const handleCloseFailedFetchModal = () => setShowFailedFetchModal(false);
   const addFavoriteTV = () => {
     fetch(
       `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`,
@@ -20,7 +22,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
         if (response.ok) {
           return response.json();
         } else {
-          alert('Failed');
+          handleShowFailedFetchModal();
           return false;
         }
       })
@@ -48,7 +50,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
         if (response.ok) {
           return response.json();
         } else {
-          alert('Failed');
+          handleShowFailedFetchModal();
           return false;
         }
       })
@@ -93,6 +95,16 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
         
 
       </Card>
+      <Modal show={showFailedFetchModal} onHide={handleCloseFailedFetchModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title className="text-danger">Fetch</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="text-warning">Failed to add/remove. Please try again later.</Modal.Body>
+                <Modal.Footer>
+                    <Button className="bg-success" onClick={handleCloseFailedFetchModal}>OK</Button>
+
+                </Modal.Footer>
+            </Modal>
     </>
   );
 };
