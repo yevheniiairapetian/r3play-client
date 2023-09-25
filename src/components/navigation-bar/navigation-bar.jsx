@@ -11,7 +11,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav " />
 				<Navbar.Collapse id="basic-navbar-nav" >
-					<Nav>
+					<Nav className="justify-content-end w-100">
 						{!user && (
 							<>
 
