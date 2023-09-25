@@ -27450,6 +27450,9 @@ var _s = $RefreshSig$();
 const MovieCard = ({ movie, user, token, setUser })=>{
     _s();
     const [isFavorite, setIsFavorite] = (0, _react.useState)(user.FavoriteMovies.includes(movie._id));
+    const [showFailedFetchModal, setShowFailedFetchModal] = (0, _react.useState)(false);
+    const handleShowFailedFetchModal = ()=>setShowFailedFetchModal(true);
+    const handleCloseFailedFetchModal = ()=>setShowFailedFetchModal(false);
     const addFavoriteMovie = ()=>{
         fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
             method: "POST",
@@ -27459,7 +27462,7 @@ const MovieCard = ({ movie, user, token, setUser })=>{
         }).then((response)=>{
             if (response.ok) return response.json();
             else {
-                alert("Failed");
+                handleShowFailedFetchModal();
                 return false;
             }
         }).then((user)=>{
@@ -27481,7 +27484,7 @@ const MovieCard = ({ movie, user, token, setUser })=>{
         }).then((response)=>{
             if (response.ok) return response.json();
             else {
-                alert("Failed");
+                handleShowFailedFetchModal();
                 return false;
             }
         }).then((user)=>{
@@ -27495,134 +27498,184 @@ const MovieCard = ({ movie, user, token, setUser })=>{
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-            className: "h-100 card text-bg-primary mb-3",
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
-                    className: "w-100",
-                    variant: "top",
-                    src: movie.ImagePath
-                }, void 0, false, {
-                    fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 70,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            className: "text-success text-center bg-dark w-100 pb-3 pt-3",
-                            children: [
-                                movie.Title,
-                                " ",
-                                "(" + movie.ReleaseDate.slice(0, 4) + ")"
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 72,
-                            columnNumber: 9
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                            className: "title-color mb-2 text-info pt-3",
-                            children: "Genre: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 73,
-                            columnNumber: 9
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            "secondary-color": "text-secondary pb-3",
-                            children: movie.Genre.Name
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 74,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                            className: "title-color mb-2 text-info pt-3",
-                            children: "Release Date: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 75,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            "secondary-color": "text-secondary pb-3",
-                            children: movie.ReleaseDate.slice(0, 4)
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 76,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                            className: "title-color mb-2 text-info pt-3",
-                            children: "Desciption: "
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 77,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            "secondary-color": "text-secondary pb-3",
-                            children: movie.Description
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 78,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 78,
-                            columnNumber: 93
-                        }, undefined),
-                        isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            variant: "danger",
-                            className: "w-100 mb-2",
-                            onClick: removeFavoriteMovie,
-                            children: "Remove from favorites"
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 80,
-                            columnNumber: 13
-                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            className: "bg-success w-100 mb-2",
-                            onClick: addFavoriteMovie,
-                            children: "Add to favorites"
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 84,
-                            columnNumber: 13
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                            to: `/movies/${movie._id}`,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                className: "info-button w-100",
-                                variant: "outline-light",
-                                children: "More Info"
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
+                className: "h-100 card text-bg-primary mb-3",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
+                        className: "w-100",
+                        variant: "top",
+                        src: movie.ImagePath
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 72,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                className: "text-success text-center bg-dark w-100 pb-3 pt-3",
+                                children: [
+                                    movie.Title,
+                                    " ",
+                                    "(" + movie.ReleaseDate.slice(0, 4) + ")"
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 74,
+                                columnNumber: 9
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Genre: "
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 89,
+                                lineNumber: 75,
+                                columnNumber: 9
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: movie.Genre.Name
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 76,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Release Date: "
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 77,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: movie.ReleaseDate.slice(0, 4)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 78,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Desciption: "
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 79,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: movie.Description
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 80,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 80,
+                                columnNumber: 93
+                            }, undefined),
+                            isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                variant: "danger",
+                                className: "w-100 mb-2",
+                                onClick: removeFavoriteMovie,
+                                children: "Remove from favorites"
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 82,
                                 columnNumber: 13
+                            }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                className: "bg-success w-100 mb-2",
+                                onClick: addFavoriteMovie,
+                                children: "Add to favorites"
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 86,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                to: `/movies/${movie._id}`,
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                    className: "info-button w-100",
+                                    variant: "outline-light",
+                                    children: "More Info"
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-card/movie-card.jsx",
+                                    lineNumber: 91,
+                                    columnNumber: 13
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 90,
+                                columnNumber: 11
                             }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 73,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 71,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal), {
+                show: showFailedFetchModal,
+                onHide: handleCloseFailedFetchModal,
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Header, {
+                        closeButton: true,
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Title, {
+                            className: "text-danger",
+                            children: "Fetch"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 88,
-                            columnNumber: 11
+                            lineNumber: 99,
+                            columnNumber: 21
                         }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 71,
-                    columnNumber: 9
-                }, undefined)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 69,
-            columnNumber: 7
-        }, undefined)
-    }, void 0, false);
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 98,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
+                        className: "text-warning",
+                        children: "Failed to add/remove. Please try again later."
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 101,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Footer, {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                            className: "bg-success",
+                            onClick: handleCloseFailedFetchModal,
+                            children: "OK"
+                        }, void 0, false, {
+                            fileName: "src/components/movie-card/movie-card.jsx",
+                            lineNumber: 103,
+                            columnNumber: 21
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 102,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 97,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true);
 };
-_s(MovieCard, "/z4EtdPjAvhFP5RAzGsQBYNscmo=");
+_s(MovieCard, "8qZjr/sxW0y/Lsbuo1c6Sc4YRiY=");
 _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
@@ -49497,6 +49550,9 @@ var _s = $RefreshSig$();
 const TVseriesCard = ({ tvseries, user, token, setUser })=>{
     _s();
     const [isFavorite, setIsFavorite] = (0, _react.useState)(user.FavoriteMovies.includes(tvseries._id));
+    const [showFailedFetchModal, setShowFailedFetchModal] = (0, _react.useState)(false);
+    const handleShowFailedFetchModal = ()=>setShowFailedFetchModal(true);
+    const handleCloseFailedFetchModal = ()=>setShowFailedFetchModal(false);
     const addFavoriteTV = ()=>{
         fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`, {
             method: "POST",
@@ -49506,7 +49562,7 @@ const TVseriesCard = ({ tvseries, user, token, setUser })=>{
         }).then((response)=>{
             if (response.ok) return response.json();
             else {
-                alert("Failed");
+                handleShowFailedFetchModal();
                 return false;
             }
         }).then((user)=>{
@@ -49528,7 +49584,7 @@ const TVseriesCard = ({ tvseries, user, token, setUser })=>{
         }).then((response)=>{
             if (response.ok) return response.json();
             else {
-                alert("Failed");
+                handleShowFailedFetchModal();
                 return false;
             }
         }).then((user)=>{
@@ -49542,134 +49598,184 @@ const TVseriesCard = ({ tvseries, user, token, setUser })=>{
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-            className: "h-100 card text-bg-dark bg-primary mb-3",
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
-                    className: "w-100",
-                    variant: "top",
-                    src: tvseries.ImagePath
-                }, void 0, false, {
-                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                    lineNumber: 70,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            className: "text-success bg-dark text-center pb-3 pt-3",
-                            children: [
-                                tvseries.Title,
-                                " ",
-                                "(" + tvseries.ReleaseDate.slice(0, 4) + ")"
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 72,
-                            columnNumber: 9
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                            className: "title-color mb-2 text-info pt-3",
-                            children: "Genre: "
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 73,
-                            columnNumber: 9
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            "secondary-color": "text-secondary pb-3",
-                            children: tvseries.Genre.Name
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 74,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                            className: "title-color mb-2 text-info pt-3",
-                            children: "Release Date: "
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 75,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            "secondary-color": "text-secondary pb-3",
-                            children: tvseries.ReleaseDate.slice(0, 4)
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 76,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
-                            className: "title-color mb-2 text-info pt-3",
-                            children: "Desciption: "
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 77,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            "secondary-color": "text-secondary pb-3",
-                            children: tvseries.Description
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 78,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 78,
-                            columnNumber: 96
-                        }, undefined),
-                        isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            variant: "danger",
-                            className: "w-100 mb-2",
-                            onClick: removeFavoriteTV,
-                            children: "Remove from favorites"
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 80,
-                            columnNumber: 13
-                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            className: "bg-success w-100 mb-2",
-                            onClick: addFavoriteTV,
-                            children: "Add to favorites"
-                        }, void 0, false, {
-                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 84,
-                            columnNumber: 13
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                            to: `/tvseries/${tvseries._id}`,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                className: "info-button w-100",
-                                variant: "outline-light",
-                                children: "More Info"
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
+                className: "h-100 card text-bg-dark bg-primary mb-3",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
+                        className: "w-100",
+                        variant: "top",
+                        src: tvseries.ImagePath
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                        lineNumber: 72,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                className: "text-success bg-dark text-center pb-3 pt-3",
+                                children: [
+                                    tvseries.Title,
+                                    " ",
+                                    "(" + tvseries.ReleaseDate.slice(0, 4) + ")"
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 74,
+                                columnNumber: 9
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Genre: "
                             }, void 0, false, {
                                 fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                                lineNumber: 89,
+                                lineNumber: 75,
+                                columnNumber: 9
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvseries.Genre.Name
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 76,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Release Date: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 77,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvseries.ReleaseDate.slice(0, 4)
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 78,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
+                                className: "title-color mb-2 text-info pt-3",
+                                children: "Desciption: "
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 79,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                "secondary-color": "text-secondary pb-3",
+                                children: tvseries.Description
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 80,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 80,
+                                columnNumber: 96
+                            }, undefined),
+                            isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                variant: "danger",
+                                className: "w-100 mb-2",
+                                onClick: removeFavoriteTV,
+                                children: "Remove from favorites"
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 82,
                                 columnNumber: 13
+                            }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                className: "bg-success w-100 mb-2",
+                                onClick: addFavoriteTV,
+                                children: "Add to favorites"
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 86,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                to: `/tvseries/${tvseries._id}`,
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                    className: "info-button w-100",
+                                    variant: "outline-light",
+                                    children: "More Info"
+                                }, void 0, false, {
+                                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                    lineNumber: 91,
+                                    columnNumber: 13
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                                lineNumber: 90,
+                                columnNumber: 11
                             }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                        lineNumber: 73,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                lineNumber: 71,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal), {
+                show: showFailedFetchModal,
+                onHide: handleCloseFailedFetchModal,
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Header, {
+                        closeButton: true,
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Title, {
+                            className: "text-danger",
+                            children: "Fetch"
                         }, void 0, false, {
                             fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                            lineNumber: 88,
-                            columnNumber: 11
+                            lineNumber: 100,
+                            columnNumber: 21
                         }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/tvseries-card/tvseries-card.jsx",
-                    lineNumber: 71,
-                    columnNumber: 9
-                }, undefined)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/tvseries-card/tvseries-card.jsx",
-            lineNumber: 69,
-            columnNumber: 7
-        }, undefined)
-    }, void 0, false);
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                        lineNumber: 99,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
+                        className: "text-warning",
+                        children: "Failed to add/remove. Please try again later."
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                        lineNumber: 102,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Footer, {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                            className: "bg-success",
+                            onClick: handleCloseFailedFetchModal,
+                            children: "OK"
+                        }, void 0, false, {
+                            fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                            lineNumber: 104,
+                            columnNumber: 21
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                        lineNumber: 103,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/tvseries-card/tvseries-card.jsx",
+                lineNumber: 98,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true);
 };
-_s(TVseriesCard, "Yvdk+J6AG3o+DGPLCkX1u34Q+8k=");
+_s(TVseriesCard, "DgMhiIsjZ78DGiwTaJkV3in4usc=");
 _c = TVseriesCard;
 TVseriesCard.propTypes = {
     tvseries: (0, _propTypesDefault.default).shape({
