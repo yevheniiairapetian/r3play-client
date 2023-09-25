@@ -7,7 +7,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 		<Navbar bg="dark" color="light" expand="lg">
 			<Container>
 				<Navbar.Brand className="text-success p-2" as={Link} to="/">
-					<Image width="70px" height="auto" className="img-responsive" alt="logo" src={Logo} />
+					<Image width="100px" height="auto" className="img-responsive" alt="logo" src={Logo} />
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav " />
 				<Navbar.Collapse id="basic-navbar-nav" >

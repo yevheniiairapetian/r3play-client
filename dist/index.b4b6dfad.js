@@ -50856,7 +50856,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                     as: (0, _reactRouterDom.Link),
                     to: "/",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Image), {
-                        width: "70px",
+                        width: "100px",
                         height: "auto",
                         className: "img-responsive",
                         alt: "logo",
