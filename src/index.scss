@@ -8,11 +8,18 @@ $text-secondary: #eeeeee;
 $btn-secondary: rgb(54, 57, 57);
 
 .card-bg-color {
-    background-color: #212529;
+    background-color: black;
 }
 
 .title-color {
     color: red;
+}
+
+.tvser-li-hover:hover{
+    list-style-position: inside;
+    transform: translateX(10px);
+    background-color: #19854e;
+    transition: background-color 0.5s ease-in-out;
 }
 
 .bg-carousel{

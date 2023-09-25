@@ -1,9 +1,16 @@
 .card-bg-color {
-  background-color: #212529;
+  background-color: #000;
 }
 
 .title-color {
   color: red;
+}
+
+.tvser-li-hover:hover {
+  background-color: #19854e;
+  list-style-position: inside;
+  transition: background-color .5s ease-in-out;
+  transform: translateX(10px);
 }
 
 .bg-carousel {

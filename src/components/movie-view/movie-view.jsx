@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Card } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import React from 'react';
+import Alert from 'react-bootstrap/Alert';
 
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
@@ -10,12 +11,11 @@ export const MovieView = ({ movies }) => {
 
   return (
     <>
-      <Card>
+      <Card className="bg-primary">
         <Card.Img className='h-100 card text-bg-dark mb-3' variant={top} src={movie.ImagePath} />
 
-        <Card.Body className="card-bg-color">
-          <Card.Subtitle className="title-color text-center mb-2 text-info pt-3">Title:</Card.Subtitle>
-          <Card.Title className="text-success text-center pb-3">{movie.Title}</Card.Title>
+        <Card.Body>
+          <Card.Title className="bg-success text-white text-center pb-3 pt-3">{movie.Title}</Card.Title>
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.ReleaseDate ? movie.ReleaseDate.slice(0, 4) : "No data yet"}</Card.Title>
 
@@ -53,7 +53,9 @@ export const MovieView = ({ movies }) => {
 
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Rating ? movie.Rating : "No data yet"}</Card.Title>
-          <Card.Subtitle className="title-color mb-3 text-info pt-3">Watch the official trailer: </Card.Subtitle>
+          <Alert
+         
+         className="bg-warning mb-3 pt-3 text-center">Watch the official trailer</Alert>
           <ReactPlayer className="m-auto w-auto" controls
 
             url={movie.Trailer}>
