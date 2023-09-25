@@ -66,10 +66,10 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
   return (
     <>
-      <Card className='h-100 card text-bg-dark mb-3' >
+      <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title className="text-success text-center pb-3">{movie.Title}</Card.Title>
+        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
         <Card.Subtitle className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Genre.Name}</Card.Title>
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
