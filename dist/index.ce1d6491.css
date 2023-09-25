@@ -18,6 +18,10 @@
   background-color: #d9d9d9;
 }
 
+.nav-link-hover:hover {
+  color: green;
+}
+
 @media screen and (width <= 770px) {
   .carousel-caption-header {
     margin: 0;

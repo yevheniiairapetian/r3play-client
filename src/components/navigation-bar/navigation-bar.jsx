@@ -15,20 +15,20 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 						{!user && (
 							<>
 
-								<Nav.Link className="text-light" as={Link} to='/'>
+								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/'>
 									Home
 								</Nav.Link>
-								<Nav.Link className="text-light" as={Link} to='/profile'>
+								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/profile'>
 									My Profile
 								</Nav.Link>
 
-								<Nav.Link className="text-light" as={Link} to='/login'>
+								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/login'>
 									Login
 								</Nav.Link>
-								<Nav.Link className="text-light" as={Link} to='/signup'>
+								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/signup'>
 									Signup
 								</Nav.Link>
-								<Nav.Link className="text-light" onClick={onLoggedOut}>Logout</Nav.Link>
+								<Nav.Link className="text-light nav-link-color nav-link-hover" onClick={onLoggedOut}>Logout</Nav.Link>
 							</>
 						)}
 

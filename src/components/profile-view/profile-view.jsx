@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { TVseriesCard } from '../tvseries-card/tvseries-card';
-import { Button, Col, Form, Row, Modal } from 'react-bootstrap';
+import { Button, Col, Form, Row, Modal, Alert } from 'react-bootstrap';
 
 
 export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
@@ -86,7 +86,9 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 			<Row>
 				<Col>
 					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
-						<h3 className='text-success text-center pt-4 pb-2'>My Profile</h3>
+					<Alert
+         
+         className="bg-success text-light mb-3 pt-3 text-center">My Profile</Alert>
 						<Form.Group controlId="formUsername" className='form-group pb-4'>
 							<Form.Label>Username:</Form.Label>
 							<Form.Control
@@ -142,7 +144,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 
 			<Row >
 				<Col className="delete-button text-center">
-					<Button variant="link" className="text-danger" onClick={handleShowModal}>
+					<Button variant="link" className="text-danger mt-3 mb-3" onClick={handleShowModal}>
 						Delete my account
 					</Button>
 				</Col>
@@ -150,7 +152,9 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries }) => {
 
 			<Row>
 				<Col>
-					<h3 className="text-success pt-4 pb-4 text-center">Favorite movies:</h3>
+				<Alert
+         
+         className="bg-info text-dark mb-3 mt-3 pt-3 text-center">My Favorites</Alert>
 				</Col>
 			</Row>
 			<Row >

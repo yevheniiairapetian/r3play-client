@@ -27,6 +27,10 @@ $btn-secondary: rgb(54, 57, 57);
     opacity:0.8;
 }
 
+.nav-link-hover:hover{
+    color:green;
+}
+
 @media screen and (max-width:770px){
     .carousel-caption-header{
         margin:0;

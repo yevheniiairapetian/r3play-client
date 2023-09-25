@@ -88,7 +88,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
             </Button>
           )}    
           <Link to={`/tvseries/${tvseries._id}`}>
-            <Button className='info-button w-100' variant='outline-light'>More Info</Button>
+            <Button className='info-button w-100' variant='outline-light'>Read More</Button>
           </Link>
         </Card.Body>
 
