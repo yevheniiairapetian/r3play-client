@@ -12,7 +12,7 @@ export const Header = () => {
             <div className='text-white'>
               <h1 className='pt-4 mb-3'>Movies and TV Series</h1>
               <h4 className='pt-3 mb-3'>Explore the movies and tv series library</h4>
-              <button className="bg-primary pt-2 pb-2 pl-4 pr-4 w-50 text-white">
+              <button className="bg-primary pt-2 pb-2 pl-4 pr-4 w-50  text-white">
                 Read More
               </button>
             </div>
