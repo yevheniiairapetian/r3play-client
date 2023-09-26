@@ -144,7 +144,7 @@ export const MainView = () => {
                       }
 
                       ).map((movie) => (
-                        <Col className="mb-4" key={movie._id} md={3} xl={4} lg={4} sm={4} xs={10}>
+                        <Col className="mb-4" key={movie._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <MovieCard
                             movie={movie}
                             user={user}
@@ -160,7 +160,7 @@ export const MainView = () => {
                       }
 
                       ).map((tvseries) => (
-                        <Col className="mb-4" key={tvseries._id} md={3} xl={4} lg={4} sm={4} xs={10}>
+                        <Col className="mb-4" key={tvseries._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <TVseriesCard
                             tvseries={tvseries}
                             user={user}

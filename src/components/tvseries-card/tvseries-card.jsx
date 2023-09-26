@@ -2,6 +2,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
   const [isFavorite, setIsFavorite] = useState(
@@ -78,18 +80,19 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
           <Card.Title secondary-color="text-secondary pb-3">{tvseries.ReleaseDate.slice(0, 4)}</Card.Title>
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{tvseries.Description}</Card.Title><br/>
-              {isFavorite ? (
-            <Button variant='danger' className="w-100 mb-2" onClick={removeFavoriteTV}>
-              Remove from favorites
-            </Button>
+          <div className="d-flex justify-content-around align-items-center">
+          {isFavorite ? (
+            <FontAwesomeIcon icon={faHeart} size="xl" style={{color: "#24AB51",}} onClick={removeFavoriteTV} />
+             
+            
           ) : (
-            <Button className="bg-success w-100 mb-2" onClick={addFavoriteTV}>
-              Add to favorites
-            </Button>
-          )}    
+            <FontAwesomeIcon icon={faHeart} size="xl" style={{color: "#ffffff",}} onClick={addFavoriteTV} />
+              
+          )}
           <Link to={`/tvseries/${tvseries._id}`}>
-            <Button className='info-button w-100' variant='outline-light'>Read More</Button>
+            <Button className='info-button p4-5 pr-4' variant='outline-light'>Read More</Button>
           </Link>
+          </div>
         </Card.Body>
 
         
