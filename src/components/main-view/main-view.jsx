@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
+import {Header} from '../header/header';
 import { MovieView } from '../movie-view/movie-view';
 import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { TVseriesView } from '../tvseries-view/tvseries-view';
@@ -137,6 +138,7 @@ export const MainView = () => {
                         </form>
                       </Row>
                       <UncontrolledExample></UncontrolledExample>
+                      <Header></Header>
                       {movies.filter((movie) => {
                         return search === "" ?
                           movie :
