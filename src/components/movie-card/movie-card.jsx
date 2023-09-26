@@ -82,11 +82,11 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
           <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title><br/>
           <div className="d-flex justify-content-around align-items-center">
           {isFavorite ? (
-            <FontAwesomeIcon icon={faHeart} size="xl" style={{color: "#24AB51",}} onClick={removeFavoriteMovie} />
+            <FontAwesomeIcon icon={faHeart} size="xl" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "1"}} onClick={removeFavoriteMovie} />
              
             
           ) : (
-            <FontAwesomeIcon icon={faHeart} size="xl" style={{color: "#ffffff",}} onClick={addFavoriteMovie} />
+            <FontAwesomeIcon icon={faHeart} size="xl" style={{color:"#ffffff", }} onClick={addFavoriteMovie} />
               
           )}
           <Link to={`/movies/${movie._id}`}>
