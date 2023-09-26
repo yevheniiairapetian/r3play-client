@@ -82,7 +82,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
           <Card.Title secondary-color="text-secondary pb-3">{tvseries.Description}</Card.Title><br/>
           <div className="d-flex justify-content-around align-items-center">
           {isFavorite ? (
-            <FontAwesomeIcon icon={faHeart} size="xl" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "1"}} onClick={removeFavoriteTV} />
+            <FontAwesomeIcon icon={faHeart} size="xl" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteTV} />
              
             
           ) : (
