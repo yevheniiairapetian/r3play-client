@@ -14,7 +14,7 @@ export const TVseriesView = ({ tvseries }) => {
     tvseries.filter((tv) => tv.Director.Name == directorName && tv._id !== TVId);
     const similarTVRating = (TVRating) =>
     tvseries.filter((tv) => tv.Rating == TVRating && tv._id !== TVId);
-    const sameTVActors = (Actors) => tvseries.filter(tv => tv.id !== TVId && Actors.some(actor => tv.Actors.includes(actor)));
+    const sameTVActors = (Actors) => tvseries.filter(tv => tv._id !== TVId && Actors.some(actor => tv.Actors.includes(actor)));
   return (
     <>
       <Card className="bg-primary">
@@ -93,7 +93,7 @@ export const TVseriesView = ({ tvseries }) => {
         <Card.Body>
         <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
-        <Link to={`/tvseries/${tvseries._id}`}>
+        <Link to={`/tvseries/${tvser._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
           </Link>
               </Card.Body>
@@ -114,7 +114,7 @@ export const TVseriesView = ({ tvseries }) => {
         <Card.Body>
         <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
-        <Link to={`/tvseries/${tvseries._id}`}>
+        <Link to={`/tvseries/${tvser._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
           </Link>
               </Card.Body>
@@ -135,7 +135,7 @@ export const TVseriesView = ({ tvseries }) => {
         <Card.Body>
         <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
-        <Link to={`/tvseries/${tvseries._id}`}>
+        <Link to={`/tvseries/${tvser._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
           </Link>
               </Card.Body>
@@ -156,7 +156,7 @@ export const TVseriesView = ({ tvseries }) => {
         <Card.Body>
         <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
-        <Link to={`/tvseries/${tvseries._id}`}>
+        <Link to={`/tvseries/${tvser._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
           </Link>
               </Card.Body>
