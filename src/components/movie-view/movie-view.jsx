@@ -15,7 +15,7 @@ export const MovieView = ({ movies }) => {
     movies.filter((m) => m.Director.Name == directorName && m._id !== movieId);
     const similarRating = (movieRating) =>
     movies.filter((m) => m.Rating == movieRating && m._id !== movieId);
-    const sameActors = (Actors) => movies.filter(m => m.id !== movieId && Actors.some(actor => m.Actors.includes(actor)));
+    const sameActors = (Actors) => movies.filter(m => m._id !== movieId && Actors.some(actor => m.Actors.includes(actor)));
   return (
     <>
       <Card className="bg-primary">
