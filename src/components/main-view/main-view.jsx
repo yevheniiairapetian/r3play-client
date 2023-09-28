@@ -4,6 +4,8 @@ import {Header} from '../header/header';
 import { MovieView } from '../movie-view/movie-view';
 import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { TVseriesView } from '../tvseries-view/tvseries-view';
+import { AnimeCard } from '../anime-card/anime-card';
+import { AnimeView } from '../anime-view/anime-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
@@ -19,6 +21,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [tvseries, setTVSeries] = useState([]);
+  const [anime, setAnime] = useState([]);
 
 
 
@@ -39,6 +42,15 @@ export const MainView = () => {
             setTVSeries(data);
 
           })
+          .then(() => {
+            fetch("https://r3play-934f9ea5664d.herokuapp.com/anime", {
+              headers: { Authorization: `Bearer ${token}` }
+            }).then((response) => response.json())
+              .then((data) => {
+                setAnime(data);
+    
+              })
+            })
 
       })
   }, [token]);
@@ -117,6 +129,22 @@ export const MainView = () => {
               }
             /> 
             <Route
+              path='/anime/:AnimeId'
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to='/login' replace />
+                  ) : anime.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    <Col md={8}>
+                      <AnimeView anime={anime}/>
+                    </Col>
+                  )}
+                </>
+              }
+            /> 
+            <Route
               path="/"
               element={
                 <>
@@ -171,6 +199,22 @@ export const MainView = () => {
                           />
                         </Col>
                       ))}
+                      {anime.filter((anime) => {
+                        return search === "" ?
+                          anime :
+                          anime.Title.toLowerCase().includes(search.toLowerCase());
+                      }
+
+                      ).map((anime) => (
+                        <Col className="mb-4" key={anime._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                          <AnimeCard
+                            anime={anime}
+                            user={user}
+                            token={token}
+                            setUser={setUser}
+                          />
+                        </Col>
+                      ))}
                     </>
                   )}
                 </>
@@ -190,6 +234,7 @@ export const MainView = () => {
                         setUser={setUser}
                         movies={movies}
                         tvseries={tvseries}
+                        anime={anime}
                       />
                     </Col>
                   )}

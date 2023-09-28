@@ -14,6 +14,8 @@ export const TVseriesView = ({ tvseries }) => {
     tvseries.filter((tv) => tv.Director.Name == directorName && tv._id !== TVId);
     const similarTVRating = (TVRating) =>
     tvseries.filter((tv) => tv.Rating == TVRating && tv._id !== TVId);
+    const sameDate = (Date) =>
+    tvseries.filter((tv) => tv.ReleaseDate == Date && tv._id !== TVId);
     const sameTVActors = (Actors) => tvseries.filter(tv => tv._id !== TVId && Actors.some(actor => tv.Actors.includes(actor)));
   return (
     <>
@@ -150,6 +152,27 @@ export const TVseriesView = ({ tvseries }) => {
       <div>
             <Row className=''>
               {sameTVActors(tvser.Actors).map((tvser) => (
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Card className='h-100 card text-bg-primary mb-3' >
+        <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
+        <Card.Body>
+        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+              
+        <Link to={`/tvseries/${tvser._id}`}>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+          </Link>
+              </Card.Body>
+              </Card>
+              </Col>
+              ))}
+            </Row>
+
+            <Alert
+         
+         className="bg-warning mb-3 pt-3 text-center">Same rating also have</Alert>
+      
+            <Row className=''>
+              {sameDate(tvser.ReleaseDate).map((tvser) => (
                 <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
