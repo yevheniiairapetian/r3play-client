@@ -19,9 +19,9 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, anime }) =
     const handleCloseWentWrongModal = () => setShowWentWrongModal(false);
 
 
-	let result = movies.filter((movie) => user.FavoriteMovies.includes(movie._id)); 
-	let result2 = tvseries.filter((tvseries) => user.FavoriteMovies.includes(tvseries._id));
-	let result3 = anime.filter((anime) => user.FavoriteMovies.includes(tanime._id));
+	let resultMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id)); 
+	let resultTV = tvseries.filter((tvseries) => user.FavoriteMovies.includes(tvseries._id));
+	let resultAnime = anime.filter((anime) => user.FavoriteMovies.includes(anime._id));
 	
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
@@ -160,7 +160,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, anime }) =
 				</Col>
 			</Row>
 			<Row >
-				{result.map((movie) => (
+				{resultMovies.map((movie) => (
 					<>
 					<Col key={movie._id} xs={12} sm={6 }md={6} lg={6}>
 						<MovieCard
@@ -173,7 +173,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, anime }) =
 						</Col>
 						</>
 				))}
-						 {result2.map((tvseries) => (
+						 {resultTV.map((tvseries) => (
 						<>
 						<Col key={tvseries._id} md={6}>
 						<TVseriesCard
@@ -186,7 +186,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, anime }) =
 					</Col>
 					</>
 						))}
-						{result3.map((anime) => (
+						{resultAnime.map((anime) => (
 						<>
 						<Col key={anime._id} md={6}>
 						<AnimeCard
