@@ -15,6 +15,8 @@ export const MovieView = ({ movies }) => {
     movies.filter((m) => m.Director.Name == directorName && m._id !== movieId);
     const similarRating = (movieRating) =>
     movies.filter((m) => m.Rating == movieRating && m._id !== movieId);
+    const similarIMDBRating = (movieIMDBRating) =>
+    movies.filter((m) => m.IMDbRating == movieIMDBRating && m._id !== movieId);
     const sameDate = (Date) =>
     movies.filter((m) => m.ReleaseDate == Date && m._id !== movieId);
     const sameActors = (Actors) => movies.filter(m => m._id !== movieId && Actors.some(actor => m.Actors.includes(actor)));
@@ -124,7 +126,7 @@ export const MovieView = ({ movies }) => {
 
             <Alert
          
-         className="bg-warning mb-3 pt-3 text-center">Same rating also have</Alert>
+         className="bg-warning mb-3 pt-3 text-center">Same Rotten Tomatoes Audience Rating also have</Alert>
       </div>
             <Row className=''>
               {similarRating(movie.Rating).map((movie) => (
@@ -142,6 +144,28 @@ export const MovieView = ({ movies }) => {
               </Col>
               ))}
             </Row>
+
+            <Alert
+         
+         className="bg-warning mb-3 pt-3 text-center">Same IMDb rating also have</Alert>
+      
+            <Row className=''>
+              {similarIMDBRating(movie.IMDbRating).map((movie) => (
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Card className='h-100 card text-bg-primary mb-3' >
+        <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
+        <Card.Body>
+        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+              
+        <Link to={`/movies/${movie._id}`}>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+          </Link>
+              </Card.Body>
+              </Card>
+              </Col>
+              ))}
+            </Row>
+
 
             <Alert
          
