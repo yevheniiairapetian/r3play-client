@@ -5,7 +5,7 @@ import { AnimeCard } from '../anime-card/anime-card';
 import { Button, Col, Form, Row, Modal, Alert } from 'react-bootstrap';
 
 
-export const ProfileView = ({ user, token, setUser, movies, tvseries, anime }) => {
+export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) => {
 
 	const [username, setUsername] = useState(user.Username);
 	const [password, setPassword] = useState("");
@@ -21,7 +21,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, anime }) =
 
 	let resultMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id)); 
 	let resultTV = tvseries.filter((tvseries) => user.FavoriteMovies.includes(tvseries._id));
-	let resultAnime = anime.filter((anime) => user.FavoriteMovies.includes(anime._id));
+	let resultAnime = animes.filter((animes) => user.FavoriteMovies.includes(animes._id));
 	
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
@@ -186,11 +186,11 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, anime }) =
 					</Col>
 					</>
 						))}
-						{resultAnime.map((anime) => (
+						{resultAnime.map((animes) => (
 						<>
-						<Col key={anime._id} md={6}>
+						<Col key={animes._id} md={6}>
 						<AnimeCard
-							tvseries={anime}
+							animes={animes}
 							user={user}
 							token={token}
 							setUser={setUser}

@@ -21,7 +21,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [tvseries, setTVSeries] = useState([]);
-  const [anime, setAnime] = useState([]);
+  const [animes, setAnimes] = useState([]);
 
 
 
@@ -47,7 +47,7 @@ export const MainView = () => {
               headers: { Authorization: `Bearer ${token}` }
             }).then((response) => response.json())
               .then((data) => {
-                setAnime(data);
+                setAnimes(data);
     
               })
             })
@@ -129,16 +129,16 @@ export const MainView = () => {
               }
             /> 
             <Route
-              path='/anime/:AnimeId'
+              path='/animes/:AnimeId'
               element={
                 <>
                   {!user ? (
                     <Navigate to='/login' replace />
-                  ) : anime.length === 0 ? (
+                  ) : animes.length === 0 ? (
                     <Col>The list is empty!</Col>
                   ) : (
                     <Col md={8}>
-                      <AnimeView anime={anime}/>
+                      <AnimeView animes={animes}/>
                     </Col>
                   )}
                 </>
@@ -199,16 +199,16 @@ export const MainView = () => {
                           />
                         </Col>
                       ))}
-                      {anime.filter((anime) => {
+                      {animes.filter((animes) => {
                         return search === "" ?
-                          anime :
-                          anime.Title.toLowerCase().includes(search.toLowerCase());
+                          animes :
+                          animes.Title.toLowerCase().includes(search.toLowerCase());
                       }
 
-                      ).map((anime) => (
-                        <Col className="mb-4" key={anime._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                      ).map((animes) => (
+                        <Col className="mb-4" key={animes._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <AnimeCard
-                            anime={anime}
+                            animes={animes}
                             user={user}
                             token={token}
                             setUser={setUser}
@@ -234,7 +234,7 @@ export const MainView = () => {
                         setUser={setUser}
                         movies={movies}
                         tvseries={tvseries}
-                        anime={anime}
+                        animes={animes}
                       />
                     </Col>
                   )}

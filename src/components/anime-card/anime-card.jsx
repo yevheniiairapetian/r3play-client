@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
-export const AnimeCard = ({ anime, user, token, setUser }) => {
+export const AnimeCard = ({ animes, user, token, setUser }) => {
   const [isFavorite, setIsFavorite] = useState(
-  user.FavoriteMovies.includes(anime._id)
+  user.FavoriteMovies.includes(animes._id)
   );
   const [showFailedFetchModal, setShowFailedFetchModal] = useState(false);
   const handleShowFailedFetchModal = () => setShowFailedFetchModal(true);
   const handleCloseFailedFetchModal = () => setShowFailedFetchModal(false);
   const addFavoriteAnime = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/animes/${anime._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/animes/${animes._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -42,7 +42,7 @@ export const AnimeCard = ({ anime, user, token, setUser }) => {
 
   const removeFavoriteAnime = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/animes/${anime._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/animes/${animes._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
@@ -71,15 +71,20 @@ export const AnimeCard = ({ anime, user, token, setUser }) => {
   return (
     <>
       <Card className='h-100 card text-bg-dark bg-primary mb-3' >
-        <Card.Img className='w-100' variant='top' src={anime.ImagePath} />
+        <Card.Img className='w-100' variant='top' src={animes.ImagePath} />
         <Card.Body>
-        <Card.Title className="text-success bg-dark text-center pb-3 pt-3">{anime.Title} {"("+anime.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title className="text-success bg-dark text-center pb-3 pt-3">{animes.Title} 
+        {/* {"("+ animes.ReleaseDate
+        .slice(0, 4)
+        +")" */}
+        {/* } */}
+        </Card.Title>
         <Card.Subtitle className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{anime.Genre.Name}</Card.Title>
+          <Card.Title secondary-color="text-secondary pb-3">{animes.Genre.Name}</Card.Title>
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{anime.ReleaseDate.slice(0, 4)}</Card.Title>
+          <Card.Title secondary-color="text-secondary pb-3">{animes.ReleaseDate.slice(0, 4)}</Card.Title>
           <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{anime.Description}</Card.Title><br/>
+          <Card.Title secondary-color="text-secondary pb-3">{animes.Description}</Card.Title><br/>
           <div className="d-flex justify-content-around align-items-center">
           {isFavorite ? (
             <FontAwesomeIcon icon={faHeart} size="xl" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteAnime} />
@@ -89,7 +94,7 @@ export const AnimeCard = ({ anime, user, token, setUser }) => {
             <FontAwesomeIcon icon={faHeart} size="xl" style={{color:"#ffffff", }} onClick={addFavoriteAnime} />
               
           )}
-          <Link to={`/anime/${anime._id}`}>
+          <Link to={`/animes/${animes._id}`}>
             <Button className='info-button p4-5 pr-4' variant='outline-light'>Read More</Button>
           </Link>
           </div>
@@ -113,7 +118,7 @@ export const AnimeCard = ({ anime, user, token, setUser }) => {
 };
 
 AnimeCard.propTypes = {
-  anime: PropTypes.shape({
+  animes: PropTypes.shape({
     id: PropTypes.string,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,

@@ -5,18 +5,18 @@ import ReactPlayer from "react-player";
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 
-export const AnimeView = ({ anime }) => {
+export const AnimeView = ({ animes }) => {
   const { AnimeId } = useParams();
-  const anim = anime.find((a) => a._id === AnimeId);
+  const anim = animes.find((a) => a._id === AnimeId);
   const similarAnime = (genreName) =>
-    anime.filter((a) => a.Genre.Name == genreName && a._id !== AnimeId);
+    animes.filter((a) => a.Genre.Name == genreName && a._id !== AnimeId);
   const similarAnimeDirector = (directorName) =>
-    anime.filter((a) => a.Director.Name == directorName && a._id !== AnimeId);
+    animes.filter((a) => a.Director.Name == directorName && a._id !== AnimeId);
     const similarAnimeRating = (AnimeRating) =>
-    anime.filter((a) => a.Rating == AnimeRating && a._id !== AnimeId);
+    animes.filter((a) => a.Rating == AnimeRating && a._id !== AnimeId);
     const sameAnimeDate = (Date) =>
-    anime.filter((a) => a.ReleaseDate == Date && a._id !== AnimeId);
-    const sameAnimeActors = (Actors) => anime.filter(a => a._id !== AnimeId && Actors.some(actor => a.Actors.includes(actor)));
+    animes.filter((a) => a.ReleaseDate == Date && a._id !== AnimeId);
+    const sameAnimeActors = (Actors) => animes.filter(a => a._id !== AnimeId && Actors.some(actor => a.Actors.includes(actor)));
   return (
     <>
       <Card className="bg-primary">
@@ -95,7 +95,7 @@ export const AnimeView = ({ anime }) => {
         <Card.Body>
         <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"("+anim.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
-        <Link to={`/anime/${anim._id}`}>
+        <Link to={`/animes/${anim._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
           </Link>
               </Card.Body>
@@ -116,7 +116,7 @@ export const AnimeView = ({ anime }) => {
         <Card.Body>
         <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"("+anim.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
-        <Link to={`/anime/${anim._id}`}>
+        <Link to={`/animes/${anim._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
           </Link>
               </Card.Body>
@@ -137,7 +137,7 @@ export const AnimeView = ({ anime }) => {
         <Card.Body>
         <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"("+anim.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
-        <Link to={`/anime/${anim._id}`}>
+        <Link to={`/animes/${anim._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
           </Link>
               </Card.Body>
@@ -158,7 +158,7 @@ export const AnimeView = ({ anime }) => {
         <Card.Body>
         <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"("+anim.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
-        <Link to={`/anime/${anim._id}`}>
+        <Link to={`/animes/${anim._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
           </Link>
               </Card.Body>
@@ -179,7 +179,7 @@ export const AnimeView = ({ anime }) => {
         <Card.Body>
         <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"("+anim.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
-        <Link to={`/anime/${anim._id}`}>
+        <Link to={`/animes/${anim._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
           </Link>
               </Card.Body>
