@@ -40,7 +40,7 @@ export const AnimeCard = ({ anime, user, token, setUser }) => {
       });
   };
 
-  const removeFavoriteTV = () => {
+  const removeFavoriteAnime = () => {
     fetch(
       `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/animes/${anime._id}`,
       {
