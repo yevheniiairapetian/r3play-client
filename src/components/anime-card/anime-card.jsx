@@ -14,7 +14,7 @@ export const AnimeCard = ({ anime, user, token, setUser }) => {
   const handleCloseFailedFetchModal = () => setShowFailedFetchModal(false);
   const addFavoriteAnime = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/anime/${anime._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/animes/${anime._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -42,7 +42,7 @@ export const AnimeCard = ({ anime, user, token, setUser }) => {
 
   const removeFavoriteTV = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/anime/${anime._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/animes/${anime._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }

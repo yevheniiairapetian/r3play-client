@@ -43,7 +43,7 @@ export const MainView = () => {
 
           })
           .then(() => {
-            fetch("https://r3play-934f9ea5664d.herokuapp.com/anime", {
+            fetch("https://r3play-934f9ea5664d.herokuapp.com/animes", {
               headers: { Authorization: `Bearer ${token}` }
             }).then((response) => response.json())
               .then((data) => {
