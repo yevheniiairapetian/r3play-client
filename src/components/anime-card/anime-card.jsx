@@ -113,7 +113,7 @@ export const AnimeCard = ({ anime, user, token, setUser }) => {
 };
 
 AnimeCard.propTypes = {
-  tvseries: PropTypes.shape({
+  anime: PropTypes.shape({
     id: PropTypes.string,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
