@@ -14,6 +14,8 @@ export const AnimeView = ({ animes }) => {
     animes.filter((a) => a.Director.Name == directorName && a._id !== AnimeId);
     const similarAnimeRating = (AnimeRating) =>
     animes.filter((a) => a.Rating == AnimeRating && a._id !== AnimeId);
+    const similarAnimeIMDBRating = (AnimeIMDBRating) =>
+    animes.filter((a) => a.IMDbRating == AnimeIMDBRating && a._id !== AnimeId);
     const sameAnimeDate = (Date) =>
     animes.filter((a) => a.ReleaseDate == Date && a._id !== AnimeId);
     const sameAnimeActors = (Actors) => animes.filter(a => a._id !== AnimeId && Actors.some(actor => a.Actors.includes(actor)));
@@ -127,10 +129,31 @@ export const AnimeView = ({ animes }) => {
 
             <Alert
          
-         className="bg-warning mb-3 pt-3 text-center">Same rating also have</Alert>
+         className="bg-warning mb-3 pt-3 text-center">Same Rotten Tomatoes Audience Rating also have</Alert>
       
             <Row className=''>
               {similarAnimeRating(anim.Rating).map((anim) => (
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Card className='h-100 card text-bg-primary mb-3' >
+        <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
+        <Card.Body>
+        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"("+anim.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+              
+        <Link to={`/animes/${anim._id}`}>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+          </Link>
+              </Card.Body>
+              </Card>
+              </Col>
+              ))}
+            </Row>
+
+            <Alert
+         
+         className="bg-warning mb-3 pt-3 text-center">Same IMDb Rating also have</Alert>
+      
+            <Row className=''>
+              {similarAnimeIMDBRating(anim.IMDbRating).map((anim) => (
                 <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
@@ -169,7 +192,7 @@ export const AnimeView = ({ animes }) => {
 
             <Alert
          
-         className="bg-warning mb-3 pt-3 text-center">Same rating also have</Alert>
+         className="bg-warning mb-3 pt-3 text-center">Released in the same year</Alert>
       
             <Row className=''>
               {sameAnimeDate(anim.ReleaseDate).map((anim) => (
