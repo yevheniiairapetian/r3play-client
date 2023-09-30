@@ -15,12 +15,14 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 		  setTheme('light');
 		}
 	  };
+	
+	
 	  useEffect(() => {
 		document.body.className = theme;
 		// document.querySelectorAll('body *').className = theme;
 	  }, [theme]);
 	return (
-		<Navbar id="navigation" className="" bg="dark" color="light" expand="lg">
+		<Navbar id="navigation" className="bg-nav-light" bg="dark" color="light" expand="lg">
 			<Container className="navigation">
 				<Navbar.Brand className="text-success p-2" as={Link} to="/">
 					<Image width="100px" height="auto" className="img-responsive" alt="logo" src={Logo} />
@@ -50,7 +52,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 								</Nav.Link>
 								<Nav.Link className="text-light nav-link-color nav-link-hover" onClick={onLoggedOut}>Logout</Nav.Link>
 								<Nav.Link>
-								<button className="text-light bg-dark nav-link-hover" style={{outline: "none", border: "none"}} onClick={toggleTheme}>{theme==='light'? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{"--fa-animation-iteration-count": "2"}}/>) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{"--fa-animation-iteration-count": "2"}}/>)}</button>
+								<button className="text-light bg-dark nav-link-hover toggle-nav" style={{outline: "none", border: "none"}} onClick={()=>{toggleTheme()}}>{theme==='light'? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{"--fa-animation-iteration-count": "2"}}/>) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{"--fa-animation-iteration-count": "2"}}/>)}</button>
 							</Nav.Link>
 							</>
 						)}
