@@ -31,6 +31,38 @@ $btn-secondary: rgb(54, 57, 57);
     color:green;
 }
 
+.dark {
+    background-color: #333;
+    color: #fff;
+    
+  }
+  .light {
+    background-color: #fff;
+    color: #333;
+    & .card > div, #card{
+        background-color: #CDD3BA;
+        color: black;
+        .btn-outline-light{
+            color:white;
+            background-color: #238a47;
+        }
+        div#card-title{
+            background-color: #238a47 !important;
+            color: black !important;
+        }
+        div#card-subtitle.title-color.card-subtitle{
+            color:#238a47 !important;
+        }
+        #navigation, #navigation.bg-dark.navbar-navbar-light{
+            background-color: white !important;
+        }
+        .input-group > .form-control#search {
+            background-color: white !important;
+            color: black !important;
+        }
+    }
+  }
+
 @media screen and (max-width:770px){
     .carousel-caption-header{
         margin:0;

@@ -70,16 +70,16 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
   };
 
   return (
-    <>
-      <Card className='h-100 card text-bg-primary mb-3' >
+    <div className="card-container">
+      <Card id="card" className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
-        <Card.Subtitle className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
+        <Card.Title id="card-title" className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Subtitle  id="card-subtitle" className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Genre.Name}</Card.Title>
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.ReleaseDate.slice(0, 4)}</Card.Title>
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
           <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title><br/>
           <div className="d-flex justify-content-around align-items-center">
           {isFavorite ? (
@@ -108,7 +108,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
                 </Modal.Footer>
             </Modal>
-    </>
+    </div>
   );
 };
 

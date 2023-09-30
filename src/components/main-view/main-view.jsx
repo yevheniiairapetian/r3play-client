@@ -16,14 +16,23 @@ import {UncontrolledExample} from '../Carousel/carousel';
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
+  
+  
+  
+    
+  
   const [search, setSearch] = useState("");
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [tvseries, setTVSeries] = useState([]);
   const [animes, setAnimes] = useState([]);
-
-
+  const [theme, setTheme] = useState('light');
+	
+  useEffect(() => {
+		document.body.className = theme;
+		// document.querySelectorAll('body *').className = theme;
+	  }, [theme]);
 
   useEffect(() => {
     if (!token) return;
@@ -55,8 +64,10 @@ export const MainView = () => {
       })
   }, [token]);
 
+
   return (
-    <>
+    
+    <div className="">
       <BrowserRouter>
         <NavigationBar
           onLoggedOut={() => {
@@ -65,6 +76,7 @@ export const MainView = () => {
             localStorage.clear();
           }}
         />
+        
         <Row className="justify-content-center">
           <Routes>
             <Route
@@ -105,7 +117,7 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <Col md={8}>
-                      <MovieView movies={movies}/>
+                      <MovieView className={`${theme}`} movies={movies}/>
                     
                     </Col>
                   )}
@@ -155,9 +167,9 @@ export const MainView = () => {
                   ) : (
                     <>
                       <Row className="my-3">
-                        <form>
+                        <form >
                           <InputGroup>
-                            <Form.Control
+                            <Form.Control id="search"
                               onChange={(e) => setSearch(e.target.value)}
                               placeholder="Movie Search"
                               aria-label="Movie Search"
@@ -176,6 +188,7 @@ export const MainView = () => {
                       ).map((movie) => (
                         <Col className="mb-4" key={movie._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <MovieCard
+                          className={`${theme}`} 
                             movie={movie}
                             user={user}
                             token={token}
@@ -192,6 +205,7 @@ export const MainView = () => {
                       ).map((tvseries) => (
                         <Col className="mb-4" key={tvseries._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <TVseriesCard
+                          className={`${theme}`} 
                             tvseries={tvseries}
                             user={user}
                             token={token}
@@ -208,6 +222,7 @@ export const MainView = () => {
                       ).map((animes) => (
                         <Col className="mb-4" key={animes._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <AnimeCard
+                          className={`${theme}`} 
                             animes={animes}
                             user={user}
                             token={token}
@@ -248,7 +263,7 @@ export const MainView = () => {
         
       </BrowserRouter>
 
-    </>
+    </div>
 
   )
 
