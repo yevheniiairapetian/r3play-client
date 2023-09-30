@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import {Footer} from '../footer/footer';
 import { MovieCard } from '../movie-card/movie-card';
 import {Header} from '../header/header';
 import { MovieView } from '../movie-view/movie-view';
@@ -78,6 +79,7 @@ export const MainView = () => {
                       <SignupView />
                     </Col>
                   )}
+                  <Footer/>
                 </>
               }
             />
@@ -92,6 +94,7 @@ export const MainView = () => {
                       <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
                     </Col>
                   )}
+                  
                 </>
               }
             />
@@ -109,6 +112,7 @@ export const MainView = () => {
                     
                     </Col>
                   )}
+                  <Footer/>
                 </>
               }
             />
@@ -125,6 +129,7 @@ export const MainView = () => {
                       <TVseriesView tvseries={tvseries}/>
                     </Col>
                   )}
+                  <Footer/>
                 </>
               }
             /> 
@@ -141,12 +146,14 @@ export const MainView = () => {
                       <AnimeView animes={animes}/>
                     </Col>
                   )}
+                  <Footer/>
                 </>
               }
             /> 
             <Route
               path="/"
               element={
+                <>
                 <>
                   {!user ? (
                     <Navigate to="/login" replace />
@@ -215,9 +222,14 @@ export const MainView = () => {
                             setUser={setUser}
                           />
                         </Col>
+                        
                       ))}
+                      
                     </>
                   )}
+                  
+                </>
+                <Footer/>
                 </>
               }
             />
@@ -239,6 +251,7 @@ export const MainView = () => {
                       />
                     </Col>
                   )}
+                  <Footer/>
                 </>
               }
             />

@@ -5,7 +5,7 @@ export const Header = () => {
     return (
         <div
         className='p-5 mb-2 text-center bg-image'
-        style={{ backgroundImage: "url('https://balkandiskurs.com/app/uploads/2016/11/movie-scene.jpg')", height: '400px' }}
+        style={{ backgroundImage: "url('http://www.normansblog.de/wp-content/uploads/2009/06/movies.jpg')", height: '400px', width:'100%'}}
       >
         <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
           <div className='d-flex justify-content-center align-items-center pb-4 h-100'>
