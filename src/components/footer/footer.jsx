@@ -4,31 +4,37 @@ import {Link} from 'react-router-dom';
 import {
   MDBFooter,
   MDBContainer,
-  MDBBtn
 } from 'mdb-react-ui-kit';
 
 export const Footer = () => {
   return (
-    <MDBFooter id="footer" className='text-center text-white mt-3' style={{ backgroundColor: 'black', position: 'relative',
+    <MDBFooter id="footer" className='text-center text-white mt-3' style={{ position: 'absolute',
     bottom: '0',
-    width: '100%' }}>
+    width: '100%', height: '80px' }}>
       <MDBContainer className='p-4 pb-0'>
         <section className=''>
           <p className='d-flex justify-content-center align-items-center'>
             <span className='me-3'>Register for free</span>
-            <MDBBtn type='button' className="bg-light" rounded>
             
-              <Nav.Link className="text-dark" as={Link} to='/signup'>
-									Signup!
-								</Nav.Link>
-            </MDBBtn>
+            
           </p>
         </section>
       </MDBContainer>
 
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', color:'green' }}>
         © 2023 Copyright:
-        <br/><a className='text-white' target="_blank" href='https://yevheniiairapetian.github.io/portfolio-website/'>
+        <br/><button type='button' className="bg-light mt-2 mb-2 pl-4 pr-4 pt-1 pb-1" style={{'border-radius': '5px', border: 'none', 'margin-right': '10px'}}>
+            <Nav.Link className="text-dark" as={Link} to='/login'>
+									Login
+								</Nav.Link>
+                
+                </button><button type='button' className="bg-light mt-2 mb-2 pl-4 pr-4 pt-1 pb-1" style={{'border-radius': '5px', border: 'none'}}>
+            
+            <Nav.Link className="text-dark" as={Link} to='/signup'>
+                Signup
+              </Nav.Link>
+              
+          </button><br/><a className='text-success' target="_blank" href='https://yevheniiairapetian.github.io/portfolio-website/'>
         Yevhenii Airapetian
         </a>
       </div>

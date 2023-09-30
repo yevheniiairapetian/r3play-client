@@ -14,6 +14,7 @@ import { ProfileView } from "../profile-view/profile-view";
 import { Row, Col, InputGroup, Form } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {UncontrolledExample} from '../Carousel/carousel';
+import { FooterAuthorized } from '../footer-authorized/footer-authorized';
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
@@ -94,7 +95,7 @@ export const MainView = () => {
                       <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
                     </Col>
                   )}
-                  
+                  <Footer/>
                 </>
               }
             />
@@ -112,7 +113,7 @@ export const MainView = () => {
                     
                     </Col>
                   )}
-                  <Footer/>
+                  <FooterAuthorized/>
                 </>
               }
             />
@@ -129,7 +130,7 @@ export const MainView = () => {
                       <TVseriesView tvseries={tvseries}/>
                     </Col>
                   )}
-                  <Footer/>
+                  <FooterAuthorized/>
                 </>
               }
             /> 
@@ -146,7 +147,7 @@ export const MainView = () => {
                       <AnimeView animes={animes}/>
                     </Col>
                   )}
-                  <Footer/>
+                  <FooterAuthorized/>
                 </>
               }
             /> 
@@ -229,7 +230,7 @@ export const MainView = () => {
                   )}
                   
                 </>
-                <Footer/>
+                <FooterAuthorized/>
                 </>
               }
             />
@@ -251,7 +252,7 @@ export const MainView = () => {
                       />
                     </Col>
                   )}
-                  <Footer/>
+                  <FooterAuthorized/>
                 </>
               }
             />
