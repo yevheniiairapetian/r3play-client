@@ -80,7 +80,7 @@ export const MainView = () => {
                       <SignupView />
                     </Col>
                   )}
-                  <Footer/>
+                  
                 </>
               }
             />
@@ -95,7 +95,7 @@ export const MainView = () => {
                       <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
                     </Col>
                   )}
-                  <Footer/>
+                 
                 </>
               }
             />

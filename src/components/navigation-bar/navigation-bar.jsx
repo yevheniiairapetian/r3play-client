@@ -1,4 +1,5 @@
 import { Navbar, Container, Row, Col, Nav, Image } from "react-bootstrap";
+
 import Logo from '../../images/logo.png';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,18 +32,15 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="justify-content-end w-100">
 						{!user && (
-							<> <Row>
+							<>
 
-      
-
-        </Row>
-
-								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/'>
+							<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/'>
 									Home
 								</Nav.Link>
 								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/profile'>
 									My Profile
 								</Nav.Link>
+								<Nav.Link className="text-light nav-link-color nav-link-hover" onClick={onLoggedOut}>Logout</Nav.Link>
 
 								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/login'>
 									Login
@@ -50,9 +48,8 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/signup'>
 									Signup
 								</Nav.Link>
-								<Nav.Link className="text-light nav-link-color nav-link-hover" onClick={onLoggedOut}>Logout</Nav.Link>
 								<Nav.Link>
-								<button className="text-light bg-dark nav-link-hover toggle-nav" style={{outline: "none", border: "none"}} onClick={()=>{toggleTheme()}}>{theme==='light'? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{"--fa-animation-iteration-count": "2"}}/>) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{"--fa-animation-iteration-count": "2"}}/>)}</button>
+								<button title="Click to change the theme" className="text-light bg-dark nav-link-hover toggle-nav" style={{outline: "none", border: "none"}} onClick={()=>{toggleTheme()}}>{theme==='light'? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{"--fa-animation-iteration-count": "2"}}/>) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{"--fa-animation-iteration-count": "2"}}/>)}</button>
 							</Nav.Link>
 							</>
 						)}

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-
+import {Footer} from '../footer/footer';
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -40,6 +40,7 @@ export const SignupView = () => {
         });
     };
     return (
+        <>
         <>
             <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
 
@@ -111,6 +112,8 @@ export const SignupView = () => {
 
                 </Modal.Footer>
             </Modal>
+        </>
+        <Footer/>
         </>
     )
 }

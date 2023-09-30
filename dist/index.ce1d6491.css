@@ -60,6 +60,10 @@
   background-color: #cdd3ba !important;
 }
 
+.light .card > div #button-tooltip, .light #card #button-tooltip {
+  color: #fff;
+}
+
 @media screen and (width <= 770px) {
   .carousel-caption-header {
     margin: 0;
