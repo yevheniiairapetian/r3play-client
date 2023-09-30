@@ -3,7 +3,7 @@ import { Navbar, Container, Row, Col, Nav, Image } from "react-bootstrap";
 import Logo from '../../images/logo.png';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faMoon, faHouse, faUserPlus, faUser, faCircleLeft, faRightToBracket, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 export const NavigationBar = ({ user, onLoggedOut }) => {
 	const [theme, setTheme] = useState(
@@ -35,21 +35,21 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 							<>
 
 							<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/'>
-									Home
+							<FontAwesomeIcon size="lg" icon={faHouse} style={{color: "#238A47",}} /> <span class="links">Home</span>
 								</Nav.Link>
 								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/profile'>
-									My Profile
+								<FontAwesomeIcon size="lg" icon={faUser} style={{color: "#238A47",}} />  <span class="links">My Profile</span>
 								</Nav.Link>
-								<Nav.Link className="text-light nav-link-color nav-link-hover" onClick={onLoggedOut}>Logout</Nav.Link>
 
 								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/login'>
-									Login
+								<FontAwesomeIcon size="lg" icon={faRightToBracket} style={{color: "#238A47",}} />  <span class="links">Login</span>
 								</Nav.Link>
 								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/signup'>
-									Signup
+								<FontAwesomeIcon size="lg" icon={faUserPlus} style={{color: "#238A47",}} />  <span class="links">Sign up</span>
 								</Nav.Link>
+								<Nav.Link size="lg" className="text-light nav-link-color nav-link-hover" onClick={onLoggedOut}><FontAwesomeIcon icon={faCircleLeft} style={{color: "#238A47",}} />  <span class="links">Logout</span></Nav.Link>
 								<Nav.Link>
-								<button title="Click to change the theme" className="text-light bg-dark nav-link-hover toggle-nav" style={{outline: "none", border: "none"}} onClick={()=>{toggleTheme()}}>{theme==='light'? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{"--fa-animation-iteration-count": "2"}}/>) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{"--fa-animation-iteration-count": "2"}}/>)}</button>
+								<button title="Click to change the theme" className="text-light bg-dark nav-link-hover toggle-nav" style={{outline: "none", border: "none"}} onClick={()=>{toggleTheme()}}>{theme==='light'? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{"--fa-animation-iteration-count": "2"}}/>) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{"--fa-animation-iteration-count": "2"}}/>)}<span class="links">Theme</span></button>
 							</Nav.Link>
 							</>
 						)}
