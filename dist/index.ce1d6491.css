@@ -31,6 +31,11 @@
   color: green;
 }
 
+.dark input[type="search"]#input-search {
+  color: #fff !important;
+  background-color: #000 !important;
+}
+
 .light {
   color: #333;
   background-color: #fff;
@@ -66,6 +71,11 @@
 
 .light .card > div #button-tooltip, .light #card #button-tooltip {
   color: #fff;
+}
+
+.light .card > div input[type="search"]#input-search, .light #card input[type="search"]#input-search {
+  color: #000 !important;
+  background-color: #fff !important;
 }
 
 @media screen and (width <= 770px) {

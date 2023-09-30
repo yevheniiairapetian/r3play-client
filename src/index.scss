@@ -37,6 +37,10 @@ $btn-secondary: rgb(54, 57, 57);
     .nav-link-hover:hover{
         color:green;
     }
+    input[type="search"]#input-search{
+        background-color: black !important;
+        color:white !important;
+    }
     
   }
   .light {
@@ -67,7 +71,10 @@ $btn-secondary: rgb(54, 57, 57);
         #button-tooltip{
             color: white;
         }
-        
+        input[type="search"]#input-search{
+            background-color: white !important;
+            color:black !important;
+        }
     }
   }
 

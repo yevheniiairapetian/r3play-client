@@ -35,21 +35,21 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 							<>
 
 							<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/'>
-							<FontAwesomeIcon size="lg" icon={faHouse} style={{color: "#238A47",}} /> <span class="links">Home</span>
+							<FontAwesomeIcon size="lg" icon={faHouse} style={{color: "#238A47",}} /> <span className="links">Home</span>
 								</Nav.Link>
 								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/profile'>
-								<FontAwesomeIcon size="lg" icon={faUser} style={{color: "#238A47",}} />  <span class="links">My Profile</span>
+								<FontAwesomeIcon size="lg" icon={faUser} style={{color: "#238A47",}} />  <span className="links">My Profile</span>
 								</Nav.Link>
 
 								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/login'>
-								<FontAwesomeIcon size="lg" icon={faRightToBracket} style={{color: "#238A47",}} />  <span class="links">Login</span>
+								<FontAwesomeIcon size="lg" icon={faRightToBracket} style={{color: "#238A47",}} />  <span className="links">Login</span>
 								</Nav.Link>
 								<Nav.Link className="text-light nav-link-color nav-link-hover" as={Link} to='/signup'>
-								<FontAwesomeIcon size="lg" icon={faUserPlus} style={{color: "#238A47",}} />  <span class="links">Sign up</span>
+								<FontAwesomeIcon size="lg" icon={faUserPlus} style={{color: "#238A47",}} />  <span className="links">Sign up</span>
 								</Nav.Link>
-								<Nav.Link size="lg" className="text-light nav-link-color nav-link-hover" onClick={onLoggedOut}><FontAwesomeIcon icon={faCircleLeft} style={{color: "#238A47",}} />  <span class="links">Logout</span></Nav.Link>
+								<Nav.Link size="lg" className="text-light nav-link-color nav-link-hover" onClick={onLoggedOut}><FontAwesomeIcon icon={faCircleLeft} style={{color: "#238A47",}} />  <span className="links">Logout</span></Nav.Link>
 								<Nav.Link>
-								<button title="Click to change the theme" className="text-light bg-dark nav-link-hover toggle-nav" style={{outline: "none", border: "none"}} onClick={()=>{toggleTheme()}}>{theme==='light'? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{"--fa-animation-iteration-count": "2"}}/>) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{"--fa-animation-iteration-count": "2"}}/>)}<span class="links">Theme</span></button>
+								<button title="Click to change the theme" className="text-light bg-dark nav-link-hover toggle-nav" style={{outline: "none", border: "none"}} onClick={()=>{toggleTheme()}}>{theme==='light'? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{"--fa-animation-iteration-count": "2"}}/>) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{"--fa-animation-iteration-count": "2"}}/>)}<span className="links">Theme</span></button>
 							</Nav.Link>
 							</>
 						)}

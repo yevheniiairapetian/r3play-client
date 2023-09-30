@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import {Spinner} from '../spinner/spinner';
 import {Footer} from '../footer/footer';
 import { MovieCard } from '../movie-card/movie-card';
 import {Header} from '../header/header';
@@ -106,7 +107,10 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to='/login' replace />
                   ) : movies.length === 0 ? (
-                    <Col>The list is empty!</Col>
+                    <>
+                    
+                    <Col className="text-center mt-4"><Spinner/></Col>
+                    </>
                   ) : (
                     <Col md={8}>
                       <MovieView movies={movies}/>
@@ -124,7 +128,10 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to='/login' replace />
                   ) : tvseries.length === 0 ? (
-                    <Col>The list is empty!</Col>
+                    <>
+                  
+                    <Col className="text-center mt-4"><Spinner/></Col>
+                    </>
                   ) : (
                     <Col md={8}>
                       <TVseriesView tvseries={tvseries}/>
@@ -141,7 +148,10 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to='/login' replace />
                   ) : animes.length === 0 ? (
-                    <Col>The list is empty!</Col>
+                    <>
+                    
+                    <Col className="text-center mt-4"><Spinner/></Col>
+                    </>
                   ) : (
                     <Col md={8}>
                       <AnimeView animes={animes}/>
@@ -159,20 +169,23 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to="/login" replace />
                   ) : movies.length === 0 ? (
-                    <Col>The list is empty!</Col>
+                    <>
+                    
+                    <Col className="text-center mt-4"><Spinner/></Col>
+                    </>
                   ) : (
                     <>
                       <Row className="my-3">
-                        <form>
-                          <InputGroup>
-                            <Form.Control
+                        
+                          
+                            <input
                             id="search search-input input-search"
                               onChange={(e) => setSearch(e.target.value)}
                               placeholder="Search"
                               aria-label="Movie Search"
                             />
-                          </InputGroup>
-                        </form>
+                          
+                        
                       </Row>
                       <UncontrolledExample></UncontrolledExample>
                       <Header></Header>
