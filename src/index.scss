@@ -48,8 +48,8 @@ $btn-secondary: rgb(54, 57, 57);
             background-color: #238a47;
         }
         div#card-title{
-            background-color: #238a47 !important;
-            color: black !important;
+            background-color: #CDD3BA !important;
+            color: #238a47 !important;
         }
         div#card-subtitle.title-color.card-subtitle{
             color:#238a47 !important;
@@ -60,6 +60,10 @@ $btn-secondary: rgb(54, 57, 57);
         .input-group > .form-control#search {
             background-color: white !important;
             color: black !important;
+        }
+        div.bg-dark{
+            background-color:#CDD3BA !important;
+            // color: #238a47 !important;
         }
     }
   }

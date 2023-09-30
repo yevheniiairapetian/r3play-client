@@ -210,7 +210,9 @@ export const AnimeView = ({ animes }) => {
               </Col>
               ))}
             </Row>
-
+            <Link to={`/`}>
+            <Button className="bg-success p-2 w-100">Back to the list</Button>
+          </Link>
     </div>
 
 </>

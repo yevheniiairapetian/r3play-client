@@ -11,44 +11,22 @@ import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from "../profile-view/profile-view";
 import { Row, Col, InputGroup, Form } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {UncontrolledExample} from '../Carousel/carousel';
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [theme, setTheme] = useState(
-		localStorage.getItem('theme') || 'light'
-	  );
-    const toggleTheme = () => {
-      if (theme === 'light') {
-        setTheme('dark');
-        localStorage.setItem('dark', 'dark');
-      } else {
-        setTheme('light');
-        localStorage.setItem('white', 'white');
-      }
-      };
-  
-    
-  
   const [search, setSearch] = useState("");
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [tvseries, setTVSeries] = useState([]);
   const [animes, setAnimes] = useState([]);
-	
-  // useEffect(() => {
-	// 	document.body.className = theme;
-	// 	// document.querySelectorAll('body *').className = theme;
-	//   }, [theme]);
+
+
 
   useEffect(() => {
     if (!token) return;
-
-    document.body.className = theme;
 
     fetch('https://r3play-934f9ea5664d.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
@@ -75,31 +53,18 @@ export const MainView = () => {
             })
 
       })
-  }, [token] , [theme]);
-
+  }, [token]);
 
   return (
-    
-    <div className="">
+    <>
       <BrowserRouter>
         <NavigationBar
           onLoggedOut={() => {
             setUser(null);
             setToken(null);
             localStorage.clear();
-            
-          }}
-          toggleTheme={()=>{
-            if (theme === 'light') {
-        setTheme('dark');
-        localStorage.setItem('dark', 'dark');
-      } else {
-        setTheme('light');
-        localStorage.setItem('white', 'white');
-      }
           }}
         />
-        
         <Row className="justify-content-center">
           <Routes>
             <Route
@@ -124,7 +89,7 @@ export const MainView = () => {
                     <Navigate to="/" />
                   ) : (
                     <Col md={8} lg={6} sm={12} >
-                      <LoginView onLoggedIn={(user, token, theme) => { setUser(user); setToken(token); setTheme(theme) }} />
+                      <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
                     </Col>
                   )}
                 </>
@@ -140,7 +105,7 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <Col md={8}>
-                      <MovieView className={`${theme}`} movies={movies}/>
+                      <MovieView movies={movies}/>
                     
                     </Col>
                   )}
@@ -190,9 +155,10 @@ export const MainView = () => {
                   ) : (
                     <>
                       <Row className="my-3">
-                        <form >
+                        <form>
                           <InputGroup>
-                            <Form.Control id="search"
+                            <Form.Control
+                            id="search search-input input-search"
                               onChange={(e) => setSearch(e.target.value)}
                               placeholder="Movie Search"
                               aria-label="Movie Search"
@@ -211,7 +177,6 @@ export const MainView = () => {
                       ).map((movie) => (
                         <Col className="mb-4" key={movie._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <MovieCard
-                          className={`${theme}`} 
                             movie={movie}
                             user={user}
                             token={token}
@@ -228,7 +193,6 @@ export const MainView = () => {
                       ).map((tvseries) => (
                         <Col className="mb-4" key={tvseries._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <TVseriesCard
-                          className={`${theme}`} 
                             tvseries={tvseries}
                             user={user}
                             token={token}
@@ -245,7 +209,6 @@ export const MainView = () => {
                       ).map((animes) => (
                         <Col className="mb-4" key={animes._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <AnimeCard
-                          className={`${theme}`} 
                             animes={animes}
                             user={user}
                             token={token}
@@ -258,21 +221,7 @@ export const MainView = () => {
                 </>
               }
             />
-            {/* <Route
-              path='/toggle'
-              element={
-                <>
-                  
-                  
-                    <button className="text-light bg-dark nav-link-hover" style={{outline: "none", border: "none"}} onClick={toggleTheme}> */}
-                    {/* {theme==='light'? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{"--fa-animation-iteration-count": "2"}}/>) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{"--fa-animation-iteration-count": "2"}}/>)} */}
-                    {/* </button>
-                 
-                </>
-              }
-            /> */}
-
-<Route
+            <Route
               path='/profile'
               element={
                 <>
@@ -300,7 +249,7 @@ export const MainView = () => {
         
       </BrowserRouter>
 
-    </div>
+    </>
 
   )
 
