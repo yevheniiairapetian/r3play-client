@@ -11,13 +11,25 @@ import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from "../profile-view/profile-view";
 import { Row, Col, InputGroup, Form } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {UncontrolledExample} from '../Carousel/carousel';
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  
-  
+  const [theme, setTheme] = useState(
+		localStorage.getItem('theme') || 'light'
+	  );
+    const toggleTheme = () => {
+      if (theme === 'light') {
+        setTheme('dark');
+        localStorage.setItem('dark', 'dark');
+      } else {
+        setTheme('light');
+        localStorage.setItem('white', 'white');
+      }
+      };
   
     
   
@@ -27,15 +39,16 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [tvseries, setTVSeries] = useState([]);
   const [animes, setAnimes] = useState([]);
-  const [theme, setTheme] = useState('light');
 	
-  useEffect(() => {
-		document.body.className = theme;
-		// document.querySelectorAll('body *').className = theme;
-	  }, [theme]);
+  // useEffect(() => {
+	// 	document.body.className = theme;
+	// 	// document.querySelectorAll('body *').className = theme;
+	//   }, [theme]);
 
   useEffect(() => {
     if (!token) return;
+
+    document.body.className = theme;
 
     fetch('https://r3play-934f9ea5664d.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
@@ -62,7 +75,7 @@ export const MainView = () => {
             })
 
       })
-  }, [token]);
+  }, [token] , [theme]);
 
 
   return (
@@ -74,6 +87,16 @@ export const MainView = () => {
             setUser(null);
             setToken(null);
             localStorage.clear();
+            
+          }}
+          toggleTheme={()=>{
+            if (theme === 'light') {
+        setTheme('dark');
+        localStorage.setItem('dark', 'dark');
+      } else {
+        setTheme('light');
+        localStorage.setItem('white', 'white');
+      }
           }}
         />
         
@@ -101,7 +124,7 @@ export const MainView = () => {
                     <Navigate to="/" />
                   ) : (
                     <Col md={8} lg={6} sm={12} >
-                      <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
+                      <LoginView onLoggedIn={(user, token, theme) => { setUser(user); setToken(token); setTheme(theme) }} />
                     </Col>
                   )}
                 </>
@@ -235,7 +258,21 @@ export const MainView = () => {
                 </>
               }
             />
-            <Route
+            {/* <Route
+              path='/toggle'
+              element={
+                <>
+                  
+                  
+                    <button className="text-light bg-dark nav-link-hover" style={{outline: "none", border: "none"}} onClick={toggleTheme}> */}
+                    {/* {theme==='light'? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{"--fa-animation-iteration-count": "2"}}/>) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{"--fa-animation-iteration-count": "2"}}/>)} */}
+                    {/* </button>
+                 
+                </>
+              }
+            /> */}
+
+<Route
               path='/profile'
               element={
                 <>
