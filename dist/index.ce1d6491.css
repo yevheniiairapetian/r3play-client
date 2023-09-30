@@ -1,30 +1,30 @@
-.card-bg-color {
+.dark {
+  color: #fff;
+  background-color: #333;
+}
+
+.dark .card-bg-color {
   background-color: #000;
 }
 
-.title-color {
+.dark .title-color {
   color: red;
 }
 
-.tvser-li-hover:hover {
+.dark .tvser-li-hover:hover {
   background-color: #19854e;
   list-style-position: inside;
   transition: background-color .5s ease-in-out;
   transform: translateX(10px);
 }
 
-.bg-carousel {
+.dark .bg-carousel {
   opacity: .8;
   background-color: #d9d9d9;
 }
 
-.nav-link-hover:hover {
+.dark .nav-link-hover:hover {
   color: green;
-}
-
-.dark {
-  color: #fff;
-  background-color: #333;
 }
 
 .light {
@@ -43,8 +43,8 @@
 }
 
 .light .card > div div#card-title, .light #card div#card-title {
-  color: #000 !important;
-  background-color: #238a47 !important;
+  color: #238a47 !important;
+  background-color: #cdd3ba !important;
 }
 
 .light .card > div div#card-subtitle.title-color.card-subtitle, .light #card div#card-subtitle.title-color.card-subtitle {
@@ -58,6 +58,10 @@
 .light .card > div .input-group > .form-control#search, .light #card .input-group > .form-control#search {
   color: #000 !important;
   background-color: #fff !important;
+}
+
+.light .card > div div.bg-dark, .light #card div.bg-dark {
+  background-color: #cdd3ba !important;
 }
 
 @media screen and (width <= 770px) {

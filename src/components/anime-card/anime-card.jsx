@@ -86,7 +86,7 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
              
             
           ) : (
-            <FontAwesomeIcon icon={faHeart} size="xl" style={{color:"#ffffff", }} onClick={addFavoriteAnime} />
+            <FontAwesomeIcon icon={faHeart} size="xl" style={{color:"#0cc4e9", }} onClick={addFavoriteAnime} />
               
           )}
           <Link to={`/animes/${animes._id}`}>

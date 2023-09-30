@@ -192,7 +192,7 @@ export const TVseriesView = ({ tvseries }) => {
 
             <Alert
          
-         className="bg-warning mb-3 pt-3 text-center">Release in the same year</Alert>
+         className="bg-warning mb-3 pt-3 text-center">Released in the same year</Alert>
       
             <Row className=''>
               {sameDate(tvser.ReleaseDate).map((tvser) => (
@@ -210,7 +210,9 @@ export const TVseriesView = ({ tvseries }) => {
               </Col>
               ))}
             </Row>
-
+            <Link to={`/`}>
+            <Button className="bg-success p-2 w-100">Back to the list</Button>
+          </Link>
     </div>
 
 </>

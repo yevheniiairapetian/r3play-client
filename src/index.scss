@@ -7,33 +7,34 @@ $text-primary: whitesmoke;
 $text-secondary: #eeeeee;
 $btn-secondary: rgb(54, 57, 57);
 
-.card-bg-color {
-    background-color: black;
-}
 
-.title-color {
-    color: red;
-}
-
-.tvser-li-hover:hover{
-    list-style-position: inside;
-    transform: translateX(10px);
-    background-color: #19854e;
-    transition: background-color 0.5s ease-in-out;
-}
-
-.bg-carousel{
-    background-color:#d9d9d9;
-    opacity:0.8;
-}
-
-.nav-link-hover:hover{
-    color:green;
-}
 
 .dark {
     background-color: #333;
     color: #fff;
+    & .card-bg-color {
+        background-color: black;
+    }
+    
+    .title-color {
+        color: red;
+    }
+    
+    .tvser-li-hover:hover{
+        list-style-position: inside;
+        transform: translateX(10px);
+        background-color: #19854e;
+        transition: background-color 0.5s ease-in-out;
+    }
+    
+    .bg-carousel{
+        background-color:#d9d9d9;
+        opacity:0.8;
+    }
+    
+    .nav-link-hover:hover{
+        color:green;
+    }
     
   }
   .light {
@@ -47,8 +48,8 @@ $btn-secondary: rgb(54, 57, 57);
             background-color: #238a47;
         }
         div#card-title{
-            background-color: #238a47 !important;
-            color: black !important;
+            background-color: #CDD3BA !important;
+            color: #238a47 !important;
         }
         div#card-subtitle.title-color.card-subtitle{
             color:#238a47 !important;
@@ -59,6 +60,10 @@ $btn-secondary: rgb(54, 57, 57);
         .input-group > .form-control#search {
             background-color: white !important;
             color: black !important;
+        }
+        div.bg-dark{
+            background-color:#CDD3BA !important;
+            // color: #238a47 !important;
         }
     }
   }

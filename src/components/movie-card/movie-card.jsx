@@ -87,7 +87,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
              
             
           ) : (
-            <FontAwesomeIcon icon={faHeart} size="xl" style={{color:"#ffffff", }} onClick={addFavoriteMovie} />
+            <FontAwesomeIcon icon={faHeart} size="xl" style={{color:"#0cc4e9", }} onClick={addFavoriteMovie} />
               
           )}
           <Link to={`/movies/${movie._id}`}>
