@@ -160,7 +160,7 @@ export const MainView = () => {
                             <Form.Control
                             id="search search-input input-search"
                               onChange={(e) => setSearch(e.target.value)}
-                              placeholder="Movie Search"
+                              placeholder="Search"
                               aria-label="Movie Search"
                             />
                           </InputGroup>
