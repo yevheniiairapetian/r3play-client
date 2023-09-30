@@ -25,45 +25,45 @@ export const TVseriesView = ({ tvseries }) => {
         <Card.Img className='h-100 card text-bg-dark mb-3' variant={top} src={tvser.ImagePath} />
 
         <Card.Body className="card-bg-color">
-          <Card.Title className="text-white bg-success text-center pb-3 pt-3">{tvser.Title}</Card.Title>
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.ReleaseDate ? tvser.ReleaseDate.slice(0, 4) : "No data yet"}</Card.Title>
-          <Card.Subtitle className=" mb-2 text-info pt-3">Episodes: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3"><ol>{tvser.Season.length > 0 ? tvser.Season.map(s => <li className="p-2 tvser-li-hover">{s}</li>) : "No data yet"} </ol></Card.Title>
-          <Card.Subtitle className=" mb-2 text-info pt-3">Description: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Description}</Card.Title>
+          <Card.Title id="card-title" className="text-white bg-success text-center pb-3 pt-3">{tvser.Title}</Card.Title>
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.ReleaseDate ? tvser.ReleaseDate.slice(0, 4) : "No data yet"}</Card.Title>
+          <Card.Subtitle className=" mb-2 text-success pt-3">Episodes: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3"><ol>{tvser.Season.length > 0 ? tvser.Season.map(s => <li className="p-2 tvser-li-hover">{s}</li>) : "No data yet"} </ol></Card.Title>
+          <Card.Subtitle className=" mb-2 text-success pt-3">Description: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Description}</Card.Title>
 
 
-          <Card.Subtitle className="title-color mb-2 text-info pt-3"> Duration: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Duration ? tvser.Duration : "No data yet"}</Card.Title>
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3"> Duration: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Duration ? tvser.Duration : "No data yet"}</Card.Title>
 
 
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Genre.Name}</Card.Title><br />
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Genre.Description}</Card.Title>
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Genre.Name}</Card.Title><br />
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Genre.Description}</Card.Title>
 
 
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">Director: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Director.Name}</Card.Title><br />
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">Biography: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Director.Bio}</Card.Title><br />
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">{tvser.Director.Name}'s Birth year: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Director.Birth ? tvser.Director.Birth : "No data"}</Card.Title><br />
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">{tvser.Director.Name}'s Death year: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Director.Death ? tvser.Director.Death : "No data"}</Card.Title><br />
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Director: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Director.Name}</Card.Title><br />
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Biography: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Director.Bio}</Card.Title><br />
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">{tvser.Director.Name}'s Birth year: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Director.Birth ? tvser.Director.Birth : "No data"}</Card.Title><br />
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">{tvser.Director.Name}'s Death year: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Director.Death ? tvser.Director.Death : "No data"}</Card.Title><br />
 
 
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">Actors: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Actors.length > 0 ? tvser.Actors.map(a => <>{a}<br /></>) : "No data yet"}</Card.Title>
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Actors: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Actors.length > 0 ? tvser.Actors.map(a => <>{a}<br /></>) : "No data yet"}</Card.Title>
 
 
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">IMDb Rating: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.IMDbRating ? tvser.IMDbRating : "No data yet"}</Card.Title>
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">IMDb Rating: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.IMDbRating ? tvser.IMDbRating : "No data yet"}</Card.Title>
 
 
-          <Card.Subtitle className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvser.Rating ? tvser.Rating : "No data yet"}</Card.Title>
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
+          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Rating ? tvser.Rating : "No data yet"}</Card.Title>
           <Alert
          
          className="bg-warning mb-3 pt-3 text-center">Watch the official trailer</Alert>
@@ -95,7 +95,7 @@ export const TVseriesView = ({ tvseries }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
-        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/tvseries/${tvser._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
@@ -116,7 +116,7 @@ export const TVseriesView = ({ tvseries }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
-        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/tvseries/${tvser._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
@@ -137,7 +137,7 @@ export const TVseriesView = ({ tvseries }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
-        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/tvseries/${tvser._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
@@ -158,7 +158,7 @@ export const TVseriesView = ({ tvseries }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
-        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/tvseries/${tvser._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
@@ -179,7 +179,7 @@ export const TVseriesView = ({ tvseries }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
-        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/tvseries/${tvser._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
@@ -200,7 +200,7 @@ export const TVseriesView = ({ tvseries }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
-        <Card.Title className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/tvseries/${tvser._id}`}>
             <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>

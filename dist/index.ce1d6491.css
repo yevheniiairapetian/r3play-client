@@ -22,6 +22,44 @@
   color: green;
 }
 
+.dark {
+  color: #fff;
+  background-color: #333;
+}
+
+.light {
+  color: #333;
+  background-color: #fff;
+}
+
+.light .card > div, .light #card {
+  color: #000;
+  background-color: #cdd3ba;
+}
+
+.light .card > div .btn-outline-light, .light #card .btn-outline-light {
+  color: #fff;
+  background-color: #238a47;
+}
+
+.light .card > div div#card-title, .light #card div#card-title {
+  color: #000 !important;
+  background-color: #238a47 !important;
+}
+
+.light .card > div div#card-subtitle.title-color.card-subtitle, .light #card div#card-subtitle.title-color.card-subtitle {
+  color: #238a47 !important;
+}
+
+.light .card > div #navigation, .light .card > div #navigation.bg-dark.navbar-navbar-light, .light #card #navigation, .light #card #navigation.bg-dark.navbar-navbar-light {
+  background-color: #fff !important;
+}
+
+.light .card > div .input-group > .form-control#search, .light #card .input-group > .form-control#search {
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
 @media screen and (width <= 770px) {
   .carousel-caption-header {
     margin: 0;
