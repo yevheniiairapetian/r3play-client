@@ -60,10 +60,6 @@
   color: #238a47 !important;
 }
 
-.light .card > div #navigation, .light .card > div #navigation.bg-dark.navbar-navbar-light, .light #card #navigation, .light #card #navigation.bg-dark.navbar-navbar-light {
-  background-color: #fff !important;
-}
-
 .light .card > div div.bg-dark, .light #card div.bg-dark {
   color: #238a47 !important;
   background-color: #cdd3ba !important;
@@ -71,11 +67,6 @@
 
 .light .card > div #button-tooltip, .light #card #button-tooltip {
   color: #fff;
-}
-
-.light .card > div input[type="search"]#input-search, .light #card input[type="search"]#input-search {
-  color: #000 !important;
-  background-color: #fff !important;
 }
 
 @media screen and (width <= 770px) {

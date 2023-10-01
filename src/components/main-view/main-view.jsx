@@ -67,6 +67,7 @@ export const MainView = () => {
             setToken(null);
             localStorage.clear();
           }}
+          
         />
         <Row className="justify-content-center">
           <Routes>
@@ -179,7 +180,7 @@ export const MainView = () => {
                         
                           
                             <input
-                            id="search search-input input-search"
+                              id="search search-input input-search"
                               onChange={(e) => setSearch(e.target.value)}
                               placeholder="Search"
                               aria-label="Movie Search"
