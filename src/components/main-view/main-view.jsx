@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {Spinner} from '../spinner/spinner';
+import {Spin} from '../spinner/spinner';
 import {Footer} from '../footer/footer';
 import { MovieCard } from '../movie-card/movie-card';
 import {Header} from '../header/header';
@@ -109,7 +109,7 @@ export const MainView = () => {
                   ) : movies.length === 0 ? (
                     <>
                     
-                    <Col className="text-center mt-4"><Spinner/></Col>
+                    <Col className="text-center mt-4"><Spin/></Col>
                     </>
                   ) : (
                     <Col md={8}>
@@ -130,7 +130,7 @@ export const MainView = () => {
                   ) : tvseries.length === 0 ? (
                     <>
                   
-                    <Col className="text-center mt-4"><Spinner/></Col>
+                    <Col className="text-center mt-4"><Spin/></Col>
                     </>
                   ) : (
                     <Col md={8}>
@@ -150,7 +150,7 @@ export const MainView = () => {
                   ) : animes.length === 0 ? (
                     <>
                     
-                    <Col className="text-center mt-4"><Spinner/></Col>
+                    <Col className="text-center mt-4"><Spin/></Col>
                     </>
                   ) : (
                     <Col md={8}>
@@ -171,7 +171,7 @@ export const MainView = () => {
                   ) : movies.length === 0 ? (
                     <>
                     
-                    <Col className="text-center mt-4"><Spinner/></Col>
+                    <Col className="text-center mt-4"><Spin/></Col>
                     </>
                   ) : (
                     <>
