@@ -180,11 +180,11 @@ export const MainView = () => {
                       <Row className="my-3">
                         
                           
-                            <input
+                            <input style={{color: 'black', fontStyle: 'italic', borderRadius: '7px'}}
                               id="search search-input input-search"
                               onChange={(e) => setSearch(e.target.value)}
-                              placeholder="Search"
-                              aria-label="Movie Search"
+                              placeholder="Search (e.g. Harry Potter and the Chamber of Secrets)"
+                              aria-label="Search"
                             />
                           
                         
