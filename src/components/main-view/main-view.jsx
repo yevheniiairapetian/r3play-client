@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ScrollToTop } from '../ScrollToTop/scroll-to-top';
 import {Spin} from '../spinner/spinner';
-import {Footer} from '../footer/footer';
 import { MovieCard } from '../movie-card/movie-card';
 import {Header} from '../header/header';
 import { MovieView } from '../movie-view/movie-view';
