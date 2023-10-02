@@ -73,10 +73,13 @@ $btn-secondary: rgb(54, 57, 57);
   }
 
 @media screen and (max-width:770px){
-    .carousel-caption-header{
-        margin:0;
-        padding:0;
+    .carousel-caption-header.pb-3{
+        margin:0px;
         font-size: 14px;
+        padding:0;
+        padding-top: 0.3rem !important;
+        padding-bottom: 0.3rem !important;
+        // font-size: 14px;
         display:none;
     }
     .carousel-caption-paragraph{
@@ -84,6 +87,35 @@ $btn-secondary: rgb(54, 57, 57);
         padding:0;
         font-size: 12px;
         display:none;
+    }
+    .carousel-button{
+        width: 100px !important;
+        height: 30px !important;
+        font-size: 10px !important;
+    }
+}
+
+@media screen and (max-width:400px){
+    .carousel-caption-header.pb-3{
+        margin:-10px;
+        font-size: 10px;
+        padding:0;
+        padding-top: 0.3rem !important;
+        padding-bottom: 0.3rem !important;
+        // font-size: 14px;
+        display:none;
+    }
+    .carousel-caption-paragraph{
+        margin:0;
+        padding:0;
+        font-size: 8px;
+        display:none;
+    }
+    .carousel-button{
+        padding: 5px !important;
+        width: 90px !important;
+        height: 26px !important;
+        font-size: 8px !important;
     }
 }
 
