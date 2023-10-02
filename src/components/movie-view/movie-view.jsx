@@ -214,7 +214,7 @@ export const MovieView = ({ movies }) => {
 
           
       
-      <div>
+<div>
 
       </div>
       <div>
@@ -223,9 +223,9 @@ export const MovieView = ({ movies }) => {
       <div>
 
       </div>
-            <Link to={`/`}> 
-             <Button className="bg-success p-2 w-100">Back to the list</Button> 
-           </Link>
+            <Link to={`/`}>
+            <Button className="bg-success p-2 w-100">Back to the list</Button>
+          </Link>
     </div>
 
 
