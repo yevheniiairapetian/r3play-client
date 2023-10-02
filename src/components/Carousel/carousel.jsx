@@ -30,7 +30,7 @@ export const UncontrolledExample = () => {
         <Image className="w-100" src={"https://img.olhardigital.com.br/wp-content/uploads/2021/05/Loki-1.jpg"} text="An image showing Loki Season 2 poster" /> 
           <Carousel.Caption>
             <h3 className="bg-dark pt-3 pb-3 bg-carousel carousel-caption-header">Loki: Season 2 releases October 5, 2023</h3>
-            <Link to={`/movies/650e060abda39eddcd984e75`}>
+            <Link to={`/tvseries/650e060abda39eddcd984e75`}>
             <Button className='info-button p4-5 pr-4' variant='outline-light'>Check out more</Button>
           </Link>
             {/* <p className="bg-dark pt-3 pb-3 bg-carousel carousel-caption-paragraph">
@@ -42,7 +42,7 @@ export const UncontrolledExample = () => {
         <Image className="w-100" src={"https://www.rollingstone.com/wp-content/uploads/2021/05/FRIENDS-REUNION_Key-Art-Final_Vertical_PR1.jpg"} text="An image showing Friends Reunion photo" /> 
           <Carousel.Caption>
             <h3 className="bg-dark pt-3 pb-3 bg-carousel carousel-caption-header">Friends Reunion out 2021</h3>
-            <Link to={`/movies/126939ab39597d7c`}>
+            <Link to={`/tvseries/126939ab39597d7c`}>
             <Button className='info-button p4-5 pr-4' variant='outline-light'>Check out more</Button>
           </Link>
             {/* <p className="bg-dark pt-3 pb-3 bg-carousel carousel-caption-paragraph">
