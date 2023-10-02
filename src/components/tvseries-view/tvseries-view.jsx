@@ -18,6 +18,8 @@ export const TVseriesView = ({ tvseries }) => {
     tvseries.filter((tv) => tv.IMDbRating == TVIMDBRating && tv._id !== TVId);
     const sameDate = (Date) =>
     tvseries.filter((tv) => tv.ReleaseDate == Date && tv._id !== TVId);
+    const sameDuration = (Duration) =>
+    tvseries.filter((tv) => tv.Duration == Duration && tv._id !== TVId);
     const sameTVActors = (Actors) => tvseries.filter(tv => tv._id !== TVId && Actors.some(actor => tv.Actors.includes(actor)));
   return (
     <>
@@ -77,7 +79,7 @@ export const TVseriesView = ({ tvseries }) => {
           </div>
 
           <Link to={`/`}>
-            <Button className="bg-success p-2 w-100">Back to the list</Button>
+            <Button className="p-2 w-100" variant="secondary">Back to the list</Button>
           </Link>
         </Card.Body>
         <hr />
@@ -91,7 +93,7 @@ export const TVseriesView = ({ tvseries }) => {
       
       <Row className=''>
               {similarTV(tvser.Genre.Name).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
@@ -112,7 +114,7 @@ export const TVseriesView = ({ tvseries }) => {
       </div>
             <Row className=''>
               {similarTVDirector(tvser.Director.Name).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
@@ -133,7 +135,7 @@ export const TVseriesView = ({ tvseries }) => {
       
             <Row className=''>
               {similarTVRating(tvser.Rating).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
@@ -154,7 +156,7 @@ export const TVseriesView = ({ tvseries }) => {
       
             <Row className=''>
               {similarTVIMDBRating(tvser.IMDbRating).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
@@ -175,7 +177,7 @@ export const TVseriesView = ({ tvseries }) => {
       <div>
             <Row className=''>
               {sameTVActors(tvser.Actors).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
@@ -196,7 +198,28 @@ export const TVseriesView = ({ tvseries }) => {
       
             <Row className=''>
               {sameDate(tvser.ReleaseDate).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+                <Card className='h-100 card text-bg-primary mb-3' >
+        <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
+        <Card.Body>
+        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+              
+        <Link to={`/tvseries/${tvser._id}`}>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+          </Link>
+              </Card.Body>
+              </Card>
+              </Col>
+              ))}
+            </Row>
+
+            <Alert
+         
+         className="bg-warning mb-3 pt-3 text-center">Takes around the same time to watch</Alert>
+      
+            <Row className=''>
+              {sameDuration(tvser.Duration).map((tvser) => (
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
         <Card.Body>
@@ -211,7 +234,7 @@ export const TVseriesView = ({ tvseries }) => {
               ))}
             </Row>
             <Link to={`/`}>
-            <Button className="bg-success p-2 w-100">Back to the list</Button>
+            <Button className="p-2 w-100" variant="secondary">Back to the list</Button>
           </Link>
     </div>
 

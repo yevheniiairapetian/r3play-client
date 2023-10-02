@@ -18,6 +18,8 @@ export const MovieView = ({ movies }) => {
     movies.filter((m) => m.IMDbRating == movieIMDBRating && m._id !== movieId);
     const sameDate = (Date) =>
     movies.filter((m) => m.ReleaseDate == Date && m._id !== movieId);
+    const sameDuration = (Duration) =>
+    movies.filter((m) => m.Duration == Duration && m._id !== movieId);
     const sameActors = (Actors) => movies.filter(m => m._id !== movieId && Actors.some(actor => m.Actors.includes(actor)));
   
     
@@ -77,7 +79,7 @@ export const MovieView = ({ movies }) => {
           <br />
 
           <Link to={`/`}>
-            <Button className="bg-success p-2 w-100">Back to the list</Button>
+            <Button className="p-2 w-100" variant="secondary">Back to the list</Button>
           </Link>
         </Card.Body>
         <hr />
@@ -91,7 +93,7 @@ export const MovieView = ({ movies }) => {
       </div>
       <Row className=''>
               {similarMovies(movie.Genre.Name).map((movie) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
@@ -112,7 +114,7 @@ export const MovieView = ({ movies }) => {
       </div>
             <Row className=''>
               {similarDirector(movie.Director.Name).map((movie) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
@@ -133,7 +135,7 @@ export const MovieView = ({ movies }) => {
       </div>
             <Row className=''>
               {similarRating(movie.Rating).map((movie) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
@@ -154,7 +156,7 @@ export const MovieView = ({ movies }) => {
       
             <Row className=''>
               {similarIMDBRating(movie.IMDbRating).map((movie) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
@@ -176,7 +178,7 @@ export const MovieView = ({ movies }) => {
       <div>
             <Row className=''>
               {sameActors(movie.Actors).map((movie) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
@@ -197,7 +199,28 @@ export const MovieView = ({ movies }) => {
       </div>
             <Row className=''>
               {sameDate(movie.ReleaseDate).map((movie) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={10}>
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+                <Card className='h-100 card text-bg-primary mb-3' >
+        <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
+        <Card.Body>
+        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+              
+        <Link to={`/movies/${movie._id}`}>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+          </Link>
+              </Card.Body>
+              </Card>
+              </Col>
+              ))}
+            </Row>
+
+            <Alert
+         
+         className="bg-warning mb-3 pt-3 text-center">Takes around the same time to watch</Alert>
+      
+            <Row className=''>
+              {sameDuration(movie.Duration).map((movie) => (
+                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
@@ -224,7 +247,7 @@ export const MovieView = ({ movies }) => {
 
       </div>
             <Link to={`/`}>
-            <Button className="bg-success p-2 w-100">Back to the list</Button>
+            <Button className="p-2 w-100" variant="secondary">Back to the list</Button>
           </Link>
     </div>
 
