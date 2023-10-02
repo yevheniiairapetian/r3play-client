@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { ScrollToTop } from '../ScrollToTop/scroll-to-top';
 import {Spin} from '../spinner/spinner';
 import { MovieCard } from '../movie-card/movie-card';
+import { Fragment } from 'react';
+import {ScrollButton} from '../scroll-button/ScrollButton';
 import {Header} from '../header/header';
 import { MovieView } from '../movie-view/movie-view';
 import { TVseriesCard } from '../tvseries-card/tvseries-card';
@@ -61,6 +63,7 @@ export const MainView = () => {
   return (
     <>
       <BrowserRouter>
+      <ScrollButton />
       <ScrollToTop/>
         <NavigationBar
           onLoggedOut={() => {
