@@ -2,6 +2,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Card, Col, Row, Card } from "react-bootstrap";
 import ReactPlayer from "react-player";
+import { Accordion } from '../accordion/accordion';
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 
@@ -69,6 +70,9 @@ export const MovieView = ({ movies }) => {
 
           <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
           <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Rating ? movie.Rating : "No data yet"}</Card.Title>
+          
+          
+          
           <Alert
          
          className="bg-warning mb-3 pt-3 text-center">Watch the official trailer</Alert>
