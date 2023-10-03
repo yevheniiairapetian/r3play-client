@@ -41,6 +41,9 @@ $btn-secondary: rgb(54, 57, 57);
         background-color: black !important;
         color:white !important;
     }
+    // .navbar-toggler-icon {
+    //     background-color: white !important;
+    //   }
     
   }
   .light {
@@ -68,9 +71,10 @@ $btn-secondary: rgb(54, 57, 57);
         #button-tooltip{
             color: white;
         }
-        
     }
   }
+
+  
 
 @media screen and (max-width:770px){
     .carousel-caption-header.pb-3{

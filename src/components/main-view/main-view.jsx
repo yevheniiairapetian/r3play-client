@@ -66,6 +66,7 @@ export const MainView = () => {
       <ScrollButton />
       <ScrollToTop/>
         <NavigationBar
+        user={user}
           onLoggedOut={() => {
             setUser(null);
             setToken(null);

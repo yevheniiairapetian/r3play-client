@@ -14,6 +14,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.1",
     "mdb-react-ui-kit": "^6.3.0",
+    "node-localstorage": "^3.0.5",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
     "prop-types": "^15.8.1",
@@ -23,11 +24,15 @@
     "react-icons": "^4.11.0",
     "react-player": "^2.13.0",
     "react-router-dom": "^6.16.0",
-    "styled-components": "^6.0.8"
+    "styled-components": "^6.0.8",
+    "use-local-storage": "^3.0.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.3",
+    "events": "^3.3.0",
     "parcel": "^2.9.3",
-    "process": "^0.11.10"
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "util": "^0.12.5"
   }
 }
