@@ -2,7 +2,6 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Card, Col, Row, Card } from "react-bootstrap";
 import ReactPlayer from "react-player";
-import { Accordion } from '../accordion/accordion';
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 
