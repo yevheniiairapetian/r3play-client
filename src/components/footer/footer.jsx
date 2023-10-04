@@ -24,7 +24,7 @@ export const Footer = () => {
       </MDBContainer>
 
       <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'green', width: '100%' }}>
-<em>Signup for free of login</em>
+<em>Signup for free or login</em>
         <br /><button type='button' className="bg-light mt-2 mb-2 pl-4 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none', marginRight: '10px' }}>
           <Nav.Link className="text-dark" as={Link} to='/login'>
             Login
