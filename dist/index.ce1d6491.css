@@ -69,6 +69,22 @@
   color: #fff;
 }
 
+.light .card > div .accordion-item, .light #card .accordion-item {
+  background-color: #cdd3ba !important;
+}
+
+.light .card > div .accordion-body ol, .light #card .accordion-body ol {
+  color: #000;
+  background-color: #cdd3ba !important;
+}
+
+.light .card > div .tvser-li-hover:hover, .light #card .tvser-li-hover:hover {
+  background-color: #19854e;
+  list-style-position: inside;
+  transition: background-color .5s ease-in-out;
+  transform: translateX(10px);
+}
+
 @media screen and (width <= 770px) {
   .carousel-caption-header.pb-3 {
     margin: 0;

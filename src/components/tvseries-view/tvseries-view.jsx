@@ -1,6 +1,7 @@
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Card, Row, Col } from "react-bootstrap";
+import Accordion from 'react-bootstrap/Accordion';
 import ReactPlayer from "react-player";
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
@@ -12,15 +13,15 @@ export const TVseriesView = ({ tvseries }) => {
     tvseries.filter((tv) => tv.Genre.Name == genreName && tv._id !== TVId);
   const similarTVDirector = (directorName) =>
     tvseries.filter((tv) => tv.Director.Name == directorName && tv._id !== TVId);
-    const similarTVRating = (TVRating) =>
+  const similarTVRating = (TVRating) =>
     tvseries.filter((tv) => tv.Rating == TVRating && tv._id !== TVId);
-    const similarTVIMDBRating = (TVIMDBRating) =>
+  const similarTVIMDBRating = (TVIMDBRating) =>
     tvseries.filter((tv) => tv.IMDbRating == TVIMDBRating && tv._id !== TVId);
-    const sameDate = (Date) =>
+  const sameDate = (Date) =>
     tvseries.filter((tv) => tv.ReleaseDate == Date && tv._id !== TVId);
-    const sameDuration = (Duration) =>
+  const sameDuration = (Duration) =>
     tvseries.filter((tv) => tv.Duration == Duration && tv._id !== TVId);
-    const sameTVActors = (Actors) => tvseries.filter(tv => tv._id !== TVId && Actors.some(actor => tv.Actors.includes(actor)));
+  const sameTVActors = (Actors) => tvseries.filter(tv => tv._id !== TVId && Actors.some(actor => tv.Actors.includes(actor)));
   return (
     <>
       <Card className="bg-primary">
@@ -30,8 +31,16 @@ export const TVseriesView = ({ tvseries }) => {
           <Card.Title id="card-title" className="text-white bg-success text-center pb-3 pt-3">{tvser.Title}</Card.Title>
           <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
           <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.ReleaseDate ? tvser.ReleaseDate.slice(0, 4) : "No data yet"}</Card.Title>
-          <Card.Subtitle className=" mb-2 text-success pt-3">Episodes: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3"><ol>{tvser.Season.length > 0 ? tvser.Season.map(s => <li className="p-2 tvser-li-hover">{s}</li>) : "No data yet"} </ol></Card.Title>
+
+          <Accordion defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header className="text-success">Episodes:</Accordion.Header>
+              <Accordion.Body>
+                <Card.Title id="card-info" className="" secondary-color="text-secondary pb-3"><ol>{tvser.Season.length > 0 ? tvser.Season.map(s => <li className="p-2 tvser-li-hover">{s}</li>) : "No data yet"} </ol></Card.Title>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+
           <Card.Subtitle className=" mb-2 text-success pt-3">Description: </Card.Subtitle>
           <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Description}</Card.Title>
 
@@ -67,8 +76,8 @@ export const TVseriesView = ({ tvseries }) => {
           <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
           <Card.Title id="card-info" secondary-color="text-secondary pb-3">{tvser.Rating ? tvser.Rating : "No data yet"}</Card.Title>
           <Alert
-         
-         className="bg-warning mb-3 pt-3 text-center">Watch the official trailer</Alert>
+
+            className="bg-warning mb-3 pt-3 text-center">Watch the official trailer</Alert>
           <ReactPlayer className="m-auto w-auto" controls
 
             url={tvser.Trailer}>
@@ -88,156 +97,156 @@ export const TVseriesView = ({ tvseries }) => {
 
 
       <Alert
-         
-         className="bg-warning mb-3 pt-3 text-center">You may also like</Alert>
-      
+
+        className="bg-warning mb-3 pt-3 text-center">You may also like</Alert>
+
       <Row className=''>
-              {similarTV(tvser.Genre.Name).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-                <Card className='h-100 card text-bg-primary mb-3' >
-        <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
-        <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
-              
-        <Link to={`/tvseries/${tvser._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
-          </Link>
-              </Card.Body>
-              </Card>
-              </Col>
-              ))}
-            </Row>
-            <div>
-      <Alert
-         
-         className="bg-warning mb-3 pt-3 text-center">This director also made</Alert>
-      </div>
-            <Row className=''>
-              {similarTVDirector(tvser.Director.Name).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-                <Card className='h-100 card text-bg-primary mb-3' >
-        <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
-        <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
-              
-        <Link to={`/tvseries/${tvser._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
-          </Link>
-              </Card.Body>
-              </Card>
-              </Col>
-              ))}
-            </Row>
+        {similarTV(tvser.Genre.Name).map((tvser) => (
+          <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+            <Card className='h-100 card text-bg-primary mb-3' >
+              <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
+              <Card.Body>
+                <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
 
-            <Alert
-         
-         className="bg-warning mb-3 pt-3 text-center">Same Rotten Tomatoes Audience Rating also have</Alert>
-      
-            <Row className=''>
-              {similarTVRating(tvser.Rating).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-                <Card className='h-100 card text-bg-primary mb-3' >
-        <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
-        <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
-              
-        <Link to={`/tvseries/${tvser._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
-          </Link>
+                <Link to={`/tvseries/${tvser._id}`}>
+                  <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                </Link>
               </Card.Body>
-              </Card>
-              </Col>
-              ))}
-            </Row>
-
-            <Alert
-         
-         className="bg-warning mb-3 pt-3 text-center">Same IMDb Rating also have</Alert>
-      
-            <Row className=''>
-              {similarTVIMDBRating(tvser.IMDbRating).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-                <Card className='h-100 card text-bg-primary mb-3' >
-        <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
-        <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
-              
-        <Link to={`/tvseries/${tvser._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
-          </Link>
-              </Card.Body>
-              </Card>
-              </Col>
-              ))}
-            </Row>
-
-            <Alert
-         
-         className="bg-warning mb-3 pt-3 text-center">Actors from this tv series also play in</Alert>
+            </Card>
+          </Col>
+        ))}
+      </Row>
       <div>
-            <Row className=''>
-              {sameTVActors(tvser.Actors).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-                <Card className='h-100 card text-bg-primary mb-3' >
-        <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
-        <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
-              
-        <Link to={`/tvseries/${tvser._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
-          </Link>
-              </Card.Body>
-              </Card>
-              </Col>
-              ))}
-            </Row>
+        <Alert
 
-            <Alert
-         
-         className="bg-warning mb-3 pt-3 text-center">Released in the same year</Alert>
-      
-            <Row className=''>
-              {sameDate(tvser.ReleaseDate).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-                <Card className='h-100 card text-bg-primary mb-3' >
-        <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
-        <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
-              
-        <Link to={`/tvseries/${tvser._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
-          </Link>
-              </Card.Body>
-              </Card>
-              </Col>
-              ))}
-            </Row>
+          className="bg-warning mb-3 pt-3 text-center">This director also made</Alert>
+      </div>
+      <Row className=''>
+        {similarTVDirector(tvser.Director.Name).map((tvser) => (
+          <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+            <Card className='h-100 card text-bg-primary mb-3' >
+              <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
+              <Card.Body>
+                <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
 
-            <Alert
-         
-         className="bg-warning mb-3 pt-3 text-center">Takes around the same time to watch</Alert>
-      
-            <Row className=''>
-              {sameDuration(tvser.Duration).map((tvser) => (
-                <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-                <Card className='h-100 card text-bg-primary mb-3' >
-        <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
-        <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"("+tvser.ReleaseDate.slice(0, 4)+")"}</Card.Title>
-              
-        <Link to={`/tvseries/${tvser._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
-          </Link>
+                <Link to={`/tvseries/${tvser._id}`}>
+                  <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                </Link>
               </Card.Body>
-              </Card>
-              </Col>
-              ))}
-            </Row>
-            <Link to={`/`}>
-            <Button className="p-2 w-100" variant="secondary">Back to the list</Button>
-          </Link>
-    </div>
+            </Card>
+          </Col>
+        ))}
+      </Row>
 
-</>
+      <Alert
+
+        className="bg-warning mb-3 pt-3 text-center">Same Rotten Tomatoes Audience Rating also have</Alert>
+
+      <Row className=''>
+        {similarTVRating(tvser.Rating).map((tvser) => (
+          <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+            <Card className='h-100 card text-bg-primary mb-3' >
+              <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
+              <Card.Body>
+                <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+
+                <Link to={`/tvseries/${tvser._id}`}>
+                  <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+
+      <Alert
+
+        className="bg-warning mb-3 pt-3 text-center">Same IMDb Rating also have</Alert>
+
+      <Row className=''>
+        {similarTVIMDBRating(tvser.IMDbRating).map((tvser) => (
+          <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+            <Card className='h-100 card text-bg-primary mb-3' >
+              <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
+              <Card.Body>
+                <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+
+                <Link to={`/tvseries/${tvser._id}`}>
+                  <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+
+      <Alert
+
+        className="bg-warning mb-3 pt-3 text-center">Actors from this tv series also play in</Alert>
+      <div>
+        <Row className=''>
+          {sameTVActors(tvser.Actors).map((tvser) => (
+            <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+              <Card className='h-100 card text-bg-primary mb-3' >
+                <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
+                <Card.Body>
+                  <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+
+                  <Link to={`/tvseries/${tvser._id}`}>
+                    <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+
+        <Alert
+
+          className="bg-warning mb-3 pt-3 text-center">Released in the same year</Alert>
+
+        <Row className=''>
+          {sameDate(tvser.ReleaseDate).map((tvser) => (
+            <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+              <Card className='h-100 card text-bg-primary mb-3' >
+                <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
+                <Card.Body>
+                  <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+
+                  <Link to={`/tvseries/${tvser._id}`}>
+                    <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+
+        <Alert
+
+          className="bg-warning mb-3 pt-3 text-center">Takes around the same time to watch</Alert>
+
+        <Row className=''>
+          {sameDuration(tvser.Duration).map((tvser) => (
+            <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+              <Card className='h-100 card text-bg-primary mb-3' >
+                <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
+                <Card.Body>
+                  <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+
+                  <Link to={`/tvseries/${tvser._id}`}>
+                    <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+        <Link to={`/`}>
+          <Button className="p-2 w-100" variant="secondary">Back to the list</Button>
+        </Link>
+      </div>
+
+    </>
   );
 };

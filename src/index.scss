@@ -11,6 +11,8 @@ $btn-secondary: rgb(54, 57, 57);
     padding-left: 6px;
 }
 
+
+
 .dark {
     background-color: #333;
     color: #fff;
@@ -41,9 +43,7 @@ $btn-secondary: rgb(54, 57, 57);
         background-color: black !important;
         color:white !important;
     }
-    // .navbar-toggler-icon {
-    //     background-color: white !important;
-    //   }
+    
     
   }
   .light {
@@ -70,6 +70,20 @@ $btn-secondary: rgb(54, 57, 57);
         }
         #button-tooltip{
             color: white;
+        }
+       
+        .accordion-item{
+            background-color: #cdd3ba !important;
+        }
+        .accordion-body ol{
+            background-color: #cdd3ba !important;
+            color: black;
+        }
+        .tvser-li-hover:hover{
+            list-style-position: inside;
+            transform: translateX(10px);
+            background-color: #19854e;
+            transition: background-color 0.5s ease-in-out;
         }
     }
   }
