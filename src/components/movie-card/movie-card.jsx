@@ -130,6 +130,7 @@ MovieCard.propTypes = {
     }),
     ImagePath: PropTypes.string,
     Featured: PropTypes.bool,
+    InterestingFacts: PropTypes.array,
     Actors: PropTypes.array,
     Rating: PropTypes.string,
     ReleaseDate: PropTypes.string,

@@ -2,6 +2,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Card, Col, Row, Card } from "react-bootstrap";
 import ReactPlayer from "react-player";
+import Accordion from 'react-bootstrap/Accordion';
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 
@@ -35,10 +36,6 @@ export const MovieView = ({ movies }) => {
           <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
           <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.ReleaseDate ? movie.ReleaseDate.slice(0, 4) : "No data yet"}</Card.Title>
 
-          <Card.Subtitle className="mb-2 text-success pt-3">Description: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Description}</Card.Title>
-
-
           <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3"> Duration: </Card.Subtitle>
           <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Duration ? movie.Duration : "No data yet"}</Card.Title>
 
@@ -70,7 +67,15 @@ export const MovieView = ({ movies }) => {
           <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
           <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Rating ? movie.Rating : "No data yet"}</Card.Title>
           
-          
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header className="text-success">Did you know? (Click to expand)</Accordion.Header>
+              <Accordion.Body>
+                <Card.Title id="card-info" className="" secondary-color="text-secondary pb-3"><ol>{movie.InterestingFacts.length > 0 ? movie.InterestingFacts.map(i => <li class="tvser-li-hover pt-3 pb-3">{i}<br /></li>) : "No data yet"} </ol></Card.Title>
+              
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
           
           <Alert
          
