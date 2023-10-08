@@ -40,7 +40,7 @@ Allows existing users to deregister
 The App is live [here](https://r3play.netlify.app/)
 
 ## Clone and Preview
-To clone the app use the following command: `console git clone git@github.com:yevheniiairapetian/r3play-client.git` Or download directly by clicking on <> Code button > Download ZIP. Navigate to the ```r3play-client``` folder in the terminal, install the required dependencies using the `npm install command`. Then run the app with the ```parcel src/index.html``` command and access it at ```localhost:1234``` in the browser.
+To clone the app use the following command: `console git clone git@github.com:yevheniiairapetian/r3play-client.git` Or download directly by clicking on <> Code button > Download ZIP. Navigate to the ```r3play-client``` folder with the ```cd r3play-client``` in the terminal, install the required dependencies using the `npm install command`. Then run the app with the ```parcel src/index.html``` command and access it at ```localhost:1234``` in the browser.
 
 ## Contact:
 Feel free to contact me via[ LinkedIn](https://www.linkedin.com/in/yevhenii-airapetian/) or  
