@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { AnimeCard } from '../anime-card/anime-card';
-import { Button, Col, Form, Row, Modal, Alert } from 'react-bootstrap';
+import { Button, Col, Form, Row, Modal, Alert, Accordion, Card } from 'react-bootstrap';
 
 
 export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) => {
@@ -16,13 +16,13 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 	const [showUpdateModal, setShowUpdateModal] = useState(false);
 	const [showUpdateFailedModal, setShowUpdateFailedModal] = useState(false);
 	const handleShowWentWrongModal = () => setShowWentWrongModal(true);
-    const handleCloseWentWrongModal = () => setShowWentWrongModal(false);
+	const handleCloseWentWrongModal = () => setShowWentWrongModal(false);
 
 
-	let resultMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id)); 
+	let resultMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
 	let resultTV = tvseries.filter((tvseries) => user.FavoriteMovies.includes(tvseries._id));
 	let resultAnime = animes.filter((animes) => user.FavoriteMovies.includes(animes._id));
-	
+
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
 	const handleShowUpdateModal = () => setShowUpdateModal(true);
@@ -42,7 +42,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 			data['Password'] = password
 			data['Email'] = email
 			data['Birthday'] = birthday
-			
+
 		}
 
 		fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}`, {
@@ -83,14 +83,14 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 	}
 
 	return (
-		
-<>
+
+		<>
 			<Row>
-				<Col>
+				<Col className="m-auto" md={4} xl={4} lg={4} sm={3} xs={3}>
 					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
-					<Alert
-         
-         className="bg-success text-light mb-3 pt-3 text-center">My Profile</Alert>
+						<Alert
+
+							className="bg-success text-light mb-3 pt-3 text-center">My Profile</Alert>
 						<Form.Group controlId="formUsername" className='form-group pb-4'>
 							<Form.Label>Username:</Form.Label>
 							<Form.Control
@@ -134,74 +134,86 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 							/>
 						</Form.Group>
 
+						<Col>
+							<Button className="bg-success w-100 mb-1" type="submit" onClick={handleSubmit}>Save changes</Button>
+						</Col>
+
+						<Col className="delete-button text-center">
+							<Button variant="link" className="text-danger mt-3 mb-3" onClick={handleShowModal}>
+								Delete my account
+							</Button>
+						</Col>
+
+
 					</Form>
 				</Col>
 			</Row>
 
-			<Row>
-				<Col>
-					<Button className="bg-success w-100 mb-1" type="submit" onClick={handleSubmit}>Save changes</Button>
-				</Col>
-			</Row>
 
-			<Row >
-				<Col className="delete-button text-center">
-					<Button variant="link" className="text-danger mt-3 mb-3" onClick={handleShowModal}>
-						Delete my account
-					</Button>
-				</Col>
-			</Row>
 
-			<Row>
+
+
+			{/* <Row>
 				<Col>
-				<Alert
-         
-         className="bg-info text-dark mb-3 mt-3 pt-3 text-center">My Favorites</Alert>
-				</Col>
-			</Row>
-			<Row >
-				{resultMovies.map((movie) => (
-					<>
-					<Col key={movie._id} xs={12} sm={6 }md={6} lg={6}>
-						<MovieCard
-							movie={movie}
-							user={user}
-							token={token}
-							setUser={setUser}
-						>
-						</MovieCard>
+					<Alert
+
+						className="w-100 bg-info text-dark mb-3 mt-3 pt-3 text-center">My Favorites</Alert>
+
+</Col>
+</Row> */}
+<Row>
+<Accordion defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites</Accordion.Header>
+              <Accordion.Body className="bg-success">
+                <Row id="card-info" secondary-color="text-secondary pb-3">{resultMovies.map((movie) => (
+						
+						<Col key={movie._id} md={4} xl={3} lg={3} sm={6} xs={12} >
+							<MovieCard 
+								movie={movie}
+								user={user}
+								token={token}
+								setUser={setUser}
+							>
+							</MovieCard>
 						</Col>
-						</>
+					
 				))}
-						 {resultTV.map((tvseries) => (
-						<>
-						<Col key={tvseries._id} md={6}>
-						<TVseriesCard
-							tvseries={tvseries}
-							user={user}
-							token={token}
-							setUser={setUser}
-						>
-						</TVseriesCard>
-					</Col>
-					</>
-						))}
-						{resultAnime.map((animes) => (
-						<>
-						<Col key={animes._id} md={6}>
-						<AnimeCard
-							animes={animes}
-							user={user}
-							token={token}
-							setUser={setUser}
-						>
-						</AnimeCard>
-					</Col>
-					</>
-						))} 
+				{resultTV.map((tvseries) => (
+					
+						<Col key={tvseries._id} md={4} xl={3} lg={3} sm={6} xs={12}>
+							<TVseriesCard 
+								tvseries={tvseries}
+								user={user}
+								token={token}
+								setUser={setUser}
+							>
+							</TVseriesCard>
+						</Col>
+					
+				))}
+				{resultAnime.map((animes) => (
+					
+						<Col key={animes._id} md={4} xl={3} lg={3} sm={6} xs={12}>
+							<AnimeCard 
+								animes={animes}
+								user={user}
+								token={token}
+								setUser={setUser}
+							>
+							</AnimeCard>
+						</Col>
+					
+				))}</Row>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+
+					
+
 				
-				 
-</Row>
+			</Row>
+
 			<Modal show={showModal} onHide={handleCloseModal}>
 				<Modal.Header closeButton>
 					<Modal.Title className="text-danger">Delete my account</Modal.Title>
@@ -227,21 +239,21 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 				<Modal.Header closeButton>
 					<Modal.Title className="text-danger">Update Account</Modal.Title>
 				</Modal.Header>
-				<Modal.Body className="text-warning">Update failed. This may be due to: <br/>1. The defined user and/or email already exist. <br/>2. You didn't enter your password, and/or email, and/or username.</Modal.Body>
+				<Modal.Body className="text-warning">Update failed. This may be due to: <br />1. The defined user and/or email already exist. <br />2. You didn't enter your password, and/or email, and/or username.</Modal.Body>
 				<Modal.Footer>
 					<Button className="bg-success" onClick={handleCloseUpdateFailedModal}>OK</Button>
 				</Modal.Footer>
 			</Modal>
 			<Modal show={showWentWrongModal} onHide={handleCloseWentWrongModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title className="text-danger">Information</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="text-warning">Something went wrong.</Modal.Body>
-                <Modal.Footer>
-                    <Button className="bg-success" onClick={handleCloseWentWrongModal}>OK</Button>
+				<Modal.Header closeButton>
+					<Modal.Title className="text-danger">Information</Modal.Title>
+				</Modal.Header>
+				<Modal.Body className="text-warning">Something went wrong.</Modal.Body>
+				<Modal.Footer>
+					<Button className="bg-success" onClick={handleCloseWentWrongModal}>OK</Button>
 
-                </Modal.Footer>
-            </Modal>
+				</Modal.Footer>
+			</Modal>
 		</>
-		)
+	)
 }

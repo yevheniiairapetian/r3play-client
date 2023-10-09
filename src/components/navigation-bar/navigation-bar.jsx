@@ -46,7 +46,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 									<FontAwesomeIcon size="lg" icon={faHouse} style={{ color: "#238A47", }} /> <span style={{ color: "#238A47", }} className="links">Home</span>
 								</Nav.Link>
 								<Nav.Link className="" as={Link} to='/profile'>
-									<FontAwesomeIcon size="lg" icon={faUser} style={{ color: "#238A47", }} />  <span style={{ color: "#238A47", }} className="links">My Profile</span>
+									<FontAwesomeIcon size="lg" icon={faUser} style={{ color: "#238A47", }} />  <span style={{ color: "#238A47", }} className="links">{user.Username}</span>
 								</Nav.Link>
 								<Nav.Link size="lg" className="" onClick={onLoggedOut}><FontAwesomeIcon icon={faCircleLeft} style={{ color: "#238A47", }} />  <span style={{ color: "#238A47", }} className="links">Logout</span></Nav.Link>
 								<Nav.Link>
