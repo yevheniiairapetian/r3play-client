@@ -86,7 +86,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 
 		<>
 			<Row>
-				<Col className="m-auto" md={4} xl={4} lg={4} sm={3} xs={3}>
+				<Col className="m-auto" md={4} xl={4} lg={4} sm={3} xs={12}>
 					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
 						<Alert
 
