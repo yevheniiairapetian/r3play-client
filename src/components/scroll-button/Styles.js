@@ -2,7 +2,7 @@ import styled from 'styled-components';
   
 export const Heading = styled.h1`
    text-align: center;
-   color: green;
+   color: black;
 `;
   
 export const Content = styled.div`
@@ -19,4 +19,4 @@ export const Button = styled.div`
    font-size: 3rem;
    z-index: 1;
    cursor: pointer;
-   color: green`;
+   color: black`;
