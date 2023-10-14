@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav } from "react-bootstrap";
+import { Nav, Col, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import {
   MDBFooter,
@@ -8,6 +8,7 @@ import {
 
 export const Footer = () => {
   return (
+    
     <MDBFooter id="footer" className='text-center text-white mt-3' style={{
       position: 'relative',
       bottom: '0',
@@ -44,5 +45,6 @@ export const Footer = () => {
 
       </div>
     </MDBFooter>
+    
   );
 }

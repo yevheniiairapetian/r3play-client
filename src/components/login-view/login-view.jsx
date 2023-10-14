@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button, Form, Modal, Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import {Footer} from '../footer/footer';
+
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
@@ -47,7 +47,7 @@ export const LoginView = ({ onLoggedIn }) => {
         <Row>
         <Col className="m-auto" md={8} xl={6} lg={6} sm={6} xs={10}>
             <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
-                <h4 className="text-success text-center pb-2 pt-4">Login Form</h4>
+                <h4 className="text-success text-center pb-4 pt-4">Login Form</h4>
                 <Form.Group controlId="formUsername">
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
@@ -96,7 +96,6 @@ export const LoginView = ({ onLoggedIn }) => {
             </Modal>
             
         </Col>
-        <Footer/>
         </Row>
     )
 }

@@ -12,6 +12,7 @@ import { AnimeCard } from '../anime-card/anime-card';
 import { AnimeView } from '../anime-view/anime-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
+import {Footer} from '../footer/footer';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from "../profile-view/profile-view";
 import { Row, Col, InputGroup, Form } from 'react-bootstrap';
@@ -83,9 +84,14 @@ export const MainView = () => {
                   {user ? (
                     <Navigate to="/" />
                   ) : (
-                    <Col md={8} lg={6} sm={12}>
+                    <Row>
+                    <Col className="page-content-wrapper" md={8} lg={6} sm={12}>
                       <SignupView />
                     </Col>
+                    <Col className="footer">
+                    <Footer />
+                    </Col>
+                    </Row>
                   )}
                   
                 </>
@@ -98,9 +104,15 @@ export const MainView = () => {
                   {user ? (
                     <Navigate to="/" />
                   ) : (
-                    <Col md={8} lg={6} sm={12} >
+                    <Row >
+                    <Col className="page-content-wrapper" md={8} lg={6} sm={12} >
                       <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
+                      
                     </Col>
+                    <Col className="footer">
+                    <Footer />
+                    </Col>
+                    </Row>
                   )}
                  
                 </>
@@ -251,7 +263,10 @@ export const MainView = () => {
                 </>
                 <FooterAuthorized/>
                 </>
+                
+              
               }
+              
             />
             <Route
               path='/profile'

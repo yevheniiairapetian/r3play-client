@@ -11,7 +11,22 @@ $btn-secondary: rgb(54, 57, 57);
     padding-left: 6px;
 }
 
+.page-content-wrapper{
+    margin:0 auto 100px auto;
+}
 
+html{
+    position:relative; 
+    min-height: 100%;
+  }
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:100px;
+}
 
 .dark {
     background-color: #333;
