@@ -36,7 +36,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 				<Navbar.Brand className="text-success p-2" as={Link} to="/">
 					<Image width="100px" height="auto" className="img-responsive" alt="logo" src={Logo} />
 				</Navbar.Brand>
-				<Navbar.Toggle aria-controls="basic-navbar-nav" />
+				<Navbar.Toggle id="collapse-button" aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="justify-content-end w-100 ">
 						{user && (

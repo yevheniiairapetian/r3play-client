@@ -47,9 +47,24 @@ $btn-secondary: rgb(54, 57, 57);
     
   }
   .light {
+
     background-color: #fff;
     color: #333;
-    & .card > div, #card{
+    & button#collapse-button.navbar-toggler.collapsed, button#collapse-button.navbar-toggler{
+        background-color: darkgrey !important;
+    } 
+    .form-control, .form-control:focus{
+        background-color: #f8f9fa;
+        color: black;
+        
+    }
+    .form-control:focus{
+        outline:2px solid #1D8B45;
+    }
+    .form-control::placeholder{
+        color: black;
+    }
+    .card > div, #card{
         background-color: #CDD3BA;
         color: black;
         .btn-outline-light{
@@ -85,6 +100,7 @@ $btn-secondary: rgb(54, 57, 57);
             background-color: #19854e;
             transition: background-color 0.5s ease-in-out;
         }
+        
     }
   }
 

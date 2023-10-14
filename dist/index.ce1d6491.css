@@ -41,6 +41,23 @@
   background-color: #fff;
 }
 
+.light button#collapse-button.navbar-toggler.collapsed, .light button#collapse-button.navbar-toggler {
+  background-color: #a9a9a9 !important;
+}
+
+.light .form-control, .light .form-control:focus {
+  color: #000;
+  background-color: #f8f9fa;
+}
+
+.light .form-control:focus {
+  outline: 2px solid #1d8b45;
+}
+
+.light .form-control::placeholder {
+  color: #000;
+}
+
 .light .card > div, .light #card {
   color: #000;
   background-color: #cdd3ba;
