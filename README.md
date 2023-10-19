@@ -1,5 +1,5 @@
 # r3play-client
-## This project contains the front-end part of the R3play back-end ([here](https://github.com/yevheniiairapetian/r3play)) for displaying the information about movies and tv series.
+This project contains the front-end part of the R3play back-end ([here](https://github.com/yevheniiairapetian/r3play)) written with React for displaying the information about movies, anime and tv series.
 
 ## Technologies Used
 - Javascript/React
@@ -13,15 +13,15 @@
 - Parcel
 ## Views & Features:
 ### Main view
-Returns ALL movies and tv series to the user (each movie and tv series item with an image)
-Filtering the list of movies with a "search" feature
-Ability to select a movie for more details
+Returns ALL movies, anime and tv series to the user (each movie, anime and tv series item with an image)
+Filtering the list of movies, anime and tv series with a "search" feature
+Ability to select a movie, anime, and tv series for more details
 Ability to log out
 Ability to navigate to Profile view
-Ability to add a movie to favorites/delete a movie from favorites
-### Single Movie view
-Returns data (description, video trailer, genre, director, image, release year, rating, actors etc) about a single movie to the user
-Ability to return back to the movies list
+Ability to add a movie, anime and tv series to favorites/delete them from favorites
+### Single Movie, Anime, TV series view
+Returns data (description, video trailer, genre, director, image, release year, rating, actors etc) about a single movie, anime, tv series to the user
+Ability to return back to the list
 ### Login view
 Allows users to log in with a username and password
 Uses user-friendly modals to show information
@@ -32,8 +32,8 @@ Uses user-friendly modals to show information
 Displays user registration details
 Uses user-friendly modals to show information
 Allows users to update their info (username, password, email, date of birth)
-Displays favorite movies and tv series
-Allows users to remove a movie or tv series from their list of favorites
+Displays favorite movies, anime and tv series
+Allows users to remove a movie, anime, tv series from their list of favorites
 Allows existing users to deregister
 
 ## Live Version
