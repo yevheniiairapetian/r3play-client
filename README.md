@@ -1,5 +1,5 @@
 # r3play-client
-## This project contains the front-end part of the R3play back-end ([here](https://github.com/yevheniiairapetian/r3play)) for displaying the information about movies and tv series.
+## This project contains the front-end part of the R3play back-end ([here](https://github.com/yevheniiairapetian/r3play)) for displaying the information about movies and tv series developed with React.
 
 ## Technologies Used
 - Javascript/React
