@@ -10,7 +10,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 
 ## Project Dependencies
 - React as a front-end library
-- React Bootstrap for design
+- React Bootstrap for design/responsive design
 - Parcel for the build process
 - React FontAwesome for icons
 - _Please see the package.json file for other project dependencies_
@@ -31,22 +31,25 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Ability to navigate to Profile view
 - Ability to add a movie, anime and TV series to favorites/delete them from favorites
 ### Single Movie, Anime, TV series view
-- Returns data (description, video trailer, genre, director, image, release year, rating, actors, interesting facts, etc) about a single movie, anime, TV series to the user
+- Returns data (title, description, genre, director, director's bio, image, release year, rating (IMDb and Rotten Tomatoes Audience rating), actors, etc) about a single movie, anime, TV series to the user
+- Displays a section with interesting facts (can be collapsed/expanded)
+- Shows a video player with the movie, anime, TV series Youtube trailer.
 - Ability to return back to the list
+Displays recommendations on:
+- Similar movies, anime, TV series
+- Movies, anime, and TV series by the same director 
+- Same time to watch
+- Movies, anime, TV series where the same actors are starring
+- Same IMDb Rating
+- Same Rotten Tomatoes Audience Rating
+- Same genre
+- Same release year
 ### Login view
 - Allows users to log in with a username and password
 - Uses user-friendly modals to show information
 ### Signup view
 - Allows new users to register (username, password, email, date of birth)
 - Uses user-friendly modals to show information
-Displays recommendations on:
-- Similar movies, anime, TV series
-- Same director 
-- Same time to watch
-- Movies, anime, TV series where the same actors are starring
-- Same IMDb Rating
-- Same Rotten Tomatoes Audience Rating
-- Same genre
 
 ### Profile view
 - Displays user registration details
