@@ -22,6 +22,10 @@ This project contains the front-end part of the R3play back-end ([here](https://
 
 
 ### Main view
+#### If not authorized:
+- Displays login, signup, theme menu links
+#### If authorized:
+- Displays home, profile, logout, theme menu links
 - Returns ALL movies, anime and TV series to the user (each movie, anime and TV series item with an image)
 - Shows an image slider with navigation to movie, anime, and TV series views.
 - Displays the user's name in the navigation
@@ -35,7 +39,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Displays a section with interesting facts (can be collapsed/expanded)
 - Shows a video player with the movie, anime, TV series Youtube trailer.
 - Ability to return back to the list
-Displays recommendations on:
+#### Displays recommendations on:
 - Similar movies, anime, TV series
 - Movies, anime, and TV series by the same director 
 - Same time to watch
@@ -61,9 +65,9 @@ _ Has a counter of favorite items
 - Allows existing users to deregister
 
 ### Footer
-If authorized:
+#### If authorized:
 - Has the quick navigation buttons to go to the Profile view and Main view
-If not authrorized:
+#### If not authrorized:
 - Has the quick navigation buttons to the Login View and Signup View
 
 ## Live Version
