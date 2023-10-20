@@ -36,9 +36,28 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Ability to add a movie, anime, and TV series to favorites/delete them from favorites
 ### Single Movie, Anime, and TV series view
 #### For Movie View
-- Returns data (title, description, genre, director, director's bio, image, release year, rating (IMDb and Rotten Tomatoes Audience rating), actors, etc) about a single movie
-#### For Anime and TV series 
-- Returns data (title, description, genre, director, director's bio, image, release year, rating (IMDb and Rotten Tomatoes Audience rating), actors, etc) and episodes list for a single Anime and TV series to the user
+##### Returns data:
+- Title
+- Description
+- Genre
+- Director (name, bio, birth year, death year)
+- Image
+- Release year
+- Rating (IMDb and Rotten Tomatoes Audience rating)
+- Actors list
+- Etc, about a single movie to the user
+#### For Anime and TV series
+##### Returns data:
+- Title
+- Description
+- Genre
+- Director (name, bio, birth year, death year)
+- Image
+- Release year
+- Rating (IMDb and Rotten Tomatoes Audience rating)
+- Actors list
+- Episodes list
+- Etc, for a single Anime and TV series to the user
 #### For Movie, Anime, TV series views
 - Displays a section with interesting facts (can be collapsed/expanded)
 - Shows a video player with the movie, anime, TV series, and Youtube trailer.
