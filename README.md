@@ -34,15 +34,15 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Ability to log out
 - Ability to navigate to the Profile view
 - Ability to add a movie, anime, and TV series to favorites/delete them from favorites
-### Single Movie, Anime, TV series view
-- Returns data (title, description, genre, director, director's bio, image, release year, rating (IMDb and Rotten Tomatoes Audience rating), actors, etc) about a single movie, anime, TV series to the user
+### Single Movie, Anime, and TV series view
+- Returns data (title, description, genre, director, director's bio, image, release year, rating (IMDb and Rotten Tomatoes Audience rating), actors, etc) about a single movie, and episodes list for anime and TV series to the user
 - Displays a section with interesting facts (can be collapsed/expanded)
 - Shows a video player with the movie, anime, TV series, and Youtube trailer.
 - Ability to return back to the list
 #### Displays recommendations on:
 - Similar movies, anime, TV series
 - Movies, anime, and TV series by the same director 
-- Same time to watch
+- Suggestions with the same duration
 - Movies, anime, TV series where the same actors are starring
 - Same IMDb Rating
 - Same Rotten Tomatoes Audience Rating
@@ -51,17 +51,19 @@ This project contains the front-end part of the R3play back-end ([here](https://
 ### Login view
 - Allows users to log in with a username and password
 - Uses user-friendly modals to show information
+- Uses input validation
 ### Signup view
 - Allows new users to register (username, password, email, date of birth)
 - Uses user-friendly modals to show information
+- Uses input validation
 
 ### Profile view
 - Displays user registration details
-- Uses user-friendly modals to show information
+- Uses user-friendly modals to show success/failure information
 - Allows users to update their info (username, password, email, date of birth)
-- Displays the favorite movies, anime, and TV series (can be expanded/collapsed)
-- Has separate counters for favorite movies, anime, TV series
-- Allows users to remove a movie, anime, TV series from their list of favorites
+- Displays the favorite movies, anime, and TV series list (can be expanded/collapsed)
+- Has separate counters for favorite movies, anime, and TV series list
+- Allows users to remove a movie, anime, and TV series from their list of favorites
 - Allows existing users to deregister
 
 ### Footer
