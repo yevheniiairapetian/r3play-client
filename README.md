@@ -6,35 +6,62 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - React Bootstrap
 - SCSS
 - HTML
+- React FontAwesome
 
 ## Project Dependencies
-- React
-- React Bootstrap
-- Parcel
+- React as a front-end library
+- React Bootstrap for design
+- Parcel for the build process
+- React FontAwesome for icons
+- _Please see the package.json file for other project dependencies_
+
 ## Views & Features:
+### All views
+- Ability to set theme (dark or light) (_currently in test mode_)
+- Ability to click on the _back to top_ button for quick navigation
+
+
 ### Main view
-Returns ALL movies, anime and tv series to the user (each movie, anime and tv series item with an image)
-Filtering the list of movies, anime and tv series with a "search" feature
-Ability to select a movie, anime, and tv series for more details
-Ability to log out
-Ability to navigate to Profile view
-Ability to add a movie, anime and tv series to favorites/delete them from favorites
+- Returns ALL movies, anime and TV series to the user (each movie, anime and TV series item with an image)
+- Shows an image slider with navigation to movie, anime, and TV series views.
+- Displays the user's name in the navigation
+- Filtering the list of movies, anime and TV series with a "search" feature
+- Ability to select a movie, anime, and TV series for more details
+- Ability to log out
+- Ability to navigate to Profile view
+- Ability to add a movie, anime and TV series to favorites/delete them from favorites
 ### Single Movie, Anime, TV series view
-Returns data (description, video trailer, genre, director, image, release year, rating, actors etc) about a single movie, anime, tv series to the user
-Ability to return back to the list
+- Returns data (description, video trailer, genre, director, image, release year, rating, actors, interesting facts, etc) about a single movie, anime, TV series to the user
+- Ability to return back to the list
 ### Login view
-Allows users to log in with a username and password
-Uses user-friendly modals to show information
+- Allows users to log in with a username and password
+- Uses user-friendly modals to show information
 ### Signup view
-Allows new users to register (username, password, email, date of birth)
-Uses user-friendly modals to show information
+- Allows new users to register (username, password, email, date of birth)
+- Uses user-friendly modals to show information
+Displays recommendations on:
+- Similar movies, anime, TV series
+- Same director 
+- Same time to watch
+- Movies, anime, TV series where the same actors are starring
+- Same IMDb Rating
+- Same Rotten Tomatoes Audience Rating
+- Same genre
+
 ### Profile view
-Displays user registration details
-Uses user-friendly modals to show information
-Allows users to update their info (username, password, email, date of birth)
-Displays favorite movies, anime and tv series
-Allows users to remove a movie, anime, tv series from their list of favorites
-Allows existing users to deregister
+- Displays user registration details
+- Uses user-friendly modals to show information
+- Allows users to update their info (username, password, email, date of birth)
+- Displays the favorite movies, anime and TV series (can be expanded/collapsed)
+_ Has a counter of favorite items
+- Allows users to remove a movie, anime, TV series from their list of favorites
+- Allows existing users to deregister
+
+### Footer
+If authorized:
+- Has the quick navigation buttons to go to the Profile view and Main view
+If not authrorized:
+- Has the quick navigation buttons to the Login View and Signup View
 
 ## Live Version
 The App is live [here](https://r3play.netlify.app/)
