@@ -60,7 +60,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Uses user-friendly modals to show information
 - Allows users to update their info (username, password, email, date of birth)
 - Displays the favorite movies, anime and TV series (can be expanded/collapsed)
-_ Has a counter of favorite items
+- Has a counter of favorite items
 - Allows users to remove a movie, anime, TV series from their list of favorites
 - Allows existing users to deregister
 
