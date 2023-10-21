@@ -61,16 +61,16 @@ This project contains the front-end part of the R3play back-end ([here](https://
 #### For Movie, Anime, TV series views
 - Displays a section with interesting facts (can be collapsed/expanded)
 - Shows a video player with the movie, anime, and TV series Youtube trailer.
-- Ability to return back to the list
+- Ability to return back to the main view (with the list of all movies, anime, and TV series)
 #### Displays recommendations on:
-- Similar movies, anime, TV series
+- Similar movies, anime, and TV series
 - Movies, anime, and TV series by the same director 
-- Suggestions with the same duration
-- Movies, anime, TV series where the same actors are starring
-- Same IMDb Rating
-- Same Rotten Tomatoes Audience Rating
-- Same genre
-- Same release year
+- What to watch with the same duration
+- Movies, anime, and TV series where the same actors are playing
+- Movies, anime, and TV series with same IMDb Rating
+- Movies, anime, and TV series with the same Rotten Tomatoes Audience Rating
+- What to watch with the same genre
+- What to watch with the same release year
 ### Login view
 - Allows users to log in with a username and password
 - Uses user-friendly modals to show information
