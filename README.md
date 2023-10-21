@@ -67,7 +67,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Movies, anime, and TV series by the same director 
 - What to watch with the same duration
 - Movies, anime, and TV series where the same actors are playing
-- Movies, anime, and TV series with same IMDb Rating
+- Movies, anime, and TV series with the same IMDb Rating
 - Movies, anime, and TV series with the same Rotten Tomatoes Audience Rating
 - What to watch with the same genre
 - What to watch with the same release year
