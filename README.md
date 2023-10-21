@@ -34,7 +34,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Ability to log out
 - Ability to navigate to the Profile view
 - Ability to add a movie, anime, and TV series to favorites/delete them from favorites
-### Single Movie, Anime, and TV series view
+### Single Movie, Anime, and TV series views
 #### For Movie View
 ##### Returns data:
 - Title
