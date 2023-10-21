@@ -60,7 +60,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Etc, for a single Anime and TV series to the user
 #### For Movie, Anime, TV series views
 - Displays a section with interesting facts (can be collapsed/expanded)
-- Shows a video player with the movie, anime, TV series, and Youtube trailer.
+- Shows a video player with the movie, anime, and TV series Youtube trailer.
 - Ability to return back to the list
 #### Displays recommendations on:
 - Similar movies, anime, TV series
