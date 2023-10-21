@@ -39,7 +39,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 ##### Returns data:
 - Title
 - Description
-- Genre
+- Genre (name and description)
 - Director (name, bio, birth year, death year)
 - Image
 - Release year
@@ -50,7 +50,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 ##### Returns data:
 - Title
 - Description
-- Genre
+- Genre (name and description)
 - Director (name, bio, birth year, death year)
 - Image
 - Release year
