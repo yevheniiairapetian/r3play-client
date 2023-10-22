@@ -20,15 +20,6 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Ability to set theme (dark or light) (_currently in test mode_)
 - Ability to click on the _back to top_ button for quick navigation
 
-## Project Screenshot
-<a href="https://ibb.co/Mc8mYBT"><img src="https://i.ibb.co/D9GZxrX/2023-10-04-19h44-50.png" alt="2023-10-04-19h44-50" border="0"></a>
-<a href="https://ibb.co/FXYHVZs"><img src="https://i.ibb.co/W0zVt8D/2023-10-22-16h44-35.png" alt="2023-10-22-16h44-35" border="0"></a>
-<a href="https://ibb.co/fMRQ5YW"><img src="https://i.ibb.co/Q9BXRFV/2023-10-22-16h47-32.png" alt="2023-10-22-16h47-32" border="0"></a>   
-## Project In Use Preview
-_Please click on the video below to watch it_   
-
-[![Watch the video](https://i.ibb.co/Q9BXRFV/2023-10-22-16h47-32.png)](https://streamable.com/qglgcd)
-
 ### Main view
 #### If not authorized:
 - Displays login, signup, and theme menu links
@@ -102,6 +93,16 @@ _Please click on the video below to watch it_
 - Has the quick navigation buttons to go to the Profile view and Main view
 #### If not authorized:
 - Has the quick navigation buttons to the Login View and Signup View
+
+## Project Screenshot
+<a href="https://ibb.co/Mc8mYBT"><img src="https://i.ibb.co/D9GZxrX/2023-10-04-19h44-50.png" alt="2023-10-04-19h44-50" border="0"></a>
+<a href="https://ibb.co/FXYHVZs"><img src="https://i.ibb.co/W0zVt8D/2023-10-22-16h44-35.png" alt="2023-10-22-16h44-35" border="0"></a>
+<a href="https://ibb.co/fMRQ5YW"><img src="https://i.ibb.co/Q9BXRFV/2023-10-22-16h47-32.png" alt="2023-10-22-16h47-32" border="0"></a>   
+## Project In Use Preview
+_Please click on the video below to watch it_   
+
+[![Watch the video](https://i.ibb.co/Q9BXRFV/2023-10-22-16h47-32.png)](https://streamable.com/qglgcd)
+
 
 ## Live Version
 The App is live [here](https://r3play.netlify.app/)
