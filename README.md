@@ -22,6 +22,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 
 ## Project in use preview
 [(<a href="https://ibb.co/Mc8mYBT"><img src="https://i.ibb.co/D9GZxrX/2023-10-04-19h44-50.png" alt="2023-10-04-19h44-50" border="0"></a>)]([https://youtu.be/vt5fpE0bzSY](https://streamable.com/qglgcd))
+[![Watch the video](https://i.ibb.co/Mc8mYBT/2023-10-04-19h44-50.png)](https://streamable.com/qglgcd)
 
 ### Main view
 #### If not authorized:
