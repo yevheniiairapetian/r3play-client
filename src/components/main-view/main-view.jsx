@@ -192,7 +192,7 @@ export const MainView = () => {
                     <Col className="text-center mt-4"><Spin/></Col>
                     </>
                   ) : (
-                    <>
+                    <Row className="">
                       <Row className="my-3">
                         
                           
@@ -207,6 +207,7 @@ export const MainView = () => {
                       </Row>
                       <UncontrolledExample></UncontrolledExample>
                       <Header></Header>
+                      <>
                       {movies.filter((movie) => {
                         return search === "" ?
                           movie :
@@ -214,8 +215,9 @@ export const MainView = () => {
                       }
 
                       ).map((movie) => (
-                        <Col className="mb-4" key={movie._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                        <Col className="mb-4 all-media-container" key={movie._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <MovieCard
+                          className="flexible-media"
                             movie={movie}
                             user={user}
                             token={token}
@@ -230,8 +232,9 @@ export const MainView = () => {
                       }
 
                       ).map((tvseries) => (
-                        <Col className="mb-4" key={tvseries._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                        <Col className="mb-4 all-media-container" key={tvseries._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <TVseriesCard
+                          className="flexible-media"
                             tvseries={tvseries}
                             user={user}
                             token={token}
@@ -246,8 +249,9 @@ export const MainView = () => {
                       }
 
                       ).map((animes) => (
-                        <Col className="mb-4" key={animes._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                        <Col className="mb-4 all-media-container" key={animes._id} md={6} xl={4} lg={4} sm={12} xs={10}>
                           <AnimeCard
+                          className="flexible-media"
                             animes={animes}
                             user={user}
                             token={token}
@@ -256,8 +260,9 @@ export const MainView = () => {
                         </Col>
                         
                       ))}
-                      
-                    </>
+                      </>
+
+                    </Row>
                   )}
                   
                 </>

@@ -2,6 +2,16 @@
   padding-left: 6px;
 }
 
+.all-media-container {
+  width: 100%;
+  display: flex;
+}
+
+.flexible-media {
+  flex: 1;
+  padding: 16px;
+}
+
 .page-content-wrapper {
   margin: 0 auto 100px;
 }
