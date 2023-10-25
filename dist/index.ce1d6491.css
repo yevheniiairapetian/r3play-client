@@ -7,6 +7,11 @@
   display: flex;
 }
 
+.app-container {
+  width: 92%;
+  margin: 0 auto;
+}
+
 .flexible-media {
   flex: 1;
   padding: 16px;
@@ -27,6 +32,22 @@ html {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #19854e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  opacity: .8;
 }
 
 .dark {
@@ -130,6 +151,11 @@ html {
 }
 
 @media screen and (width <= 770px) {
+  .app-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
   .carousel-caption-header.pb-3 {
     margin: 0;
     padding: 0;
@@ -154,6 +180,11 @@ html {
 }
 
 @media screen and (width <= 400px) {
+  .app-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
   .carousel-caption-header.pb-3 {
     margin: -10px;
     padding: 0;

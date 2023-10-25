@@ -126,7 +126,7 @@ export const MainView = () => {
                     <>
                       <Navigate to='/login' replace />
 
-                      <h3>Session expired. Please log in again</h3>
+                      <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log in again</h3>
                     </>
                   ) : movies.length === 0 ? (
                     <>
@@ -152,7 +152,7 @@ export const MainView = () => {
                     <>
                       <Navigate to='/login' replace />
 
-                      <h3>Session expired. Please log in again</h3>
+                      <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log in again</h3>
                     </>
                   ) : tvseries.length === 0 ? (
                     <>
@@ -177,7 +177,7 @@ export const MainView = () => {
                     <>
                       <Navigate to='/login' replace />
 
-                      <h3>Session expired. Please log in again</h3>
+                      <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log in again</h3>
                     </>
                   ) : animes.length === 0 ? (
                     <>
@@ -203,7 +203,7 @@ export const MainView = () => {
                       <>
                         <Navigate to='/login' replace />
 
-                        <h3>Session expired. Please log in again</h3>
+                        <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log in again</h3>
                       </>
                     ) : movies.length === 0 ? (
                       <>
@@ -236,7 +236,7 @@ export const MainView = () => {
                         }
 
                         ).map((movie) => (
-                          <Col className="mb-4 all-media-container" key={movie._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                          <Col className="mb-4 all-media-container" key={movie._id} md={6} xl={4} lg={4} sm={11} xs={12}>
                             <MovieCard
                               className="flexible-media"
                               movie={movie}
@@ -253,7 +253,7 @@ export const MainView = () => {
                         }
 
                         ).map((tvseries) => (
-                          <Col className="mb-4 all-media-container" key={tvseries._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                          <Col className="mb-4 all-media-container" key={tvseries._id} md={6} xl={4} lg={4} sm={11} xs={12}>
                             <TVseriesCard
                               className="flexible-media"
                               tvseries={tvseries}
@@ -270,7 +270,7 @@ export const MainView = () => {
                         }
 
                         ).map((animes) => (
-                          <Col className="mb-4 all-media-container" key={animes._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                          <Col className="mb-4 all-media-container" key={animes._id} md={6} xl={4} lg={4} sm={11} xs={12}>
                             <AnimeCard
                               className="flexible-media"
                               animes={animes}

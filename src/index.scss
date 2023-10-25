@@ -16,6 +16,11 @@ $btn-secondary: rgb(54, 57, 57);
   width: 100%;
 }
 
+.app-container{
+    width:92%;
+    margin: 0 auto;
+}
+
 .flexible-media{
     flex:1;
     padding:16px;
@@ -38,6 +43,27 @@ html{
     height:100px;
 }
 
+// * width *
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+      background: #888;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    
+    background: #19854e;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    opacity:0.8;
+  }
+
 .dark {
     background-color: #333;
     color: #fff;
@@ -47,7 +73,7 @@ html{
     .title-color {
         color: red;
     }
-    
+
     .tvser-li-hover:hover{
         list-style-position: inside;
         transform: translateX(10px);
@@ -82,6 +108,7 @@ html{
         color: black;
         
     }
+    
     .form-control:focus{
         outline:2px solid #1D8B45;
     }
@@ -131,6 +158,10 @@ html{
   
 
 @media screen and (max-width:770px){
+    .app-container{
+        width:100%;
+        margin: 0 auto;
+    }
     .carousel-caption-header.pb-3{
         margin:0px;
         font-size: 14px;
@@ -154,6 +185,10 @@ html{
 }
 
 @media screen and (max-width:400px){
+    .app-container{
+        width:100%;
+        margin: 0 auto;
+    }
     .carousel-caption-header.pb-3{
         margin:-10px;
         font-size: 10px;

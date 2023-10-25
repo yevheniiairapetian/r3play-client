@@ -71,7 +71,7 @@ export const MovieView = ({ movies }) => {
             <Accordion.Item eventKey="0">
               <Accordion.Header className="text-success">Did you know? (Click to expand)</Accordion.Header>
               <Accordion.Body>
-                <Card.Title id="card-info" className="" secondary-color="text-secondary pb-3"><ol>{movie.InterestingFacts.length > 0 ? movie.InterestingFacts.map(i => <li class="tvser-li-hover pt-3 pb-3">{i}<br /></li>) : "No data yet"} </ol></Card.Title>
+                <Card.Title id="card-info" className="" secondary-color="text-secondary pb-3"><ol>{movie.InterestingFacts.length > 0 ? movie.InterestingFacts.map(i => <li className="tvser-li-hover pt-3 pb-3">{i}<br /></li>) : "No data yet"} </ol></Card.Title>
               
               </Accordion.Body>
             </Accordion.Item>
