@@ -220,7 +220,7 @@ export const MainView = () => {
                           <input style={{ color: 'black', fontStyle: 'italic', borderRadius: '7px' }}
                             id="search search-input input-search"
                             onChange={(e) => setSearch(e.target.value)}
-                            placeholder="Search (e.g. Harry Potter and the Chamber of Secrets)"
+                            placeholder="Search (e.g. Lethal Weapon)"
                             aria-label="Search"
                           />
 
@@ -233,6 +233,7 @@ export const MainView = () => {
                           return search === "" ?
                             movie :
                             movie.Title.toLowerCase().includes(search.toLowerCase());
+                            
                         }
 
                         ).map((movie) => (
