@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { ScrollToTop } from '../ScrollToTop/scroll-to-top';
-import {Spin} from '../spinner/spinner';
+import { Spin } from '../spinner/spinner';
 import { MovieCard } from '../movie-card/movie-card';
 import { Fragment } from 'react';
-import {ScrollButton} from '../scroll-button/ScrollButton';
-import {Header} from '../header/header';
+import { ScrollButton } from '../scroll-button/ScrollButton';
+import { Header } from '../header/header';
 import { MovieView } from '../movie-view/movie-view';
 import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { TVseriesView } from '../tvseries-view/tvseries-view';
@@ -12,12 +12,12 @@ import { AnimeCard } from '../anime-card/anime-card';
 import { AnimeView } from '../anime-view/anime-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
-import {Footer} from '../footer/footer';
+import { Footer } from '../footer/footer';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from "../profile-view/profile-view";
 import { Row, Col, InputGroup, Form } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import {UncontrolledExample} from '../Carousel/carousel';
+import { UncontrolledExample } from '../Carousel/carousel';
 import { FooterAuthorized } from '../footer-authorized/footer-authorized';
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -54,9 +54,9 @@ export const MainView = () => {
             }).then((response) => response.json())
               .then((data) => {
                 setAnimes(data);
-    
+
               })
-            })
+          })
 
       })
   }, [token]);
@@ -64,16 +64,16 @@ export const MainView = () => {
   return (
     <>
       <BrowserRouter>
-      <ScrollButton />
-      <ScrollToTop/>
+        <ScrollButton />
+        <ScrollToTop />
         <NavigationBar
-        user={user}
+          user={user}
           onLoggedOut={() => {
             setUser(null);
             setToken(null);
             localStorage.clear();
           }}
-          
+
         />
         <Row className="justify-content-center">
           <Routes>
@@ -85,15 +85,15 @@ export const MainView = () => {
                     <Navigate to="/" />
                   ) : (
                     <Row>
-                    <Col className="page-content-wrapper" md={8} lg={6} sm={12}>
-                      <SignupView />
-                    </Col>
-                    <Col className="footer">
-                    <Footer />
-                    </Col>
+                      <Col className="page-content-wrapper" md={8} lg={6} sm={12}>
+                        <SignupView />
+                      </Col>
+                      <Col className="footer">
+                        <Footer />
+                      </Col>
                     </Row>
                   )}
-                  
+
                 </>
               }
             />
@@ -105,16 +105,16 @@ export const MainView = () => {
                     <Navigate to="/" />
                   ) : (
                     <Row >
-                    <Col className="page-content-wrapper" md={8} lg={6} sm={12} >
-                      <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
-                      
-                    </Col>
-                    <Col className="footer">
-                    <Footer />
-                    </Col>
+                      <Col className="page-content-wrapper" md={8} lg={6} sm={12} >
+                        <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
+
+                      </Col>
+                      <Col className="footer">
+                        <Footer />
+                      </Col>
                     </Row>
                   )}
-                 
+
                 </>
               }
             />
@@ -124,175 +124,175 @@ export const MainView = () => {
                 <>
                   {!user ? (
                     <>
-                    <Navigate to='/login' replace />
-                    
-                    <h3>Session expired. Please log in again</h3>
+                      <Navigate to='/login' replace />
+
+                      <h3>Session expired. Please log in again</h3>
                     </>
                   ) : movies.length === 0 ? (
                     <>
-                    <Col className="text-center mt-4"><Spin/></Col>
-                    
+                      <Col className="text-center mt-4"><Spin /></Col>
+
                     </>
                   ) : (
                     <Col md={8}>
-                    
-                      <MovieView movies={movies}/>
-                    
+
+                      <MovieView movies={movies} />
+
                     </Col>
                   )}
-                  <FooterAuthorized/>
+                  <FooterAuthorized />
                 </>
               }
             />
-             <Route
+            <Route
               path='/tvseries/:TVId'
               element={
                 <>
                   {!user ? (
                     <>
-                    <Navigate to='/login' replace />
-                    
-                    <h3>Session expired. Please log in again</h3>
+                      <Navigate to='/login' replace />
+
+                      <h3>Session expired. Please log in again</h3>
                     </>
                   ) : tvseries.length === 0 ? (
                     <>
-                    <Col className="text-center mt-4"><Spin/></Col>
-                    
+                      <Col className="text-center mt-4"><Spin /></Col>
+
                     </>
                   ) : (
                     <Col md={8}>
-                    
-                      <TVseriesView tvseries={tvseries}/>
+
+                      <TVseriesView tvseries={tvseries} />
                     </Col>
                   )}
-                  <FooterAuthorized/>
+                  <FooterAuthorized />
                 </>
               }
-            /> 
+            />
             <Route
               path='/animes/:AnimeId'
               element={
                 <>
                   {!user ? (
                     <>
-                    <Navigate to='/login' replace />
-                    
-                    <h3>Session expired. Please log in again</h3>
+                      <Navigate to='/login' replace />
+
+                      <h3>Session expired. Please log in again</h3>
                     </>
                   ) : animes.length === 0 ? (
                     <>
-                    <Col className="text-center mt-4"><Spin/></Col>
-                    
+                      <Col className="text-center mt-4"><Spin /></Col>
+
                     </>
                   ) : (
                     <Col md={8}>
-                    
-                      <AnimeView animes={animes}/>
+
+                      <AnimeView animes={animes} />
                     </Col>
                   )}
-                  <FooterAuthorized/>
+                  <FooterAuthorized />
                 </>
               }
-            /> 
+            />
             <Route
               path="/"
               element={
                 <>
-                <>
-                  {!user ? (
-                    <>
-                    <Navigate to='/login' replace />
-                    
-                    <h3>Session expired. Please log in again</h3>
-                    </>
-                  ) : movies.length === 0 ? (
-                    <>
-                    
-                    <Col className="text-center mt-4"><Spin/></Col>
-                    
-                    </>
-                  ) : (
-                    <>
-                    
-                      <Row className="my-3">
-                        
-                          
-                            <input style={{color: 'black', fontStyle: 'italic', borderRadius: '7px'}}
-                              id="search search-input input-search"
-                              onChange={(e) => setSearch(e.target.value)}
-                              placeholder="Search (e.g. Harry Potter and the Chamber of Secrets)"
-                              aria-label="Search"
+                  <>
+                    {!user ? (
+                      <>
+                        <Navigate to='/login' replace />
+
+                        <h3>Session expired. Please log in again</h3>
+                      </>
+                    ) : movies.length === 0 ? (
+                      <>
+
+                        <Col className="text-center mt-4"><Spin /></Col>
+
+                      </>
+                    ) : (
+                      <>
+
+                        <Row className="my-3">
+
+
+                          <input style={{ color: 'black', fontStyle: 'italic', borderRadius: '7px' }}
+                            id="search search-input input-search"
+                            onChange={(e) => setSearch(e.target.value)}
+                            placeholder="Search (e.g. Harry Potter and the Chamber of Secrets)"
+                            aria-label="Search"
+                          />
+
+
+                        </Row>
+                        <UncontrolledExample></UncontrolledExample>
+                        <Header></Header>
+
+                        {movies.filter((movie) => {
+                          return search === "" ?
+                            movie :
+                            movie.Title.toLowerCase().includes(search.toLowerCase());
+                        }
+
+                        ).map((movie) => (
+                          <Col className="mb-4 all-media-container" key={movie._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                            <MovieCard
+                              className="flexible-media"
+                              movie={movie}
+                              user={user}
+                              token={token}
+                              setUser={setUser}
                             />
-                          
-                        
-                      </Row>
-                      <UncontrolledExample></UncontrolledExample>
-                      <Header></Header>
-                      
-                      {movies.filter((movie) => {
-                        return search === "" ?
-                          movie :
-                          movie.Title.toLowerCase().includes(search.toLowerCase());
-                      }
+                          </Col>
+                        ))}
+                        {tvseries.filter((tvseries) => {
+                          return search === "" ?
+                            tvseries :
+                            tvseries.Title.toLowerCase().includes(search.toLowerCase());
+                        }
 
-                      ).map((movie) => (
-                        <Col className="mb-4 all-media-container" key={movie._id} md={6} xl={4} lg={4} sm={12} xs={10}>
-                          <MovieCard
-                          className="flexible-media"
-                            movie={movie}
-                            user={user}
-                            token={token}
-                            setUser={setUser}
-                          />
-                        </Col>
-                      ))}
-                      {tvseries.filter((tvseries) => {
-                        return search === "" ?
-                          tvseries :
-                          tvseries.Title.toLowerCase().includes(search.toLowerCase());
-                      }
+                        ).map((tvseries) => (
+                          <Col className="mb-4 all-media-container" key={tvseries._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                            <TVseriesCard
+                              className="flexible-media"
+                              tvseries={tvseries}
+                              user={user}
+                              token={token}
+                              setUser={setUser}
+                            />
+                          </Col>
+                        ))}
+                        {animes.filter((animes) => {
+                          return search === "" ?
+                            animes :
+                            animes.Title.toLowerCase().includes(search.toLowerCase());
+                        }
 
-                      ).map((tvseries) => (
-                        <Col className="mb-4 all-media-container" key={tvseries._id} md={6} xl={4} lg={4} sm={12} xs={10}>
-                          <TVseriesCard
-                          className="flexible-media"
-                            tvseries={tvseries}
-                            user={user}
-                            token={token}
-                            setUser={setUser}
-                          />
-                        </Col>
-                      ))}
-                      {animes.filter((animes) => {
-                        return search === "" ?
-                          animes :
-                          animes.Title.toLowerCase().includes(search.toLowerCase());
-                      }
+                        ).map((animes) => (
+                          <Col className="mb-4 all-media-container" key={animes._id} md={6} xl={4} lg={4} sm={12} xs={10}>
+                            <AnimeCard
+                              className="flexible-media"
+                              animes={animes}
+                              user={user}
+                              token={token}
+                              setUser={setUser}
+                            />
+                          </Col>
 
-                      ).map((animes) => (
-                        <Col className="mb-4 all-media-container" key={animes._id} md={6} xl={4} lg={4} sm={12} xs={10}>
-                          <AnimeCard
-                          className="flexible-media"
-                            animes={animes}
-                            user={user}
-                            token={token}
-                            setUser={setUser}
-                          />
-                        </Col>
-                        
-                      ))}
-                      
+                        ))}
 
-                    </>
-                  )}
-                  
+
+                      </>
+                    )}
+
+                  </>
+                  <FooterAuthorized />
                 </>
-                <FooterAuthorized/>
-                </>
-                
-              
+
+
               }
-              
+
             />
             <Route
               path='/profile'
@@ -312,15 +312,15 @@ export const MainView = () => {
                       />
                     </Col>
                   )}
-                  <FooterAuthorized/>
+                  <FooterAuthorized />
                 </>
               }
             />
-            
+
           </Routes>
-          
+
         </Row>
-        
+
       </BrowserRouter>
 
     </>

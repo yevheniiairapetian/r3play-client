@@ -87,9 +87,9 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 		<>
 
 			<Row>
-			<Alert md={4} xl={4} lg={4} sm={8} xs={10}
+				<Alert md={4} xl={4} lg={4} sm={8} xs={10}
 
-							className="bg-success text-light mb-3 pt-3 text-center">My Profile</Alert>
+					className="bg-success text-light mb-3 pt-3 text-center">My Profile</Alert>
 				<Col className="m-auto mt-3" md={4} xl={4} lg={4} sm={8} xs={10}>
 
 					<h6
@@ -101,18 +101,18 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 					<h6
 
 						className="text-success mb-3 pt-3 text-center"><span className="text-dark"> Birthday:</span> {birthday.slice(0, 10)}</h6>
-						<p className="mb-3 pt-1 text-center"><em>Don't forget to <span className="text-warning">save the changes!</span></em></p>
+					<p className="mb-3 pt-1 text-center"><em>Don't forget to <span className="text-warning">save the changes!</span></em></p>
 
 
 
 
 				</Col>
-			
 
-			
+
+
 				<Col className="m-auto" md={4} xl={4} lg={4} sm={8} xs={10}>
 					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
-						
+
 						<Form.Group controlId="formUsername" className='form-group pb-4'>
 							<Form.Label>Username:</Form.Label>
 							<Form.Control
