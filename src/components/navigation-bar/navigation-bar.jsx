@@ -48,10 +48,10 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 								<Nav.Link className="" as={Link} to='/profile'>
 									<FontAwesomeIcon size="lg" icon={faUser} style={{ color: "#238A47", }} />  <span style={{ color: "#238A47", }} className="links">{user.Username}</span>
 								</Nav.Link>
-								<Nav.Link size="lg" className="" onClick={onLoggedOut}><FontAwesomeIcon icon={faCircleLeft} style={{ color: "#238A47", }} />  <span style={{ color: "#238A47", }} className="links">Logout</span></Nav.Link>
 								<Nav.Link>
 									<button title="Click to change the theme" className="toggle-nav" style={{ outline: "none", border: "none" }} onClick={() => { toggleTheme(), handleToggle() }}>{theme === 'light' ? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{ "--fa-animation-iteration-count": "2" }} />) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{ "--fa-animation-iteration-count": "2" }} />)}<span className="links">Theme</span></button>
 								</Nav.Link>
+								<Nav.Link size="lg" className="" onClick={onLoggedOut}><FontAwesomeIcon icon={faCircleLeft} style={{ color: "#238A47", }} />  <span style={{ color: "#238A47", }} className="links">Logout</span></Nav.Link>
 							</>
 						)}
 						{!user && (
