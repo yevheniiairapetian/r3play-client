@@ -123,14 +123,19 @@ export const MainView = () => {
               element={
                 <>
                   {!user ? (
+                    <>
                     <Navigate to='/login' replace />
+                    
+                    <h3>Session expired. Please log in again</h3>
+                    </>
                   ) : movies.length === 0 ? (
                     <>
-                    
                     <Col className="text-center mt-4"><Spin/></Col>
+                    
                     </>
                   ) : (
                     <Col md={8}>
+                    
                       <MovieView movies={movies}/>
                     
                     </Col>
@@ -144,14 +149,19 @@ export const MainView = () => {
               element={
                 <>
                   {!user ? (
+                    <>
                     <Navigate to='/login' replace />
+                    
+                    <h3>Session expired. Please log in again</h3>
+                    </>
                   ) : tvseries.length === 0 ? (
                     <>
-                  
                     <Col className="text-center mt-4"><Spin/></Col>
+                    
                     </>
                   ) : (
                     <Col md={8}>
+                    
                       <TVseriesView tvseries={tvseries}/>
                     </Col>
                   )}
@@ -164,14 +174,19 @@ export const MainView = () => {
               element={
                 <>
                   {!user ? (
+                    <>
                     <Navigate to='/login' replace />
+                    
+                    <h3>Session expired. Please log in again</h3>
+                    </>
                   ) : animes.length === 0 ? (
                     <>
-                    
                     <Col className="text-center mt-4"><Spin/></Col>
+                    
                     </>
                   ) : (
                     <Col md={8}>
+                    
                       <AnimeView animes={animes}/>
                     </Col>
                   )}
@@ -185,14 +200,20 @@ export const MainView = () => {
                 <>
                 <>
                   {!user ? (
-                    <Navigate to="/login" replace />
+                    <>
+                    <Navigate to='/login' replace />
+                    
+                    <h3>Session expired. Please log in again</h3>
+                    </>
                   ) : movies.length === 0 ? (
                     <>
                     
                     <Col className="text-center mt-4"><Spin/></Col>
+                    
                     </>
                   ) : (
-                    <Row className="">
+                    <>
+                    
                       <Row className="my-3">
                         
                           
@@ -207,7 +228,7 @@ export const MainView = () => {
                       </Row>
                       <UncontrolledExample></UncontrolledExample>
                       <Header></Header>
-                      <>
+                      
                       {movies.filter((movie) => {
                         return search === "" ?
                           movie :
@@ -260,9 +281,9 @@ export const MainView = () => {
                         </Col>
                         
                       ))}
-                      </>
+                      
 
-                    </Row>
+                    </>
                   )}
                   
                 </>
