@@ -217,7 +217,7 @@ export const MainView = () => {
                         <Row className="my-3">
 
 
-                          <input style={{ color: 'black', fontStyle: 'italic', borderRadius: '7px' }}
+                          <input style={{ color: '#19854e', fontStyle: 'italic', borderRadius: '7px' }}
                             id="search search-input input-search"
                             onChange={(e) => setSearch(e.target.value)}
                             placeholder="Search (e.g. Lethal Weapon)"
