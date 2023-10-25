@@ -82,7 +82,7 @@ export const AnimeView = ({ animes }) => {
           <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Rating ? anim.Rating : "No data yet"}</Card.Title>
           <Alert
 
-            className="bg-warning mb-3 pt-3 text-center">Watch the official trailer</Alert>
+            className="bg-warning mb-3 pt-3 mt-3 text-center">Watch the official trailer</Alert>
           <ReactPlayer className="m-auto w-auto" controls
 
             url={anim.Trailer}>
@@ -103,7 +103,7 @@ export const AnimeView = ({ animes }) => {
 
       <Alert
 
-        className="bg-warning mb-3 pt-3 text-center">You may also like</Alert>
+        className="bg-warning mb-3 mt-3 pt-3 text-center">You may also like</Alert>
 
       <Row className=''>
         {similarAnime(anim.Genre.Name).map((anim) => (
@@ -124,7 +124,7 @@ export const AnimeView = ({ animes }) => {
       <div>
         <Alert
 
-          className="bg-warning mb-3 pt-3 text-center">This director also made</Alert>
+          className="bg-warning mb-3 mt-3 pt-3 text-center">This director also made</Alert>
       </div>
       <Row className=''>
         {similarAnimeDirector(anim.Director.Name).map((anim) => (
@@ -145,7 +145,7 @@ export const AnimeView = ({ animes }) => {
 
       <Alert
 
-        className="bg-warning mb-3 pt-3 text-center">Same Rotten Tomatoes Audience Rating also have</Alert>
+        className="bg-warning mb-3 mt-3 pt-3 text-center">Same Rotten Tomatoes Audience Rating also have</Alert>
 
       <Row className=''>
         {similarAnimeRating(anim.Rating).map((anim) => (
@@ -166,7 +166,7 @@ export const AnimeView = ({ animes }) => {
 
       <Alert
 
-        className="bg-warning mb-3 pt-3 text-center">Same IMDb Rating also have</Alert>
+        className="bg-warning mb-3 mt-3 pt-3 text-center">Same IMDb Rating also have</Alert>
 
       <Row className=''>
         {similarAnimeIMDBRating(anim.IMDbRating).map((anim) => (
@@ -187,7 +187,7 @@ export const AnimeView = ({ animes }) => {
 
       <Alert
 
-        className="bg-warning mb-3 pt-3 text-center">Actors from this tv series also play in</Alert>
+        className="bg-warning mb-3 mt-3 pt-3 text-center">Actors from this tv series also play in</Alert>
       <div>
         <Row className=''>
           {sameAnimeActors(anim.Actors).map((anim) => (
@@ -208,7 +208,7 @@ export const AnimeView = ({ animes }) => {
 
         <Alert
 
-          className="bg-warning mb-3 pt-3 text-center">Released in the same year</Alert>
+          className="bg-warning mb-3 mt-3 pt-3 text-center">Released in the same year</Alert>
 
         <Row className=''>
           {sameAnimeDate(anim.ReleaseDate).map((anim) => (
@@ -228,7 +228,7 @@ export const AnimeView = ({ animes }) => {
         </Row>
         <Alert
 
-          className="bg-warning mb-3 pt-3 text-center">Takes around the same time to watch</Alert>
+          className="bg-warning mb-3 mt-3 pt-3 text-center">Takes around the same time to watch</Alert>
         <Row className=''>
           {sameDuration(anim.Duration).map((anim) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
@@ -247,7 +247,7 @@ export const AnimeView = ({ animes }) => {
         </Row>
 
         <Link to={`/`}>
-          <Button className="p-2 w-100" variant="secondary">Back to the list</Button>
+          <Button className="p-2 mt-3 w-100" variant="secondary">Back to the list</Button>
         </Link>
       </div>
 

@@ -77,8 +77,8 @@ html{
     .tvser-li-hover:hover{
         list-style-position: inside;
         transform: translateX(10px);
-        background-color: #19854e;
-        transition: background-color 0.5s ease-in-out;
+        // background-color: #19854e;
+        transition: transform 0.5s ease-in-out;
     }
     
     .bg-carousel{
@@ -148,8 +148,8 @@ html{
         .tvser-li-hover:hover{
             list-style-position: inside;
             transform: translateX(10px);
-            background-color: #19854e;
-            transition: background-color 0.5s ease-in-out;
+            // background-color: #19854e;
+            transition: transform 0.5s ease-in-out;
         }
         
     }

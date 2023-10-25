@@ -64,9 +64,8 @@ html {
 }
 
 .dark .tvser-li-hover:hover {
-  background-color: #19854e;
   list-style-position: inside;
-  transition: background-color .5s ease-in-out;
+  transition: transform .5s ease-in-out;
   transform: translateX(10px);
 }
 
@@ -144,9 +143,8 @@ html {
 }
 
 .light .card > div .tvser-li-hover:hover, .light #card .tvser-li-hover:hover {
-  background-color: #19854e;
   list-style-position: inside;
-  transition: background-color .5s ease-in-out;
+  transition: transform .5s ease-in-out;
   transform: translateX(10px);
 }
 
