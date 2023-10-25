@@ -85,12 +85,34 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 	return (
 
 		<>
+
 			<Row>
-				<Col className="m-auto" md={4} xl={4} lg={4} sm={10} xs={12}>
-					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
-						<Alert
+			<Alert md={4} xl={4} lg={4} sm={8} xs={10}
 
 							className="bg-success text-light mb-3 pt-3 text-center">My Profile</Alert>
+				<Col className="m-auto mt-3" md={4} xl={4} lg={4} sm={8} xs={10}>
+
+					<h6
+
+						className="text-success mb-3 pt-3 text-center"><span className="text-dark"> Username:</span> {username}</h6>
+					<h6
+
+						className="text-success mb-3 pt-3 text-center"><span className="text-dark"> Email:</span> {email}</h6>
+					<h6
+
+						className="text-success mb-3 pt-3 text-center"><span className="text-dark"> Birthday:</span> {birthday.slice(0, 10)}</h6>
+						<p className="mb-3 pt-1 text-center"><em>Don't forget to <span className="text-warning">save the changes!</span></em></p>
+
+
+
+
+				</Col>
+			
+
+			
+				<Col className="m-auto" md={4} xl={4} lg={4} sm={8} xs={10}>
+					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
+						
 						<Form.Group controlId="formUsername" className='form-group pb-4'>
 							<Form.Label>Username:</Form.Label>
 							<Form.Control
@@ -149,61 +171,61 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 				</Col>
 			</Row>
 
-<Row>
-<h5 className="bg-success text-light pt-3 pb-3">You have <span className="text-info">{resultMovies.length > 1 || resultMovies.length==0 ? resultMovies.length + " movies, ": resultMovies.length + " movie, "}</span><span className="text-info">{resultAnime.length > 1 ? resultAnime.length + " anime, ": resultAnime.length + " anime, "}</span>  <span className="text-info">{resultTV.length > 1 ? resultTV.length + " tv series": resultTV.length + " tv series"} </span> in your favorites list</h5>
-<Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
-              <Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites</Accordion.Header>
-              <Accordion.Body className="bg-success">
-                <Row id="card-info" secondary-color="text-secondary pb-3">{resultMovies.map((movie) => (
-						
-						<Col className="all-media-container mb-4" key={movie._id} md={4} xl={3} lg={3} sm={6} xs={12} >
-							<MovieCard
-							className="flexible-media" 
-								movie={movie}
-								user={user}
-								token={token}
-								setUser={setUser}
-							>
-							</MovieCard>
-						</Col>
-					
-				))}
-				{resultTV.map((tvseries) => (
-					
-						<Col className="all-media-container mb-4" key={tvseries._id} md={4} xl={3} lg={3} sm={6} xs={12}>
-							<TVseriesCard
-							className="flexible-media" 
-								tvseries={tvseries}
-								user={user}
-								token={token}
-								setUser={setUser}
-							>
-							</TVseriesCard>
-						</Col>
-					
-				))}
-				{resultAnime.map((animes) => (
-					
-						<Col className="all-media-container mb-4" key={animes._id} md={4} xl={3} lg={3} sm={6} xs={12}>
-							<AnimeCard
-							className="flexible-media" 
-								animes={animes}
-								user={user}
-								token={token}
-								setUser={setUser}
-							>
-							</AnimeCard>
-						</Col>
-					
-				))}</Row>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
+			<Row>
+				<h5 className="bg-success text-light pt-3 pb-3">You have <span className="text-info">{resultMovies.length > 1 || resultMovies.length == 0 ? resultMovies.length + " movies, " : resultMovies.length + " movie, "}</span><span className="text-info">{resultAnime.length > 1 ? resultAnime.length + " anime, " : resultAnime.length + " anime, "}</span>  <span className="text-info">{resultTV.length > 1 ? resultTV.length + " tv series" : resultTV.length + " tv series"} </span> in your favorites list</h5>
+				<Accordion defaultActiveKey="0">
+					<Accordion.Item eventKey="0">
+						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites</Accordion.Header>
+						<Accordion.Body className="bg-success">
+							<Row id="card-info" secondary-color="text-secondary pb-3">{resultMovies.map((movie) => (
 
-					
+								<Col className="all-media-container mb-4" key={movie._id} md={4} xl={3} lg={3} sm={6} xs={12} >
+									<MovieCard
+										className="flexible-media"
+										movie={movie}
+										user={user}
+										token={token}
+										setUser={setUser}
+									>
+									</MovieCard>
+								</Col>
 
-				
+							))}
+								{resultTV.map((tvseries) => (
+
+									<Col className="all-media-container mb-4" key={tvseries._id} md={4} xl={3} lg={3} sm={6} xs={12}>
+										<TVseriesCard
+											className="flexible-media"
+											tvseries={tvseries}
+											user={user}
+											token={token}
+											setUser={setUser}
+										>
+										</TVseriesCard>
+									</Col>
+
+								))}
+								{resultAnime.map((animes) => (
+
+									<Col className="all-media-container mb-4" key={animes._id} md={4} xl={3} lg={3} sm={6} xs={12}>
+										<AnimeCard
+											className="flexible-media"
+											animes={animes}
+											user={user}
+											token={token}
+											setUser={setUser}
+										>
+										</AnimeCard>
+									</Col>
+
+								))}</Row>
+						</Accordion.Body>
+					</Accordion.Item>
+				</Accordion>
+
+
+
+
 			</Row>
 
 			<Modal show={showModal} onHide={handleCloseModal}>
