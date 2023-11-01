@@ -131,7 +131,7 @@ export const MainView = () => {
                   ) : movies.length === 0 ? (
                     <>
                       <Col className="text-center mt-4"><Spin /></Col>
-                      <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3>
+                      {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                     </>
                   ) : (
@@ -158,7 +158,7 @@ export const MainView = () => {
                   ) : tvseries.length === 0 ? (
                     <>
                       <Col className="text-center mt-4"><Spin /></Col>
-                      <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3>
+                      {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                     </>
                   ) : (
@@ -184,7 +184,7 @@ export const MainView = () => {
                   ) : animes.length === 0 ? (
                     <>
                       <Col className="text-center mt-4"><Spin /></Col>
-                      <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3>
+                      {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                     </>
                   ) : (
@@ -212,7 +212,7 @@ export const MainView = () => {
                       <>
 
                         <Col className="text-center mt-4"><Spin /></Col>
-                        <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3>
+                        {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                       </>
                     ) : (
