@@ -5,6 +5,12 @@ import ReactPlayer from "react-player";
 import Accordion from 'react-bootstrap/Accordion';
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
+import imdb from '../../images/imdb.svg';
+import director from '../../images/director.svg';
+import clock from '../../images/clock.svg';
+import actors from '../../images/actors.svg';
+import info from '../../images/info.svg';
+import rottenTomatoes from '../../images/rotten-tomatoes.svg';
 
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
@@ -32,44 +38,21 @@ export const MovieView = ({ movies }) => {
         <Card.Img className='h-100 card text-bg-dark mb-3' variant={top} src={movie.ImagePath} />
 
         <Card.Body className="" >
-          <Card.Title id="card-title" className="bg-success text-white text-center pb-3 pt-3">{movie.Title}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.ReleaseDate ? movie.ReleaseDate.slice(0, 4) : "No data yet"}</Card.Title>
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3"> Duration: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Duration ? movie.Duration : "No data yet"}</Card.Title>
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Genre.Name}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Genre.Description}</Card.Title>
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Director: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Director.Name}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Biography: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Director.Bio}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">{movie.Director.Name}'s Birth year: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Director.Birth ? movie.Director.Birth : "No data"}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">{movie.Director.Name}'s Death year: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Director.Death ? movie.Director.Death : "No data"}</Card.Title><br />
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Actors: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Actors.length > 0 ? movie.Actors.map(a => <>{a}<br /></>) : "No data yet"}</Card.Title>
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">IMDb Rating: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.IMDbRating ? movie.IMDbRating : "No data yet"}</Card.Title>
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{movie.Rating ? movie.Rating : "No data yet"}</Card.Title>
-          
+          <Card.Title id="card-title" className="text-center fs-5 text-success pb-3 pt-3">{movie.Title}, {movie.ReleaseDate ? movie.ReleaseDate.slice(0, 4) : "No data yet"}, {movie.Genre.Name}</Card.Title>
+          <Card.Title id="card-info" className="pt-3 pb-3" secondary-color="text-secondary "><img src={info} style={{width: "30px", height:"22px", "margin-right":"8px"}} /> </Card.Title>
+          <Card.Title id="card-info" className="pb-3" secondary-color="text-secondary ">{movie.Description}</Card.Title>
+          <Card.Title id="card-info" className="pb-3" secondary-color="text-secondary "><img src={clock} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> {movie.Duration ? movie.Duration : "No data yet"}</Card.Title>
+          <Card.Title id="card-info" className="pb-2" secondary-color="text-secondary ">{movie.Genre.Description}</Card.Title>
+          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={director} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> {movie.Director.Name}, {movie.Director.Birth ? movie.Director.Birth : null} - {movie.Director.Death ? movie.Director.Death : "Present"}</Card.Subtitle> 
+          {/* // style={{color: "#238a47"}}  */}
+          <Card.Title id="card-info" className="pb-1 pt-3" secondary-color="text-secondary ">{movie.Director.Bio}</Card.Title><br />
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-0"><img src={actors} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> </Card.Subtitle>
+          <Card.Title id="card-info" className="pt-3 pb-2" secondary-color="text-secondary">{movie.Actors.length > 0 ? movie.Actors.map(a => <>{a}<br /></>) : "No data yet"}</Card.Title>
+          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={imdb} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> {movie.IMDbRating ? movie.IMDbRating : "No data yet"}</Card.Subtitle>
+          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={rottenTomatoes} style={{width: "30px", height:"28px", "margin-right":"8px"}} /> {movie.Rating ? movie.Rating : "No data yet"}</Card.Subtitle>          
           <Accordion>
             <Accordion.Item eventKey="0">
-              <Accordion.Header className="text-success">Did you know? (Click to expand)</Accordion.Header>
+              <Accordion.Header className="text-success">Did you know?</Accordion.Header>
               <Accordion.Body>
                 <Card.Title id="card-info" className="" secondary-color="text-secondary pb-3"><ol>{movie.InterestingFacts.length > 0 ? movie.InterestingFacts.map(i => <li className="tvser-li-hover pt-3 pb-3">{i}<br /></li>) : "No data yet"} </ol></Card.Title>
               
@@ -79,7 +62,7 @@ export const MovieView = ({ movies }) => {
           
           <Alert
          
-         className="bg-warning mb-3 mt-3 pt-3 text-center">Watch the official trailer</Alert>
+         className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Watch the official trailer</Alert>
           <ReactPlayer className="m-auto w-auto" controls
 
             url={movie.Trailer}>
@@ -87,7 +70,7 @@ export const MovieView = ({ movies }) => {
           <br />
 
           <Link to={`/`}>
-            <Button className="p-2 w-100" variant="secondary">Back to the list</Button>
+          <Button className="pl-5 pr-5 w-25" style={{background: "white", color: "black"}}>Back</Button>
           </Link>
         </Card.Body>
         <hr />
@@ -97,7 +80,7 @@ export const MovieView = ({ movies }) => {
       <div>
       <Alert
          
-         className="bg-warning mb-3 mt-3 pt-3 text-center">You may also like</Alert>
+         className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>You may also like</Alert>
       </div>
       <Row className=''>
               {similarMovies(movie.Genre.Name).map((movie) => (
@@ -105,10 +88,10 @@ export const MovieView = ({ movies }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/movies/${movie._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
           </Link>
               </Card.Body>
               </Card>
@@ -118,7 +101,7 @@ export const MovieView = ({ movies }) => {
             <div>
       <Alert
          
-         className="bg-warning mb-3 mt-3 pt-3 text-center">This director also made</Alert>
+         className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>This director also made</Alert>
       </div>
             <Row className=''>
               {similarDirector(movie.Director.Name).map((movie) => (
@@ -126,10 +109,10 @@ export const MovieView = ({ movies }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/movies/${movie._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
           </Link>
               </Card.Body>
               </Card>
@@ -139,7 +122,7 @@ export const MovieView = ({ movies }) => {
 
             <Alert
          
-         className="bg-warning mb-3 mt-3 pt-3 text-center">Same Rotten Tomatoes Audience Rating also have</Alert>
+         className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Same Rotten Tomatoes Audience Rating also have</Alert>
       </div>
             <Row className=''>
               {similarRating(movie.Rating).map((movie) => (
@@ -147,10 +130,10 @@ export const MovieView = ({ movies }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/movies/${movie._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
           </Link>
               </Card.Body>
               </Card>
@@ -160,7 +143,7 @@ export const MovieView = ({ movies }) => {
 
             <Alert
          
-         className="bg-warning mb-3 mt-3 pt-3 text-center">Same IMDb rating also have</Alert>
+         className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Same IMDb rating also have</Alert>
       
             <Row className=''>
               {similarIMDBRating(movie.IMDbRating).map((movie) => (
@@ -168,10 +151,10 @@ export const MovieView = ({ movies }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/movies/${movie._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
           </Link>
               </Card.Body>
               </Card>
@@ -182,7 +165,7 @@ export const MovieView = ({ movies }) => {
 
             <Alert
          
-         className="bg-warning mb-3 mt-3 pt-3 text-center">Actors from this movie also play in</Alert>
+         className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Actors from this movie also play in</Alert>
       <div>
             <Row className=''>
               {sameActors(movie.Actors).map((movie) => (
@@ -190,10 +173,10 @@ export const MovieView = ({ movies }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/movies/${movie._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
           </Link>
               </Card.Body>
               </Card>
@@ -203,7 +186,7 @@ export const MovieView = ({ movies }) => {
 
             <Alert
          
-         className="bg-warning mb-3 mt-3 pt-3 text-center">Released in the same year</Alert>
+         className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Released in the same year</Alert>
       </div>
             <Row className=''>
               {sameDate(movie.ReleaseDate).map((movie) => (
@@ -211,10 +194,10 @@ export const MovieView = ({ movies }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/movies/${movie._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
           </Link>
               </Card.Body>
               </Card>
@@ -224,7 +207,7 @@ export const MovieView = ({ movies }) => {
 
             <Alert
          
-         className="bg-warning mb-3 mt-3 pt-3 text-center">Takes around the same time to watch</Alert>
+         className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Takes around the same time to watch</Alert>
       
             <Row className=''>
               {sameDuration(movie.Duration).map((movie) => (
@@ -232,10 +215,10 @@ export const MovieView = ({ movies }) => {
                 <Card className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
+        <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
               
         <Link to={`/movies/${movie._id}`}>
-            <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+            <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
           </Link>
               </Card.Body>
               </Card>
@@ -255,7 +238,7 @@ export const MovieView = ({ movies }) => {
 
       </div>
             <Link to={`/`}>
-            <Button className="p-2 w-100 mt-3 " variant="secondary">Back to the list</Button>
+            <Button className="pl-5 pr-5 mt-4 w-25" style={{background: "white", color: "black"}}>Back</Button>
           </Link>
     </div>
 

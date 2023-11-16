@@ -74,29 +74,23 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
       <Card id="card" className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-title" className="text-success w-100 pb-3 pt-3">{movie.Title} 
-        {/* {"("+movie.ReleaseDate.slice(0, 4)+")"} */}
+        <Card.Title id="card-title" className="text-success text-center fs-6 pb-3 pt-3">{movie.Title} 
         </Card.Title>
-        {/* <Card.Subtitle  id="card-subtitle" className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle> */}
-          <Card.Title secondary-color="fs-4 text-secondary pb-3">{movie.Genre.Name}, {movie.ReleaseDate.slice(0, 4)}</Card.Title>
-          {/* <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle> */}
-          {/* <Card.Title secondary-color="text-secondary pb-3"></Card.Title> */}
-          {/* <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle> */}
-          {/* <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title><br/> */}
+          <Card.Title className=" text-center pb-1" secondary-color="text-secondary">{movie.Genre.Name}, {movie.ReleaseDate.slice(0, 4)}</Card.Title>
           <div className="d-flex mt-4 justify-content-around align-items-center">
           {isFavorite ? (
-            <FontAwesomeIcon icon={faHeart} size="md" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteMovie} />
+            <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteMovie} />
              
             
           ) : (
 
-            <FontAwesomeIcon icon={faHeart} size="md" 
+            <FontAwesomeIcon icon={faHeart} size="lg" 
             // style={{color:"green"}}
              onClick={addFavoriteMovie} />
               
           )}
           <Link to={`/movies/${movie._id}`}>
-            <Button className='info-button p4-5 pr-4' variant='outline-light'>More</Button>
+          <Button className='info-button fs-6 p4-5 pr-4' variant='outline-light'>More</Button>
           </Link>
           </div>
         </Card.Body>

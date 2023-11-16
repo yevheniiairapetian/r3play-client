@@ -73,26 +73,20 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
       <Card id="card" className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvseries.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-title" className="text-success pb-3 pt-3">{tvseries.Title} 
-        {/* {"("+tvseries.ReleaseDate.slice(0, 4)+")"} */}
+        <Card.Title id="card-title" className="text-success text-center fs-6 pb-3 pt-3">{tvseries.Title} 
         </Card.Title>
-        {/* <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle> */}
-          <Card.Title secondary-color="text-secondary pb-3">{tvseries.Genre.Name}, {tvseries.ReleaseDate.slice(0, 4)}</Card.Title>
-          {/* <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle> */}
-          {/* <Card.Title secondary-color="text-secondary pb-3"></Card.Title> */}
-          {/* <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle> */}
-          {/* <Card.Title secondary-color="text-secondary pb-3">{tvseries.Description}</Card.Title><br/> */}
+          <Card.Title className=" text-center pb-1" secondary-color="text-secondary">{tvseries.Genre.Name}, {tvseries.ReleaseDate.slice(0, 4)}</Card.Title>
           <div className="d-flex justify-content-around mt-4 align-items-center">
           {isFavorite ? (
-            <FontAwesomeIcon icon={faHeart} size="xl" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteTV} />
+            <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteTV} />
              
             
           ) : (
-            <FontAwesomeIcon icon={faHeart} size="xl" style={{color:"#0cc4e9", }} onClick={addFavoriteTV} />
+            <FontAwesomeIcon icon={faHeart} size="lg" style={{color:"#0cc4e9", }} onClick={addFavoriteTV} />
               
           )}
           <Link to={`/tvseries/${tvseries._id}`}>
-            <Button className='info-button p4-5 pr-4' variant='outline-light'>Read More</Button>
+            <Button className='info-button fs-6 p4-5 pr-4' variant='outline-light'>More</Button>
           </Link>
           </div>
         </Card.Body>

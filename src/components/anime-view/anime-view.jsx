@@ -5,7 +5,12 @@ import ReactPlayer from "react-player";
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Accordion from 'react-bootstrap/Accordion';
-
+import imdb from '../../images/imdb.svg';
+import director from '../../images/director.svg';
+import clock from '../../images/clock.svg';
+import actors from '../../images/actors.svg';
+import info from '../../images/info.svg';
+import rottenTomatoes from '../../images/rotten-tomatoes.svg';
 
 
 
@@ -29,60 +34,25 @@ export const AnimeView = ({ animes }) => {
   const sameAnimeActors = (Actors) => animes.filter(a => a._id !== AnimeId && Actors.some(actor => a.Actors.includes(actor)));
   return (
     <>
-      <Card className="bg-primary">
+      <Card className="bg-primary" >
         <Card.Img className='h-100 card text-bg-dark mb-3' variant={top} src={anim.ImagePath} />
 
-        <Card.Body className="card-bg-color">
-          <Card.Title id="card-title" className="text-white bg-success text-center pb-3 pt-3">{anim.Title}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.ReleaseDate ? anim.ReleaseDate.slice(0, 4) : "No data yet"}</Card.Title>
-
-          <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
-              <Accordion.Header className="text-success">Episodes:</Accordion.Header>
-              <Accordion.Body>
-                <Card.Title id="card-info" className="" secondary-color="text-secondary pb-3"><ol>{anim.Season.length > 0 ? anim.Season.map(s => <li className="p-2 tvser-li-hover">{s}</li>) : "No data yet"} </ol></Card.Title>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-
-          <Card.Subtitle className="mb-2 text-success pt-3">Description: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Description}</Card.Title>
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3"> Duration: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Duration ? anim.Duration : "No data yet"}</Card.Title>
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Genre.Name}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Genre.Description}</Card.Title>
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Director: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Director.Name}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Biography: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Director.Bio}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">{anim.Director.Name}'s Birth year: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Director.Birth ? anim.Director.Birth : "No data"}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">{anim.Director.Name}'s Death year: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Director.Death ? anim.Director.Death : "No data"}</Card.Title><br />
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Actors: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Actors.length > 0 ? anim.Actors.map(a => <>{a}<br /></>) : "No data yet"}</Card.Title>
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">IMDb Rating: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.IMDbRating ? anim.IMDbRating : "No data yet"}</Card.Title>
-
-
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Rotten Tomatoes Audience Rating: </Card.Subtitle>
-          <Card.Title id="card-info" secondary-color="text-secondary pb-3">{anim.Rating ? anim.Rating : "No data yet"}</Card.Title>
+        <Card.Body className="" >
+          <Card.Title id="card-title" className="text-center fs-5 text-success pb-3 pt-3">{anim.Title}, {anim.ReleaseDate ? anim.ReleaseDate.slice(0, 4) : "No data yet"}, {anim.Genre.Name}</Card.Title>
+          <Card.Title id="card-info" className="pt-3 pb-3" secondary-color="text-secondary "><img src={info} style={{width: "30px", height:"22px", "margin-right":"8px"}} /> </Card.Title>
+          <Card.Title id="card-info" className="pb-3" secondary-color="text-secondary ">{anim.Description}</Card.Title>
+          <Card.Title id="card-info" className="pb-3" secondary-color="text-secondary "><img src={clock} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> {anim.Duration ? anim.Duration : "No data yet"}</Card.Title>
+          <Card.Title id="card-info" className="pb-2" secondary-color="text-secondary ">{anim.Genre.Description}</Card.Title>
+          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={director} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> {anim.Director.Name}, {anim.Director.Birth ? anim.Director.Birth : null} - {anim.Director.Death ? anim.Director.Death : "Present"}</Card.Subtitle> 
+          {/* // style={{color: "#238a47"}}  */}
+          <Card.Title id="card-info" className="pb-1 pt-3" secondary-color="text-secondary ">{anim.Director.Bio}</Card.Title><br />
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-0"><img src={actors} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> </Card.Subtitle>
+          <Card.Title id="card-info" className="pt-3 pb-2" secondary-color="text-secondary">{anim.Actors.length > 0 ? anim.Actors.map(a => <>{a}<br /></>) : "No data yet"}</Card.Title>
+          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={imdb} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> {anim.IMDbRating ? anim.IMDbRating : "No data yet"}</Card.Subtitle>
+          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={rottenTomatoes} style={{width: "30px", height:"28px", "margin-right":"8px"}} /> {anim.Rating ? anim.Rating : "No data yet"}</Card.Subtitle>          
           <Alert
 
-            className="bg-warning mb-3 pt-3 mt-3 text-center">Watch the official trailer</Alert>
+className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Watch the official trailer</Alert>
           <ReactPlayer className="m-auto w-auto" controls
 
             url={anim.Trailer}>
@@ -93,7 +63,7 @@ export const AnimeView = ({ animes }) => {
           </div>
 
           <Link to={`/`}>
-            <Button className="p-2 w-100" variant="secondary">Back to the list</Button>
+            <Button className="pl-5 pr-5 w-25" style={{background: "white", color: "black"}}>Back</Button>
           </Link>
         </Card.Body>
         <hr />
@@ -103,7 +73,7 @@ export const AnimeView = ({ animes }) => {
 
       <Alert
 
-        className="bg-warning mb-3 mt-3 pt-3 text-center">You may also like</Alert>
+className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>You may also like</Alert>
 
       <Row className=''>
         {similarAnime(anim.Genre.Name).map((anim) => (
@@ -111,10 +81,10 @@ export const AnimeView = ({ animes }) => {
             <Card className='h-100 card text-bg-primary mb-3' >
               <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
               <Card.Body>
-                <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+                <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
 
                 <Link to={`/animes/${anim._id}`}>
-                  <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                  <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -124,7 +94,7 @@ export const AnimeView = ({ animes }) => {
       <div>
         <Alert
 
-          className="bg-warning mb-3 mt-3 pt-3 text-center">This director also made</Alert>
+className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>This director also made</Alert>
       </div>
       <Row className=''>
         {similarAnimeDirector(anim.Director.Name).map((anim) => (
@@ -132,10 +102,10 @@ export const AnimeView = ({ animes }) => {
             <Card className='h-100 card text-bg-primary mb-3' >
               <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
               <Card.Body>
-                <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+                <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
 
                 <Link to={`/animes/${anim._id}`}>
-                  <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                  <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -145,7 +115,7 @@ export const AnimeView = ({ animes }) => {
 
       <Alert
 
-        className="bg-warning mb-3 mt-3 pt-3 text-center">Same Rotten Tomatoes Audience Rating also have</Alert>
+className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Same Rotten Tomatoes Audience Rating also have</Alert>
 
       <Row className=''>
         {similarAnimeRating(anim.Rating).map((anim) => (
@@ -153,10 +123,10 @@ export const AnimeView = ({ animes }) => {
             <Card className='h-100 card text-bg-primary mb-3' >
               <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
               <Card.Body>
-                <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+                <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
 
                 <Link to={`/animes/${anim._id}`}>
-                  <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                  <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -166,7 +136,7 @@ export const AnimeView = ({ animes }) => {
 
       <Alert
 
-        className="bg-warning mb-3 mt-3 pt-3 text-center">Same IMDb Rating also have</Alert>
+className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Same IMDb Rating also have</Alert>
 
       <Row className=''>
         {similarAnimeIMDBRating(anim.IMDbRating).map((anim) => (
@@ -174,10 +144,10 @@ export const AnimeView = ({ animes }) => {
             <Card className='h-100 card text-bg-primary mb-3' >
               <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
               <Card.Body>
-                <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+                <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
 
                 <Link to={`/animes/${anim._id}`}>
-                  <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                  <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -187,7 +157,7 @@ export const AnimeView = ({ animes }) => {
 
       <Alert
 
-        className="bg-warning mb-3 mt-3 pt-3 text-center">Actors from this tv series also play in</Alert>
+className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Actors from this tv series also play in</Alert>
       <div>
         <Row className=''>
           {sameAnimeActors(anim.Actors).map((anim) => (
@@ -195,10 +165,10 @@ export const AnimeView = ({ animes }) => {
               <Card className='h-100 card text-bg-primary mb-3' >
                 <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
                 <Card.Body>
-                  <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+                  <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
 
                   <Link to={`/animes/${anim._id}`}>
-                    <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                    <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
                   </Link>
                 </Card.Body>
               </Card>
@@ -208,7 +178,7 @@ export const AnimeView = ({ animes }) => {
 
         <Alert
 
-          className="bg-warning mb-3 mt-3 pt-3 text-center">Released in the same year</Alert>
+className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Released in the same year</Alert>
 
         <Row className=''>
           {sameAnimeDate(anim.ReleaseDate).map((anim) => (
@@ -216,10 +186,10 @@ export const AnimeView = ({ animes }) => {
               <Card className='h-100 card text-bg-primary mb-3' >
                 <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
                 <Card.Body>
-                  <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+                  <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
 
                   <Link to={`/animes/${anim._id}`}>
-                    <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                    <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
                   </Link>
                 </Card.Body>
               </Card>
@@ -228,17 +198,17 @@ export const AnimeView = ({ animes }) => {
         </Row>
         <Alert
 
-          className="bg-warning mb-3 mt-3 pt-3 text-center">Takes around the same time to watch</Alert>
+className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Takes around the same time to watch</Alert>
         <Row className=''>
           {sameDuration(anim.Duration).map((anim) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
               <Card className='h-100 card text-bg-primary mb-3' >
                 <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
                 <Card.Body>
-                  <Card.Title id="card-subtitle" className="text-success text-center bg-dark w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+                  <Card.Title id="card-subtitle" className="text-success text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
 
                   <Link to={`/animes/${anim._id}`}>
-                    <Button className='info-button w-100 mt-2' variant='outline-light'>Read More</Button>
+                    <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
                   </Link>
                 </Card.Body>
               </Card>
@@ -247,7 +217,7 @@ export const AnimeView = ({ animes }) => {
         </Row>
 
         <Link to={`/`}>
-          <Button className="p-2 mt-3 w-100" variant="secondary">Back to the list</Button>
+        <Button className="pl-5 pr-5 mt-4 w-25" style={{background: "white", color: "black"}}>Back</Button>
         </Link>
       </div>
 
