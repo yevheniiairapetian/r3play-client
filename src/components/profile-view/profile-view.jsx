@@ -172,14 +172,14 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 			</Row>
 
 			<Row>
-				<h5 className="bg-success text-light pt-3 pb-3">You have <span className="text-info">{resultMovies.length > 1 || resultMovies.length == 0 ? resultMovies.length + " movies, " : resultMovies.length + " movie, "}</span><span className="text-info">{resultAnime.length > 1 ? resultAnime.length + " anime, " : resultAnime.length + " anime, "}</span>  <span className="text-info">{resultTV.length > 1 ? resultTV.length + " tv series" : resultTV.length + " tv series"} </span> in your favorites list</h5>
+				<h5 className="bg-success text-light pt-3 pb-3">You have <span className="text-warning">{resultMovies.length > 1 || resultMovies.length == 0 ? resultMovies.length + " movies, " : resultMovies.length + " movie, "}</span><span className="text-warning">{resultAnime.length > 1 ? resultAnime.length + " anime, " : resultAnime.length + " anime, "}</span> and <span className="text-warning">{resultTV.length > 1 ? resultTV.length + " TV series" : resultTV.length + " TV series"} </span> in your favorites list</h5>
 				<Accordion defaultActiveKey="0">
 					<Accordion.Item eventKey="0">
 						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites</Accordion.Header>
-						<Accordion.Body className="bg-success">
+						<Accordion.Body className="bg-white">
 							<Row id="card-info" secondary-color="text-secondary pb-3">{resultMovies.map((movie) => (
 
-								<Col className="all-media-container mb-4" key={movie._id} md={6} xl={4} lg={4} sm={6} xs={12} >
+								<Col className="all-media-container mb-4" key={movie._id} md={4} xl={2} lg={3} sm={6} xs={12} >
 									<MovieCard
 										className="flexible-media"
 										movie={movie}
@@ -193,7 +193,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 							))}
 								{resultTV.map((tvseries) => (
 
-									<Col className="all-media-container mb-4" key={tvseries._id} md={6} xl={4} lg={4} sm={6} xs={12}>
+									<Col className="all-media-container mb-4" key={tvseries._id} md={4} xl={2} lg={3} sm={6} xs={12}>
 										<TVseriesCard
 											className="flexible-media"
 											tvseries={tvseries}
@@ -207,7 +207,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 								))}
 								{resultAnime.map((animes) => (
 
-									<Col className="all-media-container mb-4" key={animes._id} md={6} xl={4} lg={4} sm={6} xs={12}>
+									<Col className="all-media-container mb-4" key={animes._id} md={4} xl={2} lg={3} sm={6} xs={12}>
 										<AnimeCard
 											className="flexible-media"
 											animes={animes}

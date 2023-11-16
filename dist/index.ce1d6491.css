@@ -2,6 +2,17 @@
   padding-left: 6px;
 }
 
+.like-button {
+  text-align: right;
+  width: 100%;
+  height: 48px;
+  padding: 10px;
+  position: relative;
+  top: 0;
+  right: 0;
+  background-color: #2322224d !important;
+}
+
 .all-media-container {
   width: 100%;
   display: flex;

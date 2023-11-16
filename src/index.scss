@@ -11,6 +11,16 @@ $btn-secondary: rgb(54, 57, 57);
     padding-left: 6px;
 }
 
+.like-button{
+    position: relative;
+    top: 0;
+    right: 0;
+    width:100%;
+    padding: 10px;
+    text-align: right;
+    height: 48px;
+    background-color: rgba(35, 34, 34, 0.3) !important;
+}
 .all-media-container{
     display: flex;
   width: 100%;

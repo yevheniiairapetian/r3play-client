@@ -71,26 +71,33 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
   return (
     <div className="card-container fs-5">
+    
       <Card id="card" className='h-100 card text-bg-primary mb-3' >
+      
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
-        <Card.Body>
-        <Card.Title id="card-title" className="text-success text-center fs-6 pb-3 pt-3">{movie.Title} 
-        </Card.Title>
-          <Card.Title className=" text-center pb-1" secondary-color="text-secondary">{movie.Genre.Name}, {movie.ReleaseDate.slice(0, 4)}</Card.Title>
-          <div className="d-flex mt-4 justify-content-around align-items-center">
+        <div className="like-button">
           {isFavorite ? (
             <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteMovie} />
              
             
           ) : (
 
-            <FontAwesomeIcon icon={faHeart} size="lg" 
+            <FontAwesomeIcon icon={faHeart} style={{color: "#fff"}} size="lg" 
             // style={{color:"green"}}
              onClick={addFavoriteMovie} />
               
           )}
+          </div>
+        <Card.Body>
+        
+        <Card.Title id="card-title" className="text-success text-center fs-6 pb-3 pt-3">{movie.Title} 
+        </Card.Title>
+          <Card.Title className=" text-center pb-1" secondary-color="text-secondary">{movie.Genre.Name}, {movie.ReleaseDate.slice(0, 4)}</Card.Title>
+          
+          <div className="mt-4 text-center justify-content-around align-items-center">
+          
           <Link to={`/movies/${movie._id}`}>
-          <Button className='info-button fs-6 p4-5 pr-4' variant='outline-light'>More</Button>
+          <Button className='info-button fs-6 pl-5 pr-5 w-100' variant='outline-light'>More</Button>
           </Link>
           </div>
         </Card.Body>
