@@ -73,14 +73,16 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
       <Card id="card" className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={tvseries.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-title" className="text-success bg-dark text-center pb-3 pt-3">{tvseries.Title} {"("+tvseries.ReleaseDate.slice(0, 4)+")"}</Card.Title>
-        <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvseries.Genre.Name}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvseries.ReleaseDate.slice(0, 4)}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{tvseries.Description}</Card.Title><br/>
-          <div className="d-flex justify-content-around align-items-center">
+        <Card.Title id="card-title" className="text-success pb-3 pt-3">{tvseries.Title} 
+        {/* {"("+tvseries.ReleaseDate.slice(0, 4)+")"} */}
+        </Card.Title>
+        {/* <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle> */}
+          <Card.Title secondary-color="text-secondary pb-3">{tvseries.Genre.Name}, {tvseries.ReleaseDate.slice(0, 4)}</Card.Title>
+          {/* <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle> */}
+          {/* <Card.Title secondary-color="text-secondary pb-3"></Card.Title> */}
+          {/* <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle> */}
+          {/* <Card.Title secondary-color="text-secondary pb-3">{tvseries.Description}</Card.Title><br/> */}
+          <div className="d-flex justify-content-around mt-4 align-items-center">
           {isFavorite ? (
             <FontAwesomeIcon icon={faHeart} size="xl" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteTV} />
              

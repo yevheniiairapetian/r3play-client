@@ -4,7 +4,7 @@ import {ScrollToTop} from '../ScrollToTop/scroll-to-top';
 import { Button, Card, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faRegular } from '@fortawesome/free-solid-svg-icons';
 
 export const MovieCard = ({ movie, user, token, setUser }) => {
   const [isFavorite, setIsFavorite] = useState(
@@ -70,28 +70,33 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
   };
 
   return (
-    <div className="card-container">
+    <div className="card-container fs-5">
       <Card id="card" className='h-100 card text-bg-primary mb-3' >
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <Card.Body>
-        <Card.Title id="card-title" className="text-success text-center bg-dark w-100 pb-3 pt-3">{movie.Title} {"("+movie.ReleaseDate.slice(0, 4)+")"}</Card.Title>
-        <Card.Subtitle  id="card-subtitle" className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.Genre.Name}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.ReleaseDate.slice(0, 4)}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle>
-          <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title><br/>
-          <div className="d-flex justify-content-around align-items-center">
+        <Card.Title id="card-title" className="text-success w-100 pb-3 pt-3">{movie.Title} 
+        {/* {"("+movie.ReleaseDate.slice(0, 4)+")"} */}
+        </Card.Title>
+        {/* <Card.Subtitle  id="card-subtitle" className="title-color mb-2 text-info pt-3">Genre: </Card.Subtitle> */}
+          <Card.Title secondary-color="fs-4 text-secondary pb-3">{movie.Genre.Name}, {movie.ReleaseDate.slice(0, 4)}</Card.Title>
+          {/* <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Release Date: </Card.Subtitle> */}
+          {/* <Card.Title secondary-color="text-secondary pb-3"></Card.Title> */}
+          {/* <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-3">Desciption: </Card.Subtitle> */}
+          {/* <Card.Title secondary-color="text-secondary pb-3">{movie.Description}</Card.Title><br/> */}
+          <div className="d-flex mt-4 justify-content-around align-items-center">
           {isFavorite ? (
-            <FontAwesomeIcon icon={faHeart} size="xl" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteMovie} />
+            <FontAwesomeIcon icon={faHeart} size="md" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteMovie} />
              
             
           ) : (
-            <FontAwesomeIcon icon={faHeart} size="xl" style={{color:"#0cc4e9", }} onClick={addFavoriteMovie} />
+
+            <FontAwesomeIcon icon={faHeart} size="md" 
+            // style={{color:"green"}}
+             onClick={addFavoriteMovie} />
               
           )}
           <Link to={`/movies/${movie._id}`}>
-            <Button className='info-button p4-5 pr-4' variant='outline-light'>Read More</Button>
+            <Button className='info-button p4-5 pr-4' variant='outline-light'>More</Button>
           </Link>
           </div>
         </Card.Body>

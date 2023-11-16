@@ -44,6 +44,22 @@ html{
     height:100px;
 }
 
+button.info-button{
+    font-size: 15px;
+}
+
+div#card-title{
+    
+    font-size: 15px;
+}
+
+div#card-title, div.card-title{
+    
+    font-size: 15px;
+}
+
+
+
 // * width *
 ::-webkit-scrollbar {
     width: 8px;
@@ -117,16 +133,22 @@ html{
         color: black;
     }
     .card > div, #card{
-        background-color: #CDD3BA;
+        background-color: white;
         color: black;
         .btn-outline-light{
             color:white;
             background-color: #238a47;
         }
         div#card-title{
-            background-color: #CDD3BA !important;
+            background-color: white !important;
             color: #238a47 !important;
+            // font-size: 15px;
         }
+
+// div.titles{
+//     font-size: 15px;
+// }
+
         div#card-subtitle.title-color.card-subtitle{
             color:#238a47 !important;
         }

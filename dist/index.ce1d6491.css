@@ -35,6 +35,10 @@ html {
   right: 0;
 }
 
+button.info-button, div#card-title, div#card-title, div.card-title {
+  font-size: 15px;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -108,7 +112,7 @@ html {
 
 .light .card > div, .light #card {
   color: #000;
-  background-color: #cdd3ba;
+  background-color: #fff;
 }
 
 .light .card > div .btn-outline-light, .light #card .btn-outline-light {
@@ -118,7 +122,7 @@ html {
 
 .light .card > div div#card-title, .light #card div#card-title {
   color: #238a47 !important;
-  background-color: #cdd3ba !important;
+  background-color: #fff !important;
 }
 
 .light .card > div div#card-subtitle.title-color.card-subtitle, .light #card div#card-subtitle.title-color.card-subtitle {

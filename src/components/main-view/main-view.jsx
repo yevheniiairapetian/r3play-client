@@ -241,9 +241,10 @@ export const MainView = () => {
                         }
 
                         ).map((movie) => (
-                          <Col className="mb-4 all-media-container" key={movie._id} md={6} xl={4} lg={4} sm={11} xs={12}>
+                          <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={movie._id} md={4} xl={2} lg={3} sm={6} xs={12}>
                             <MovieCard
-                              className="flexible-media"
+                            
+                              className="flexible-media ml-5 mr-5"
                               movie={movie}
                               user={user}
                               token={token}
@@ -258,9 +259,9 @@ export const MainView = () => {
                         }
 
                         ).map((tvseries) => (
-                          <Col className="mb-4 all-media-container" key={tvseries._id} md={6} xl={4} lg={4} sm={11} xs={12}>
+                          <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={tvseries._id} md={4} xl={2} lg={3} sm={6} xs={12}>
                             <TVseriesCard
-                              className="flexible-media"
+                              className="flexible-media ml-5 mr-5"
                               tvseries={tvseries}
                               user={user}
                               token={token}
@@ -275,9 +276,9 @@ export const MainView = () => {
                         }
 
                         ).map((animes) => (
-                          <Col className="mb-4 all-media-container" key={animes._id} md={6} xl={4} lg={4} sm={11} xs={12}>
+                          <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={animes._id} md={4} xl={2} lg={3} sm={6} xs={12}>
                             <AnimeCard
-                              className="flexible-media"
+                              className="flexible-media ml-5 mr-5"
                               animes={animes}
                               user={user}
                               token={token}
