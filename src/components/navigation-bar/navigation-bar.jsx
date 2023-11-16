@@ -31,9 +31,9 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 	}, [theme]);
 	return (
 
-		<Navbar id="navigation" className={active ? "bg-light text-info" : "bg-dark"} data-bs-theme="light" expand="lg">
+		<Navbar id="navigation" className={active ? "bg-white text-info" : "bg-dark"} data-bs-theme="light" expand="lg">
 			<Container className="navigation">
-				<Navbar.Brand className="text-success p-2" as={Link} to="/">
+				<Navbar.Brand className="p-2" as={Link} to="/">
 					<Image width="100px" height="auto" className="img-responsive" alt="logo" src={Logo} />
 				</Navbar.Brand>
 				<Navbar.Toggle id="collapse-button" aria-controls="basic-navbar-nav" />
@@ -43,24 +43,24 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 							<>
 
 								<Nav.Link className="" as={Link} to='/'>
-									<FontAwesomeIcon size="lg" icon={faHouse} style={{ color: "#238A47", }} /> <span style={{ color: "#238A47", }} className="links">Home</span>
+									<FontAwesomeIcon className={active ? "text-success links" : "text-white links"} size="lg" icon={faHouse} style={{ color: "#238A47", }} /> <span className={active ? "text-dark links" : "text-white links"} style={{ color: "#238A47", }} >Home</span>
 								</Nav.Link>
 								<Nav.Link className="" as={Link} to='/profile'>
-									<FontAwesomeIcon size="lg" icon={faUser} style={{ color: "#238A47", }} />  <span style={{ color: "#238A47", }} className="links">{user.Username}</span>
+									<FontAwesomeIcon className={active ? "text-success links" : "text-white links"} size="lg" icon={faUser} style={{ color: "#238A47", }} />  <span className={active ? "text-dark links" : "text-white links"} style={{ color: "#238A47", }} >{user.Username}</span>
 								</Nav.Link>
 								<Nav.Link>
 									<button title="Click to change the theme" className="toggle-nav" style={{ outline: "none", border: "none" }} onClick={() => { toggleTheme(), handleToggle() }}>{theme === 'light' ? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{ "--fa-animation-iteration-count": "2" }} />) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{ "--fa-animation-iteration-count": "2" }} />)}<span className="links">Theme</span></button>
 								</Nav.Link>
-								<Nav.Link size="lg" className="" onClick={onLoggedOut}><FontAwesomeIcon icon={faCircleLeft} style={{ color: "#238A47", }} />  <span style={{ color: "#238A47", }} className="links">Logout</span></Nav.Link>
+								<Nav.Link className={active ? "text-success links" : "text-white links"} onClick={onLoggedOut}><FontAwesomeIcon icon={faCircleLeft} className={active ? "text-success links" : "text-white links"} style={{ color: "#238A47", }} />  <span className={active ? "text-dark links" : "text-white links"} style={{ color: "#238A47", }}>Logout</span></Nav.Link>
 							</>
 						)}
 						{!user && (
 							<>
 								<Nav.Link className="" as={Link} to='/login'>
-									<FontAwesomeIcon size="lg" icon={faRightToBracket} style={{ color: "#238A47", }} />  <span style={{ color: "#238A47", }} className="links">Login</span>
+									<FontAwesomeIcon className={active ? "text-success" : "text-white"} size="lg" icon={faRightToBracket} style={{ color: "#238A47", }} />  <span className={active ? "text-dark" : "text-white"} style={{ color: "#238A47", }} >Login</span>
 								</Nav.Link>
 								<Nav.Link className="" as={Link} to='/signup'>
-									<FontAwesomeIcon size="lg" icon={faUserPlus} style={{ color: "#238A47", }} />  <span style={{ color: "#238A47", }} className="links">Sign up</span>
+									<FontAwesomeIcon className={active ? "text-success" : "text-white"} size="lg" icon={faUserPlus} style={{ color: "#238A47", }} />  <span className={active ? "text-dark" : "text-white"} style={{ color: "#238A47", }} >Sign up</span>
 								</Nav.Link>
 								<Nav.Link>
 									<button title="Click to change the theme" className="toggle-nav" style={{ outline: "none", border: "none" }} onClick={() => { toggleTheme(), handleToggle() }}>{theme === 'light' ? (<FontAwesomeIcon size="lg" beatFade icon={faMoon} style={{ "--fa-animation-iteration-count": "2" }} />) : (<FontAwesomeIcon beatFade size="lg" icon={faSun} style={{ "--fa-animation-iteration-count": "2" }} />)}<span className="links">Theme</span></button>
