@@ -91,26 +91,32 @@ export const SignupView = () => {
                 </Button><br /><br />
             </Form>
 
-            <Modal show={showSignupModal} onHide={handleCloseSignupModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title className="text-success">Signup</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="text-success">Signup Successful</Modal.Body>
-                <Modal.Footer>
-                    <Button className="bg-success" onClick={handleCloseSignupModal}>OK</Button>
+            
 
-                </Modal.Footer>
+            <Modal 
+            className="favorite-modal"
+            show={showSignupModal} onHide={handleCloseSignupModal}>
+                <Modal.Header closeButton>
+                    {/* <Modal.Title className="text-success">Signup</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body className="pt-2 text-dark bg-white">Signup Successful</Modal.Body>
+                {/* <Modal.Footer> */}
+                    <Button className="got-it-button text-dark bg-white" onClick={handleCloseSignupModal}>Got it!</Button>
+
+                {/* </Modal.Footer> */}
             </Modal>
 
-            <Modal show={showFailedSignupModal} onHide={handleCloseFailedSignupModal}>
+            <Modal 
+            className="update-failed-modal"
+            show={showFailedSignupModal} onHide={handleCloseFailedSignupModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title className="text-danger">Signup</Modal.Title>
+                    {/* <Modal.Title className="text-danger">Signup</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="text-warning">Signup failed<br/> This may be due to: <br/> 1. The defined username already exists. <br/>2.The defined email already exists.</Modal.Body>
-                <Modal.Footer>
-                    <Button className="bg-success" onClick={handleCloseFailedSignupModal}>OK</Button>
+                <Modal.Body className="pt-4 text-dark bg-white">Failed.<br/> Possible reasons: <br/> 1. Username is already taken. <br/>2.Email already exists.</Modal.Body>
+                {/* <Modal.Footer> */}
+                    <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedSignupModal}>Got it!</Button>
 
-                </Modal.Footer>
+                {/* </Modal.Footer> */}
             </Modal>
         </Col>
         

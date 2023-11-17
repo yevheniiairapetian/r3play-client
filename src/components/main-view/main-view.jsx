@@ -82,7 +82,7 @@ export const MainView = () => {
               element={
                 <>
                   {user ? (
-                    <Navigate to="/" />
+                    <Navigate to="/login" replace />
                   ) : (
                     <Row>
                       <Col className="page-content-wrapper" md={8} lg={6} sm={12}>

@@ -74,25 +74,29 @@ export const LoginView = ({ onLoggedIn }) => {
                 </Button><br />
             </Form>
             
-            <Modal show={showFailedLoginModal} onHide={handleCloseFailedLoginModal}>
+            <Modal
+            className="update-failed-modal"
+             show={showFailedLoginModal} onHide={handleCloseFailedLoginModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title className="text-danger">Login</Modal.Title>
+                    {/* <Modal.Title className="text-danger">Login</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="text-warning">Login failed. <br/> This may be due to: <br/> 1. Incorrect username. <br/>2. Incorrect password.</Modal.Body>
-                <Modal.Footer>
-                    <Button className="bg-success" onClick={handleCloseFailedLoginModal}>OK</Button>
+                <Modal.Body className="pt-4 text-dark bg-white">Failed. <br/> Possible reasons: <br/> 1. Incorrect username. <br/>2. Incorrect password.</Modal.Body>
+                {/* <Modal.Footer> */}
+                    <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedLoginModal}>Got it!</Button>
 
-                </Modal.Footer>
+                {/* </Modal.Footer> */}
             </Modal>
-            <Modal show={showWentWrongModal} onHide={handleCloseWentWrongModal}>
+            <Modal 
+            className="update-failed-modal"
+            show={showWentWrongModal} onHide={handleCloseWentWrongModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title className="text-danger">Information</Modal.Title>
+                    {/* <Modal.Title className="text-danger">Information</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="text-warning">Something went wrong. <br/> Please check your internet connection and try again.</Modal.Body>
-                <Modal.Footer>
-                    <Button className="bg-success" onClick={handleCloseWentWrongModal}>OK</Button>
+                <Modal.Body className="pt-5 text-dark bg-white">Something went wrong. <br/> Please check your internet connection and try again.</Modal.Body>
+                {/* <Modal.Footer> */}
+                    <Button className="got-it-button text-dark bg-white" onClick={handleCloseWentWrongModal}>Got it!</Button>
 
-                </Modal.Footer>
+                {/* </Modal.Footer> */}
             </Modal>
             
         </Col>
