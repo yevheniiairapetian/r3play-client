@@ -90,6 +90,59 @@ div#card-title, div.card-title{
   ::-webkit-scrollbar-thumb:hover {
     opacity:0.8;
   }
+  .favorite-modal .modal-header{
+    display:none;
+  }
+  .favorite-modal .modal-dialog{
+    display: block !important;
+    background:transparent !important;
+    position: fixed !important;
+    bottom:-35px !important;
+    left:0 !important;
+    right:0 !important;
+    width: 96% !important;
+    height: 100px !important;
+  }
+
+  .update-failed-modal .modal-header{
+    display:none;
+  }
+  .update-failed-modal .modal-dialog{
+    display: block !important;
+    background:transparent !important;
+    position: fixed !important;
+    bottom:85px !important;
+    left:0 !important;
+    right:0 !important;
+    width: 96% !important;
+    height: 100px !important;
+  }
+
+//   .delete-modal .modal-header{
+//     display:none;
+//   }
+  .delete-modal .modal-dialog{
+    display: block !important;
+    background:transparent !important;
+    position: fixed !important;
+    top: 30% !important;
+    left:0 !important;
+    right:0 !important;
+    width: 96% !important;
+    height: 100px !important;
+  }
+
+  .got-it-button{
+    position: absolute;
+    top: 10px;
+    right: 16px;
+  }
+
+  .cancel-it-button{
+    position: absolute;
+    top: 10px;
+    right: 100px;
+  }
 
 .dark {
     background-color: #333;

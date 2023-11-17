@@ -66,6 +66,59 @@ button.info-button, div#card-title, div#card-title, div.card-title {
   opacity: .8;
 }
 
+.favorite-modal .modal-header {
+  display: none;
+}
+
+.favorite-modal .modal-dialog {
+  background: none !important;
+  width: 96% !important;
+  height: 100px !important;
+  display: block !important;
+  position: fixed !important;
+  bottom: -35px !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.update-failed-modal .modal-header {
+  display: none;
+}
+
+.update-failed-modal .modal-dialog {
+  background: none !important;
+  width: 96% !important;
+  height: 100px !important;
+  display: block !important;
+  position: fixed !important;
+  bottom: 85px !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.delete-modal .modal-dialog {
+  background: none !important;
+  width: 96% !important;
+  height: 100px !important;
+  display: block !important;
+  position: fixed !important;
+  top: 30% !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.got-it-button {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+}
+
+.cancel-it-button {
+  position: absolute;
+  top: 10px;
+  right: 100px;
+}
+
 .dark {
   color: #fff;
   background-color: #333;

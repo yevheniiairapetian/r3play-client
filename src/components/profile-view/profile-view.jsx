@@ -157,7 +157,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 						</Form.Group>
 
 						<Col>
-							<Button className="bg-success w-100 mb-1" type="submit" onClick={handleSubmit}>Save changes</Button>
+							<Button className="bg-success w-100 mb-1" type="submit" onClick={handleSubmit}>Update</Button>
 						</Col>
 
 						<Col className="delete-button text-center">
@@ -228,45 +228,45 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 
 			</Row>
 
-			<Modal show={showModal} onHide={handleCloseModal}>
-				<Modal.Header closeButton>
-					<Modal.Title className="text-danger">Delete my account</Modal.Title>
+			<Modal className="delete-modal" show={showModal} onHide={handleCloseModal}>
+				<Modal.Header className="bg-white text-danger" closeButton>
+					<Modal.Title className="bg-white text-danger">Delete my account</Modal.Title>
 				</Modal.Header>
-				<Modal.Body className="text-warning">Are you sure you want to delete your account? It can't be reverted</Modal.Body>
-				<Modal.Footer>
-					<Button className="bg-danger" onClick={handleDeleteUser}>Confirm</Button>
-					<Button className="bg-success" onClick={handleCloseModal}>Cancel</Button>
+				<Modal.Body className="text-dark bg-white">Are you sure you want to delete your account? It can't be reverted</Modal.Body>
+				<Modal.Footer className="text-dark bg-white">
+					<Button className="bg-danger text-center" onClick={handleDeleteUser}>Confirm</Button>
+					<Button className="bg-success text-center" onClick={handleCloseModal}>Cancel</Button>
 				</Modal.Footer>
 			</Modal>
 
-			<Modal show={showUpdateModal} onHide={handleCloseUpdateModal}>
+			<Modal className="favorite-modal" show={showUpdateModal} onHide={handleCloseUpdateModal}>
 				<Modal.Header closeButton>
-					<Modal.Title className="text-success">Update Account</Modal.Title>
+					{/* <Modal.Title className="text-success">Update Account</Modal.Title> */}
 				</Modal.Header>
-				<Modal.Body className="text-warning">Successfully updated user details</Modal.Body>
-				<Modal.Footer>
-					<Button className="bg-success" onClick={handleCloseUpdateModal}>OK</Button>
-				</Modal.Footer>
+				<Modal.Body className="text-dark bg-white">Info was updated</Modal.Body>
+				{/* <Modal.Footer> */}
+					<Button className="got-it-button text-dark bg-white" onClick={handleCloseUpdateModal}>Got it!</Button>
+				{/* </Modal.Footer> */}
 			</Modal>
 
-			<Modal show={showUpdateFailedModal} onHide={handleCloseUpdateFailedModal}>
+			<Modal className="update-failed-modal" show={showUpdateFailedModal} onHide={handleCloseUpdateFailedModal}>
 				<Modal.Header closeButton>
-					<Modal.Title className="text-danger">Update Account</Modal.Title>
+					{/* <Modal.Title className="text-danger">Update Account</Modal.Title> */}
 				</Modal.Header>
-				<Modal.Body className="text-warning">Update failed. This may be due to: <br />1. The defined user and/or email already exist. <br />2. You didn't enter your password, and/or email, and/or username.</Modal.Body>
-				<Modal.Footer>
-					<Button className="bg-success" onClick={handleCloseUpdateFailedModal}>OK</Button>
-				</Modal.Footer>
+				<Modal.Body className="text-dark pt-5 bg-white">Failed. Possible reasons: <br />1. Username is already taken. <br />2. Empty data was entered.</Modal.Body>
+				{/* <Modal.Footer> */}
+					<Button className="got-it-button text-dark bg-white" onClick={handleCloseUpdateFailedModal}>Got it!</Button>
+				{/* </Modal.Footer> */}
 			</Modal>
-			<Modal show={showWentWrongModal} onHide={handleCloseWentWrongModal}>
+			<Modal className="favorite-modal" show={showWentWrongModal} onHide={handleCloseWentWrongModal}>
 				<Modal.Header closeButton>
-					<Modal.Title className="text-danger">Information</Modal.Title>
+					{/* <Modal.Title className="text-danger">Information</Modal.Title> */}
 				</Modal.Header>
-				<Modal.Body className="text-warning">Something went wrong.</Modal.Body>
-				<Modal.Footer>
-					<Button className="bg-success" onClick={handleCloseWentWrongModal}>OK</Button>
+				<Modal.Body className="text-dark bg-white">Something went wrong. Please try again later</Modal.Body>
+				{/* <Modal.Footer> */}
+					<Button className="got-it-button text-dark bg-white" onClick={handleCloseWentWrongModal}>Got it!</Button>
 
-				</Modal.Footer>
+				{/* </Modal.Footer> */}
 			</Modal>
 		</>
 	)

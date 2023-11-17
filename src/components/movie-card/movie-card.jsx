@@ -11,8 +11,14 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
     user.FavoriteMovies.includes(movie._id)
   );
   const [showFailedFetchModal, setShowFailedFetchModal] = useState(false);
+  const [showAddedMovieModal, setShowAddedMovieModal] = useState(false);
+  const [showRemovedMovieModal, setShowRemovedMovieModal] = useState(false);
   const handleShowFailedFetchModal = () => setShowFailedFetchModal(true);
+  const handleShowAddedMovieModal = () => setShowAddedMovieModal(true);
+  const handleShowRemovedMovieModal = () => setShowRemovedMovieModal(true);
   const handleCloseFailedFetchModal = () => setShowFailedFetchModal(false);
+  const handleCloseAddedMovieModal = () => setShowAddedMovieModal(false);
+  const handleCloseRemovedMovieModal = () => setShowRemovedMovieModal(false);
   const addFavoriteMovie = () => {
     fetch(
       `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
@@ -37,7 +43,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
         }
       })
       .catch((e) => {
-        alert(e);
+        handleShowFailedFetchModal();
       });
   };
 
@@ -65,7 +71,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
         }
       })
       .catch((e) => {
-        alert(e);
+        handleShowFailedFetchModal();
       });
   };
 
@@ -77,14 +83,15 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <div className="like-button">
           {isFavorite ? (
-            <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteMovie} />
-             
+            <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} 
+            onClick={()=>{removeFavoriteMovie();handleShowRemovedMovieModal()}} />
+          
             
           ) : (
 
             <FontAwesomeIcon icon={faHeart} style={{color: "#fff"}} size="lg" 
             // style={{color:"green"}}
-             onClick={addFavoriteMovie} />
+             onClick={()=>{addFavoriteMovie(); handleShowAddedMovieModal()}} />
               
           )}
           </div>
@@ -101,18 +108,43 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
           </Link>
           </div>
         </Card.Body>
-
+       
 
       </Card>
-      <Modal show={showFailedFetchModal} onHide={handleCloseFailedFetchModal}>
+      <Modal 
+       className="favorite-modal"
+      show={showFailedFetchModal} onHide={handleCloseFailedFetchModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title className="text-danger">Fetch</Modal.Title>
+                    {/* <Modal.Title className="text-danger">Fetch</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="text-warning">Failed to add/remove. Please try again later.</Modal.Body>
-                <Modal.Footer>
-                    <Button className="bg-success" onClick={handleCloseFailedFetchModal}>OK</Button>
+                <Modal.Body className="text-dark bg-white">An error happened. Please try again later.</Modal.Body>
+                {/* <Modal.Footer> */}
+                    <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedFetchModal}>Got it!</Button>
 
-                </Modal.Footer>
+                {/* </Modal.Footer> */}
+            </Modal>
+
+          
+
+            <Modal 
+          
+            className="favorite-modal" show={showAddedMovieModal} onHide={handleCloseAddedMovieModal}>
+                <Modal.Header closeButton>
+                    {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body  className="text-dark bg-white">Added to faves</Modal.Body>
+                <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedMovieModal}>Got it!</Button>
+              
+            </Modal>
+
+            <Modal 
+          
+            className="favorite-modal" show={showRemovedMovieModal} onHide={handleCloseRemovedMovieModal}>
+                <Modal.Header closeButton>
+                    {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body  className="text-dark bg-white">Removed from faves</Modal.Body>
+                <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedMovieModal}>Got it!</Button>
             </Modal>
     </div>
   );

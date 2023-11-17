@@ -10,8 +10,14 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
   user.FavoriteMovies.includes(tvseries._id)
   );
   const [showFailedFetchModal, setShowFailedFetchModal] = useState(false);
+  const [showAddedMovieModal, setShowAddedMovieModal] = useState(false);
+  const [showRemovedMovieModal, setShowRemovedMovieModal] = useState(false);
   const handleShowFailedFetchModal = () => setShowFailedFetchModal(true);
+  const handleShowAddedMovieModal = () => setShowAddedMovieModal(true);
+  const handleShowRemovedMovieModal = () => setShowRemovedMovieModal(true);
   const handleCloseFailedFetchModal = () => setShowFailedFetchModal(false);
+  const handleCloseAddedMovieModal = () => setShowAddedMovieModal(false);
+  const handleCloseRemovedMovieModal = () => setShowRemovedMovieModal(false);
   const addFavoriteTV = () => {
     fetch(
       `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/tvseries/${tvseries._id}`,
@@ -36,7 +42,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
         }
       })
       .catch((e) => {
-        alert(e);
+        handleShowFailedFetchModal();
       });
   };
 
@@ -64,7 +70,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
         }
       })
       .catch((e) => {
-        alert(e);
+        handleShowFailedFetchModal();
       });
   };
 
@@ -74,14 +80,15 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
         <Card.Img className='w-100' variant='top' src={tvseries.ImagePath} />
         <div className="like-button">
           {isFavorite ? (
-            <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} onClick={removeFavoriteTV} />
+            <FontAwesomeIcon icon={faHeart} size="xl" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} 
+            onClick={()=>{removeFavoriteTV();handleShowRemovedMovieModal()}} />
              
             
           ) : (
 
-            <FontAwesomeIcon icon={faHeart} style={{color: "#fff"}} size="lg" 
+            <FontAwesomeIcon icon={faHeart} style={{color: "#fff"}} size="xl" 
             // style={{color:"green"}}
-             onClick={addFavoriteTV} />
+            onClick={()=>{addFavoriteTV(); handleShowAddedMovieModal()}} />
               
           )}
           </div>
@@ -97,18 +104,39 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
           </div>
         </Card.Body>
 
-        
+        <Modal 
+          
+            className="favorite-modal" show={showAddedMovieModal} onHide={handleCloseAddedMovieModal}>
+                <Modal.Header closeButton>
+                    {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body  className="text-dark bg-white">Added to faves</Modal.Body>
+                <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedMovieModal}>Got it!</Button>
+              
+            </Modal>
+
+            <Modal 
+          
+            className="favorite-modal" show={showRemovedMovieModal} onHide={handleCloseRemovedMovieModal}>
+                <Modal.Header closeButton>
+                    {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body  className="text-dark bg-white">Removed from faves</Modal.Body>
+                <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedMovieModal}>Got it!</Button>
+            </Modal>
 
       </Card>
-      <Modal show={showFailedFetchModal} onHide={handleCloseFailedFetchModal}>
+      <Modal 
+       className="favorite-modal"
+      show={showFailedFetchModal} onHide={handleCloseFailedFetchModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title className="text-danger">Fetch</Modal.Title>
+                    {/* <Modal.Title className="text-danger">Fetch</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="text-warning">Failed to add/remove. Please try again later.</Modal.Body>
-                <Modal.Footer>
-                    <Button className="bg-success" onClick={handleCloseFailedFetchModal}>OK</Button>
+                <Modal.Body className="text-dark bg-white">An error happened. Please try again later.</Modal.Body>
+                {/* <Modal.Footer> */}
+                    <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedFetchModal}>Got it!</Button>
 
-                </Modal.Footer>
+                {/* </Modal.Footer> */}
             </Modal>
     </div>
   );
