@@ -253,7 +253,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 				<Modal.Header closeButton>
 					{/* <Modal.Title className="text-danger">Update Account</Modal.Title> */}
 				</Modal.Header>
-				<Modal.Body className="text-dark pt-5 bg-white">Failed. Possible reasons: <br />1. Username is already taken. <br />2. Empty data was entered.</Modal.Body>
+				<Modal.Body className="text-dark pt-5 bg-white">Failed. Reasons: <br />1. Username is too short. <br/> 2. Username/email already taken. <br />3. Empty/invalid data entered.</Modal.Body>
 				{/* <Modal.Footer> */}
 					<Button className="got-it-button text-dark bg-white" onClick={handleCloseUpdateFailedModal}>Got it!</Button>
 				{/* </Modal.Footer> */}
