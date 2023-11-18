@@ -35,16 +35,16 @@ export const TVseriesView = ({ tvseries }) => {
 
         <Card.Body className="" >
           <Card.Title id="card-title" className="text-center fs-5 text-success pb-3 pt-3">{tvser.Title}, {tvser.ReleaseDate ? tvser.ReleaseDate.slice(0, 4) : "No data yet"}, {tvser.Genre.Name}</Card.Title>
-          <Card.Title id="card-info" className="pt-3 pb-3" secondary-color="text-secondary "><img src={info} style={{width: "30px", height:"22px", "margin-right":"8px"}} /> </Card.Title>
+          <Card.Title id="card-info" className="pt-3 pb-3" secondary-color="text-secondary "><img src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} /> </Card.Title>
           <Card.Title id="card-info" className="pb-3" secondary-color="text-secondary ">{tvser.Description}</Card.Title>
-          <Card.Title id="card-info" className="pb-3" secondary-color="text-secondary "><img src={clock} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> {tvser.Duration ? tvser.Duration : "No data yet"}</Card.Title>
+          <Card.Title id="card-info" className="pb-3" secondary-color="text-secondary "><img src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {tvser.Duration ? tvser.Duration : "No data yet"}</Card.Title>
           <Card.Title id="card-info" className="pb-2" secondary-color="text-secondary ">{tvser.Genre.Description}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={director} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> {tvser.Director.Name}, {tvser.Director.Birth ? tvser.Director.Birth : null} - {tvser.Director.Death ? tvser.Director.Death : "Present"}</Card.Subtitle> 
+          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={director} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {tvser.Director.Name}, {tvser.Director.Birth ? tvser.Director.Birth : null} - {tvser.Director.Death ? tvser.Director.Death : "Present"}</Card.Subtitle>
           <Card.Title id="card-info" className="pb-1 pt-3" secondary-color="text-secondary ">{tvser.Director.Bio}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-0"><img src={actors} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> </Card.Subtitle>
+          <Card.Subtitle id="card-subtitle" className="title-color mb-2 text-info pt-0"><img src={actors} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> </Card.Subtitle>
           <Card.Title id="card-info" className="pt-3 pb-2" secondary-color="text-secondary">{tvser.Actors.length > 0 ? tvser.Actors.map(a => <>{a}<br /></>) : "No data yet"}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={imdb} style={{width: "30px", height:"26px", "margin-right":"8px"}} /> {tvser.IMDbRating ? tvser.IMDbRating : "No data yet"}</Card.Subtitle>
-          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={rottenTomatoes} style={{width: "30px", height:"28px", "margin-right":"8px"}} /> {tvser.Rating ? tvser.Rating : "No data yet"}</Card.Subtitle>
+          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={imdb} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {tvser.IMDbRating ? tvser.IMDbRating : "No data yet"}</Card.Subtitle>
+          <Card.Subtitle id="card-subtitle" className="mb-2 pt-3"><img src={rottenTomatoes} style={{ width: "30px", height: "28px", "marginRight": "8px" }} /> {tvser.Rating ? tvser.Rating : "No data yet"}</Card.Subtitle>
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
               <Accordion.Header className="text-success">Episodes:</Accordion.Header>
@@ -55,7 +55,7 @@ export const TVseriesView = ({ tvseries }) => {
           </Accordion>
           <Alert
 
-className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Watch the official trailer</Alert>
+            className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Watch the official trailer</Alert>
           <ReactPlayer className="m-auto w-auto" controls
 
             url={tvser.Trailer}>
@@ -65,8 +65,8 @@ className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"
 
           </div>
 
-          <Link to={`/`}>
-          <Button className="pl-5 pr-5 w-25" style={{background: "white", color: "black"}}>Back</Button>
+          <Link to={`/tvseries`}>
+            <Button className="pl-5 pr-5 w-25" style={{ background: "white", color: "black" }}>Back</Button>
           </Link>
         </Card.Body>
         <hr />
@@ -76,7 +76,7 @@ className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"
 
       <Alert
 
-className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>You may also like</Alert>
+        className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>You may also like</Alert>
 
       <Row className=''>
         {similarTV(tvser.Genre.Name).map((tvser) => (
@@ -97,7 +97,7 @@ className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"
       <div>
         <Alert
 
-className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>This director also made</Alert>
+          className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>This director also made</Alert>
       </div>
       <Row className=''>
         {similarTVDirector(tvser.Director.Name).map((tvser) => (
@@ -118,7 +118,7 @@ className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"
 
       <Alert
 
-className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Same Rotten Tomatoes Audience Rating also have</Alert>
+        className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Same Rotten Tomatoes Audience Rating also have</Alert>
 
       <Row className=''>
         {similarTVRating(tvser.Rating).map((tvser) => (
@@ -139,7 +139,7 @@ className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"
 
       <Alert
 
-className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Same IMDb Rating also have</Alert>
+        className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Same IMDb Rating also have</Alert>
 
       <Row className=''>
         {similarTVIMDBRating(tvser.IMDbRating).map((tvser) => (
@@ -160,7 +160,7 @@ className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"
 
       <Alert
 
-className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Actors from this tv series also play in</Alert>
+        className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Actors from this tv series also play in</Alert>
       <div>
         <Row className=''>
           {sameTVActors(tvser.Actors).map((tvser) => (
@@ -181,7 +181,7 @@ className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"
 
         <Alert
 
-className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Released in the same year</Alert>
+          className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Released in the same year</Alert>
 
         <Row className=''>
           {sameDate(tvser.ReleaseDate).map((tvser) => (
@@ -202,7 +202,7 @@ className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"
 
         <Alert
 
-className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"}}>Takes around the same time to watch</Alert>
+          className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Takes around the same time to watch</Alert>
 
         <Row className=''>
           {sameDuration(tvser.Duration).map((tvser) => (
@@ -220,8 +220,8 @@ className="mb-3 mt-3 pt-3 text-center text-white " style={{background: "#19854e"
             </Col>
           ))}
         </Row>
-        <Link to={`/`}>
-        <Button className="pl-5 mt-4 pr-5 w-25" style={{background: "white", color: "black"}}>Back</Button>
+        <Link to={`/tvseries`}>
+          <Button className="pl-5 mt-4 pr-5 w-25" style={{ background: "white", color: "black" }}>Back</Button>
         </Link>
       </div>
 

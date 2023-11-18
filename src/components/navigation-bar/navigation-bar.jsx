@@ -3,7 +3,7 @@ import { Navbar, Container, Row, Col, Nav, Image } from "react-bootstrap";
 import Logo from '../../images/logo.png';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faHouse, faUserPlus, faUser, faCircleLeft, faRightToBracket, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faMoon, faHouseChimney, faFilm, faTv, faRobot, faUserPlus, faUser, faCircleLeft, faRightToBracket, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 export const NavigationBar = ({ user, onLoggedOut }) => {
 	const [active, setActive] = useState("true");
@@ -43,7 +43,16 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 							<>
 
 								<Nav.Link className="" as={Link} to='/'>
-									<FontAwesomeIcon className={active ? "text-success links" : "text-white links"} size="lg" icon={faHouse} style={{ color: "#238A47", }} /> <span className={active ? "text-dark links" : "text-white links"} style={{ color: "#238A47", }} >Home</span>
+									<FontAwesomeIcon className={active ? "text-success links" : "text-white links"} size="lg" icon={faHouseChimney} style={{ color: "#238A47", }} /> <span className={active ? "text-dark links" : "text-white links"} style={{ color: "#238A47", }} >Home</span>
+								</Nav.Link>
+								<Nav.Link className="" as={Link} to='/movies'>
+									<FontAwesomeIcon className={active ? "text-success links" : "text-white links"} size="lg" icon={faFilm} style={{ color: "#238A47", }} /> <span className={active ? "text-dark links" : "text-white links"} style={{ color: "#238A47", }} >Movies</span>
+								</Nav.Link>
+								<Nav.Link className="" as={Link} to='/tvseries'>
+									<FontAwesomeIcon className={active ? "text-success links" : "text-white links"} size="lg" icon={faTv} style={{ color: "#238A47", }} /> <span className={active ? "text-dark links" : "text-white links"} style={{ color: "#238A47", }} >TV Series</span>
+								</Nav.Link>
+								<Nav.Link className="" as={Link} to='/anime'>
+									<FontAwesomeIcon className={active ? "text-success links" : "text-white links"} size="lg" icon={faRobot} style={{ color: "#238A47", }} /> <span className={active ? "text-dark links" : "text-white links"} style={{ color: "#238A47", }} >Anime</span>
 								</Nav.Link>
 								<Nav.Link className="" as={Link} to='/profile'>
 									<FontAwesomeIcon className={active ? "text-success links" : "text-white links"} size="lg" icon={faUser} style={{ color: "#238A47", }} />  <span className={active ? "text-dark links" : "text-white links"} style={{ color: "#238A47", }} >{user.Username}</span>

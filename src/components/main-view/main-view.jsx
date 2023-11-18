@@ -118,6 +118,203 @@ export const MainView = () => {
                 </>
               }
             />
+
+
+            <Route
+              path='/movies'
+              element={
+                <>
+                  {!user ? (
+                    <>
+                      <Navigate to='/login' replace />
+
+
+                    </>
+                  ) : movies.length === 0 ? (
+                    <>
+                      <Col className="text-center mt-4"><Spin /></Col>
+                      {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
+
+                    </>
+                  ) : (
+                    <>
+                      <Row className="my-3">
+
+
+                        <input style={{ color: '#19854e', fontStyle: 'italic', borderRadius: '7px' }}
+                          id="search search-input input-search"
+                          onChange={(e) => setSearch(e.target.value)}
+                          placeholder="Search (e.g. Lethal Weapon)"
+                          aria-label="Search"
+                        />
+
+
+                      </Row>
+                      {/* <UncontrolledExample></UncontrolledExample> */}
+                      {/* <Header></Header> */}
+
+                      <Row>
+
+
+                        {movies.filter((movie) => {
+                          return search === "" ?
+                            movie :
+                            movie.Title.toLowerCase().includes(search.toLowerCase());
+
+                        }
+
+                        ).map((movie) => (
+                          <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={movie._id} md={4} xl={2} lg={3} sm={6} xs={12}>
+                            <MovieCard
+
+                              className="flexible-media ml-5 mr-5"
+                              movie={movie}
+                              user={user}
+                              token={token}
+                              setUser={setUser}
+                            />
+                          </Col>
+                        ))}
+
+
+                      </Row>
+                    </>
+                  )}
+                  <FooterAuthorized />
+                </>
+              }
+            />
+
+            <Route
+              path='/tvseries'
+              element={
+                <>
+                  {!user ? (
+                    <>
+                      <Navigate to='/login' replace />
+
+
+                    </>
+                  ) : movies.length === 0 ? (
+                    <>
+                      <Col className="text-center mt-4"><Spin /></Col>
+                      {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
+
+                    </>
+                  ) : (
+                    <>
+                      <Row className="my-3">
+
+
+                        <input style={{ color: '#19854e', fontStyle: 'italic', borderRadius: '7px' }}
+                          id="search search-input input-search"
+                          onChange={(e) => setSearch(e.target.value)}
+                          placeholder="Search (e.g. House)"
+                          aria-label="Search"
+                        />
+
+
+                      </Row>
+                      {/* <UncontrolledExample></UncontrolledExample> */}
+                      {/* <Header></Header> */}
+
+                      <Row>
+
+
+                        {tvseries.filter((tvseries) => {
+                          return search === "" ?
+                            tvseries :
+                            tvseries.Title.toLowerCase().includes(search.toLowerCase());
+                        }
+
+                        ).map((tvseries) => (
+                          <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={tvseries._id} md={4} xl={2} lg={3} sm={6} xs={12}>
+                            <TVseriesCard
+                              className="flexible-media ml-5 mr-5"
+                              tvseries={tvseries}
+                              user={user}
+                              token={token}
+                              setUser={setUser}
+                            />
+                          </Col>
+                        ))}
+
+
+                      </Row>
+                    </>
+                  )}
+                  <FooterAuthorized />
+                </>
+              }
+            />
+
+
+
+            <Route
+              path='/anime'
+              element={
+                <>
+                  {!user ? (
+                    <>
+                      <Navigate to='/login' replace />
+
+
+                    </>
+                  ) : movies.length === 0 ? (
+                    <>
+                      <Col className="text-center mt-4"><Spin /></Col>
+                      {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
+
+                    </>
+                  ) : (
+                    <>
+                      <Row className="my-3">
+
+
+                        <input style={{ color: '#19854e', fontStyle: 'italic', borderRadius: '7px' }}
+                          id="search search-input input-search"
+                          onChange={(e) => setSearch(e.target.value)}
+                          placeholder="Search (e.g. Ergo Proxy)"
+                          aria-label="Search"
+                        />
+
+
+                      </Row>
+                      {/* <UncontrolledExample></UncontrolledExample> */}
+                      {/* <Header></Header> */}
+
+                      <Row>
+
+
+                        {animes.filter((animes) => {
+                          return search === "" ?
+                            animes :
+                            animes.Title.toLowerCase().includes(search.toLowerCase());
+                        }
+
+                        ).map((animes) => (
+                          <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={animes._id} md={4} xl={2} lg={3} sm={6} xs={12}>
+                            <AnimeCard
+                              className="flexible-media ml-5 mr-5"
+                              animes={animes}
+                              user={user}
+                              token={token}
+                              setUser={setUser}
+                            />
+                          </Col>
+
+                        ))}
+
+
+                      </Row>
+                    </>
+                  )}
+                  <FooterAuthorized />
+                </>
+              }
+            />
+
+
             <Route
               path='/movies/:movieId'
               element={
@@ -126,7 +323,7 @@ export const MainView = () => {
                     <>
                       <Navigate to='/login' replace />
 
-                      
+
                     </>
                   ) : movies.length === 0 ? (
                     <>
@@ -153,7 +350,7 @@ export const MainView = () => {
                     <>
                       <Navigate to='/login' replace />
 
-                      
+
                     </>
                   ) : tvseries.length === 0 ? (
                     <>
@@ -179,7 +376,7 @@ export const MainView = () => {
                     <>
                       <Navigate to='/login' replace />
 
-                      
+
                     </>
                   ) : animes.length === 0 ? (
                     <>
@@ -206,7 +403,7 @@ export const MainView = () => {
                       <>
                         <Navigate to='/login' replace />
 
-                        
+
                       </>
                     ) : movies.length === 0 ? (
                       <>
@@ -217,76 +414,20 @@ export const MainView = () => {
                       </>
                     ) : (
                       <>
-
                         <Row className="my-3">
 
 
-                          <input style={{ color: '#19854e', fontStyle: 'italic', borderRadius: '7px' }}
-                            id="search search-input input-search"
-                            onChange={(e) => setSearch(e.target.value)}
-                            placeholder="Search (e.g. Lethal Weapon)"
-                            aria-label="Search"
-                          />
 
 
                         </Row>
                         <UncontrolledExample></UncontrolledExample>
                         <Header></Header>
 
-                        {movies.filter((movie) => {
-                          return search === "" ?
-                            movie :
-                            movie.Title.toLowerCase().includes(search.toLowerCase());
-                            
-                        }
 
-                        ).map((movie) => (
-                          <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={movie._id} md={4} xl={2} lg={3} sm={6} xs={12}>
-                            <MovieCard
-                            
-                              className="flexible-media ml-5 mr-5"
-                              movie={movie}
-                              user={user}
-                              token={token}
-                              setUser={setUser}
-                            />
-                          </Col>
-                        ))}
-                        {tvseries.filter((tvseries) => {
-                          return search === "" ?
-                            tvseries :
-                            tvseries.Title.toLowerCase().includes(search.toLowerCase());
-                        }
 
-                        ).map((tvseries) => (
-                          <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={tvseries._id} md={4} xl={2} lg={3} sm={6} xs={12}>
-                            <TVseriesCard
-                              className="flexible-media ml-5 mr-5"
-                              tvseries={tvseries}
-                              user={user}
-                              token={token}
-                              setUser={setUser}
-                            />
-                          </Col>
-                        ))}
-                        {animes.filter((animes) => {
-                          return search === "" ?
-                            animes :
-                            animes.Title.toLowerCase().includes(search.toLowerCase());
-                        }
 
-                        ).map((animes) => (
-                          <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={animes._id} md={4} xl={2} lg={3} sm={6} xs={12}>
-                            <AnimeCard
-                              className="flexible-media ml-5 mr-5"
-                              animes={animes}
-                              user={user}
-                              token={token}
-                              setUser={setUser}
-                            />
-                          </Col>
 
-                        ))}
+
 
 
                       </>
