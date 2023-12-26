@@ -180,7 +180,7 @@ export const MainView = () => {
                       </Row>
                     </>
                   )}
-                  <FooterAuthorized />
+                  <FooterAuthorized/>
                 </>
               }
             />

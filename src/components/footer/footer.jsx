@@ -26,24 +26,24 @@ export const Footer = () => {
         </section>
       </MDBContainer>
 
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'green', width: '100%' }}>
-        <em>Signup for free or login</em>
+      <div className='text-center p-5 text-bg-primary'>
+        <em>Signup for free or login</em><br />
         <br /><button type='button' className="bg-light mt-2 mb-2 pl-4 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none', marginRight: '10px' }}>
           <Nav.Link className="text-dark" as={Link} to='/login'>
-            <FontAwesomeIcon size="lg" icon={faRightToBracket} style={{ color: "#238A47", }} />
+            <FontAwesomeIcon size="lg" icon={faRightToBracket} className="text-secondary" />
           </Nav.Link>
 
         </button><button type='button' className="bg-light mt-2 mb-2 pl-4 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none' }}>
 
           <Nav.Link className="text-dark" as={Link} to='/signup'>
-            <FontAwesomeIcon size="lg" icon={faUserPlus} style={{ color: "#238A47", }} />
+            <FontAwesomeIcon size="lg" icon={faUserPlus} className="text-secondary" />
           </Nav.Link>
 
         </button><br />
 
-        <a target="_blank" className='text-success' href='https://yevheniiairapetian.github.io/portfolio-website/'>
+        <a target="_blank" className='text-white' href='https://yevheniiairapetian.github.io/portfolio-website/'>
           Yevhenii Airapetian<br />
-        </a>© 2023 Copyright: R3PLAY APP
+        </a><br/>© 2023 Copyright: R3PLAY APP
 
       </div>
     </MDBFooter>

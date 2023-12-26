@@ -25,20 +25,20 @@ export const FooterAuthorized = (onLoggedOut) => {
         </section>
       </MDBContainer>
 
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'green' }}>
+      <div className='text-center pt-4 pb-4 text-bg-primary'>
 
         <br /><button type='button' className="bg-light pl-4 mt-2 mb-2 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none', marginRight: '10px' }}>
           <Nav.Link className="" as={Link} to='/'>
-            <FontAwesomeIcon size="lg" icon={faHouseChimney} style={{ color: "#238A47", }} />
+            <FontAwesomeIcon size="lg" icon={faHouseChimney} className="text-secondary" />
           </Nav.Link>
         </button><button type='button' className="bg-light pl-4 mt-2 mb-2 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none' }}>
           <Nav.Link className="text-dark" as={Link} to='/profile'>
-            <FontAwesomeIcon size="lg" icon={faUser} style={{ color: "#238A47", }} />
+            <FontAwesomeIcon size="lg" icon={faUser} className="text-secondary" />
           </Nav.Link>
-        </button><br />
+        </button><br /><br />
 
-        <a className="text-success" target="_blank" href='https://yevheniiairapetian.github.io/portfolio-website/'>
-          Yevhenii Airapetian<br />
+        <a className="text-light" target="_blank" href='https://yevheniiairapetian.github.io/portfolio-website/'>
+          Yevhenii Airapetian<br /><br />
         </a>© 2023 Copyright: R3PLAY APP
 
       </div>
