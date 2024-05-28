@@ -142,15 +142,16 @@
       this[globalName] = mainExports;
     }
   }
-})({"hHaMC":[function(require,module,exports) {
+})({"c9LRM":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
+var HMR_USE_SSE = false;
 module.bundle.HMR_BUNDLE_ID = "950f25611ae288bb";
 "use strict";
-/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
+/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
   HMRMessage,
@@ -189,6 +190,7 @@ declare var HMR_HOST: string;
 declare var HMR_PORT: string;
 declare var HMR_ENV_HASH: string;
 declare var HMR_SECURE: boolean;
+declare var HMR_USE_SSE: boolean;
 declare var chrome: ExtensionContext;
 declare var browser: ExtensionContext;
 declare var __parcel__import__: (string) => Promise<void>;
@@ -226,10 +228,21 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
     var hostname = getHostname();
     var port = getPort();
-    var protocol = HMR_SECURE || location.protocol == "https:" && !/localhost|127.0.0.1|0.0.0.0/.test(hostname) ? "wss" : "ws";
-    var ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
+    var protocol = HMR_SECURE || location.protocol == "https:" && ![
+        "localhost",
+        "127.0.0.1",
+        "0.0.0.0"
+    ].includes(hostname) ? "wss" : "ws";
+    var ws;
+    if (HMR_USE_SSE) ws = new EventSource("/__parcel_hmr");
+    else try {
+        ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
+    } catch (err) {
+        if (err.message) console.error(err.message);
+        ws = {};
+    }
     // Web extension context
-    var extCtx = typeof chrome === "undefined" ? typeof browser === "undefined" ? null : browser : chrome;
+    var extCtx = typeof browser === "undefined" ? typeof chrome === "undefined" ? null : chrome : browser;
     // Safari doesn't support sourceURL in error stacks.
     // eval may also be disabled via CSP, so do a quick check.
     var supportsSourceURL = false;
@@ -292,18 +305,20 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
             }
         }
     };
-    ws.onerror = function(e) {
-        console.error(e.message);
-    };
-    ws.onclose = function() {
-        console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
-    };
+    if (ws instanceof WebSocket) {
+        ws.onerror = function(e) {
+            if (e.message) console.error(e.message);
+        };
+        ws.onclose = function() {
+            console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
+        };
+    }
 }
 function removeErrorOverlay() {
     var overlay = document.getElementById(OVERLAY_ID);
     if (overlay) {
         overlay.remove();
-        console.log("[parcel] ✨ Error resolved");
+        console.log("[parcel] \u2728 Error resolved");
     }
 }
 function createErrorOverlay(diagnostics) {
@@ -319,13 +334,13 @@ ${frame.code}`;
         errorHTML += `
       <div>
         <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
-          🚨 ${diagnostic.message}
+          \u{1F6A8} ${diagnostic.message}
         </div>
         <pre>${stack}</pre>
         <div>
           ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + "</div>").join("")}
         </div>
-        ${diagnostic.documentation ? `<div>📝 <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
+        ${diagnostic.documentation ? `<div>\u{1F4DD} <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
       </div>
     `;
     }
@@ -421,15 +436,10 @@ async function hmrApplyUpdates(assets) {
             let promises = assets.map((asset)=>{
                 var _hmrDownload;
                 return (_hmrDownload = hmrDownload(asset)) === null || _hmrDownload === void 0 ? void 0 : _hmrDownload.catch((err)=>{
-                    // Web extension bugfix for Chromium
-                    // https://bugs.chromium.org/p/chromium/issues/detail?id=1255412#c12
-                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3) {
-                        if (typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
-                            extCtx.runtime.reload();
-                            return;
-                        }
-                        asset.url = extCtx.runtime.getURL("/__parcel_hmr_proxy__?url=" + encodeURIComponent(asset.url + "?t=" + Date.now()));
-                        return hmrDownload(asset);
+                    // Web extension fix
+                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3 && typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
+                        extCtx.runtime.reload();
+                        return;
                     }
                     throw err;
                 });
@@ -595,296 +605,148 @@ window.addEventListener("parcelhmraccept", ()=>{
 });
 
 },{"6d18d6bd340e7473":"786KC","74ad5ea14201648c":"1dldy"}],"7qYee":[function(require,module,exports) {
-"use strict";
-function _typeof(obj) {
-    "@babel/helpers - typeof";
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") _typeof = function _typeof(obj) {
-        return typeof obj;
-    };
-    else _typeof = function _typeof(obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-    return _typeof(obj);
-}
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports["default"] = void 0;
-var _react = _interopRequireWildcard(require("2bacd47da74e67b5"));
-var _utils = require("d75e95c35756c5f2");
-var _patterns = require("1add23a27bcd5194");
-function _getRequireWildcardCache() {
-    if (typeof WeakMap !== "function") return null;
-    var cache = new WeakMap();
-    _getRequireWildcardCache = function _getRequireWildcardCache() {
-        return cache;
-    };
-    return cache;
-}
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) return obj;
-    if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") return {
-        "default": obj
-    };
-    var cache = _getRequireWildcardCache();
-    if (cache && cache.has(obj)) return cache.get(obj);
-    var newObj = {};
-    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-    for(var key in obj)if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
-        else newObj[key] = obj[key];
-    }
-    newObj["default"] = obj;
-    if (cache) cache.set(obj, newObj);
-    return newObj;
-}
-function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-    if (Object.getOwnPropertySymbols) {
-        var symbols = Object.getOwnPropertySymbols(object);
-        if (enumerableOnly) symbols = symbols.filter(function(sym) {
-            return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-        });
-        keys.push.apply(keys, symbols);
-    }
-    return keys;
-}
-function _objectSpread(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = arguments[i] != null ? arguments[i] : {};
-        if (i % 2) ownKeys(Object(source), true).forEach(function(key) {
-            _defineProperty(target, key, source[key]);
-        });
-        else if (Object.getOwnPropertyDescriptors) Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-        else ownKeys(Object(source)).forEach(function(key) {
-            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-    }
-    return target;
-}
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
-}
-function _defineProperties(target, props) {
-    for(var i = 0; i < props.length; i++){
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor);
-    }
-}
-function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
-}
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) throw new TypeError("Super expression must either be null or a function");
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-        constructor: {
-            value: subClass,
-            writable: true,
-            configurable: true
-        }
-    });
-    if (superClass) _setPrototypeOf(subClass, superClass);
-}
-function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-        o.__proto__ = p;
-        return o;
-    };
-    return _setPrototypeOf(o, p);
-}
-function _createSuper(Derived) {
-    var hasNativeReflectConstruct = _isNativeReflectConstruct();
-    return function _createSuperInternal() {
-        var Super = _getPrototypeOf(Derived), result;
-        if (hasNativeReflectConstruct) {
-            var NewTarget = _getPrototypeOf(this).constructor;
-            result = Reflect.construct(Super, arguments, NewTarget);
-        } else result = Super.apply(this, arguments);
-        return _possibleConstructorReturn(this, result);
-    };
-}
-function _possibleConstructorReturn(self, call) {
-    if (call && (_typeof(call) === "object" || typeof call === "function")) return call;
-    return _assertThisInitialized(self);
-}
-function _assertThisInitialized(self) {
-    if (self === void 0) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    return self;
-}
-function _isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-    if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
-    try {
-        Date.prototype.toString.call(Reflect.construct(Date, [], function() {}));
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
-function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-        return o.__proto__ || Object.getPrototypeOf(o);
-    };
-    return _getPrototypeOf(o);
-}
-function _defineProperty(obj, key, value) {
-    if (key in obj) Object.defineProperty(obj, key, {
-        value: value,
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __defNormalProp = (obj, key, value)=>key in obj ? __defProp(obj, key, {
         enumerable: true,
         configurable: true,
-        writable: true
+        writable: true,
+        value
+    }) : obj[key] = value;
+var __export = (target, all)=>{
+    for(var name in all)__defProp(target, name, {
+        get: all[name],
+        enumerable: true
     });
-    else obj[key] = value;
-    return obj;
-}
-var SDK_URL = "https://play.vidyard.com/embed/v4.js";
-var SDK_GLOBAL = "VidyardV4";
-var SDK_GLOBAL_READY = "onVidyardAPI";
-var Vidyard = /*#__PURE__*/ function(_Component) {
-    _inherits(Vidyard, _Component);
-    var _super = _createSuper(Vidyard);
-    function Vidyard() {
-        var _this;
-        _classCallCheck(this, Vidyard);
-        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++)args[_key] = arguments[_key];
-        _this = _super.call.apply(_super, [
-            this
-        ].concat(args));
-        _defineProperty(_assertThisInitialized(_this), "callPlayer", _utils.callPlayer);
-        _defineProperty(_assertThisInitialized(_this), "mute", function() {
-            _this.setVolume(0);
+};
+var __copyProps = (to, from, except, desc)=>{
+    if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))if (!__hasOwnProp.call(to, key) && key !== except) __defProp(to, key, {
+            get: ()=>from[key],
+            enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable
         });
-        _defineProperty(_assertThisInitialized(_this), "unmute", function() {
-            if (_this.props.volume !== null) _this.setVolume(_this.props.volume);
-        });
-        _defineProperty(_assertThisInitialized(_this), "ref", function(container) {
-            _this.container = container;
-        });
-        return _this;
     }
-    _createClass(Vidyard, [
-        {
-            key: "componentDidMount",
-            value: function componentDidMount() {
-                this.props.onMount && this.props.onMount(this);
-            }
-        },
-        {
-            key: "load",
-            value: function load(url) {
-                var _this2 = this;
-                var _this$props = this.props, playing = _this$props.playing, config = _this$props.config, onError = _this$props.onError, onDuration = _this$props.onDuration;
-                var id = url && url.match(_patterns.MATCH_URL_VIDYARD)[1];
-                if (this.player) this.stop();
-                (0, _utils.getSDK)(SDK_URL, SDK_GLOBAL, SDK_GLOBAL_READY).then(function(Vidyard) {
-                    if (!_this2.container) return;
-                    Vidyard.api.addReadyListener(function(data, player) {
-                        if (_this2.player) return;
-                        _this2.player = player;
-                        _this2.player.on("ready", _this2.props.onReady);
-                        _this2.player.on("play", _this2.props.onPlay);
-                        _this2.player.on("pause", _this2.props.onPause);
-                        _this2.player.on("seek", _this2.props.onSeek);
-                        _this2.player.on("playerComplete", _this2.props.onEnded);
-                    }, id);
-                    Vidyard.api.renderPlayer(_objectSpread({
-                        uuid: id,
-                        container: _this2.container,
-                        autoplay: playing ? 1 : 0
-                    }, config.options));
-                    Vidyard.api.getPlayerMetadata(id).then(function(meta) {
-                        _this2.duration = meta.length_in_seconds;
-                        onDuration(meta.length_in_seconds);
-                    });
-                }, onError);
-            }
-        },
-        {
-            key: "play",
-            value: function play() {
-                this.callPlayer("play");
-            }
-        },
-        {
-            key: "pause",
-            value: function pause() {
-                this.callPlayer("pause");
-            }
-        },
-        {
-            key: "stop",
-            value: function stop() {
-                window.VidyardV4.api.destroyPlayer(this.player);
-            }
-        },
-        {
-            key: "seekTo",
-            value: function seekTo(amount) {
-                var keepPlaying = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-                this.callPlayer("seek", amount);
-                if (!keepPlaying) this.pause();
-            }
-        },
-        {
-            key: "setVolume",
-            value: function setVolume(fraction) {
-                this.callPlayer("setVolume", fraction);
-            }
-        },
-        {
-            key: "setPlaybackRate",
-            value: function setPlaybackRate(rate) {
-                this.callPlayer("setPlaybackSpeed", rate);
-            }
-        },
-        {
-            key: "getDuration",
-            value: function getDuration() {
-                return this.duration;
-            }
-        },
-        {
-            key: "getCurrentTime",
-            value: function getCurrentTime() {
-                return this.callPlayer("currentTime");
-            }
-        },
-        {
-            key: "getSecondsLoaded",
-            value: function getSecondsLoaded() {
-                return null;
-            }
-        },
-        {
-            key: "render",
-            value: function render() {
-                var display = this.props.display;
-                var style = {
-                    width: "100%",
-                    height: "100%",
-                    display: display
-                };
-                return /*#__PURE__*/ _react["default"].createElement("div", {
-                    style: style
-                }, /*#__PURE__*/ _react["default"].createElement("div", {
-                    ref: this.ref
-                }));
-            }
-        }
-    ]);
-    return Vidyard;
-}(_react.Component);
-exports["default"] = Vidyard;
-_defineProperty(Vidyard, "displayName", "Vidyard");
-_defineProperty(Vidyard, "canPlay", _patterns.canPlay.vidyard);
+    return to;
+};
+var __toESM = (mod, isNodeMode, target)=>(target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(// If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", {
+        value: mod,
+        enumerable: true
+    }) : target, mod));
+var __toCommonJS = (mod)=>__copyProps(__defProp({}, "__esModule", {
+        value: true
+    }), mod);
+var __publicField = (obj, key, value)=>{
+    __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+    return value;
+};
+var Vidyard_exports = {};
+__export(Vidyard_exports, {
+    default: ()=>Vidyard
+});
+module.exports = __toCommonJS(Vidyard_exports);
+var import_react = __toESM(require("2bacd47da74e67b5"));
+var import_utils = require("d75e95c35756c5f2");
+var import_patterns = require("1add23a27bcd5194");
+const SDK_URL = "https://play.vidyard.com/embed/v4.js";
+const SDK_GLOBAL = "VidyardV4";
+const SDK_GLOBAL_READY = "onVidyardAPI";
+class Vidyard extends import_react.Component {
+    constructor(){
+        super(...arguments);
+        __publicField(this, "callPlayer", import_utils.callPlayer);
+        __publicField(this, "mute", ()=>{
+            this.setVolume(0);
+        });
+        __publicField(this, "unmute", ()=>{
+            if (this.props.volume !== null) this.setVolume(this.props.volume);
+        });
+        __publicField(this, "ref", (container)=>{
+            this.container = container;
+        });
+    }
+    componentDidMount() {
+        this.props.onMount && this.props.onMount(this);
+    }
+    load(url) {
+        const { playing, config, onError, onDuration } = this.props;
+        const id = url && url.match(import_patterns.MATCH_URL_VIDYARD)[1];
+        if (this.player) this.stop();
+        (0, import_utils.getSDK)(SDK_URL, SDK_GLOBAL, SDK_GLOBAL_READY).then((Vidyard2)=>{
+            if (!this.container) return;
+            Vidyard2.api.addReadyListener((data, player)=>{
+                if (this.player) return;
+                this.player = player;
+                this.player.on("ready", this.props.onReady);
+                this.player.on("play", this.props.onPlay);
+                this.player.on("pause", this.props.onPause);
+                this.player.on("seek", this.props.onSeek);
+                this.player.on("playerComplete", this.props.onEnded);
+            }, id);
+            Vidyard2.api.renderPlayer({
+                uuid: id,
+                container: this.container,
+                autoplay: playing ? 1 : 0,
+                ...config.options
+            });
+            Vidyard2.api.getPlayerMetadata(id).then((meta)=>{
+                this.duration = meta.length_in_seconds;
+                onDuration(meta.length_in_seconds);
+            });
+        }, onError);
+    }
+    play() {
+        this.callPlayer("play");
+    }
+    pause() {
+        this.callPlayer("pause");
+    }
+    stop() {
+        window.VidyardV4.api.destroyPlayer(this.player);
+    }
+    seekTo(amount, keepPlaying = true) {
+        this.callPlayer("seek", amount);
+        if (!keepPlaying) this.pause();
+    }
+    setVolume(fraction) {
+        this.callPlayer("setVolume", fraction);
+    }
+    setPlaybackRate(rate) {
+        this.callPlayer("setPlaybackSpeed", rate);
+    }
+    getDuration() {
+        return this.duration;
+    }
+    getCurrentTime() {
+        return this.callPlayer("currentTime");
+    }
+    getSecondsLoaded() {
+        return null;
+    }
+    render() {
+        const { display } = this.props;
+        const style = {
+            width: "100%",
+            height: "100%",
+            display
+        };
+        return /* @__PURE__ */ import_react.default.createElement("div", {
+            style
+        }, /* @__PURE__ */ import_react.default.createElement("div", {
+            ref: this.ref
+        }));
+    }
+}
+__publicField(Vidyard, "displayName", "Vidyard");
+__publicField(Vidyard, "canPlay", import_patterns.canPlay.vidyard);
 
-},{"2bacd47da74e67b5":"21dqq","d75e95c35756c5f2":"2twkn","1add23a27bcd5194":"eeZWi"}]},["hHaMC","1xC6H"], null, "parcelRequire245c")
+},{"2bacd47da74e67b5":"21dqq","d75e95c35756c5f2":"2twkn","1add23a27bcd5194":"eeZWi"}]},["c9LRM","1xC6H"], null, "parcelRequire245c")
 
 //# sourceMappingURL=Vidyard.1ae288bb.js.map

@@ -78,7 +78,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
   return (
     <div className="card-container fs-5">
     
-      <Card id="card" className='h-100 card text-bg-primary mb-3' >
+      <Card id="card" className='item h-100 card mb-3' >
       
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <div className="like-button">
@@ -97,9 +97,9 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
           </div>
         <Card.Body>
         
-        <Card.Title id="card-title" className="text-success text-center fs-6 pb-3 pt-3">{movie.Title} 
+        <Card.Title id="card-title" className="item-title text-center fs-6 pb-3 pt-3">{movie.Title} 
         </Card.Title>
-          <Card.Title className=" text-center pb-1" secondary-color="text-secondary">{movie.Genre.Name}, {movie.ReleaseDate.slice(0, 4)}</Card.Title>
+          <Card.Title className="item-info text-center pb-1" >{movie.Genre.Name}, {movie.ReleaseDate.slice(0, 4)}</Card.Title>
           
           <div className="mt-4 text-center justify-content-around align-items-center">
           

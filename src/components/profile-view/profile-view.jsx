@@ -89,19 +89,19 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 			<Row>
 				<Alert md={4} xl={4} lg={4} sm={8} xs={10}
 
-					className="bg-success text-light mb-3 mt-3 pt-3 text-center">My Profile</Alert>
+					className=" alert mb-3 mt-3 pt-3 text-center">My Profile</Alert>
 				<Col className="m-auto mt-3" md={4} xl={4} lg={4} sm={8} xs={10}>
 
 					<h6
 
-						className="text-success mb-3 pt-3 text-center"><span> Username:</span> {username}</h6>
+						className="profile-heading  mb-3 pt-3 text-center"><span className="profile-data"> Username:</span> {username}</h6>
 					<h6
 
-						className="text-success mb-3 pt-3 text-center"><span> Email:</span> {email}</h6>
+						className="profile-heading mb-3 pt-3 text-center"><span className="profile-data"> Email:</span> {email}</h6>
 					<h6
 
-						className="text-success mb-3 pt-3 text-center"><span> Birthday:</span> {birthday.slice(0, 10)}</h6>
-					<p className="mb-3 pt-1 text-center"><em>Don't forget to <span className="text-warning">save the changes </span>(if altered)!</em></p>
+						className="profile-heading mb-3 pt-3 text-center"><span className="profile-data"> Birthday:</span> {birthday.slice(0, 10)}</h6>
+					<p className="mb-3 pt-1 text-center"><em className="profile-tip">Don't forget to <span className="profile-tip-extra">save the changes </span>(if altered)!</em></p>
 
 
 
@@ -114,7 +114,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 					<Form className="pb-4 pt-4" onSubmit={handleSubmit} >
 
 						<Form.Group controlId="formUsername" className='form-group pb-4'>
-							<Form.Label>Username:</Form.Label>
+							<Form.Label className="form-label" >Username:</Form.Label>
 							<Form.Control
 								type="text"
 								placeholder="Your username"
@@ -125,7 +125,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 						</Form.Group>
 
 						<Form.Group controlId="formPassword" className='form-group pb-4'>
-							<Form.Label>Password:</Form.Label>
+							<Form.Label className="form-label">Password:</Form.Label>
 							<Form.Control
 								type="password"
 								placeholder="Your password"
@@ -136,7 +136,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 						</Form.Group>
 
 						<Form.Group controlId="formEmail" className='form-group pb-4'>
-							<Form.Label>Email:</Form.Label>
+							<Form.Label className="form-label">Email:</Form.Label>
 							<Form.Control
 								type="email"
 								placeholder="Your email address"
@@ -147,7 +147,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 						</Form.Group>
 
 						<Form.Group controlId="formBirthday" className='form-group pb-4'>
-							<Form.Label>Birthday:</Form.Label>
+							<Form.Label className="form-label">Birthday:</Form.Label>
 							<Form.Control
 								type="date"
 								value={birthday.slice(0, 10)}
@@ -157,7 +157,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 						</Form.Group>
 
 						<Col>
-							<Button className="bg-success w-100 mb-1" type="submit" onClick={handleSubmit}>Update</Button>
+							<Button className="form-submit-button w-100 mb-1" type="submit" onClick={handleSubmit}>Update</Button>
 						</Col>
 
 						<Col className="delete-button text-center">
@@ -172,11 +172,11 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 			</Row>
 
 			<Row>
-				<h5 className="bg-success text-light pt-3 pb-3">You have <span className="text-warning">{resultMovies.length > 1 || resultMovies.length == 0 ? resultMovies.length + " movies, " : resultMovies.length + " movie, "}</span><span className="text-warning">{resultAnime.length > 1 ? resultAnime.length + " anime, " : resultAnime.length + " anime, "}</span> and <span className="text-warning">{resultTV.length > 1 ? resultTV.length + " TV series" : resultTV.length + " TV series"} </span> in your favorites list</h5>
+				<h5 className="favorites-heading pt-3 pb-3">You have <span className="favorites-data">{resultMovies.length > 1 || resultMovies.length == 0 ? resultMovies.length + " movies, " : resultMovies.length + " movie, "}</span><span className="favorites-data">{resultAnime.length > 1 ? resultAnime.length + " anime, " : resultAnime.length + " anime, "}</span> and <span className="favorites-data">{resultTV.length > 1 ? resultTV.length + " TV series" : resultTV.length + " TV series"} </span> in your favorites list</h5>
 				<Accordion defaultActiveKey="0">
 					<Accordion.Item eventKey="0">
 						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites</Accordion.Header>
-						<Accordion.Body className="bg-white">
+						<Accordion.Body className="profile-accordion-body">
 							<Row id="card-info" secondary-color="text-secondary pb-3">{resultMovies.map((movie) => (
 
 								<Col className="all-media-container mb-4" key={movie._id} md={4} xl={2} lg={3} sm={6} xs={12} >

@@ -12,7 +12,7 @@ export const FooterAuthorized = (onLoggedOut) => {
   return (
     <MDBFooter id="footer" className='text-center text-white mt-3' style={{
       position: 'relative',
-      width: '100%', height: '100px'
+      width: '100%', height: '240px'
     }}>
       <MDBContainer className='p-4 pb-0'>
         <section className=''>
@@ -25,7 +25,7 @@ export const FooterAuthorized = (onLoggedOut) => {
         </section>
       </MDBContainer>
 
-      <div className='text-center pt-4 pb-4 text-bg-primary'>
+      <div className='text-center footer pt-4 pb-4'>
 
         <br /><button type='button' className="bg-light pl-4 mt-2 mb-2 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none', marginRight: '10px' }}>
           <Nav.Link className="" as={Link} to='/'>
@@ -37,7 +37,7 @@ export const FooterAuthorized = (onLoggedOut) => {
           </Nav.Link>
         </button><br /><br />
 
-        <a className="text-light" target="_blank" href='https://yevheniiairapetian.github.io/portfolio-website/'>
+        <a className="text-light footer-info" target="_blank" href='https://yevheniiairapetian.github.io/portfolio-website/'>
           Yevhenii Airapetian<br /><br />
         </a>© 2023 Copyright: R3PLAY APP
 

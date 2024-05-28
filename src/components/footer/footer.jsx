@@ -14,7 +14,7 @@ export const Footer = () => {
     <MDBFooter id="footer" className='text-center text-white mt-3' style={{
       position: 'relative',
       bottom: '0',
-      width: '100%', height: '80px'
+      width: '100%', height: '240px'
     }}>
       <MDBContainer className='p-4 pb-0'>
         <section className=''>
@@ -26,7 +26,7 @@ export const Footer = () => {
         </section>
       </MDBContainer>
 
-      <div className='text-center p-5 text-bg-primary'>
+      <div className='footer text-center p-5'>
         <em>Signup for free or login</em><br />
         <br /><button type='button' className="bg-light mt-2 mb-2 pl-4 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none', marginRight: '10px' }}>
           <Nav.Link className="text-dark" as={Link} to='/login'>
@@ -41,7 +41,7 @@ export const Footer = () => {
 
         </button><br />
 
-        <a target="_blank" className='text-white' href='https://yevheniiairapetian.github.io/portfolio-website/'>
+        <a target="_blank" className='footer-info' href='https://yevheniiairapetian.github.io/portfolio-website/'>
           Yevhenii Airapetian<br />
         </a><br/>© 2023 Copyright: R3PLAY APP
 

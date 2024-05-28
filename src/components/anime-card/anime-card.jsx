@@ -75,8 +75,8 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
   };
 
   return (
-    <>
-      <Card className='h-100 card text-bg-dark bg-primary mb-3' >
+    <div className="card-container fs-5">
+      <Card id="card" className='item card h-100 mb-3' >
         <Card.Img className='w-100' variant='top' src={animes.ImagePath} />
         <div className="like-button">
           {isFavorite ? (
@@ -95,9 +95,9 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
           )}
           </div>
         <Card.Body>
-        <Card.Title id="card-title" className="text-success text-center fs-6 pb-3 pt-3">{animes.Title} 
+        <Card.Title id="card-title" className="item-title text-center fs-6 pb-3 pt-3">{animes.Title} 
         </Card.Title>
-        <Card.Title className=" text-center pb-1" secondary-color="text-secondary">{animes.Genre.Name}, {animes.ReleaseDate.slice(0, 4)}</Card.Title>
+        <Card.Title className="item-info text-center pb-1" >{animes.Genre.Name}, {animes.ReleaseDate.slice(0, 4)}</Card.Title>
           <div className="mt-4 text-center justify-content-around align-items-center">
           
           <Link to={`/animes/${animes._id}`}>
@@ -143,7 +143,7 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
 
                 {/* </Modal.Footer> */}
             </Modal>
-    </>
+    </div>
   );
 };
 

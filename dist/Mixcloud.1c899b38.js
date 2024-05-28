@@ -142,15 +142,16 @@
       this[globalName] = mainExports;
     }
   }
-})({"lFSfI":[function(require,module,exports) {
+})({"c5ORI":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
+var HMR_USE_SSE = false;
 module.bundle.HMR_BUNDLE_ID = "96c016661c899b38";
 "use strict";
-/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
+/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
   HMRMessage,
@@ -189,6 +190,7 @@ declare var HMR_HOST: string;
 declare var HMR_PORT: string;
 declare var HMR_ENV_HASH: string;
 declare var HMR_SECURE: boolean;
+declare var HMR_USE_SSE: boolean;
 declare var chrome: ExtensionContext;
 declare var browser: ExtensionContext;
 declare var __parcel__import__: (string) => Promise<void>;
@@ -226,10 +228,21 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
     var hostname = getHostname();
     var port = getPort();
-    var protocol = HMR_SECURE || location.protocol == "https:" && !/localhost|127.0.0.1|0.0.0.0/.test(hostname) ? "wss" : "ws";
-    var ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
+    var protocol = HMR_SECURE || location.protocol == "https:" && ![
+        "localhost",
+        "127.0.0.1",
+        "0.0.0.0"
+    ].includes(hostname) ? "wss" : "ws";
+    var ws;
+    if (HMR_USE_SSE) ws = new EventSource("/__parcel_hmr");
+    else try {
+        ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
+    } catch (err) {
+        if (err.message) console.error(err.message);
+        ws = {};
+    }
     // Web extension context
-    var extCtx = typeof chrome === "undefined" ? typeof browser === "undefined" ? null : browser : chrome;
+    var extCtx = typeof browser === "undefined" ? typeof chrome === "undefined" ? null : chrome : browser;
     // Safari doesn't support sourceURL in error stacks.
     // eval may also be disabled via CSP, so do a quick check.
     var supportsSourceURL = false;
@@ -292,18 +305,20 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
             }
         }
     };
-    ws.onerror = function(e) {
-        console.error(e.message);
-    };
-    ws.onclose = function() {
-        console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
-    };
+    if (ws instanceof WebSocket) {
+        ws.onerror = function(e) {
+            if (e.message) console.error(e.message);
+        };
+        ws.onclose = function() {
+            console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
+        };
+    }
 }
 function removeErrorOverlay() {
     var overlay = document.getElementById(OVERLAY_ID);
     if (overlay) {
         overlay.remove();
-        console.log("[parcel] ✨ Error resolved");
+        console.log("[parcel] \u2728 Error resolved");
     }
 }
 function createErrorOverlay(diagnostics) {
@@ -319,13 +334,13 @@ ${frame.code}`;
         errorHTML += `
       <div>
         <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
-          🚨 ${diagnostic.message}
+          \u{1F6A8} ${diagnostic.message}
         </div>
         <pre>${stack}</pre>
         <div>
           ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + "</div>").join("")}
         </div>
-        ${diagnostic.documentation ? `<div>📝 <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
+        ${diagnostic.documentation ? `<div>\u{1F4DD} <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
       </div>
     `;
     }
@@ -421,15 +436,10 @@ async function hmrApplyUpdates(assets) {
             let promises = assets.map((asset)=>{
                 var _hmrDownload;
                 return (_hmrDownload = hmrDownload(asset)) === null || _hmrDownload === void 0 ? void 0 : _hmrDownload.catch((err)=>{
-                    // Web extension bugfix for Chromium
-                    // https://bugs.chromium.org/p/chromium/issues/detail?id=1255412#c12
-                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3) {
-                        if (typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
-                            extCtx.runtime.reload();
-                            return;
-                        }
-                        asset.url = extCtx.runtime.getURL("/__parcel_hmr_proxy__?url=" + encodeURIComponent(asset.url + "?t=" + Date.now()));
-                        return hmrDownload(asset);
+                    // Web extension fix
+                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3 && typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
+                        extCtx.runtime.reload();
+                        return;
                     }
                     throw err;
                 });
@@ -595,282 +605,136 @@ window.addEventListener("parcelhmraccept", ()=>{
 });
 
 },{"6d18d6bd340e7473":"786KC","74ad5ea14201648c":"1dldy"}],"gqJxL":[function(require,module,exports) {
-"use strict";
-function _typeof(obj) {
-    "@babel/helpers - typeof";
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") _typeof = function _typeof(obj) {
-        return typeof obj;
-    };
-    else _typeof = function _typeof(obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-    return _typeof(obj);
-}
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports["default"] = void 0;
-var _react = _interopRequireWildcard(require("45e1dbfb61acb69f"));
-var _utils = require("98b6169020cf4461");
-var _patterns = require("b6ad91c4f1862478");
-function _getRequireWildcardCache() {
-    if (typeof WeakMap !== "function") return null;
-    var cache = new WeakMap();
-    _getRequireWildcardCache = function _getRequireWildcardCache() {
-        return cache;
-    };
-    return cache;
-}
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) return obj;
-    if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") return {
-        "default": obj
-    };
-    var cache = _getRequireWildcardCache();
-    if (cache && cache.has(obj)) return cache.get(obj);
-    var newObj = {};
-    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-    for(var key in obj)if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
-        else newObj[key] = obj[key];
-    }
-    newObj["default"] = obj;
-    if (cache) cache.set(obj, newObj);
-    return newObj;
-}
-function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-    if (Object.getOwnPropertySymbols) {
-        var symbols = Object.getOwnPropertySymbols(object);
-        if (enumerableOnly) symbols = symbols.filter(function(sym) {
-            return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-        });
-        keys.push.apply(keys, symbols);
-    }
-    return keys;
-}
-function _objectSpread(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = arguments[i] != null ? arguments[i] : {};
-        if (i % 2) ownKeys(Object(source), true).forEach(function(key) {
-            _defineProperty(target, key, source[key]);
-        });
-        else if (Object.getOwnPropertyDescriptors) Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-        else ownKeys(Object(source)).forEach(function(key) {
-            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-    }
-    return target;
-}
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
-}
-function _defineProperties(target, props) {
-    for(var i = 0; i < props.length; i++){
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor);
-    }
-}
-function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
-}
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) throw new TypeError("Super expression must either be null or a function");
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-        constructor: {
-            value: subClass,
-            writable: true,
-            configurable: true
-        }
-    });
-    if (superClass) _setPrototypeOf(subClass, superClass);
-}
-function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-        o.__proto__ = p;
-        return o;
-    };
-    return _setPrototypeOf(o, p);
-}
-function _createSuper(Derived) {
-    var hasNativeReflectConstruct = _isNativeReflectConstruct();
-    return function _createSuperInternal() {
-        var Super = _getPrototypeOf(Derived), result;
-        if (hasNativeReflectConstruct) {
-            var NewTarget = _getPrototypeOf(this).constructor;
-            result = Reflect.construct(Super, arguments, NewTarget);
-        } else result = Super.apply(this, arguments);
-        return _possibleConstructorReturn(this, result);
-    };
-}
-function _possibleConstructorReturn(self, call) {
-    if (call && (_typeof(call) === "object" || typeof call === "function")) return call;
-    return _assertThisInitialized(self);
-}
-function _assertThisInitialized(self) {
-    if (self === void 0) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    return self;
-}
-function _isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-    if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
-    try {
-        Date.prototype.toString.call(Reflect.construct(Date, [], function() {}));
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
-function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-        return o.__proto__ || Object.getPrototypeOf(o);
-    };
-    return _getPrototypeOf(o);
-}
-function _defineProperty(obj, key, value) {
-    if (key in obj) Object.defineProperty(obj, key, {
-        value: value,
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __defNormalProp = (obj, key, value)=>key in obj ? __defProp(obj, key, {
         enumerable: true,
         configurable: true,
-        writable: true
+        writable: true,
+        value
+    }) : obj[key] = value;
+var __export = (target, all)=>{
+    for(var name in all)__defProp(target, name, {
+        get: all[name],
+        enumerable: true
     });
-    else obj[key] = value;
-    return obj;
-}
-var SDK_URL = "https://widget.mixcloud.com/media/js/widgetApi.js";
-var SDK_GLOBAL = "Mixcloud";
-var Mixcloud = /*#__PURE__*/ function(_Component) {
-    _inherits(Mixcloud, _Component);
-    var _super = _createSuper(Mixcloud);
-    function Mixcloud() {
-        var _this;
-        _classCallCheck(this, Mixcloud);
-        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++)args[_key] = arguments[_key];
-        _this = _super.call.apply(_super, [
-            this
-        ].concat(args));
-        _defineProperty(_assertThisInitialized(_this), "callPlayer", _utils.callPlayer);
-        _defineProperty(_assertThisInitialized(_this), "duration", null);
-        _defineProperty(_assertThisInitialized(_this), "currentTime", null);
-        _defineProperty(_assertThisInitialized(_this), "secondsLoaded", null);
-        _defineProperty(_assertThisInitialized(_this), "mute", function() {});
-        _defineProperty(_assertThisInitialized(_this), "unmute", function() {});
-        _defineProperty(_assertThisInitialized(_this), "ref", function(iframe) {
-            _this.iframe = iframe;
+};
+var __copyProps = (to, from, except, desc)=>{
+    if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))if (!__hasOwnProp.call(to, key) && key !== except) __defProp(to, key, {
+            get: ()=>from[key],
+            enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable
         });
-        return _this;
     }
-    _createClass(Mixcloud, [
-        {
-            key: "componentDidMount",
-            value: function componentDidMount() {
-                this.props.onMount && this.props.onMount(this);
-            }
-        },
-        {
-            key: "load",
-            value: function load(url) {
-                var _this2 = this;
-                (0, _utils.getSDK)(SDK_URL, SDK_GLOBAL).then(function(Mixcloud) {
-                    _this2.player = Mixcloud.PlayerWidget(_this2.iframe);
-                    _this2.player.ready.then(function() {
-                        _this2.player.events.play.on(_this2.props.onPlay);
-                        _this2.player.events.pause.on(_this2.props.onPause);
-                        _this2.player.events.ended.on(_this2.props.onEnded);
-                        _this2.player.events.error.on(_this2.props.error);
-                        _this2.player.events.progress.on(function(seconds, duration) {
-                            _this2.currentTime = seconds;
-                            _this2.duration = duration;
-                        });
-                        _this2.props.onReady();
-                    });
-                }, this.props.onError);
-            }
-        },
-        {
-            key: "play",
-            value: function play() {
-                this.callPlayer("play");
-            }
-        },
-        {
-            key: "pause",
-            value: function pause() {
-                this.callPlayer("pause");
-            }
-        },
-        {
-            key: "stop",
-            value: function stop() {}
-        },
-        {
-            key: "seekTo",
-            value: function seekTo(seconds) {
-                var keepPlaying = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-                this.callPlayer("seek", seconds);
-                if (!keepPlaying) this.pause();
-            }
-        },
-        {
-            key: "setVolume",
-            value: function setVolume(fraction) {}
-        },
-        {
-            key: "getDuration",
-            value: function getDuration() {
-                return this.duration;
-            }
-        },
-        {
-            key: "getCurrentTime",
-            value: function getCurrentTime() {
-                return this.currentTime;
-            }
-        },
-        {
-            key: "getSecondsLoaded",
-            value: function getSecondsLoaded() {
-                return null;
-            }
-        },
-        {
-            key: "render",
-            value: function render() {
-                var _this$props = this.props, url = _this$props.url, config = _this$props.config;
-                var id = url.match(_patterns.MATCH_URL_MIXCLOUD)[1];
-                var style = {
-                    width: "100%",
-                    height: "100%"
-                };
-                var query = (0, _utils.queryString)(_objectSpread(_objectSpread({}, config.options), {}, {
-                    feed: "/".concat(id, "/")
-                })); // We have to give the iframe a key here to prevent a
-                // weird dialog appearing when loading a new track
-                return /*#__PURE__*/ _react["default"].createElement("iframe", {
-                    key: id,
-                    ref: this.ref,
-                    style: style,
-                    src: "https://www.mixcloud.com/widget/iframe/?".concat(query),
-                    frameBorder: "0",
-                    allow: "autoplay"
+    return to;
+};
+var __toESM = (mod, isNodeMode, target)=>(target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(// If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", {
+        value: mod,
+        enumerable: true
+    }) : target, mod));
+var __toCommonJS = (mod)=>__copyProps(__defProp({}, "__esModule", {
+        value: true
+    }), mod);
+var __publicField = (obj, key, value)=>{
+    __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+    return value;
+};
+var Mixcloud_exports = {};
+__export(Mixcloud_exports, {
+    default: ()=>Mixcloud
+});
+module.exports = __toCommonJS(Mixcloud_exports);
+var import_react = __toESM(require("45e1dbfb61acb69f"));
+var import_utils = require("98b6169020cf4461");
+var import_patterns = require("b6ad91c4f1862478");
+const SDK_URL = "https://widget.mixcloud.com/media/js/widgetApi.js";
+const SDK_GLOBAL = "Mixcloud";
+class Mixcloud extends import_react.Component {
+    constructor(){
+        super(...arguments);
+        __publicField(this, "callPlayer", import_utils.callPlayer);
+        __publicField(this, "duration", null);
+        __publicField(this, "currentTime", null);
+        __publicField(this, "secondsLoaded", null);
+        __publicField(this, "mute", ()=>{});
+        __publicField(this, "unmute", ()=>{});
+        __publicField(this, "ref", (iframe)=>{
+            this.iframe = iframe;
+        });
+    }
+    componentDidMount() {
+        this.props.onMount && this.props.onMount(this);
+    }
+    load(url) {
+        (0, import_utils.getSDK)(SDK_URL, SDK_GLOBAL).then((Mixcloud2)=>{
+            this.player = Mixcloud2.PlayerWidget(this.iframe);
+            this.player.ready.then(()=>{
+                this.player.events.play.on(this.props.onPlay);
+                this.player.events.pause.on(this.props.onPause);
+                this.player.events.ended.on(this.props.onEnded);
+                this.player.events.error.on(this.props.error);
+                this.player.events.progress.on((seconds, duration)=>{
+                    this.currentTime = seconds;
+                    this.duration = duration;
                 });
-            }
-        }
-    ]);
-    return Mixcloud;
-}(_react.Component);
-exports["default"] = Mixcloud;
-_defineProperty(Mixcloud, "displayName", "Mixcloud");
-_defineProperty(Mixcloud, "canPlay", _patterns.canPlay.mixcloud);
-_defineProperty(Mixcloud, "loopOnEnded", true);
+                this.props.onReady();
+            });
+        }, this.props.onError);
+    }
+    play() {
+        this.callPlayer("play");
+    }
+    pause() {
+        this.callPlayer("pause");
+    }
+    stop() {}
+    seekTo(seconds, keepPlaying = true) {
+        this.callPlayer("seek", seconds);
+        if (!keepPlaying) this.pause();
+    }
+    setVolume(fraction) {}
+    getDuration() {
+        return this.duration;
+    }
+    getCurrentTime() {
+        return this.currentTime;
+    }
+    getSecondsLoaded() {
+        return null;
+    }
+    render() {
+        const { url, config } = this.props;
+        const id = url.match(import_patterns.MATCH_URL_MIXCLOUD)[1];
+        const style = {
+            width: "100%",
+            height: "100%"
+        };
+        const query = (0, import_utils.queryString)({
+            ...config.options,
+            feed: `/${id}/`
+        });
+        return /* @__PURE__ */ import_react.default.createElement("iframe", {
+            key: id,
+            ref: this.ref,
+            style,
+            src: `https://www.mixcloud.com/widget/iframe/?${query}`,
+            frameBorder: "0",
+            allow: "autoplay"
+        });
+    }
+}
+__publicField(Mixcloud, "displayName", "Mixcloud");
+__publicField(Mixcloud, "canPlay", import_patterns.canPlay.mixcloud);
+__publicField(Mixcloud, "loopOnEnded", true);
 
-},{"45e1dbfb61acb69f":"21dqq","98b6169020cf4461":"2twkn","b6ad91c4f1862478":"eeZWi"}]},["lFSfI","1xC6H"], null, "parcelRequire245c")
+},{"45e1dbfb61acb69f":"21dqq","98b6169020cf4461":"2twkn","b6ad91c4f1862478":"eeZWi"}]},["c5ORI","1xC6H"], null, "parcelRequire245c")
 
 //# sourceMappingURL=Mixcloud.1c899b38.js.map
