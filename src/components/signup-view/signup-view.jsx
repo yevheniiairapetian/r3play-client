@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Button, Form, Modal, Col, Row } from "react-bootstrap";
 import {Footer} from '../footer/footer';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -44,7 +46,7 @@ export const SignupView = () => {
         <Col className="m-auto" md={8} xl={6} lg={6} sm={6} xs={10}>
             <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
 
-                <h4 className="text-success text-center pb-4 pt-4">Sign Up Form</h4>
+                <h4 className="text-success text-center pb-4 pt-4">Sign Up</h4>
                 <Form.Group controlId="formUsername">
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
@@ -87,7 +89,7 @@ export const SignupView = () => {
                     />
                 </Form.Group><br />
                 <Button className="bg-success w-100" variant="secondary" type="submit">
-                    Submit
+                    Sign Me Up!
                 </Button><br /><br />
             </Form>
 
@@ -99,7 +101,10 @@ export const SignupView = () => {
                 <Modal.Header closeButton>
                     {/* <Modal.Title className="text-success">Signup</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="pt-2 text-dark bg-white">Signup Successful</Modal.Body>
+                <Modal.Body className="pt-2 login-modal-body">
+                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+                    Signup Successful</Modal.Body>
                 {/* <Modal.Footer> */}
                     <Button className="got-it-button text-dark bg-white" onClick={handleCloseSignupModal}>Got it!</Button>
 
@@ -112,7 +117,10 @@ export const SignupView = () => {
                 <Modal.Header closeButton>
                     {/* <Modal.Title className="text-danger">Signup</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="pt-4 text-dark bg-white">Failed.<br/> Possible reasons: <br/> 1. Username is already taken. <br/>2.Email already exists.</Modal.Body>
+                <Modal.Body className="pt-4 login-modal-body">
+                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+
+                    Failed.<br/> Possible reasons: <br/> 1. Username is already taken. <br/>2.Email already exists.</Modal.Body>
                 {/* <Modal.Footer> */}
                     <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedSignupModal}>Got it!</Button>
 

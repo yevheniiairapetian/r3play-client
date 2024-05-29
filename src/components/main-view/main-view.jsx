@@ -141,7 +141,7 @@ export const MainView = () => {
                       <Row className="my-3">
 
 
-                        <input style={{ color: '#19854e', fontStyle: 'italic', borderRadius: '7px' }}
+                        <input className="search-input" 
                           id="search search-input input-search"
                           onChange={(e) => setSearch(e.target.value)}
                           placeholder="Search (e.g. Lethal Weapon)"
@@ -153,7 +153,7 @@ export const MainView = () => {
                       {/* <UncontrolledExample></UncontrolledExample> */}
                       {/* <Header></Header> */}
 
-                      <Row>
+                      <Row className=''>
 
 
                         {movies.filter((movie) => {
@@ -167,7 +167,7 @@ export const MainView = () => {
                           <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={movie._id} md={4} xl={2} lg={3} sm={6} xs={12}>
                             <MovieCard
 
-                              className="flexible-media ml-5 mr-5"
+                              className="flexible-media ml-5 mr-5 "
                               movie={movie}
                               user={user}
                               token={token}
@@ -206,7 +206,7 @@ export const MainView = () => {
                       <Row className="my-3">
 
 
-                        <input style={{ color: '#19854e', fontStyle: 'italic', borderRadius: '7px' }}
+                        <input className="search-input"
                           id="search search-input input-search"
                           onChange={(e) => setSearch(e.target.value)}
                           placeholder="Search (e.g. House)"
@@ -271,7 +271,7 @@ export const MainView = () => {
                       <Row className="my-3">
 
 
-                        <input style={{ color: '#19854e', fontStyle: 'italic', borderRadius: '7px' }}
+                        <input className="search-input"
                           id="search search-input input-search"
                           onChange={(e) => setSearch(e.target.value)}
                           placeholder="Search (e.g. Ergo Proxy)"
@@ -414,12 +414,7 @@ export const MainView = () => {
                       </>
                     ) : (
                       <>
-                        <Row className="my-3">
-
-
-
-
-                        </Row>
+                        
                         <UncontrolledExample></UncontrolledExample>
                         <Header></Header>
 

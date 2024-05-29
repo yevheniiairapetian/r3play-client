@@ -33,6 +33,7 @@ export default () => {
       window.document.querySelector(".footer").classList.add(className);
       window.document.querySelector("#footer").classList.add(className);
       window.document.querySelector(".root").classList.add(className);
+      // window.document.querySelector(".justify-content-center").classList.add(className);
       
       
     } else {
@@ -42,6 +43,7 @@ export default () => {
       window.document.querySelector(".footer").classList.remove(className);
       window.document.querySelector("#footer").classList.remove(className);
       window.document.querySelector(".root").classList.remove(className);
+      // window.document.querySelector(".justify-content-center").classList.remove(className);
       
       
     }

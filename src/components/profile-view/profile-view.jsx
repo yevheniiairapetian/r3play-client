@@ -3,7 +3,8 @@ import { MovieCard } from '../movie-card/movie-card';
 import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { AnimeCard } from '../anime-card/anime-card';
 import { Button, Col, Form, Row, Modal, Alert, Accordion, Card } from 'react-bootstrap';
-
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) => {
 
@@ -229,13 +230,16 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 			</Row>
 
 			<Modal className="delete-modal" show={showModal} onHide={handleCloseModal}>
-				<Modal.Header className="bg-white text-danger" closeButton>
-					<Modal.Title className="bg-white text-danger">Delete my account</Modal.Title>
+				<Modal.Header className="delete-title" closeButton>
+					<Modal.Title className="">Delete my account</Modal.Title>
 				</Modal.Header>
-				<Modal.Body className="text-dark bg-white">Are you sure you want to delete your account? It can't be reverted</Modal.Body>
-				<Modal.Footer className="text-dark bg-white">
-					<Button className="bg-danger text-center" onClick={handleDeleteUser}>Confirm</Button>
-					<Button className="bg-success text-center" onClick={handleCloseModal}>Cancel</Button>
+				<Modal.Body className="login-modal-body">
+				<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "red", }} size="lg" />
+
+					Are you sure you want to delete your account? It can't be reverted</Modal.Body>
+				<Modal.Footer className="delete-footer">
+					<Button className="delete-confirm text-center" onClick={handleDeleteUser}>Confirm</Button>
+					<Button className="delete-cancel text-center" onClick={handleCloseModal}>Cancel</Button>
 				</Modal.Footer>
 			</Modal>
 
@@ -243,7 +247,10 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 				<Modal.Header closeButton>
 					{/* <Modal.Title className="text-success">Update Account</Modal.Title> */}
 				</Modal.Header>
-				<Modal.Body className="text-dark bg-white">Info was updated</Modal.Body>
+				<Modal.Body className="login-modal-body">
+				<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+					Info was updated</Modal.Body>
 				{/* <Modal.Footer> */}
 					<Button className="got-it-button text-dark bg-white" onClick={handleCloseUpdateModal}>Got it!</Button>
 				{/* </Modal.Footer> */}
@@ -253,7 +260,10 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 				<Modal.Header closeButton>
 					{/* <Modal.Title className="text-danger">Update Account</Modal.Title> */}
 				</Modal.Header>
-				<Modal.Body className="text-dark pt-5 bg-white">Failed. Reasons: <br />1. Username is too short. <br/> 2. Username/email already taken. <br />3. Empty/invalid data entered.</Modal.Body>
+				<Modal.Body className="login-modal-body">
+				<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+
+					Failed. Reasons: <br />1. Username is too short. <br/> 2. Username/email already taken. <br />3. Empty/invalid data entered.</Modal.Body>
 				{/* <Modal.Footer> */}
 					<Button className="got-it-button text-dark bg-white" onClick={handleCloseUpdateFailedModal}>Got it!</Button>
 				{/* </Modal.Footer> */}
@@ -262,7 +272,10 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 				<Modal.Header closeButton>
 					{/* <Modal.Title className="text-danger">Information</Modal.Title> */}
 				</Modal.Header>
-				<Modal.Body className="text-dark bg-white">Something went wrong. Please try again later</Modal.Body>
+				<Modal.Body className="login-modal-body">
+				<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+
+					Something went wrong. Please try again later</Modal.Body>
 				{/* <Modal.Footer> */}
 					<Button className="got-it-button text-dark bg-white" onClick={handleCloseWentWrongModal}>Got it!</Button>
 

@@ -5,6 +5,8 @@ import { Button, Card, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faRegular } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const MovieCard = ({ movie, user, token, setUser }) => {
   const [isFavorite, setIsFavorite] = useState(
@@ -117,7 +119,10 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
                 <Modal.Header closeButton>
                     {/* <Modal.Title className="text-danger">Fetch</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="text-dark bg-white">An error happened. Please try again later.</Modal.Body>
+                <Modal.Body className="login-modal-body">
+                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+
+                  An error happened. Please try again later.</Modal.Body>
                 {/* <Modal.Footer> */}
                     <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedFetchModal}>Got it!</Button>
 
@@ -132,7 +137,10 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
                 <Modal.Header closeButton>
                     {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body  className="text-dark bg-white">Added to faves</Modal.Body>
+                <Modal.Body  className="login-modal-body">
+                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+                  Added to faves</Modal.Body>
                 <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedMovieModal}>Got it!</Button>
               
             </Modal>
@@ -143,7 +151,10 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
                 <Modal.Header closeButton>
                     {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body  className="text-dark bg-white">Removed from faves</Modal.Body>
+                <Modal.Body  className="login-modal-body">
+                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+                  Removed from faves</Modal.Body>
                 <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedMovieModal}>Got it!</Button>
             </Modal>
     </div>

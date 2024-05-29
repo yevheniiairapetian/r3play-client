@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Button, Form, Modal, Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export const LoginView = ({ onLoggedIn }) => {
@@ -47,7 +49,7 @@ export const LoginView = ({ onLoggedIn }) => {
         <Row>
         <Col className="m-auto" md={8} xl={6} lg={6} sm={6} xs={10}>
             <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
-                <h4 className="text-success text-center pb-4 pt-4">Login Form</h4>
+                <h4 className="text-success text-center pb-4 pt-4">Login</h4>
                 <Form.Group controlId="formUsername">
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
@@ -70,7 +72,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     />
                 </Form.Group><br />
                 <Button className="bg-success w-100" variant="secondary" type="submit">
-                    Submit
+                    Log me in!
                 </Button><br />
             </Form>
             
@@ -80,7 +82,9 @@ export const LoginView = ({ onLoggedIn }) => {
                 <Modal.Header closeButton>
                     {/* <Modal.Title className="text-danger">Login</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="pt-4 text-dark bg-white">Failed. <br/> Possible reasons: <br/> 1. Incorrect username. <br/>2. Incorrect password.</Modal.Body>
+                <Modal.Body className="pt-4 login-modal-body">
+                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+                    Failed. <br/> Possible reasons: <br/> 1. Incorrect username. <br/>2. Incorrect password.</Modal.Body>
                 {/* <Modal.Footer> */}
                     <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedLoginModal}>Got it!</Button>
 
@@ -92,7 +96,10 @@ export const LoginView = ({ onLoggedIn }) => {
                 <Modal.Header closeButton>
                     {/* <Modal.Title className="text-danger">Information</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="pt-5 text-dark bg-white">Something went wrong. <br/> Please check your internet connection and try again.</Modal.Body>
+                <Modal.Body className="pt-5 login-modal-body">
+                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+
+                    Something went wrong. <br/> Please check your internet connection and try again.</Modal.Body>
                 {/* <Modal.Footer> */}
                     <Button className="got-it-button text-dark bg-white" onClick={handleCloseWentWrongModal}>Got it!</Button>
 

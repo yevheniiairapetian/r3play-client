@@ -58,6 +58,24 @@
   outline: none !important;
 }
 
+.search-input {
+  border-radius: 7px;
+  font-style: italic;
+  color: #19854e !important;
+  background-color: #f5f5f5 !important;
+}
+
+div.cont {
+  justify-content: space-evenly !important;
+}
+
+.dark .search-input {
+  border-radius: 7px;
+  font-style: italic;
+  color: #000 !important;
+  background-color: #f5f5f5 !important;
+}
+
 .dark .form-submit-button {
   color: #f5f5f5;
   background-color: #000 !important;
@@ -202,7 +220,56 @@ button.info-button, div#card-title, div#card-title, div.card-title {
 }
 
 .got-it-button:hover {
-  background-color: #1f8c49;
+  color: #f5f5f5 !important;
+  background-color: #1f8c49 !important;
+}
+
+.dark .login-modal-body {
+  color: #f5f5f5;
+  background-color: #000;
+}
+
+.dark .delete-title {
+  color: #913939 !important;
+  background-color: #000 !important;
+}
+
+.delete-title {
+  color: #913939 !important;
+  background-color: #fff !important;
+}
+
+.dark .delete-confirm, .delete-confirm {
+  color: #f5f5f5 !important;
+  background-color: #913939 !important;
+}
+
+.dark .delete-cancel, .delete-cancel {
+  color: #f5f5f5 !important;
+  background-color: #1f8c49 !important;
+}
+
+.dark .delete-confirm:hover, .delete-confirm:hover {
+  color: #f5f5f5 !important;
+  background-color: #9a3030 !important;
+}
+
+.dark .delete-cancel:hover, .delete-cancel:hover {
+  color: #f5f5f5 !important;
+  background-color: #2a834c !important;
+}
+
+.dark .delete-footer {
+  background-color: #171616 !important;
+}
+
+.delete-footer {
+  background-color: #f5f5f5 !important;
+}
+
+.modal-body {
+  color: #000;
+  background-color: #f5f5f5;
 }
 
 .modal-info-icon {

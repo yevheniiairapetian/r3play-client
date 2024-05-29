@@ -70,6 +70,24 @@ $btn-secondary: rgb(54, 57, 57);
   border:none !important;
 }
 
+.search-input{
+  color: #19854e !important;
+  background-color: whitesmoke !important;
+  font-style: italic;
+  border-radius: 7px;
+}
+
+div.cont{
+  justify-content: space-evenly !important;
+}
+
+.dark .search-input{
+  color: black !important;
+  background-color: whitesmoke !important;
+  font-style: italic;
+  border-radius: 7px;
+}
+
 .dark .form-submit-button{
   background-color: #000 !important;
   color: whitesmoke;
@@ -246,7 +264,76 @@ div.card-title {
 }
 
 .got-it-button:hover {
-  background-color: #1f8c49;
+  background-color: #1f8c49 !important;
+  color: whitesmoke !important;
+}
+
+.dark .login-modal-body{
+background-color:#000;
+color:whitesmoke;
+}
+
+.dark .delete-title{
+color: #913939 !important;
+background-color: #000 !important;
+}
+
+.delete-title{
+color: #913939 !important;
+background-color: white !important;
+}
+
+.dark .delete-confirm{
+color: whitesmoke !important;
+background-color: #913939 !important;
+}
+
+.delete-confirm{
+color: whitesmoke !important; 
+background-color: #913939 !important; 
+}
+
+.dark .delete-cancel{
+color: whitesmoke !important;
+background-color: #1f8c49 !important;
+}
+
+.delete-cancel{
+color: whitesmoke !important;
+background-color: #1f8c49 !important;  
+}
+
+.dark .delete-confirm:hover{
+  color: whitesmoke !important;
+  background-color: #9a3030 !important;
+  }
+  
+  .delete-confirm:hover{
+  color: whitesmoke !important; 
+  background-color: #9a3030 !important; 
+  }
+  
+  .dark .delete-cancel:hover{
+  color: whitesmoke !important;
+  background-color: #2a834c !important;
+  }
+  
+  .delete-cancel:hover{
+  color: whitesmoke !important;
+  background-color: #2a834c !important;  
+  }
+
+.dark .delete-footer{
+  background-color: #171616 !important; 
+}
+
+.delete-footer{
+  background-color: whitesmoke !important;
+}
+
+.modal-body{
+background-color:whitesmoke;
+color:#000;  
 }
 
 .modal-info-icon {
