@@ -29,6 +29,7 @@ export default () => {
       
       window.document.body.classList.add(className);
       window.document.querySelector(".container").classList.add(className);
+      // window.document.querySelector(".container-profile").classList.add(className);
       window.document.querySelector(".navigation").classList.add(className);
       window.document.querySelector(".footer").classList.add(className);
       window.document.querySelector("#footer").classList.add(className);
@@ -40,6 +41,7 @@ export default () => {
       window.document.body.classList.remove(className);
       window.document.querySelector(".navigation").classList.remove(className);
       window.document.querySelector(".container").classList.remove(className);
+      // window.document.querySelector(".container-profile").classList.remove(className);
       window.document.querySelector(".footer").classList.remove(className);
       window.document.querySelector("#footer").classList.remove(className);
       window.document.querySelector(".root").classList.remove(className);

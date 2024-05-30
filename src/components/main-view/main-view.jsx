@@ -85,7 +85,7 @@ export const MainView = () => {
                     <Navigate to="/login" replace />
                   ) : (
                     <Row className="container">
-                      <Col className="page-content-wrapper" md={8} lg={6} sm={12}>
+                      <Col className="page-content-wrapper container-profile" md={8} lg={6} sm={12}>
                         <SignupView />
                       </Col>
                       <Col className="footer">
@@ -105,7 +105,7 @@ export const MainView = () => {
                     <Navigate to="/" />
                   ) : (
                     <Row className="container">
-                      <Col className="page-content-wrapper" md={8} lg={6} sm={12} >
+                      <Col className="page-content-wrapper container-profile" md={8} lg={6} sm={12} >
                         <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
 
                       </Col>
