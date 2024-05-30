@@ -15,10 +15,7 @@ export const LoginView = ({ onLoggedIn }) => {
     const handleCloseFailedLoginModal = () => setShowFailedLoginModal(false);
     const handleShowWentWrongModal = () => setShowWentWrongModal(true);
     const handleCloseWentWrongModal = () => setShowWentWrongModal(false);
-    const showSpinner = () => {
-        const spinnerVisible = 'spinnerVisible';
-        window.document.querySelector('.spinner').classList.add(spinnerVisible);
-    }
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -76,24 +73,21 @@ export const LoginView = ({ onLoggedIn }) => {
                         required
                     />
                 </Form.Group><br />
-                {username&&password ? (
-                    <>
-                    <Button  className="bg-success w-100" variant="secondary" type="submit">
-                    Log me in!
-                    {/* <FontAwesomeIcon className="spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} /> */}
-
-                </Button><br />
-                </>
+                
                     
-                ):(
-                    <>
                     <Button onClick={showSpinner} className="bg-success w-100" variant="secondary" type="submit">
                     Log me in!
                     <FontAwesomeIcon className="spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} />
+</Button>
+                
+                
+                    
+                
+                    
 
-                </Button><br />
-                </>
-                )}
+                
+               
+                
                 
             </Form>
             
