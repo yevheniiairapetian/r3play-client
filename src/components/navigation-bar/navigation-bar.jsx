@@ -152,13 +152,13 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 									<FontAwesomeIcon className="" size="lg" icon={faUser} />  <span className="navbar-icons-span">{user.Username}</span>
 								</Nav.Link>
 
-								<div className="switcher pl-3">
+								{/* <div className="switcher pl-3">
 
 <span>
 </span>{" "}
 
 <ClickLanguage />
-</div>
+</div> */}
 
 								<Nav.Link>
 									
