@@ -1,5 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 import { Navbar, Container, Row, Col, Modal, Nav, Image, Button } from "react-bootstrap";
 import useSound from 'use-sound';
+
 import Logo from '../../images/logo.png';
 import { Link } from "react-router-dom";
 import useDarkMode from "./../../hooks/useDarkMode";
@@ -8,14 +11,35 @@ import { faGlobe, faBell, faCircleInfo, faLightbulb, faMoon } from '@fortawesome
 import { faMoon, faHouseChimney, faFilm, faTv, faRobot, faUserPlus, faUser, faCircleLeft, faRightToBracket, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import Click from './src/click.wav';
+import Cookies from "js-cookie";
+
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
+
 	const [showDarkModal, setShowDarkModal] = useState(false);
 	const [showLightModal, setShowLightModal] = useState(false);
 	const handleShowLightModal = () => setShowLightModal(true);
 	const handleShowDarkModal = () => setShowDarkModal(true);
 	const handleCloseLightModal = () => setShowLightModal(false);
 	const handleCloseDarkModal = () => setShowDarkModal(false);
+
+	const ClickLanguage = () => {
+		
+
+		const [play] = useSound(Click);
+		return <select onChange={handleChangeLocale} onClick={() => { play()}} value={language}>
+
+		{languages.map(({ name, code }) => (
+			<option key={code} value={code}>
+
+				<span style={{ display: "inline-block", fontSize: "24px", color: "#ffffff" }}>🌏︎ </span>
+				<span className="lang-option">{name}</span>
+
+			</option>
+		))}
+	</select>
+	};
+
 	const ClickButton = () => {
 		const [play] = useSound(Click);
 		return <Button className="info-sound-click-button" onClick={() => { play(); setVisible(!visible) }}></Button>;
@@ -40,11 +64,38 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 		// onClick={() => {setVisible(!visible)}}
 	};
 	const [isDarkMode, setDarkMode] = useDarkMode();
+	const { t, i18n } = useTranslation();
+
 	const [active, setActive] = useState("true");
 	const [expanded, setExpanded] = useState(false);
 
 	const handleToggle = () => {
 		setActive(!active);
+	};
+
+	const languages = [
+		{ name: "English", code: "en" },
+		{ name: "Deutsch", code: "de" },
+		{ name: "Español", code: "es" },
+		{ name: "Lingua italiana", code: "it" },
+		{ name: "Українська", code: "uk" },
+		{ name: "Русский", code: "ru" },
+		{ name: "Македонски јазик", code: "mk" },
+		{ name: "Polski", code: "pl" },
+		// { name: "العربية", code: "ar", dir: "rtl" },
+		{ name: "日本語", code: "ja" },
+		{ name: "中文", code: "zh" },
+	];
+
+	const currentLocale = Cookies.get("i18next") || "en";
+	const currentLangObj = languages.find((lang) => lang.code === currentLocale);
+
+	const [language, setLanguage] = useState(currentLocale);
+
+	const handleChangeLocale = (e) => {
+		const lang = e.target.value;
+		setLanguage(lang);
+		i18n.changeLanguage(lang);
 	};
 	const [theme, setTheme] = useState(
 		localStorage.getItem('theme') || 'light'
@@ -60,7 +111,14 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 		}
 	};
 
+	useEffect(() => {
 
+
+		// document.body.dir = currentLangObj.dir || "ltr";
+		document.body.dir = "ltr";
+		document.title = t("app_title");
+	}, [currentLangObj, t]);
+	
 	useEffect(() => {
 		document.body.className = theme;
 		// document.querySelectorAll('body *').className = theme;
@@ -79,7 +137,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 							<>
 
 								<Nav.Link className="navbar-icons" as={Link} to='/'>
-									<FontAwesomeIcon  className="" size="lg" icon={faHouseChimney} /> <span className="navbar-icons-span">Home</span>
+									<FontAwesomeIcon  className="" size="lg" icon={faHouseChimney} /> <span className="navbar-icons-span">{t("menu.menuHome")}</span>
 								</Nav.Link>
 								<Nav.Link className="navbar-icons" as={Link} to='/movies'>
 									<FontAwesomeIcon size="lg" icon={faFilm} /> <span className="navbar-icons-span">Movies</span>
@@ -93,8 +151,19 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 								<Nav.Link className="navbar-icons" as={Link} to='/profile'>
 									<FontAwesomeIcon className="" size="lg" icon={faUser} />  <span className="navbar-icons-span">{user.Username}</span>
 								</Nav.Link>
+
+								<div className="switcher pl-3">
+
+<span>
+</span>{" "}
+
+<ClickLanguage />
+</div>
+
 								<Nav.Link>
 									
+								
+
 							{isDarkMode ? (
 								<ClickThemeDark />) : (
 								<ClickThemeLight />
@@ -113,8 +182,16 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 								<Nav.Link className="" as={Link} to='/signup'>
 									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faUserPlus} />  <span className="navbar-icons-span">Sign up</span>
 								</Nav.Link>
+								
+								{/* <div className="switcher pl-3">
+								<span>
+								</span>{" "}
+								<ClickLanguage />
+
+							</div> */}
+
 								<Nav.Link>
-									
+								
 							{isDarkMode ? (
 								<ClickThemeDark />) : (
 								<ClickThemeLight />

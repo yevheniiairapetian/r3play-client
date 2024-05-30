@@ -78,7 +78,7 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
 
   return (
     <div className="card-container fs-5">
-      <Card id="card" className='item card h-100 mb-3' >
+      <Card id="card" className='item card mb-3' >
         <Card.Img className='w-100' variant='top' src={animes.ImagePath} />
         <div className="like-button">
           {isFavorite ? (

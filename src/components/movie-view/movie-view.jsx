@@ -85,7 +85,7 @@ export const MovieView = ({ movies }) => {
         <Row className=''>
           {similarMovies(movie.Genre.Name).map((movie) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-              <Card className='h-100 card item mb-3' >
+              <Card className=' card item mb-3' >
                 <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
                 <Card.Body>
                   <Card.Title id="item-subtitle" className="item-info text-center w-100 pb-3 pt-3">{movie.Title} {"(" + movie.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -106,7 +106,7 @@ export const MovieView = ({ movies }) => {
         <Row className=''>
           {similarDirector(movie.Director.Name).map((movie) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-              <Card className='h-100 card item mb-3' >
+              <Card className=' card item mb-3' >
                 <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
                 <Card.Body>
                   <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{movie.Title} {"(" + movie.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -127,7 +127,7 @@ export const MovieView = ({ movies }) => {
       <Row className=''>
         {similarRating(movie.Rating).map((movie) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className=' card item mb-3' >
               <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
               <Card.Body>
                 <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{movie.Title} {"(" + movie.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -148,7 +148,7 @@ export const MovieView = ({ movies }) => {
       <Row className=''>
         {similarIMDBRating(movie.IMDbRating).map((movie) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className=' card item mb-3' >
               <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
               <Card.Body>
                 <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{movie.Title} {"(" + movie.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -170,7 +170,7 @@ export const MovieView = ({ movies }) => {
         <Row className=''>
           {sameActors(movie.Actors).map((movie) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-              <Card className='h-100 card item mb-3' >
+              <Card className=' card item mb-3' >
                 <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
                 <Card.Body>
                   <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{movie.Title} {"(" + movie.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -191,7 +191,7 @@ export const MovieView = ({ movies }) => {
       <Row className=''>
         {sameDate(movie.ReleaseDate).map((movie) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className=' card item mb-3' >
               <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
               <Card.Body>
                 <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{movie.Title} {"(" + movie.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -212,7 +212,7 @@ export const MovieView = ({ movies }) => {
       <Row className=''>
         {sameDuration(movie.Duration).map((movie) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className=' card item mb-3' >
               <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
               <Card.Body>
                 <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{movie.Title} {"(" + movie.ReleaseDate.slice(0, 4) + ")"}</Card.Title>

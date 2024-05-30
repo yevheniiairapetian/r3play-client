@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button, Form, Modal, Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -15,6 +15,10 @@ export const LoginView = ({ onLoggedIn }) => {
     const handleCloseFailedLoginModal = () => setShowFailedLoginModal(false);
     const handleShowWentWrongModal = () => setShowWentWrongModal(true);
     const handleCloseWentWrongModal = () => setShowWentWrongModal(false);
+    const showSpinner = () => {
+        const spinnerVisible = 'spinnerVisible';
+        window.document.querySelector('.spinner').classList.add(spinnerVisible);
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -46,7 +50,7 @@ export const LoginView = ({ onLoggedIn }) => {
             });
     }
     return (
-        <div className="container-profile">
+        <div className="container-profile h-100">
         <Row className="container">
         <Col className="m-auto" md={8} xl={6} lg={6} sm={6} xs={10}>
             <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
@@ -72,9 +76,25 @@ export const LoginView = ({ onLoggedIn }) => {
                         required
                     />
                 </Form.Group><br />
-                <Button className="bg-success w-100" variant="secondary" type="submit">
+                {username&&password ? (
+                    <>
+                    <Button  className="bg-success w-100" variant="secondary" type="submit">
                     Log me in!
+                    {/* <FontAwesomeIcon className="spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} /> */}
+
                 </Button><br />
+                </>
+                    
+                ):(
+                    <>
+                    <Button onClick={showSpinner} className="bg-success w-100" variant="secondary" type="submit">
+                    Log me in!
+                    <FontAwesomeIcon className="spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} />
+
+                </Button><br />
+                </>
+                )}
+                
             </Form>
             
             <Modal

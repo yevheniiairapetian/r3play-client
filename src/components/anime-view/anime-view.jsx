@@ -78,7 +78,7 @@ export const AnimeView = ({ animes }) => {
       <Row className=''>
         {similarAnime(anim.Genre.Name).map((anim) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className=' card item mb-3' >
               <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
               <Card.Body>
                 <Card.Title id="item-subtitle" className="item-info text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -99,7 +99,7 @@ export const AnimeView = ({ animes }) => {
       <Row className=''>
         {similarAnimeDirector(anim.Director.Name).map((anim) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className=' card item mb-3' >
               <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
               <Card.Body>
                 <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -120,7 +120,7 @@ export const AnimeView = ({ animes }) => {
       <Row className=''>
         {similarAnimeRating(anim.Rating).map((anim) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className=' card item mb-3' >
               <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
               <Card.Body>
                 <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -141,7 +141,7 @@ export const AnimeView = ({ animes }) => {
       <Row className=''>
         {similarAnimeIMDBRating(anim.IMDbRating).map((anim) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className=' card item mb-3' >
               <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
               <Card.Body>
                 <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -162,7 +162,7 @@ export const AnimeView = ({ animes }) => {
         <Row className=''>
           {sameAnimeActors(anim.Actors).map((anim) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-              <Card className='h-100 card item mb-3' >
+              <Card className=' card item mb-3' >
                 <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
                 <Card.Body>
                   <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -183,7 +183,7 @@ export const AnimeView = ({ animes }) => {
         <Row className=''>
           {sameAnimeDate(anim.ReleaseDate).map((anim) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-              <Card className='h-100 card item mb-3' >
+              <Card className=' card item mb-3' >
                 <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
                 <Card.Body>
                   <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -202,7 +202,7 @@ export const AnimeView = ({ animes }) => {
         <Row className=''>
           {sameDuration(anim.Duration).map((anim) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-              <Card className='h-100 card item mb-3' >
+              <Card className=' card item mb-3' >
                 <Card.Img className='w-100' variant='top' src={anim.ImagePath} />
                 <Card.Body>
                   <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{anim.Title} {"(" + anim.ReleaseDate.slice(0, 4) + ")"}</Card.Title>

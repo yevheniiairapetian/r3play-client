@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from "react-i18next";
+
 import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +12,7 @@ import {
 
 export const FooterAuthorized = (onLoggedOut) => {
   return (
-    <MDBFooter id="footer" className='text-center text-white mt-3' style={{
+    <MDBFooter id="footer" className='text-center text-white ' style={{
       position: 'relative',
       width: '100%', height: '240px'
     }}>

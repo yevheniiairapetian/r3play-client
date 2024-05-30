@@ -2,6 +2,30 @@
   padding-left: 6px;
 }
 
+.switcher select {
+  color: #000;
+  background-color: #19854e;
+  outline: none;
+  width: 130px;
+  height: 38px;
+}
+
+.spinner {
+  display: none;
+}
+
+.spinnerVisible {
+  display: inline;
+}
+
+.dark .switcher select {
+  color: #f5f5f5;
+  background-color: #000;
+  outline: none;
+  width: 130px;
+  height: 38px;
+}
+
 .like-button {
   text-align: right;
   width: 100%;
@@ -91,6 +115,8 @@ div.container {
   font-style: italic;
   color: #19854e !important;
   background-color: #f5f5f5 !important;
+  margin-top: -15px !important;
+  margin-bottom: -15px !important;
 }
 
 div.cont {
@@ -175,8 +201,16 @@ div.cont {
   content: url("logo-light.643809a9.png") !important;
 }
 
+div.h-100 {
+  height: 100vh !important;
+}
+
+div.h-120 {
+  height: 120vh !important;
+}
+
 .page-content-wrapper {
-  margin: 0 auto 100px;
+  margin: 0 auto auto !important;
 }
 
 html {
@@ -315,21 +349,23 @@ button.info-button, div#card-title, div#card-title, div.card-title {
   right: 100px;
 }
 
-.footer {
+div.footer {
   height: 240px;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: #1f8c49 !important;
+  margin-top: -18px !important;
 }
 
 .page-content-wrapper {
   margin-bottom: 260px;
 }
 
-.dark .footer {
+.dark div.footer {
   background-color: #000 !important;
+  margin-top: -18px !important;
 }
 
 .footer-info {
@@ -563,6 +599,12 @@ button.got-it-button {
   }
 }
 
+@media screen and (width <= 767px) {
+  div.container, .dark div.container {
+    margin: 0 auto !important;
+  }
+}
+
 @media screen and (width <= 770px) {
   .app-container {
     width: 100%;
@@ -589,6 +631,10 @@ button.got-it-button {
     width: 100px !important;
     height: 30px !important;
     font-size: 10px !important;
+  }
+
+  .dark div.container-profile {
+    margin: 0 auto !important;
   }
 }
 

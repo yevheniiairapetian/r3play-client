@@ -78,7 +78,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
 
   return (
     <div className="card-container">
-      <Card id="card" className='item h-100 card mb-3' >
+      <Card id="card" className='item card mb-3' >
         <Card.Img className='w-100' variant='top' src={tvseries.ImagePath} />
         <div className="like-button">
           {isFavorite ? (

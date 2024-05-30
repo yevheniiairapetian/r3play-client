@@ -80,7 +80,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
   return (
     <div className="card-container fs-5">
     
-      <Card id="card" className='item h-100 card mb-3' >
+      <Card id="card" className='item card mb-3' >
       
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <div className="like-button">

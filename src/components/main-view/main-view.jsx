@@ -19,6 +19,7 @@ import { Row, Col, InputGroup, Form } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { UncontrolledExample } from '../Carousel/carousel';
 import { FooterAuthorized } from '../footer-authorized/footer-authorized';
+
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
@@ -202,8 +203,8 @@ export const MainView = () => {
 
                     </>
                   ) : (
-                    <>
-                      <Row className="my-3">
+                    <div className='container-fluid'>
+                      <Row className="my-3 container-search">
 
 
                         <input className="search-input"
@@ -241,7 +242,7 @@ export const MainView = () => {
 
 
                       </Row>
-                    </>
+                    </div>
                   )}
                   <FooterAuthorized />
                 </>
@@ -267,8 +268,8 @@ export const MainView = () => {
 
                     </>
                   ) : (
-                    <>
-                      <Row className="my-3">
+                    <div className='container-fluid'>
+                      <Row className="my-3 container-search">
 
 
                         <input className="search-input"
@@ -307,7 +308,7 @@ export const MainView = () => {
 
 
                       </Row>
-                    </>
+                    </div>
                   )}
                   <FooterAuthorized />
                 </>
@@ -416,7 +417,7 @@ export const MainView = () => {
                       <div className="container">
                         
                         <UncontrolledExample ></UncontrolledExample>
-                        <Header ></Header>
+                        <Header className="header"></Header>
 
 
 

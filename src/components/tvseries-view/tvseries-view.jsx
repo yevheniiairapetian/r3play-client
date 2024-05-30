@@ -82,7 +82,7 @@ export const TVseriesView = ({ tvseries }) => {
       <Row className=''>
         {similarTV(tvser.Genre.Name).map((tvser) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card mb-3' >
+            <Card className=' card mb-3' >
               <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
               <Card.Body>
                 <Card.Title id="item-subtitle" className="item-info text-center w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -103,7 +103,7 @@ export const TVseriesView = ({ tvseries }) => {
       <Row className=''>
         {similarTVDirector(tvser.Director.Name).map((tvser) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className=' card item mb-3' >
               <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
               <Card.Body>
                 <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -124,7 +124,8 @@ export const TVseriesView = ({ tvseries }) => {
       <Row className=''>
         {similarTVRating(tvser.Rating).map((tvser) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className='
+             card item mb-3' >
               <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
               <Card.Body>
                 <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -145,7 +146,7 @@ export const TVseriesView = ({ tvseries }) => {
       <Row className=''>
         {similarTVIMDBRating(tvser.IMDbRating).map((tvser) => (
           <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-            <Card className='h-100 card item mb-3' >
+            <Card className=' card item mb-3' >
               <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
               <Card.Body>
                 <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -166,7 +167,7 @@ export const TVseriesView = ({ tvseries }) => {
         <Row className=''>
           {sameTVActors(tvser.Actors).map((tvser) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-              <Card className='h-100 card item mb-3' >
+              <Card className=' card item mb-3' >
                 <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
                 <Card.Body>
                   <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -187,7 +188,7 @@ export const TVseriesView = ({ tvseries }) => {
         <Row className=''>
           {sameDate(tvser.ReleaseDate).map((tvser) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-              <Card className='h-100 card item mb-3' >
+              <Card className=' card item mb-3' >
                 <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
                 <Card.Body>
                   <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
@@ -208,7 +209,7 @@ export const TVseriesView = ({ tvseries }) => {
         <Row className=''>
           {sameDuration(tvser.Duration).map((tvser) => (
             <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-              <Card className='h-100 card item mb-3' >
+              <Card className=' card item mb-3' >
                 <Card.Img className='w-100' variant='top' src={tvser.ImagePath} />
                 <Card.Body>
                   <Card.Title id="card-subtitle" className="item-info text-center w-100 pb-3 pt-3">{tvser.Title} {"(" + tvser.ReleaseDate.slice(0, 4) + ")"}</Card.Title>

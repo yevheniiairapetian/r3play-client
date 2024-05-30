@@ -4,11 +4,11 @@ import React from "react";
 export const Header = () => {
     return (
         <div
-        className='p-5 text-center bg-image'
+        className='header p-5 text-center bg-image'
         style={{ backgroundImage: "url('http://www.normansblog.de/wp-content/uploads/2009/06/movies.jpg')", height: '400px', width:'100%'}}
       >
         <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
-          <div className='d-flex justify-content-center align-items-center pb-4 h-100'>
+          <div className='d-flex justify-content-center align-items-center pb-4'>
             <div className='text-white'>
               <h1 className='pt-4 mb-3'>Movies, Anime and TV Series</h1>
               <h4 className='pt-3 mb-3'>Explore the library</h4>
