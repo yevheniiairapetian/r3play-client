@@ -30,7 +30,7 @@ export const TVseriesView = ({ tvseries }) => {
     tvseries.filter((tv) => tv.Duration == Duration && tv._id !== TVId);
   const sameTVActors = (Actors) => tvseries.filter(tv => tv._id !== TVId && Actors.some(actor => tv.Actors.includes(actor)));
   return (
-    <>
+    <div className="container-profile">
       <Card className="item-view">
         <Card.Img className='h-100 card mb-3' variant={top} src={tvser.ImagePath} />
 
@@ -226,6 +226,6 @@ export const TVseriesView = ({ tvseries }) => {
         </Link>
       </div>
 
-    </>
+    </div>
   );
 };

@@ -13,6 +13,21 @@
   background-color: #2322224d !important;
 }
 
+div.container-fluid, div.container-xxl, div.container-xl, div.container-lg, div.container-md, div.container-sm {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+div.container {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .all-media-container {
   width: 100%;
   display: flex;
@@ -26,6 +41,18 @@
 .flexible-media {
   flex: 1;
   padding: 16px;
+}
+
+.dark div.container-profile {
+  background-color: #171616 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.dark .container-search {
+  background-color: #171616 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .dark .body, .dark .container, .dark .root {
@@ -60,6 +87,7 @@
 
 .search-input {
   border-radius: 7px;
+  width: 100%;
   font-style: italic;
   color: #19854e !important;
   background-color: #f5f5f5 !important;
@@ -69,8 +97,13 @@ div.cont {
   justify-content: space-evenly !important;
 }
 
+.justify-content-center {
+  width: 100%;
+}
+
 .dark .search-input {
   border-radius: 7px;
+  width: 100%;
   font-style: italic;
   color: #000 !important;
   background-color: #f5f5f5 !important;
@@ -313,11 +346,19 @@ button.info-button, div#card-title, div#card-title, div.card-title {
   color: #fff;
   background-color: #1f8c49;
   width: 100%;
+  justify-content: space-between !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  display: flex !important;
 }
 
 .dark .navigation {
   color: #fff;
   background-color: #000 !important;
+}
+
+.navbar-expand-lg .navigation, .navbar-collapse.show {
+  flex-direction: column !important;
 }
 
 .navbar-icons {
@@ -507,6 +548,19 @@ button.got-it-button {
 
 .dark .image-rotten {
   content: url("rotten-tomatoes.ee08889f.svg");
+}
+
+@media screen and (width <= 991.5px) {
+  .navbar-brand {
+    align-self: center !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media screen and (width >= 992px) {
+  .navbar-expand-lg .navigation, .navbar-collapse.show {
+    flex-direction: row !important;
+  }
 }
 
 @media screen and (width <= 770px) {

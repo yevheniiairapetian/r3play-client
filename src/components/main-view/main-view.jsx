@@ -75,7 +75,7 @@ export const MainView = () => {
           }}
 
         />
-        <Row className="justify-content-center">
+        <Row className="justify-content-center container-fluid">
           <Routes>
             <Route
               path="/signup"
@@ -84,7 +84,7 @@ export const MainView = () => {
                   {user ? (
                     <Navigate to="/login" replace />
                   ) : (
-                    <Row>
+                    <Row className="container">
                       <Col className="page-content-wrapper" md={8} lg={6} sm={12}>
                         <SignupView />
                       </Col>
@@ -104,7 +104,7 @@ export const MainView = () => {
                   {user ? (
                     <Navigate to="/" />
                   ) : (
-                    <Row >
+                    <Row className="container">
                       <Col className="page-content-wrapper" md={8} lg={6} sm={12} >
                         <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
 
@@ -123,7 +123,7 @@ export const MainView = () => {
             <Route
               path='/movies'
               element={
-                <>
+                <div className="p-0 container-fluid">
                   {!user ? (
                     <>
                       <Navigate to='/login' replace />
@@ -137,8 +137,8 @@ export const MainView = () => {
 
                     </>
                   ) : (
-                    <>
-                      <Row className="my-3">
+                    <div className='container-fluid'>
+                      <Row className="my-3 container-search ">
 
 
                         <input className="search-input" 
@@ -153,7 +153,7 @@ export const MainView = () => {
                       {/* <UncontrolledExample></UncontrolledExample> */}
                       {/* <Header></Header> */}
 
-                      <Row className=''>
+                      <Row className='container-profile'>
 
 
                         {movies.filter((movie) => {
@@ -164,10 +164,10 @@ export const MainView = () => {
                         }
 
                         ).map((movie) => (
-                          <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={movie._id} md={4} xl={2} lg={3} sm={6} xs={12}>
+                          <Col className=" pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={movie._id} md={4} xl={2} lg={3} sm={6} xs={12}>
                             <MovieCard
 
-                              className="flexible-media ml-5 mr-5 "
+                              className=" flexible-media ml-5 mr-5 "
                               movie={movie}
                               user={user}
                               token={token}
@@ -178,10 +178,10 @@ export const MainView = () => {
 
 
                       </Row>
-                    </>
+                    </div>
                   )}
                   <FooterAuthorized/>
-                </>
+                </div>
               }
             />
 
@@ -218,7 +218,7 @@ export const MainView = () => {
                       {/* <UncontrolledExample></UncontrolledExample> */}
                       {/* <Header></Header> */}
 
-                      <Row>
+                      <Row className='container-profile'>
 
 
                         {tvseries.filter((tvseries) => {
@@ -283,7 +283,7 @@ export const MainView = () => {
                       {/* <UncontrolledExample></UncontrolledExample> */}
                       {/* <Header></Header> */}
 
-                      <Row>
+                      <Row className='container-profile'>
 
 
                         {animes.filter((animes) => {
@@ -332,9 +332,9 @@ export const MainView = () => {
 
                     </>
                   ) : (
-                    <Col md={8}>
+                    <Col md={12} className="p-0">
 
-                      <MovieView movies={movies} />
+                      <MovieView className="" movies={movies} />
 
                     </Col>
                   )}
@@ -359,7 +359,7 @@ export const MainView = () => {
 
                     </>
                   ) : (
-                    <Col md={8}>
+                    <Col md={12} className="p-0">
 
                       <TVseriesView tvseries={tvseries} />
                     </Col>
@@ -385,7 +385,7 @@ export const MainView = () => {
 
                     </>
                   ) : (
-                    <Col md={8}>
+                    <Col md={12} className="p-0">
 
                       <AnimeView animes={animes} />
                     </Col>
@@ -413,10 +413,10 @@ export const MainView = () => {
 
                       </>
                     ) : (
-                      <>
+                      <div className="container">
                         
-                        <UncontrolledExample></UncontrolledExample>
-                        <Header></Header>
+                        <UncontrolledExample ></UncontrolledExample>
+                        <Header ></Header>
 
 
 
@@ -425,7 +425,7 @@ export const MainView = () => {
 
 
 
-                      </>
+                      </div>
                     )}
 
                   </>
@@ -443,7 +443,7 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to='/login' replace />
                   ) : (
-                    <Col>
+                    <Col className='container-profile'>
                       <ProfileView
                         user={user}
                         token={token}

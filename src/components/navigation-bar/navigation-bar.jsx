@@ -67,8 +67,8 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 	}, [theme]);
 	return (
 <>
-		<Navbar id="navigation" className="navigation" data-bs-theme="light" expand="lg">
-			<Container className="navigation">
+		<Navbar id="navigation" className="navigation " data-bs-theme="light" expand="lg">
+			<div className="navigation ">
 				<Navbar.Brand className="p-2" as={Link} to="/">
 					<Image width="100px" height="auto" className="logo img-responsive" alt="logo" src={Logo} />
 				</Navbar.Brand>
@@ -126,7 +126,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 						)}
 					</Nav>
 				</Navbar.Collapse>
-			</Container>
+			</div>
 		</Navbar>
 		<Modal
 

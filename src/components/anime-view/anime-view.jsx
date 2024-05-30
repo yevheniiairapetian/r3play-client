@@ -33,7 +33,7 @@ export const AnimeView = ({ animes }) => {
     animes.filter((a) => a.ReleaseDate == Date && a._id !== AnimeId);
   const sameAnimeActors = (Actors) => animes.filter(a => a._id !== AnimeId && Actors.some(actor => a.Actors.includes(actor)));
   return (
-    <>
+    <div className="container-profile">
       <Card className="item-view" >
         <Card.Img className='h-100 card mb-3' variant={top} src={anim.ImagePath} />
 
@@ -221,6 +221,6 @@ export const AnimeView = ({ animes }) => {
         </Link>
       </div>
 
-    </>
+    </div>
   );
 };

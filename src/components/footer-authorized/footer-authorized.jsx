@@ -14,7 +14,7 @@ export const FooterAuthorized = (onLoggedOut) => {
       position: 'relative',
       width: '100%', height: '240px'
     }}>
-      <MDBContainer className='p-4 pb-0'>
+      <MDBContainer className='p-4 pb-0 '>
         <section className=''>
           <p className='d-flex justify-content-center align-items-center'>
 

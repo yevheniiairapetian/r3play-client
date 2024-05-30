@@ -4,7 +4,7 @@ import React from "react";
 export const Header = () => {
     return (
         <div
-        className='p-5 mb-2 text-center bg-image'
+        className='p-5 text-center bg-image'
         style={{ backgroundImage: "url('http://www.normansblog.de/wp-content/uploads/2009/06/movies.jpg')", height: '400px', width:'100%'}}
       >
         <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>

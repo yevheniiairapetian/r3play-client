@@ -46,7 +46,8 @@ export const LoginView = ({ onLoggedIn }) => {
             });
     }
     return (
-        <Row>
+        <div className="container-profile">
+        <Row className="container">
         <Col className="m-auto" md={8} xl={6} lg={6} sm={6} xs={10}>
             <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
                 <h4 className="text-success text-center pb-4 pt-4">Login</h4>
@@ -108,5 +109,6 @@ export const LoginView = ({ onLoggedIn }) => {
             
         </Col>
         </Row>
+        </div>
     )
 }

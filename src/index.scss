@@ -22,6 +22,22 @@ $btn-secondary: rgb(54, 57, 57);
   background-color: rgba(35, 34, 34, 0.3) !important;
 }
 
+div.container-fluid{
+  padding-left:0 !important;
+  padding-right:0 !important;
+  margin-left:0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+}
+
+div.container{
+  padding-left:0 !important;
+  padding-right:0 !important;
+  margin-left:0 !important;
+  margin-right: 0 !important;
+  
+}
+
 .all-media-container {
   display: flex;
   width: 100%;
@@ -36,6 +52,22 @@ $btn-secondary: rgb(54, 57, 57);
   flex: 1;
   padding: 16px;
 }
+
+.dark div.container-profile{
+  margin-left:auto !important;
+  margin-right: auto !important;
+  background-color: #171616 !important;
+
+}
+
+.dark .container-search{
+  background-color: #171616 !important;
+  margin-left:0 !important;
+  margin-right: 0 !important;
+
+}
+
+
 
 .dark .body, .dark .container, .dark .root{
   background-color: #171616 !important;
@@ -75,10 +107,15 @@ $btn-secondary: rgb(54, 57, 57);
   background-color: whitesmoke !important;
   font-style: italic;
   border-radius: 7px;
+  width:100%;
 }
 
 div.cont{
   justify-content: space-evenly !important;
+}
+
+.justify-content-center{
+  width:100%;
 }
 
 .dark .search-input{
@@ -86,6 +123,8 @@ div.cont{
   background-color: whitesmoke !important;
   font-style: italic;
   border-radius: 7px;
+  width:100%;
+
 }
 
 .dark .form-submit-button{
@@ -378,6 +417,10 @@ color:#000;
   background-color: #1f8c49;
   color: hsl(0, 0%, 100%);
   width: 100%;
+  justify-content: space-between !important;
+  display: flex !important;
+  padding-left:10px !important;
+  padding-right:10px !important;
 
 }
 
@@ -385,6 +428,15 @@ color:#000;
   background-color: black !important;
   color: #fff;
 }
+
+.navbar-expand-lg .navigation {
+  flex-direction: column !important;
+}
+
+.navbar-collapse.show {
+  flex-direction: column !important;
+}
+
 
 
 .navbar-icons {
@@ -612,6 +664,19 @@ button.got-it-button {
 }
 
 
+
+@media screen and (max-width:991.5px) {
+  .navbar-brand{
+    align-self: center !important;
+    margin-right:0 !important;
+  }
+}
+
+@media screen and (min-width:992px) {
+  .navbar-expand-lg .navigation, .navbar-collapse.show{
+    flex-direction: row !important;
+  }
+}
 @media screen and (max-width:770px) {
   .app-container {
     width: 100%;

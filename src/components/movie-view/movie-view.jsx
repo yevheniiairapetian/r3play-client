@@ -33,7 +33,7 @@ export const MovieView = ({ movies }) => {
 
 
   return (
-    <div >
+    <div className="container-profile">
       <Card className="item-view" >
         <Card.Img className='h-100 card mb-3' variant={top} src={movie.ImagePath} />
 
@@ -76,7 +76,7 @@ export const MovieView = ({ movies }) => {
         <hr />
       </Card>
 
-      <div className="cont">
+      <div>
         <div>
           <Alert
 
