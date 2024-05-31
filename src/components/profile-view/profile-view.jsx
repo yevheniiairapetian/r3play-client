@@ -165,17 +165,15 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 								required
 							/>
 						</Form.Group>
-						<Form.Group controlId="formImage" className='form-group pb-4'>
+						{/* <Form.Group controlId="formImage" className='form-group pb-4'>
 							<Form.Label className="profie-image form-label" >Profile Image:</Form.Label>
 							<Form.Control
 								type="file"
-								// placeholder="Your username"
 								accept="image/*"
 								value={image}
 								onChange={(e) => setImage(e.target.value)}
-							// required
 							/>
-						</Form.Group>
+						</Form.Group> */}
 
 						<Col>
 							<Button className="form-submit-button w-100 mb-1" type="submit" onClick={handleSubmit}>Update</Button>
