@@ -19,7 +19,64 @@ $btn-secondary: rgb(54, 57, 57);
   outline:none;
 }
 
+.logo-pulse{
+  animation: pulse 1s infinite;
+  border-radius: 60%;
+  width: 20em;
+}
 
+.dark .logo-pulse{
+  content: url("./images/logo.png"); 
+}
+
+.clear-search{
+  width:30px !important;
+  height:30px !important;
+  margin-top: 0 !important;
+    position: absolute;
+    top: 103px;
+    right: 0;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size:16px;
+}
+
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background: #19854e;
+  z-index: 1;
+}
+
+
+
+
+.dark .loader-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background: #424242;
+  z-index: 1;
+}
+
+
+@keyframes pulse{
+  from{
+    box-shadow: 0 0 0 0 rgba(198, 182, 179, 0.85);
+  }
+
+  to{
+    box-shadow: 0 0 0 30px rgba(201, 48, 48, 0);
+  }
+}
 
 .dark .switcher select {
   width: 130px;
@@ -70,7 +127,10 @@ div.container{
   flex: 1;
   padding: 16px;
 }
-
+div.container-profile{
+  margin-left:auto !important;
+  margin-right: auto !important;
+}
 .dark div.container-profile{
   margin-left:auto !important;
   margin-right: auto !important;
@@ -80,6 +140,13 @@ div.container{
 
 .dark .container-search{
   background-color: #171616 !important;
+  margin-left:0 !important;
+  margin-right: 0 !important;
+
+}
+
+.container-search{
+  // background-color: #171616 !important;
   margin-left:0 !important;
   margin-right: 0 !important;
 
@@ -162,6 +229,23 @@ div.cont{
   background-color: #248653 !important;
 }
 
+.footer-auth-icons{
+  color: #248653;
+}
+
+.dark .footer-auth-icons{
+  color: #000;
+}
+
+.footer-non-auth-icons{
+  color: #248653;
+}
+
+
+
+.dark .footer-non-auth-icons{
+  color: #000;
+}
 .dark .form-submit-button:hover{
   background-color: #1a1919 !important;
   color: whitesmoke;
@@ -704,14 +788,37 @@ button.got-it-button {
     align-self: center !important;
     margin-right:0 !important;
   }
+  .clear-search{
+  background-color: #0000;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  position: relative;
+  top: -15px;
+  left: 94%;
+  height: 30px !important;
+  margin-top: 0;
 }
-
+}
 @media screen and (min-width:992px) {
   .navbar-expand-lg .navigation, .navbar-collapse.show{
     flex-direction: row !important;
   }
 }
 
+@media screen and (max-width:714px) {
+.clear-search{
+  background-color: #0000;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  position: relative;
+  top: -15px;
+  left: 92%;
+  height: 30px !important;
+  margin-top: 0;
+}
+}
 @media screen and (max-width:767px) {
 
   div.container, .dark div.container{
@@ -746,7 +853,7 @@ button.got-it-button {
     height: 30px !important;
     font-size: 10px !important;
   }
-  .dark div.container-profile{
+  div.container-profile, .dark div.container-profile{
     margin: 0 auto 0 auto !important;
   }
 }

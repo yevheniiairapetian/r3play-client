@@ -15,12 +15,35 @@ import { SignupView } from '../signup-view/signup-view';
 import { Footer } from '../footer/footer';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from "../profile-view/profile-view";
-import { Row, Col, InputGroup, Form } from 'react-bootstrap';
+import { Row, Col, InputGroup, Form, Image } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { UncontrolledExample } from '../Carousel/carousel';
 import { FooterAuthorized } from '../footer-authorized/footer-authorized';
+import logoDark from './src/logo.png';
+import logoWhite from './src/logo-light.png';
 
 export const MainView = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1600);
+  }, []);
+
+  
+  // const clear = (e) => {
+    // Select the 'myInput' search box, and set it's value to an empty String
+    // let input = window.document.querySelector(".search-input");
+    // input.value = "";
+    // if(e.target.value==="")
+      
+    // setSearch(e.target.value);
+
+    // Call seach, which should reset the result list
+    
+  // }  
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [search, setSearch] = useState("");
@@ -64,6 +87,17 @@ export const MainView = () => {
 
   return (
     <>
+      {loading ? (
+       
+        <div className="loader-container">
+            {/* <div className="spinner"></div> */}
+            <Image className="logo-pulse" src={logoWhite}/>
+        </div>
+        
+        
+      ) : (
+        <>
+    
       <BrowserRouter>
         <ScrollButton />
         <ScrollToTop />
@@ -105,8 +139,11 @@ export const MainView = () => {
                   {user ? (
                     <Navigate to="/" />
                   ) : (
+                    <>
+                    
                     <Row className="container">
-                      <Col className="page-content-wrapper container-profile" md={8} lg={6} sm={12} >
+                      
+                      <Col className="page-content-wrapper bg container-profile" md={8} lg={6} sm={12} >
                         <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
 
                       </Col>
@@ -114,6 +151,7 @@ export const MainView = () => {
                         <Footer />
                       </Col>
                     </Row>
+                    </>
                   )}
 
                 </>
@@ -133,7 +171,7 @@ export const MainView = () => {
                     </>
                   ) : movies.length === 0 ? (
                     <>
-                      <Col className="text-center mt-4"><Spin /></Col>
+                      {/* <Col className="text-center mt-4"><Spin /></Col> */}
                       {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                     </>
@@ -143,11 +181,15 @@ export const MainView = () => {
 
 
                         <input className="search-input" 
+                        
                           id="search search-input input-search"
                           onChange={(e) => setSearch(e.target.value)}
+                          onfocus="this.value=''" 
                           placeholder="Search (e.g. Lethal Weapon)"
                           aria-label="Search"
                         />
+                        
+{/* <input type="button" className="clear-search" onClick={clear} value="X" /> */}
 
 
                       </Row>
@@ -196,9 +238,9 @@ export const MainView = () => {
 
 
                     </>
-                  ) : movies.length === 0 ? (
+                  ) : tvseries.length === 0 ? (
                     <>
-                      <Col className="text-center mt-4"><Spin /></Col>
+                      {/* <Col className="text-center mt-4"><Spin /></Col> */}
                       {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                     </>
@@ -211,8 +253,10 @@ export const MainView = () => {
                           id="search search-input input-search"
                           onChange={(e) => setSearch(e.target.value)}
                           placeholder="Search (e.g. House)"
+
                           aria-label="Search"
                         />
+{/* <input type="button" className="clear-search" onClick={clear} value="X" /> */}
 
 
                       </Row>
@@ -261,9 +305,9 @@ export const MainView = () => {
 
 
                     </>
-                  ) : movies.length === 0 ? (
+                  ) : animes.length === 0 ? (
                     <>
-                      <Col className="text-center mt-4"><Spin /></Col>
+                      {/* <Col className="text-center mt-4"><Spin /></Col> */}
                       {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                     </>
@@ -278,6 +322,7 @@ export const MainView = () => {
                           placeholder="Search (e.g. Ergo Proxy)"
                           aria-label="Search"
                         />
+{/* <input type="button" className="clear-search" onClick={clear} value="X" /> */}
 
 
                       </Row>
@@ -328,7 +373,7 @@ export const MainView = () => {
                     </>
                   ) : movies.length === 0 ? (
                     <>
-                      <Col className="text-center mt-4"><Spin /></Col>
+                      {/* <Col className="text-center mt-4"><Spin /></Col> */}
                       {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                     </>
@@ -355,7 +400,7 @@ export const MainView = () => {
                     </>
                   ) : tvseries.length === 0 ? (
                     <>
-                      <Col className="text-center mt-4"><Spin /></Col>
+                      {/* <Col className="text-center mt-4"><Spin /></Col> */}
                       {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                     </>
@@ -381,7 +426,7 @@ export const MainView = () => {
                     </>
                   ) : animes.length === 0 ? (
                     <>
-                      <Col className="text-center mt-4"><Spin /></Col>
+                      {/* <Col className="text-center mt-4"><Spin /></Col> */}
                       {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                     </>
@@ -409,7 +454,7 @@ export const MainView = () => {
                     ) : movies.length === 0 ? (
                       <>
 
-                        <Col className="text-center mt-4"><Spin /></Col>
+                        {/* <Col className="text-center mt-4"><Spin /></Col> */}
                         {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
 
                       </>
@@ -466,8 +511,8 @@ export const MainView = () => {
 
       </BrowserRouter>
 
+      </>
+      )}
     </>
-
-  )
-
-}
+  );
+};

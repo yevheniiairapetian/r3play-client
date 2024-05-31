@@ -116,7 +116,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 
 		// document.body.dir = currentLangObj.dir || "ltr";
 		document.body.dir = "ltr";
-		document.title = t("app_title");
+		// document.title = t("app_title");
 	}, [currentLangObj, t]);
 	
 	useEffect(() => {
@@ -137,7 +137,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 							<>
 
 								<Nav.Link className="navbar-icons" as={Link} to='/'>
-									<FontAwesomeIcon  className="" size="lg" icon={faHouseChimney} /> <span className="navbar-icons-span">{t("menu.menuHome")}</span>
+									<FontAwesomeIcon  className="" size="lg" icon={faHouseChimney} /> <span className="navbar-icons-span">Home</span>
 								</Nav.Link>
 								<Nav.Link className="navbar-icons" as={Link} to='/movies'>
 									<FontAwesomeIcon size="lg" icon={faFilm} /> <span className="navbar-icons-span">Movies</span>

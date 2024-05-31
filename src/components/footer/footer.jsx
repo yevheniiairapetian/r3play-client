@@ -30,13 +30,13 @@ export const Footer = () => {
         <em>Signup for free or login</em><br />
         <br /><button type='button' className="bg-light mt-2 mb-2 pl-4 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none', marginRight: '10px' }}>
           <Nav.Link className="text-dark" as={Link} to='/login'>
-            <FontAwesomeIcon size="lg" icon={faRightToBracket} className="text-secondary" />
+            <FontAwesomeIcon size="lg" icon={faRightToBracket} className="footer-non-auth-icons" />
           </Nav.Link>
 
         </button><button type='button' className="bg-light mt-2 mb-2 pl-4 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none' }}>
 
           <Nav.Link className="text-dark" as={Link} to='/signup'>
-            <FontAwesomeIcon size="lg" icon={faUserPlus} className="text-secondary" />
+            <FontAwesomeIcon size="lg" icon={faUserPlus} className="footer-non-auth-icons" />
           </Nav.Link>
 
         </button><br />

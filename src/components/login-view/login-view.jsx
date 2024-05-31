@@ -47,8 +47,13 @@ export const LoginView = ({ onLoggedIn }) => {
             });
     }
     return (
+
+
+        
+        <>
+        
         <div className="container-profile h-100">
-        <Row className="container">
+        <Row className="container ">
         <Col className="m-auto" md={8} xl={6} lg={6} sm={6} xs={10}>
             <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
                 <h4 className="text-success text-center pb-4 pt-4">Login</h4>
@@ -75,9 +80,9 @@ export const LoginView = ({ onLoggedIn }) => {
                 </Form.Group><br />
                 
                     
-                    <Button onClick={showSpinner} className="bg-success w-100" variant="secondary" type="submit">
+                    <Button className="bg-success w-100" variant="secondary" type="submit">
                     Log me in!
-                    <FontAwesomeIcon className="spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} />
+                    {/* <FontAwesomeIcon className="spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} /> */}
 </Button>
                 
                 
@@ -124,5 +129,6 @@ export const LoginView = ({ onLoggedIn }) => {
         </Col>
         </Row>
         </div>
+        </>
     )
 }

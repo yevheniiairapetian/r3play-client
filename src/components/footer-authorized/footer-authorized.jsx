@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from "react-i18next";
 
 import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
@@ -31,11 +30,11 @@ export const FooterAuthorized = (onLoggedOut) => {
 
         <br /><button type='button' className="bg-light pl-4 mt-2 mb-2 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none', marginRight: '10px' }}>
           <Nav.Link className="" as={Link} to='/'>
-            <FontAwesomeIcon size="lg" icon={faHouseChimney} className="text-secondary" />
+            <FontAwesomeIcon size="lg" icon={faHouseChimney} className="footer-auth-icons" />
           </Nav.Link>
         </button><button type='button' className="bg-light pl-4 mt-2 mb-2 pr-4 pt-1 pb-1" style={{ borderRadius: '5px', border: 'none' }}>
           <Nav.Link className="text-dark" as={Link} to='/profile'>
-            <FontAwesomeIcon size="lg" icon={faUser} className="text-secondary" />
+            <FontAwesomeIcon size="lg" icon={faUser} className="footer-auth-icons" />
           </Nav.Link>
         </button><br /><br />
 

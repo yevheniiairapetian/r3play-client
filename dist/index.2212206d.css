@@ -10,12 +10,59 @@
   height: 38px;
 }
 
-.spinner {
-  display: none;
+.logo-pulse {
+  border-radius: 60%;
+  width: 20em;
+  animation: 1s infinite pulse;
 }
 
-.spinnerVisible {
-  display: inline;
+.dark .logo-pulse {
+  content: url("logo.c493797d.png");
+}
+
+.clear-search {
+  background-color: #0000;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  position: absolute;
+  top: 103px;
+  right: 0;
+  width: 30px !important;
+  height: 30px !important;
+  margin-top: 0 !important;
+}
+
+.loader-container {
+  z-index: 1;
+  background: #19854e;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  position: fixed;
+}
+
+.dark .loader-container {
+  z-index: 1;
+  background: #424242;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  position: fixed;
+}
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 #c6b6b3d9;
+  }
+
+  to {
+    box-shadow: 0 0 0 30px #c9303000;
+  }
 }
 
 .dark .switcher select {
@@ -67,6 +114,11 @@ div.container {
   padding: 16px;
 }
 
+div.container-profile {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .dark div.container-profile {
   background-color: #171616 !important;
   margin-left: auto !important;
@@ -75,6 +127,11 @@ div.container {
 
 .dark .container-search {
   background-color: #171616 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.container-search {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
@@ -144,6 +201,22 @@ div.cont {
 
 .form-submit-button:hover {
   background-color: #248653 !important;
+}
+
+.footer-auth-icons {
+  color: #248653;
+}
+
+.dark .footer-auth-icons {
+  color: #000;
+}
+
+.footer-non-auth-icons {
+  color: #248653;
+}
+
+.dark .footer-non-auth-icons {
+  color: #000;
 }
 
 .dark .form-submit-button:hover {
@@ -591,11 +664,37 @@ button.got-it-button {
     align-self: center !important;
     margin-right: 0 !important;
   }
+
+  .clear-search {
+    background-color: #0000;
+    border: none;
+    outline: none;
+    margin-top: 0;
+    font-size: 16px;
+    position: relative;
+    top: -15px;
+    left: 94%;
+    height: 30px !important;
+  }
 }
 
 @media screen and (width >= 992px) {
   .navbar-expand-lg .navigation, .navbar-collapse.show {
     flex-direction: row !important;
+  }
+}
+
+@media screen and (width <= 714px) {
+  .clear-search {
+    background-color: #0000;
+    border: none;
+    outline: none;
+    margin-top: 0;
+    font-size: 16px;
+    position: relative;
+    top: -15px;
+    left: 92%;
+    height: 30px !important;
   }
 }
 
@@ -633,7 +732,7 @@ button.got-it-button {
     font-size: 10px !important;
   }
 
-  .dark div.container-profile {
+  div.container-profile, .dark div.container-profile {
     margin: 0 auto !important;
   }
 }
