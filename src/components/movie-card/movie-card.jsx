@@ -12,15 +12,24 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
   const [isFavorite, setIsFavorite] = useState(
     user.FavoriteMovies.includes(movie._id)
   );
+  const [isWatched, setIsWatched] = useState(
+    user.WatchedMovies.includes(movie._id)
+  );
   const [showFailedFetchModal, setShowFailedFetchModal] = useState(false);
   const [showAddedMovieModal, setShowAddedMovieModal] = useState(false);
   const [showRemovedMovieModal, setShowRemovedMovieModal] = useState(false);
+  const [showAddedWatchedMovieModal, setShowAddedWatchedMovieModal] = useState(false);
+  const [showRemovedWatchedMovieModal, setShowRemovedWatchedMovieModal] = useState(false);
   const handleShowFailedFetchModal = () => setShowFailedFetchModal(true);
   const handleShowAddedMovieModal = () => setShowAddedMovieModal(true);
   const handleShowRemovedMovieModal = () => setShowRemovedMovieModal(true);
+  const handleShowAddedWatchedMovieModal = () => setShowAddedWatchedMovieModal(true);
+  const handleShowRemovedWatchedMovieModal = () => setShowRemovedWatchedMovieModal(true);
   const handleCloseFailedFetchModal = () => setShowFailedFetchModal(false);
   const handleCloseAddedMovieModal = () => setShowAddedMovieModal(false);
   const handleCloseRemovedMovieModal = () => setShowRemovedMovieModal(false);
+  const handleCloseAddedWatchedMovieModal = () => setShowAddedWatchedMovieModal(false);
+  const handleCloseRemovedWatchedMovieModal = () => setShowRemovedWatchedMovieModal(false);
   const addFavoriteMovie = () => {
     fetch(
       `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
@@ -42,6 +51,34 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
           localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
           setUser(user); // updating the react application
           setIsFavorite(true);
+        }
+      })
+      .catch((e) => {
+        handleShowFailedFetchModal();
+      });
+  };
+
+  const addWatchedMovie = () => {
+    fetch(
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          handleShowFailedFetchModal();
+          return false;
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+          setUser(user); // updating the react application
+          setIsWatched(true);
         }
       })
       .catch((e) => {
@@ -77,6 +114,34 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
       });
   };
 
+  const removeWatchedMovie = () => {
+    fetch(
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          handleShowFailedFetchModal();
+          return false;
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+          setUser(user); // updating the react application
+          setIsWatched(false);
+        }
+      })
+      .catch((e) => {
+        handleShowFailedFetchModal();
+      });
+  };
+
   return (
     <div className="card-container fs-5">
     
@@ -97,6 +162,20 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
               
           )}
           </div>
+          {/* <div className="watched-button">
+          {isWatched ? (
+            <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{color: "#24AB30", "--fa-animation-iteration-count": "2"}} 
+            onClick={()=>{removeWatchedMovie();handleShowRemovedWatchedMovieModal()}} />
+          
+            
+          ) : (
+
+            <FontAwesomeIcon icon={faHeart} style={{color: "#ffd"}} size="lg" 
+            // style={{color:"green"}}
+             onClick={()=>{addWatchedMovie(); handleShowAddedWatchedMovieModal()}} />
+              
+          )}
+          </div> */}
         <Card.Body>
         
         <Card.Title id="card-title" className="item-title text-center fs-6 pb-3 pt-3">{movie.Title} 
@@ -156,6 +235,36 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
                   Removed from faves</Modal.Body>
                 <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedMovieModal}>Got it!</Button>
+            </Modal>
+
+
+
+
+            <Modal 
+          
+            className="favorite-modal" show={showAddedWatchedMovieModal} onHide={handleCloseAddedWatchedMovieModal}>
+                <Modal.Header closeButton>
+                    {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body  className="login-modal-body">
+                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+                  Added to watched</Modal.Body>
+                <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedWatchedMovieModal}>Got it!</Button>
+              
+            </Modal>
+
+            <Modal 
+          
+            className="favorite-modal" show={showRemovedWatchedMovieModal} onHide={handleCloseRemovedWatchedMovieModal}>
+                <Modal.Header closeButton>
+                    {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body  className="login-modal-body">
+                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+                  Removed from watched</Modal.Body>
+                <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedWatchedMovieModal}>Got it!</Button>
             </Modal>
     </div>
   );

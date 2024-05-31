@@ -12,7 +12,6 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 	const [password, setPassword] = useState("");
 	const [showWentWrongModal, setShowWentWrongModal] = useState(false);
 	const [email, setEmail] = useState(user.Email);
-	const [image, setImage] = useState(user.Image);
 	const [birthday, setBirthday] = useState(user.Birthday);
 	const [showModal, setShowModal] = useState(false);
 	const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -22,6 +21,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 
 
 	let resultMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
+	let resultWatchedMovies = movies.filter((movie) => user.WatchedMovies.includes(movie._id));
 	let resultTV = tvseries.filter((tvseries) => user.FavoriteMovies.includes(tvseries._id));
 	let resultAnime = animes.filter((animes) => user.FavoriteMovies.includes(animes._id));
 
@@ -39,13 +39,13 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 			Username: username,
 			Email: email,
 			Birthday: birthday,
-			Image: image
+			
 		};
 		if (password) {
 			data['Password'] = password
 			data['Email'] = email
 			data['Birthday'] = birthday
-			data['Image'] = image
+			
 
 		}
 
@@ -246,6 +246,66 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 
 
 			</Row>
+
+			{/* <Row>
+				<h5 className="favorites-heading pt-3 pb-3">You have <span className="favorites-data">{resultWatchedMovies.length > 1 || resultWatchedMovies.length == 0 ? resultWatchedMovies.length + " movies, " : resultWatchedMovies.length + " movie, "}</span> */}
+				{/* <span className="favorites-data">{resultAnime.length > 1 ? resultAnime.length + " anime, " : resultAnime.length + " anime, "}</span> and <span className="favorites-data">{resultTV.length > 1 ? resultTV.length + " TV series" : resultTV.length + " TV series"} </span>  */}
+				{/* in your favorites list</h5>
+				<Accordion defaultActiveKey="0">
+					<Accordion.Item eventKey="0">
+						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Watched List</Accordion.Header>
+						<Accordion.Body className="profile-accordion-body">
+							<Row id="card-info" secondary-color="text-secondary pb-3">{resultWatchedMovies.map((movie) => (
+
+								<Col className="all-media-container mb-4" key={movie._id} md={4} xl={2} lg={3} sm={6} xs={12} >
+									<MovieCard
+										className="flexible-media"
+										movie={movie}
+										user={user}
+										token={token}
+										setUser={setUser}
+									>
+									</MovieCard>
+								</Col>
+
+							))} */}
+								{/* {resultTV.map((tvseries) => (
+
+									<Col className="all-media-container mb-4" key={tvseries._id} md={4} xl={2} lg={3} sm={6} xs={12}>
+										<TVseriesCard
+											className="flexible-media"
+											tvseries={tvseries}
+											user={user}
+											token={token}
+											setUser={setUser}
+										>
+										</TVseriesCard>
+									</Col>
+
+								))}
+								{resultAnime.map((animes) => (
+
+									<Col className="all-media-container mb-4" key={animes._id} md={4} xl={2} lg={3} sm={6} xs={12}>
+										<AnimeCard
+											className="flexible-media"
+											animes={animes}
+											user={user}
+											token={token}
+											setUser={setUser}
+										>
+										</AnimeCard>
+									</Col>
+
+								))} */}
+								{/* </Row> */}
+						{/* </Accordion.Body> */}
+					{/* </Accordion.Item> */}
+				{/* </Accordion> */}
+
+
+
+
+			{/* </Row> */}
 
 			<Modal className="delete-modal" show={showModal} onHide={handleCloseModal}>
 				<Modal.Header className="delete-title" closeButton>
