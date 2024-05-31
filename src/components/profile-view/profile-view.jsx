@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { AnimeCard } from '../anime-card/anime-card';
-import { Button, Col, Form, Row, Modal, Alert, Accordion, Card } from 'react-bootstrap';
+import { Button, Col, Image, Form, Row, Modal, Alert, Accordion, Card } from 'react-bootstrap';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -12,6 +12,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 	const [password, setPassword] = useState("");
 	const [showWentWrongModal, setShowWentWrongModal] = useState(false);
 	const [email, setEmail] = useState(user.Email);
+	const [image, setImage] = useState(user.Image);
 	const [birthday, setBirthday] = useState(user.Birthday);
 	const [showModal, setShowModal] = useState(false);
 	const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -37,12 +38,14 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 		let data = {
 			Username: username,
 			Email: email,
-			Birthday: birthday
+			Birthday: birthday,
+			Image: image
 		};
 		if (password) {
 			data['Password'] = password
 			data['Email'] = email
 			data['Birthday'] = birthday
+			data['Image'] = image
 
 		}
 
@@ -101,6 +104,12 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 						className="profile-heading mb-3 pt-3 text-center"><span className="profile-data"> Email:</span> {email}</h6>
 					<h6
 
+						className="profile-heading mb-3 pt-3 text-center"><span className="profile-data"> Profile Image:</span>
+						<Image width="100px" height="100px" src={image} />
+					</h6>
+
+					<h6
+
 						className="profile-heading mb-3 pt-3 text-center"><span className="profile-data"> Birthday:</span> {birthday.slice(0, 10)}</h6>
 					<p className="mb-3 pt-1 text-center"><em className="profile-tip">Don't forget to <span className="profile-tip-extra">save the changes </span>(if altered)!</em></p>
 
@@ -154,6 +163,17 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 								value={birthday.slice(0, 10)}
 								onChange={(e) => setBirthday(e.target.value)}
 								required
+							/>
+						</Form.Group>
+						<Form.Group controlId="formImage" className='form-group pb-4'>
+							<Form.Label className="profie-image form-label" >Profile Image:</Form.Label>
+							<Form.Control
+								type="file"
+								// placeholder="Your username"
+								accept="image/*"
+								value={image}
+								onChange={(e) => setImage(e.target.value)}
+							// required
 							/>
 						</Form.Group>
 
@@ -234,7 +254,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 					<Modal.Title className="">Delete my account</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className="login-modal-body">
-				<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "red", }} size="lg" />
+					<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "red", }} size="lg" />
 
 					Are you sure you want to delete your account? It can't be reverted</Modal.Body>
 				<Modal.Footer className="delete-footer">
@@ -248,11 +268,11 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 					{/* <Modal.Title className="text-success">Update Account</Modal.Title> */}
 				</Modal.Header>
 				<Modal.Body className="login-modal-body">
-				<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+					<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
 
 					Info was updated</Modal.Body>
 				{/* <Modal.Footer> */}
-					<Button className="got-it-button text-dark bg-white" onClick={handleCloseUpdateModal}>Got it!</Button>
+				<Button className="got-it-button text-dark bg-white" onClick={handleCloseUpdateModal}>Got it!</Button>
 				{/* </Modal.Footer> */}
 			</Modal>
 
@@ -261,11 +281,11 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 					{/* <Modal.Title className="text-danger">Update Account</Modal.Title> */}
 				</Modal.Header>
 				<Modal.Body className="login-modal-body">
-				<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+					<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
 
-					Failed. Reasons: <br />1. Username is too short. <br/> 2. Username/email already taken. <br />3. Empty/invalid data entered.</Modal.Body>
+					Failed. Reasons: <br />1. Username is too short. <br /> 2. Username/email already taken. <br />3. Empty/invalid data entered.</Modal.Body>
 				{/* <Modal.Footer> */}
-					<Button className="got-it-button text-dark bg-white" onClick={handleCloseUpdateFailedModal}>Got it!</Button>
+				<Button className="got-it-button text-dark bg-white" onClick={handleCloseUpdateFailedModal}>Got it!</Button>
 				{/* </Modal.Footer> */}
 			</Modal>
 			<Modal className="favorite-modal" show={showWentWrongModal} onHide={handleCloseWentWrongModal}>
@@ -273,11 +293,11 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 					{/* <Modal.Title className="text-danger">Information</Modal.Title> */}
 				</Modal.Header>
 				<Modal.Body className="login-modal-body">
-				<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+					<FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
 
 					Something went wrong. Please try again later</Modal.Body>
 				{/* <Modal.Footer> */}
-					<Button className="got-it-button text-dark bg-white" onClick={handleCloseWentWrongModal}>Got it!</Button>
+				<Button className="got-it-button text-dark bg-white" onClick={handleCloseWentWrongModal}>Got it!</Button>
 
 				{/* </Modal.Footer> */}
 			</Modal>
