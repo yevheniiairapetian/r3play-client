@@ -23,7 +23,9 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 	let resultMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
 	let resultWatchedMovies = movies.filter((movie) => user.WatchedMovies.includes(movie._id));
 	let resultTV = tvseries.filter((tvseries) => user.FavoriteMovies.includes(tvseries._id));
+	let resultWatchedTV = tvseries.filter((tvseries) => user.WatchedMovies.includes(tvseries._id));
 	let resultAnime = animes.filter((animes) => user.FavoriteMovies.includes(animes._id));
+	let resultWatchedAnime = animes.filter((animes) => user.WatchedMovies.includes(animes._id));
 
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
@@ -39,13 +41,13 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 			Username: username,
 			Email: email,
 			Birthday: birthday,
-			
+
 		};
 		if (password) {
 			data['Password'] = password
 			data['Email'] = email
 			data['Birthday'] = birthday
-			
+
 
 		}
 
@@ -194,7 +196,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 				<h5 className="favorites-heading pt-3 pb-3">You have <span className="favorites-data">{resultMovies.length > 1 || resultMovies.length == 0 ? resultMovies.length + " movies, " : resultMovies.length + " movie, "}</span><span className="favorites-data">{resultAnime.length > 1 ? resultAnime.length + " anime, " : resultAnime.length + " anime, "}</span> and <span className="favorites-data">{resultTV.length > 1 ? resultTV.length + " TV series" : resultTV.length + " TV series"} </span> in your favorites list</h5>
 				<Accordion defaultActiveKey="0">
 					<Accordion.Item eventKey="0">
-						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites</Accordion.Header>
+						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites ({resultMovies.length + resultAnime.length + resultTV.length + " items "})</Accordion.Header>
 						<Accordion.Body className="profile-accordion-body">
 							<Row id="card-info" secondary-color="text-secondary pb-3">{resultMovies.map((movie) => (
 
@@ -247,13 +249,21 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 
 			</Row>
 
-			{/* <Row>
-				<h5 className="favorites-heading pt-3 pb-3">You have <span className="favorites-data">{resultWatchedMovies.length > 1 || resultWatchedMovies.length == 0 ? resultWatchedMovies.length + " movies, " : resultWatchedMovies.length + " movie, "}</span> */}
-				{/* <span className="favorites-data">{resultAnime.length > 1 ? resultAnime.length + " anime, " : resultAnime.length + " anime, "}</span> and <span className="favorites-data">{resultTV.length > 1 ? resultTV.length + " TV series" : resultTV.length + " TV series"} </span>  */}
-				{/* in your favorites list</h5>
+			<Row>
+				<h5 className="favorites-heading pt-3 pb-3">You have <span className="favorites-data">{
+					resultWatchedMovies.length > 1
+						||
+						resultWatchedMovies.length == 0 ?
+						resultWatchedMovies.length + " movies, "
+						: resultWatchedMovies.length + " movie, "
+				}</span>
+					<span className="favorites-data">
+						{resultWatchedAnime.length > 1 ? resultWatchedAnime.length + " anime, " : resultWatchedAnime.length + " anime, "}</span> and <span className="favorites-data">
+						{resultWatchedTV.length > 1 ? resultWatchedTV.length + " TV series" : resultWatchedTV.length + " TV series"} </span>
+					in your watched list</h5>
 				<Accordion defaultActiveKey="0">
 					<Accordion.Item eventKey="0">
-						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Watched List</Accordion.Header>
+						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Watched List ({resultWatchedMovies.length + resultWatchedAnime.length + resultWatchedTV.length + " items "})</Accordion.Header>
 						<Accordion.Body className="profile-accordion-body">
 							<Row id="card-info" secondary-color="text-secondary pb-3">{resultWatchedMovies.map((movie) => (
 
@@ -268,8 +278,8 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 									</MovieCard>
 								</Col>
 
-							))} */}
-								{/* {resultTV.map((tvseries) => (
+							))}
+								{resultWatchedTV.map((tvseries) => (
 
 									<Col className="all-media-container mb-4" key={tvseries._id} md={4} xl={2} lg={3} sm={6} xs={12}>
 										<TVseriesCard
@@ -283,7 +293,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 									</Col>
 
 								))}
-								{resultAnime.map((animes) => (
+								{resultWatchedAnime.map((animes) => (
 
 									<Col className="all-media-container mb-4" key={animes._id} md={4} xl={2} lg={3} sm={6} xs={12}>
 										<AnimeCard
@@ -296,16 +306,16 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 										</AnimeCard>
 									</Col>
 
-								))} */}
-								{/* </Row> */}
-						{/* </Accordion.Body> */}
-					{/* </Accordion.Item> */}
-				{/* </Accordion> */}
+								 ))}
+							</Row>
+						</Accordion.Body>
+					</Accordion.Item>
+				</Accordion>
 
 
 
 
-			{/* </Row> */}
+			</Row>
 
 			<Modal className="delete-modal" show={showModal} onHide={handleCloseModal}>
 				<Modal.Header className="delete-title" closeButton>

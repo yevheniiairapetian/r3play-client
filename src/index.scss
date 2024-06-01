@@ -97,6 +97,17 @@ $btn-secondary: rgb(54, 57, 57);
   background-color: rgba(35, 34, 34, 0.3) !important;
 }
 
+.watched-button {
+  text-align: right;
+    width: 100%;
+    height: 48px;
+    padding: 10px;
+    position: relative;
+    top: -48px;
+    right: 38px;
+    background-color: transparent !important;
+}
+
 div.container-fluid{
   padding-left:0 !important;
   padding-right:0 !important;

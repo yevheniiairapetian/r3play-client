@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Card, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -11,18 +11,27 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
   const [isFavorite, setIsFavorite] = useState(
   user.FavoriteMovies.includes(animes._id)
   );
+  const [isWatched, setIsWatched] = useState(
+    user.WatchedMovies.includes(animes._id)
+    );
   const [showFailedFetchModal, setShowFailedFetchModal] = useState(false);
   const [showAddedMovieModal, setShowAddedMovieModal] = useState(false);
   const [showRemovedMovieModal, setShowRemovedMovieModal] = useState(false);
+  const [showAddedWatchedMovieModal, setShowAddedWatchedMovieModal] = useState(false);
+  const [showRemovedWatchedMovieModal, setShowRemovedWatchedMovieModal] = useState(false);
   const handleShowFailedFetchModal = () => setShowFailedFetchModal(true);
   const handleShowAddedMovieModal = () => setShowAddedMovieModal(true);
   const handleShowRemovedMovieModal = () => setShowRemovedMovieModal(true);
+  const handleShowAddedWatchedMovieModal = () => setShowAddedWatchedMovieModal(true);
+  const handleShowRemovedWatchedMovieModal = () => setShowRemovedWatchedMovieModal(true);
   const handleCloseFailedFetchModal = () => setShowFailedFetchModal(false);
   const handleCloseAddedMovieModal = () => setShowAddedMovieModal(false);
   const handleCloseRemovedMovieModal = () => setShowRemovedMovieModal(false);
+  const handleCloseAddedWatchedMovieModal = () => setShowAddedWatchedMovieModal(false);
+  const handleCloseRemovedWatchedMovieModal = () => setShowRemovedWatchedMovieModal(false);
   const addFavoriteAnime = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/animes/${animes._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/animes/${animes._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -50,7 +59,7 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
 
   const removeFavoriteAnime = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/animes/${animes._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/animes/${animes._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
@@ -76,22 +85,94 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
       });
   };
 
+  const addWatchedAnime = () => {
+    fetch(
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/animes/${animes._id}`,
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          handleShowFailedFetchModal();
+          return false;
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+          setUser(user); // updating the react application
+          setIsWatched(true);
+        }
+      })
+      .catch((e) => {
+        handleShowFailedFetchModal();
+      });
+  };
+
+  const removeWatchedAnime = () => {
+    fetch(
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/animes/${animes._id}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          handleShowFailedFetchModal();
+          return false;
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+          setUser(user); // updating the react application
+          setIsWatched(false);
+        }
+      })
+      .catch((e) => {
+        handleShowFailedFetchModal();
+      });
+  };
+
   return (
     <div className="card-container fs-5">
       <Card id="card" className='item card mb-3' >
         <Card.Img className='w-100' variant='top' src={animes.ImagePath} />
         <div className="like-button">
           {isFavorite ? (
-            <FontAwesomeIcon icon={faHeart} size="xl" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} 
+            <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} 
             onClick={()=>{removeFavoriteAnime();handleShowRemovedMovieModal()}}
             />
              
             
           ) : (
 
-            <FontAwesomeIcon icon={faHeart} style={{color: "#fff"}} size="xl" 
+            <FontAwesomeIcon icon={faHeart} style={{color: "#fff"}} size="lg" 
             // style={{color:"green"}}
              onClick={()=>{addFavoriteAnime();handleShowAddedMovieModal()}}
+             />
+              
+          )}
+          </div>
+          <div className="watched-button">
+          {isWatched ? (
+            <FontAwesomeIcon icon={faSquareCheck} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} 
+            onClick={()=>{removeWatchedAnime();handleShowRemovedWatchedMovieModal()}}
+            />
+             
+            
+          ) : (
+
+            <FontAwesomeIcon icon={faSquareCheck} style={{color: "#fff"}} size="lg" 
+            // style={{color:"green"}}
+             onClick={()=>{addWatchedAnime();handleShowAddedWatchedMovieModal()}}
              />
               
           )}
@@ -138,6 +219,36 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
                   Removed from faves</Modal.Body>
                 <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedMovieModal}>Got it!</Button>
             </Modal>
+
+
+
+            <Modal 
+          
+          className="favorite-modal" show={showAddedWatchedMovieModal} onHide={handleCloseAddedWatchedMovieModal}>
+              <Modal.Header closeButton>
+                  {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+              </Modal.Header>
+              <Modal.Body  className="login-modal-body">
+              <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+                Added to watched</Modal.Body>
+              <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedWatchedMovieModal}>Got it!</Button>
+            
+          </Modal>
+
+          <Modal 
+        
+          className="favorite-modal" show={showRemovedWatchedMovieModal} onHide={handleCloseRemovedWatchedMovieModal}>
+              <Modal.Header closeButton>
+                  {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+              </Modal.Header>
+              <Modal.Body  className="login-modal-body">
+              <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+                Removed from watched</Modal.Body>
+              <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedWatchedMovieModal}>Got it!</Button>
+          </Modal>
+
 
             <Modal 
        className="favorite-modal"

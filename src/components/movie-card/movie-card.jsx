@@ -4,7 +4,7 @@ import {ScrollToTop} from '../ScrollToTop/scroll-to-top';
 import { Button, Card, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faRegular } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faRegular, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -32,7 +32,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
   const handleCloseRemovedWatchedMovieModal = () => setShowRemovedWatchedMovieModal(false);
   const addFavoriteMovie = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/movies/${movie._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -60,7 +60,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
   const addWatchedMovie = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/movies/${movie._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -88,7 +88,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
   const removeFavoriteMovie = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/movies/${movie._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
@@ -116,7 +116,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
   const removeWatchedMovie = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/movies/${movie._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
@@ -162,20 +162,20 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
               
           )}
           </div>
-          {/* <div className="watched-button">
+          <div className="watched-button">
           {isWatched ? (
-            <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{color: "#24AB30", "--fa-animation-iteration-count": "2"}} 
+            <FontAwesomeIcon icon={faSquareCheck} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} 
             onClick={()=>{removeWatchedMovie();handleShowRemovedWatchedMovieModal()}} />
           
             
           ) : (
 
-            <FontAwesomeIcon icon={faHeart} style={{color: "#ffd"}} size="lg" 
+            <FontAwesomeIcon icon={faSquareCheck} style={{color: "#ffd"}} size="lg" 
             // style={{color:"green"}}
              onClick={()=>{addWatchedMovie(); handleShowAddedWatchedMovieModal()}} />
               
           )}
-          </div> */}
+          </div>
         <Card.Body>
         
         <Card.Title id="card-title" className="item-title text-center fs-6 pb-3 pt-3">{movie.Title} 
