@@ -11,8 +11,14 @@ import clock from '../../images/clock.svg';
 import actors from '../../images/actors.svg';
 import info from '../../images/info.svg';
 import rottenTomatoes from '../../images/rotten-tomatoes.svg';
+import Rating from "react-rating";
+import { useState } from 'react';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, token }) => {
+ 
+  
   const { movieId } = useParams();
   const movie = movies.find((m) => m._id === movieId);
   const similarMovies = (genreName) =>
@@ -28,15 +34,54 @@ export const MovieView = ({ movies }) => {
   const sameDuration = (Duration) =>
     movies.filter((m) => m.Duration == Duration && m._id !== movieId);
   const sameActors = (Actors) => movies.filter(m => m._id !== movieId && Actors.some(actor => m.Actors.includes(actor)));
-
-
+  // const [rate, setRate] = useState(
+    // movie.R3playRating.includes(movie.R3playRating)
+  // );
+  // const rateMovie = () => {
+  //   fetch(
+  //     `https://r3play-934f9ea5664d.herokuapp.com/R3playRating/movies/${movie._id}`,{
+  //       method: "POST",
+  //       body: JSON.stringify(movie),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     })
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+          // handleShowFailedFetchModal();
+      //     return false;
+      //   }
+      // })
+      // .then((movie) => {
+      //   if (movie) {
+      //     localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+      //     setRate(movie);
+      //   }
+      // })
+      // .catch((e) => {
+        // handleShowFailedFetchModal();
+  //     });
+  // };
 
 
   return (
     <div className="container-profile">
       <Card className="item-view" >
         <Card.Img className='h-100 card mb-3' variant={top} src={movie.ImagePath} />
-
+        {/* <strong>Example 3</strong>
+      <Rating
+        fractions={2}
+        
+        stop={10}
+        initialRating={rate}
+        onClick={()=>{rateMovie()}}
+      /> */}
+      {/* <p>Rating: { */}
+      {/* rate */}
+      {/* }</p> */}
         <Card.Body className="" >
           <Card.Title id="card-title" className="item-title text-center fs-5 pb-3 pt-3">{movie.Title}, {movie.ReleaseDate ? movie.ReleaseDate.slice(0, 4) : "No data yet"}, {movie.Genre.Name}</Card.Title>
           <Card.Title id="card-info" className="item-info pt-3 pb-3" ><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} /> </Card.Title>
