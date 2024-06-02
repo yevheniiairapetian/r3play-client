@@ -3,6 +3,7 @@ import { ScrollToTop } from '../ScrollToTop/scroll-to-top';
 import { Spin } from '../spinner/spinner';
 import { MovieCard } from '../movie-card/movie-card';
 import { VideoPlayer } from '../video-player/video-player';
+import { VideoPlayerHello } from '../video-player-hello/video-player-hello';
 import { VideoPlayerMovies } from '../video-player-movies/video-player-movies';
 import { VideoPlayerTV } from '../video-player-tv/video-player-tv';
 import { VideoPlayerAnime } from '../video-player-anime/video-player-anime';
@@ -113,6 +114,7 @@ export const MainView = () => {
                         <Navigate to="/login" replace />
                       ) : (
                         <Row className="container">
+                          <VideoPlayerHello />
                           <Col className="page-content-wrapper container-profile" md={8} lg={6} sm={12}>
                             <SignupView />
                           </Col>
@@ -135,6 +137,12 @@ export const MainView = () => {
                         <>
 
                           <Row className="container">
+                          
+
+
+<VideoPlayerHello />
+
+
 
                             <Col className="page-content-wrapper bg container-profile" md={8} lg={6} sm={12} >
                               <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
