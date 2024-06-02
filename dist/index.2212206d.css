@@ -132,7 +132,7 @@ div.container-profile {
 }
 
 .dark div.container-profile {
-  z-index: 2;
+  z-index: 0 !important;
   background-color: #171616 !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -439,6 +439,8 @@ button.info-button, div#card-title, div#card-title, div.card-title {
 
 div.footer {
   height: 240px;
+  padding-left: 0;
+  padding-right: 0;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -452,6 +454,8 @@ div.footer {
 }
 
 .dark div.footer {
+  padding-left: 0;
+  padding-right: 0;
   background-color: #000 !important;
   margin-top: -18px !important;
 }

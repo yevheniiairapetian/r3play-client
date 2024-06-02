@@ -42,8 +42,8 @@ export const SignupView = () => {
         });
     };
     return (
-        <div className="container-profile h-120">
-        <Row className="container">
+        <div className="signup-view container-profile h-120">
+        <Row className="signup-view container">
         <Col className="m-auto" md={8} xl={6} lg={6} sm={6} xs={10}>
             <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
 

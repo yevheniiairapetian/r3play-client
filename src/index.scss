@@ -147,7 +147,7 @@ div.container-profile{
   margin-left:auto !important;
   margin-right: auto !important;
   background-color: #171616 !important;
-  z-index:2;
+  z-index:0 !important;
 
 
 }
@@ -365,6 +365,8 @@ div.card-title {
 
 
 
+
+
 // * width *
 ::-webkit-scrollbar {
   width: 8px;
@@ -524,6 +526,10 @@ div.footer {
   bottom: 0;
   left: 0;
   right: 0;
+  padding-left:0;
+  padding-right: 0;
+  // padding-bottom: 20px !important;
+
   height: 240px;
   margin-top:-18px !important;
   background-color: #1f8c49 !important;
@@ -536,6 +542,9 @@ div.footer {
 .dark div.footer {
   background-color: #000 !important;
   margin-top:-18px !important;
+  padding-left:0;
+  padding-right: 0;
+  // padding-bottom: 20px !important;
 }
 
 .footer-info {
@@ -827,8 +836,12 @@ div.welcome-player{
   width: 100% !important;
   height: auto !important;
 }
+
+
+
 }
 @media screen and (min-width:992px) {
+  
   .navbar-expand-lg .navigation, .navbar-collapse.show{
     flex-direction: row !important;
   }
