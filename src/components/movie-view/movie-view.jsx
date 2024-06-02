@@ -34,37 +34,7 @@ export const MovieView = ({ movies, token }) => {
   const sameDuration = (Duration) =>
     movies.filter((m) => m.Duration == Duration && m._id !== movieId);
   const sameActors = (Actors) => movies.filter(m => m._id !== movieId && Actors.some(actor => m.Actors.includes(actor)));
-  // const [rate, setRate] = useState(
-    // movie.R3playRating.includes(movie.R3playRating)
-  // );
-  // const rateMovie = () => {
-  //   fetch(
-  //     `https://r3play-934f9ea5664d.herokuapp.com/R3playRating/movies/${movie._id}`,{
-  //       method: "POST",
-  //       body: JSON.stringify(movie),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`
-  //       }
-  //     })
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-          // handleShowFailedFetchModal();
-      //     return false;
-      //   }
-      // })
-      // .then((movie) => {
-      //   if (movie) {
-      //     localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-      //     setRate(movie);
-      //   }
-      // })
-      // .catch((e) => {
-        // handleShowFailedFetchModal();
-  //     });
-  // };
+  
 
 
   return (

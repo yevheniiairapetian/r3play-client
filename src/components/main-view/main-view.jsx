@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ScrollToTop } from '../ScrollToTop/scroll-to-top';
 import { Spin } from '../spinner/spinner';
 import { MovieCard } from '../movie-card/movie-card';
+import {VideoPlayer} from '../video-player/video-player';
 import { Fragment } from 'react';
 import { ScrollButton } from '../scroll-button/ScrollButton';
 import { Header } from '../header/header';
@@ -462,6 +463,7 @@ export const MainView = () => {
                       <div className="container">
                         
                         <UncontrolledExample ></UncontrolledExample>
+                        <VideoPlayer/>
                         <Header className="header"></Header>
 
 
