@@ -830,14 +830,12 @@ button.got-it-button {
   margin-top: 0;
 }
 div.welcome-player{
-  width: auto !important;
+  width: 100% !important;
   height: 100% !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  position: relative !important;
+  position: fixed !important;
   inset: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
 }
   div.welcome-player video{
     width: auto !important;
@@ -939,6 +937,26 @@ div.h-100{
 
 div.h-120{
   height: 340vh !important;
+}
+
+div.welcome-player{
+  padding-left: 0;
+  padding-right: 0;
+  width: 100% !important;
+  height: auto !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+  div.welcome-player video{
+    width: 100% !important;
+    height: 620px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    position: fixed !important;
+    inset: 0 !important
+ 
 }
 
 }
