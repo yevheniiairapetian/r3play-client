@@ -809,11 +809,16 @@ button.got-it-button {
 
   div.welcome-player video {
     width: 100% !important;
-    height: 620px !important;
+    height: auto !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     position: fixed !important;
     inset: 0 !important;
+  }
+
+  div.container-profile, .dark div.container-profile {
+    height: 100%;
+    margin-bottom: 290px;
   }
 }
 

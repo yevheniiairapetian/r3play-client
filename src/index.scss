@@ -951,12 +951,18 @@ div.welcome-player{
 }
   div.welcome-player video{
     width: 100% !important;
-    height: 620px !important;
+    height: auto !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     position: fixed !important;
-    inset: 0 !important
+    inset: 0 !important;
+    top: 0 !important;
+
  
+}
+div.container-profile, .dark div.container-profile {
+  margin-bottom: 290px;
+  height: 100%;
 }
 
 }
