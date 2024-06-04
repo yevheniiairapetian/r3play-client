@@ -816,7 +816,7 @@ button.got-it-button {
     inset: 0 !important;
   }
 
-  div.container-profile, .dark div.container-profile {
+  div.container-profile.login-view, .dark div.container-profile.login-view {
     height: 100%;
     margin-bottom: 290px;
   }

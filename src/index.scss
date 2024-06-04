@@ -665,10 +665,15 @@ button.got-it-button {
 
 .card {
   background-color: #1f8c49 !important;
+  // display: flex !important;
+  // height:100% !important;
+  // // flex:1 !important;
 }
 
 .dark .card {
   background-color: #000 !important;
+  // display: flex !important;
+  // height:100% !important;
 
 }
 
@@ -960,7 +965,7 @@ div.welcome-player{
 
  
 }
-div.container-profile, .dark div.container-profile {
+div.container-profile.login-view, .dark div.container-profile.login-view {
   margin-bottom: 290px;
   height: 100%;
 }
