@@ -541,7 +541,7 @@ div.footer {
 
 .dark div.footer {
   background-color: #000 !important;
-  margin-top:-18px !important;
+  // margin-top:-18px !important;
   padding-left:0;
   padding-right: 0;
   // padding-bottom: 20px !important;
@@ -830,11 +830,23 @@ button.got-it-button {
   margin-top: 0;
 }
 div.welcome-player{
-  position: static !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  width: 100% !important;
-  height: auto !important;
+  width: auto !important;
+  height: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  position: relative !important;
+  inset: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+  div.welcome-player video{
+    width: auto !important;
+    height: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    position: absolute !important;
+    inset: 0 !important;
+ 
 }
 
 
@@ -879,7 +891,7 @@ div.welcome-player{
 @media screen and (max-width:767px) {
 
   div.container, .dark div.container{
-  margin: 0 auto 0 auto !important;
+  margin: 0 auto 240px auto !important;
 }
 }
 @media screen and (max-width:770px) {
@@ -912,6 +924,7 @@ div.welcome-player{
   }
   div.container-profile, .dark div.container-profile{
     margin: 0 auto 0 auto !important;
+    padding-bottom: 36px;
   }
 }
 
