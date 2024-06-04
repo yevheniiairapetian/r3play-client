@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import {ScrollToTop} from '../ScrollToTop/scroll-to-top';
+import { ScrollToTop } from '../ScrollToTop/scroll-to-top';
 import { Button, Card, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -144,128 +144,131 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
   return (
     <div className="card-container fs-5">
-    
+
       <Card id="card" className='item card mb-3' >
-      
+
         <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
         <div className="like-button">
           {isFavorite ? (
-            <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} 
-            onClick={()=>{removeFavoriteMovie();handleShowRemovedMovieModal()}} />
-          
-            
+            <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{ color: "#24AB51", "--fa-animation-iteration-count": "2", cursor:"pointer" }}
+              onClick={() => { removeFavoriteMovie(); handleShowRemovedMovieModal() }} />
+
+
           ) : (
 
-            <FontAwesomeIcon icon={faHeart} style={{color: "#fff"}} size="lg" 
-            // style={{color:"green"}}
-             onClick={()=>{addFavoriteMovie(); handleShowAddedMovieModal()}} />
-              
+            <FontAwesomeIcon icon={faHeart} style={{ color: "#fff", cursor:"pointer" }} size="lg"
+              // style={{color:"green"}}
+              onClick={() => { addFavoriteMovie(); handleShowAddedMovieModal() }} />
+
           )}
-          </div>
-          <div className="watched-button">
+        </div>
+        <div className="watched-button">
           {isWatched ? (
-            <FontAwesomeIcon icon={faSquareCheck} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}} 
-            onClick={()=>{removeWatchedMovie();handleShowRemovedWatchedMovieModal()}} />
-          
-            
-          ) : (
+            <span style={{ color: "#24AB51", cursor:"pointer" }} onClick={() => { removeWatchedMovie(); handleShowRemovedWatchedMovieModal() }}
+            >Watched ✓
+              {/* // <FontAwesomeIcon icon={faSquareCheck} size="lg" beatFade style={{color: "#24AB51", "--fa-animation-iteration-count": "2"}}  */}
+              {/* /> */}
+            </span>
 
-            <FontAwesomeIcon icon={faSquareCheck} style={{color: "#ffd"}} size="lg" 
-            // style={{color:"green"}}
-             onClick={()=>{addWatchedMovie(); handleShowAddedWatchedMovieModal()}} />
-              
+          ) : (
+            <span style={{ color: "#ffd", cursor:"pointer" }} onClick={() => { addWatchedMovie(); handleShowAddedWatchedMovieModal() }}
+            >Watch +
+              {/* // <FontAwesomeIcon icon={faSquareCheck} style={{color: "#ffd"}} size="lg"  */}
+              {/* // style={{color:"green"}} */}
+              {/* /> */}
+            </span>
           )}
-          </div>
+        </div>
         <Card.Body>
-        
-        <Card.Title id="card-title" className="item-title text-center fs-6 pb-3 pt-3">{movie.Title} 
-        </Card.Title>
+
+          <Card.Title id="card-title" className="item-title text-center fs-6 pb-3 pt-3">{movie.Title}
+          </Card.Title>
           <Card.Title className="item-info text-center pb-1" >{movie.Genre.Name}, {movie.ReleaseDate.slice(0, 4)}</Card.Title>
-          
+
           <div className="mt-4 text-center justify-content-around align-items-center">
-          
-          <Link to={`/movies/${movie._id}`}>
-          <Button className='info-button fs-6 pl-5 pr-5 w-100' variant='outline-light'>More</Button>
-          </Link>
+
+            <Link to={`/movies/${movie._id}`}>
+              <Button className='info-button fs-6 pl-5 pr-5 w-100' variant='outline-light'>More</Button>
+            </Link>
           </div>
         </Card.Body>
-       
+
 
       </Card>
-      <Modal 
-       className="favorite-modal"
-      show={showFailedFetchModal} onHide={handleCloseFailedFetchModal}>
-                <Modal.Header closeButton>
-                    {/* <Modal.Title className="text-danger">Fetch</Modal.Title> */}
-                </Modal.Header>
-                <Modal.Body className="login-modal-body">
-                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+      <Modal
+        className="favorite-modal"
+        show={showFailedFetchModal} onHide={handleCloseFailedFetchModal}>
+        <Modal.Header closeButton>
+          {/* <Modal.Title className="text-danger">Fetch</Modal.Title> */}
+        </Modal.Header>
+        <Modal.Body className="login-modal-body">
+          <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
 
-                  An error happened. Please try again later.</Modal.Body>
-                {/* <Modal.Footer> */}
-                    <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedFetchModal}>Got it!</Button>
+          An error happened. Please try again later.</Modal.Body>
+        {/* <Modal.Footer> */}
+        <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedFetchModal}>Got it!</Button>
 
-                {/* </Modal.Footer> */}
-            </Modal>
-
-          
-
-            <Modal 
-          
-            className="favorite-modal" show={showAddedMovieModal} onHide={handleCloseAddedMovieModal}>
-                <Modal.Header closeButton>
-                    {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
-                </Modal.Header>
-                <Modal.Body  className="login-modal-body">
-                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
-
-                  Added to faves</Modal.Body>
-                <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedMovieModal}>Got it!</Button>
-              
-            </Modal>
-
-            <Modal 
-          
-            className="favorite-modal" show={showRemovedMovieModal} onHide={handleCloseRemovedMovieModal}>
-                <Modal.Header closeButton>
-                    {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
-                </Modal.Header>
-                <Modal.Body  className="login-modal-body">
-                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
-
-                  Removed from faves</Modal.Body>
-                <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedMovieModal}>Got it!</Button>
-            </Modal>
+        {/* </Modal.Footer> */}
+      </Modal>
 
 
 
+      <Modal
 
-            <Modal 
-          
-            className="favorite-modal" show={showAddedWatchedMovieModal} onHide={handleCloseAddedWatchedMovieModal}>
-                <Modal.Header closeButton>
-                    {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
-                </Modal.Header>
-                <Modal.Body  className="login-modal-body">
-                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+        className="favorite-modal" show={showAddedMovieModal} onHide={handleCloseAddedMovieModal}>
+        <Modal.Header closeButton>
+          {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+        </Modal.Header>
+        <Modal.Body className="login-modal-body">
+          <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
 
-                  Added to watched</Modal.Body>
-                <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedWatchedMovieModal}>Got it!</Button>
-              
-            </Modal>
+          Added to faves</Modal.Body>
+        <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedMovieModal}>Got it!</Button>
 
-            <Modal 
-          
-            className="favorite-modal" show={showRemovedWatchedMovieModal} onHide={handleCloseRemovedWatchedMovieModal}>
-                <Modal.Header closeButton>
-                    {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
-                </Modal.Header>
-                <Modal.Body  className="login-modal-body">
-                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+      </Modal>
 
-                  Removed from watched</Modal.Body>
-                <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedWatchedMovieModal}>Got it!</Button>
-            </Modal>
+      <Modal
+
+        className="favorite-modal" show={showRemovedMovieModal} onHide={handleCloseRemovedMovieModal}>
+        <Modal.Header closeButton>
+          {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+        </Modal.Header>
+        <Modal.Body className="login-modal-body">
+          <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+          Removed from faves</Modal.Body>
+        <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedMovieModal}>Got it!</Button>
+      </Modal>
+
+
+
+
+      <Modal
+
+        className="favorite-modal" show={showAddedWatchedMovieModal} onHide={handleCloseAddedWatchedMovieModal}>
+        <Modal.Header closeButton>
+          {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+        </Modal.Header>
+        <Modal.Body className="login-modal-body">
+          <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+          Added to watched</Modal.Body>
+        <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedWatchedMovieModal}>Got it!</Button>
+
+      </Modal>
+
+      <Modal
+
+        className="favorite-modal" show={showRemovedWatchedMovieModal} onHide={handleCloseRemovedWatchedMovieModal}>
+        <Modal.Header closeButton>
+          {/* <Modal.Title className="text-success">Favorites</Modal.Title> */}
+        </Modal.Header>
+        <Modal.Body className="login-modal-body">
+          <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
+
+          Removed from watched</Modal.Body>
+        <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedWatchedMovieModal}>Got it!</Button>
+      </Modal>
     </div>
   );
 };
