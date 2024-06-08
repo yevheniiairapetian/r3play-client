@@ -15,6 +15,8 @@ import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { TVseriesView } from '../tvseries-view/tvseries-view';
 import { AnimeCard } from '../anime-card/anime-card';
 import { AnimeView } from '../anime-view/anime-view';
+import { ActorCard } from '../actor-card/actor-card';
+import { ActorView } from '../actor-view/actor-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 import { Footer } from '../footer/footer';
@@ -46,6 +48,8 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [tvseries, setTVSeries] = useState([]);
   const [animes, setAnimes] = useState([]);
+  const [actors, setActors] = useState([]);
+
 
 
 
@@ -72,6 +76,14 @@ export const MainView = () => {
             }).then((response) => response.json())
               .then((data) => {
                 setAnimes(data);
+
+              })
+          }).then(() => {
+            fetch("https://r3play-934f9ea5664d.herokuapp.com/actors", {
+              headers: { Authorization: `Bearer ${token}` }
+            }).then((response) => response.json())
+              .then((data) => {
+                setActors(data);
 
               })
           })
@@ -369,6 +381,76 @@ export const MainView = () => {
                 />
 
 
+
+<Route
+                  path='/actors'
+                  element={
+                    <>
+                      {!user ? (
+                        <>
+                          <Navigate to='/login' replace />
+
+
+                        </>
+                      ) : actors.length === 0 ? (
+                        <>
+
+                        </>
+                      ) : (
+                        <div className='container-fluid'>
+                          <Row className="my-3 container-search">
+
+
+                            <input className="search-input"
+                              id="search search-input input-search"
+                              onChange={(e) => setSearch(e.target.value)}
+                              placeholder="Search (e.g. Ergo Proxy)"
+                              aria-label="Search"
+                            />
+
+
+                          </Row>
+                          <Row className="my-3 container-search ">
+
+
+                            {/* <VideoPlayerAnime /> */}
+
+
+                          </Row>
+                          <Row className='container-profile'>
+
+
+                            {actors.filter((actor) => {
+                              return search === "" ?
+                                actor :
+                                actor.Title.toLowerCase().includes(search.toLowerCase());
+                            }
+
+                            ).map((actor) => (
+                              <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={actor._id} md={4} xl={2} lg={3} sm={6} xs={12}>
+                                <ActorCard
+                                  className="flexible-media ml-5 mr-5"
+                                  actor={actor}
+                                  user={user}
+                                  token={token}
+                                  setUser={setUser}
+                                />
+                              </Col>
+
+                            ))}
+
+
+                          </Row>
+                        </div>
+                      )}
+                      <FooterAuthorized />
+                    </>
+                  }
+                />
+
+
+
+
                 <Route
                   path='/movies/:movieId'
                   element={
@@ -448,6 +530,36 @@ export const MainView = () => {
                     </>
                   }
                 />
+
+
+<Route
+                  path='/actors/:actorId'
+                  element={
+                    <>
+                      {!user ? (
+                        <>
+                          <Navigate to='/login' replace />
+
+
+                        </>
+                      ) : actors.length === 0 ? (
+                        <>
+                          {/* <Col className="text-center mt-4"><Spin /></Col> */}
+                          {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
+
+                        </>
+                      ) : (
+                        <Col md={12} className="p-0">
+
+                          <ActorView actors={actors} />
+                        </Col>
+                      )}
+                      <FooterAuthorized />
+                    </>
+                  }
+                />
+
+
                 <Route
                   path="/"
                   element={
