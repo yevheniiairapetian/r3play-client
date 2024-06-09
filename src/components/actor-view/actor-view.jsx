@@ -21,8 +21,17 @@ export const ActorView = ({ actors, token }) => {
   
   const { actorId } = useParams();
   const actor = actors.find((a) => a._id === actorId);
+
+  // const { movieId } = useParams();
+  // const movie = movies.find((m) => m._id === movieId);
   // const similarMovies = (genreName) =>
   //   movies.filter((m) => m.Genre.Name == genreName && m._id !== movieId);
+
+  const notableWorks = (notableWork) =>
+    actors.filter((a) => a.NotableWorks.Title == notableWork);
+
+  const allWorks = (allWork) =>
+    actors.filter((a) => a.AllWorks.Title == allWork);
   // const similarDirector = (directorName) =>
   //   movies.filter((m) => m.Director.Name == directorName && m._id !== movieId);
   // const similarRating = (movieRating) =>
@@ -71,48 +80,48 @@ export const ActorView = ({ actors, token }) => {
            <Card.Title id="card-info" className="item-title pb-3">
            {actor.YearsActive ? actor.YearsActive : "No data yet" }
            </Card.Title>
-           <Card.Title id="card-info" className="item-info pt-3 pb-2" >Notable Works</Card.Title>
+           {/* <Card.Title id="card-info" className="item-info pt-3 pb-2" >Notable Works</Card.Title> */}
 
-           <Card.Title id="card-info" className="item-view-info pb-1 pt-3" >{actor.NotableWorks.Title}</Card.Title><br />
-           <Card.Title id="card-info" className="item-info pt-3 pb-3" ><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} /></Card.Title>
+           {/* <Card.Title id="card-info" className="item-view-info pb-1 pt-3" >{actor.NotableWorks.Title}</Card.Title><br /> */}
+           {/* <Card.Title id="card-info" className="item-info pt-3 pb-3" ><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} /></Card.Title> */}
 
-          <Card.Title id="card-info" className="item-view-info pt-3 pb-2" >{actor.NotableWorks.Description}</Card.Title>
-          <Card.Title id="card-info" className="item-title pb-3"><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.NotableWorks.ReleaseDate ? actor.NotableWorks.ReleaseDate : "No data yet"}</Card.Title>
+          {/* <Card.Title id="card-info" className="item-view-info pt-3 pb-2" >{actor.NotableWorks.Description}</Card.Title> */}
+          {/* <Card.Title id="card-info" className="item-title pb-3"><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.NotableWorks.ReleaseDate ? actor.NotableWorks.ReleaseDate : "No data yet"}</Card.Title> */}
 
           {/* <Card.Title id="card-info" className="item-view-info pb-1 pt-3" >{actor.NotableWorks.ReleaseDate}</Card.Title><br /> */}
-          <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-rotten" src={rottenTomatoes} style={{ width: "30px", height: "28px", "marginRight": "8px" }} /> 
+          {/* <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-rotten" src={rottenTomatoes} style={{ width: "30px", height: "28px", "marginRight": "8px" }} />  */}
          
-          {actor.NotableWorks.Rating ? actor.NotableWorks.Rating : "No data yet"}</Card.Subtitle>
+          {/* {actor.NotableWorks.Rating ? actor.NotableWorks.Rating : "No data yet"}</Card.Subtitle> */}
 
           {/* <Card.Title id="card-info" className="item-view-info pt-3 pb-2" >{actor.NotableWorks.Rating}</Card.Title> */}
-          <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-imdb" src={imdb} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.NotableWorks.IMDbRating ? actor.NotableWorks.IMDbRating : "No data yet"}</Card.Subtitle>
+          {/* <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-imdb" src={imdb} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.NotableWorks.IMDbRating ? actor.NotableWorks.IMDbRating : "No data yet"}</Card.Subtitle> */}
 
           {/* <Card.Title id="card-info" className="item-view-info pb-1 pt-3" >{actor.NotableWorks.IMDbRating}</Card.Title><br /> */}
-          <Card.Title id="card-info" className="item-title pb-3 pt-3"><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.NotableWorks.Duration ? actor.NotableWorks.Duration : "No data yet"}</Card.Title>
+          {/* <Card.Title id="card-info" className="item-title pb-3 pt-3"><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.NotableWorks.Duration ? actor.NotableWorks.Duration : "No data yet"}</Card.Title> */}
 
 
 
 
 
 
-          <Card.Title id="card-info" className="item-info pt-3 pb-2" >Other Works</Card.Title>
-
+          {/* <Card.Title id="card-info" className="item-info pt-3 pb-2" >Other Works</Card.Title> */}
+{/* 
 <Card.Title id="card-info" className="item-view-info pb-1 pt-3" >{actor.AllWorks.Title}</Card.Title><br />
-<Card.Title id="card-info" className="item-info pt-3 pb-3" ><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} /></Card.Title>
+<Card.Title id="card-info" className="item-info pt-3 pb-3" ><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} /></Card.Title> */}
 
-<Card.Title id="card-info" className="item-view-info pt-3 pb-2" >{actor.AllWorks.Description}</Card.Title>
-<Card.Title id="card-info" className="item-title pb-3"><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.AllWorks.ReleaseDate ? actor.AllWorks.ReleaseDate : "No data yet"}</Card.Title>
+{/* <Card.Title id="card-info" className="item-view-info pt-3 pb-2" >{actor.AllWorks.Description}</Card.Title>
+<Card.Title id="card-info" className="item-title pb-3"><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.AllWorks.ReleaseDate ? actor.AllWorks.ReleaseDate : "No data yet"}</Card.Title> */}
 
 {/* <Card.Title id="card-info" className="item-view-info pb-1 pt-3" >{actor.NotableWorks.ReleaseDate}</Card.Title><br /> */}
-<Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-rotten" src={rottenTomatoes} style={{ width: "30px", height: "28px", "marginRight": "8px" }} /> 
+{/* <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-rotten" src={rottenTomatoes} style={{ width: "30px", height: "28px", "marginRight": "8px" }} />  */}
 
-{actor.AllWorks.Rating ? actor.AllWorks.Rating : "No data yet"}</Card.Subtitle>
+{/* {actor.AllWorks.Rating ? actor.AllWorks.Rating : "No data yet"}</Card.Subtitle> */}
 
 {/* <Card.Title id="card-info" className="item-view-info pt-3 pb-2" >{actor.NotableWorks.Rating}</Card.Title> */}
-<Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-imdb" src={imdb} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.AllWorks.IMDbRating ? actor.AllWorks.IMDbRating : "No data yet"}</Card.Subtitle>
+{/* <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-imdb" src={imdb} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.AllWorks.IMDbRating ? actor.AllWorks.IMDbRating : "No data yet"}</Card.Subtitle> */}
 
 {/* <Card.Title id="card-info" className="item-view-info pb-1 pt-3" >{actor.NotableWorks.IMDbRating}</Card.Title><br /> */}
-<Card.Title id="card-info" className="item-title pb-3 pt-3"><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.AllWorks.Duration ? actor.AllWorks.Duration : "No data yet"}</Card.Title>
+{/* <Card.Title id="card-info" className="item-title pb-3 pt-3"><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {actor.AllWorks.Duration ? actor.AllWorks.Duration : "No data yet"}</Card.Title> */}
 
 
 
@@ -182,6 +191,82 @@ export const ActorView = ({ actors, token }) => {
         </Card.Body>
         <hr />
       </Card>
+
+
+      <div>
+      <Alert
+
+className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Notable Works</Alert>
+</div>
+<Row className=''>
+{/* {similarMovies(movie.Genre.Name).map((movie) => (
+            <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+              <Card className=' card item mb-3' >
+                <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
+                <Card.Body>
+                  <Card.Title id="item-subtitle" className="item-info text-center w-100 pb-3 pt-3">{movie.Title} {"(" + movie.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+
+                  <Link to={`/movies/${movie._id}`}>
+                    <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))} */}
+{notableWorks(actor.NotableWorks.Title).map((actor) => (
+<Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+  <Card className=' card item mb-3' >
+    <Card.Img className='w-100' variant='top' src={actor.NotableWorks.ImagePath} />
+    <Card.Body>
+      <Card.Title id="item-subtitle" className="item-info text-center w-100 pb-3 pt-3">{actor.NotableWorks.Title}  {"(" +actor.NotableWorks.ReleaseDate +")"}</Card.Title>
+<Card.Subtitle id="card-subtitle" className=" text-center">{actor.NotableWorks.Genre}</Card.Subtitle>
+
+      {/* <Link to={`/movies/${movie._id}`}>
+        <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
+      </Link> */}
+    </Card.Body>
+  </Card>
+</Col>
+))}
+</Row>
+
+
+<div>
+<Alert
+
+className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Other Works</Alert>
+</div>
+<Row className=''>
+{/* {similarMovies(movie.Genre.Name).map((movie) => (
+            <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+              <Card className=' card item mb-3' >
+                <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
+                <Card.Body>
+                  <Card.Title id="item-subtitle" className="item-info text-center w-100 pb-3 pt-3">{movie.Title} {"(" + movie.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
+
+                  <Link to={`/movies/${movie._id}`}>
+                    <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))} */}
+{allWorks(actor.AllWorks.Title).map((actor) => (
+<Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
+  <Card className=' card item mb-3' >
+    <Card.Img className='w-100' variant='top' src={actor.AllWorks.ImagePath} />
+    <Card.Body>
+      <Card.Title id="item-subtitle" className="item-info text-center w-100 pb-3 pt-3">{actor.AllWorks.Title}  {"(" +actor.AllWorks.ReleaseDate +")"}</Card.Title>
+<Card.Subtitle id="card-subtitle" className=" text-center">{actor.AllWorks.Genre}</Card.Subtitle>
+
+      {/* <Link to={`/movies/${movie._id}`}>
+        <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
+      </Link> */}
+    </Card.Body>
+  </Card>
+</Col>
+))}
+</Row>
 
       {/* <div>
         <div>
