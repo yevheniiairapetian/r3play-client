@@ -423,7 +423,7 @@ export const MainView = () => {
                             {actors.filter((actor) => {
                               return search === "" ?
                                 actor :
-                                actor.Title.toLowerCase().includes(search.toLowerCase());
+                                actor.Name.toLowerCase().includes(search.toLowerCase());
                             }
 
                             ).map((actor) => (

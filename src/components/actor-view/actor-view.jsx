@@ -5,6 +5,7 @@ import ReactPlayer from "react-player";
 import Accordion from 'react-bootstrap/Accordion';
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
+
 import imdb from '../../images/imdb.svg';
 import director from '../../images/director.svg';
 import clock from '../../images/clock.svg';
@@ -18,32 +19,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ActorView = ({ actors, token }) => {
  
-  
   const { actorId } = useParams();
   const actor = actors.find((a) => a._id === actorId);
-
-  // const { movieId } = useParams();
-  // const movie = movies.find((m) => m._id === movieId);
-  // const similarMovies = (genreName) =>
-  //   movies.filter((m) => m.Genre.Name == genreName && m._id !== movieId);
 
   const notableWorks = (notableWork) =>
     actors.filter((a) => a.NotableWorks.Title == notableWork);
 
   const allWorks = (allWork) =>
     actors.filter((a) => a.AllWorks.Title == allWork);
-  // const similarDirector = (directorName) =>
-  //   movies.filter((m) => m.Director.Name == directorName && m._id !== movieId);
-  // const similarRating = (movieRating) =>
-  //   movies.filter((m) => m.Rating == movieRating && m._id !== movieId);
-  // const similarIMDBRating = (movieIMDBRating) =>
-  //   movies.filter((m) => m.IMDbRating == movieIMDBRating && m._id !== movieId);
-  // const sameDate = (Date) =>
-  //   movies.filter((m) => m.ReleaseDate == Date && m._id !== movieId);
-  // const sameDuration = (Duration) =>
-  //   movies.filter((m) => m.Duration == Duration && m._id !== movieId);
-  // const sameActors = (Actors) => movies.filter(m => m._id !== movieId && Actors.some(actor => m.Actors.includes(actor)));
-  
 
 
   return (
@@ -199,20 +182,7 @@ export const ActorView = ({ actors, token }) => {
 className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Notable Works</Alert>
 </div>
 <Row className=''>
-{/* {similarMovies(movie.Genre.Name).map((movie) => (
-            <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
-              <Card className=' card item mb-3' >
-                <Card.Img className='w-100' variant='top' src={movie.ImagePath} />
-                <Card.Body>
-                  <Card.Title id="item-subtitle" className="item-info text-center w-100 pb-3 pt-3">{movie.Title} {"(" + movie.ReleaseDate.slice(0, 4) + ")"}</Card.Title>
 
-                  <Link to={`/movies/${movie._id}`}>
-                    <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
-                  </Link>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))} */}
 {notableWorks(actor.NotableWorks.Title).map((actor) => (
 <Col className="mt-3" md={6} xl={4} lg={4} sm={12} xs={12}>
   <Card className=' card item mb-3' >
@@ -221,9 +191,7 @@ className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e
       <Card.Title id="item-subtitle" className="item-info text-center w-100 pb-3 pt-3">{actor.NotableWorks.Title}  {"(" +actor.NotableWorks.ReleaseDate +")"}</Card.Title>
 <Card.Subtitle id="card-subtitle" className=" text-center">{actor.NotableWorks.Genre}</Card.Subtitle>
 
-      {/* <Link to={`/movies/${movie._id}`}>
-        <Button className='info-button w-100 mt-2' variant='outline-light'>More</Button>
-      </Link> */}
+      
     </Card.Body>
   </Card>
 </Col>
