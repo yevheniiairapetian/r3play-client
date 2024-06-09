@@ -590,8 +590,32 @@ button.got-it-button {
   color: #f5f5f5 !important;
 }
 
+.dark .image-clock {
+  content: url("clock-2.a100e632.svg");
+}
+
+.dark .image-work {
+  content: url("work.ae201096.svg");
+}
+
+.dark .image-birthplace {
+  content: url("european-name-badge.5d13a8d6.svg");
+}
+
 .image-info {
   content: url("info-light.4b535453.svg");
+}
+
+.image-clock {
+  content: url("clock-2-light.f1ef4216.svg");
+}
+
+.image-work {
+  content: url("work-light.2e7426a5.svg");
+}
+
+.image-birthplace {
+  content: url("european-name-badge-light.920be781.svg");
 }
 
 .dark .image-info {
@@ -604,6 +628,54 @@ button.got-it-button {
 
 .dark .image-actors {
   content: url("actors.b65c72bd.svg");
+}
+
+.image-flag {
+  content: url("flag-light.eb2b8674.svg");
+}
+
+.dark .image-flag {
+  content: url("flag.dd46c214.svg");
+}
+
+.image-signature {
+  content: url("signature-light.702ea37c.svg");
+}
+
+.dark .image-signature {
+  content: url("signature.e539e2d4.svg");
+}
+
+.image-sword {
+  content: url("sword-light.a6d28256.svg");
+}
+
+.dark .image-sword {
+  content: url("sword.aea8abe3.svg");
+}
+
+.image-repeat {
+  content: url("repeat-light.2c8826f6.svg");
+}
+
+.dark .image-repeat {
+  content: url("repeat.61e656e4.svg");
+}
+
+.image-family-restroom {
+  content: url("family-restroom-light.84e96eeb.svg");
+}
+
+.dark .image-family-restroom {
+  content: url("family-restroom.3a720b42.svg");
+}
+
+.image-globe {
+  content: url("globe-light.e45ba295.svg");
+}
+
+.dark .image-globe {
+  content: url("globe.deefa691.svg");
 }
 
 .accordion-title {

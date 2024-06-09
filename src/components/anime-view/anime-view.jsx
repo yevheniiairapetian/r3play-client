@@ -8,6 +8,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import imdb from '../../images/imdb.svg';
 import director from '../../images/director.svg';
 import clock from '../../images/clock.svg';
+import sword from '../../images/sword.svg';
 import actors from '../../images/actors.svg';
 import info from '../../images/info.svg';
 import rottenTomatoes from '../../images/rotten-tomatoes.svg';
@@ -39,17 +40,26 @@ export const AnimeView = ({ animes }) => {
 
         <Card.Body className="" >
           <Card.Title id="card-title" className="item-title text-center fs-5 pb-3 pt-3">{anim.Title}, {anim.ReleaseDate ? anim.ReleaseDate.slice(0, 4) : "No data yet"}, {anim.Genre.Name}</Card.Title>
-          <Card.Title id="card-info" className="item-view-info pt-3 pb-3"><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} /> </Card.Title>
-          <Card.Title id="card-info" className="item-view-info pb-3">{anim.Description}</Card.Title>
-          <Card.Title id="card-info" className="item-title pb-3"><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {anim.Duration ? anim.Duration : "No data yet"}</Card.Title>
-          <Card.Title id="card-info" className="item-view-info pb-2">{anim.Genre.Description}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="item-subtitle mb-2 pt-3"><img className="image-director" src={director} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {anim.Director.Name}, {anim.Director.Birth ? anim.Director.Birth : null} - {anim.Director.Death ? anim.Director.Death : "Present"}</Card.Subtitle>
-          {/* // style={{color: "#238a47"}}  */}
+          <Card.Title id="card-info" className="item-title pt-3 pb-3" ><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} />Info</Card.Title>
+          <Card.Title id="card-info" className="item-view-info pb-3" >{anim.Description}</Card.Title>
+          <Card.Title id="card-info" className="item-title pt-3 pb-3" ><img className="image-clock" src={clock} style={{ width: "30px", height: "22px", "marginRight": "8px" }} />Duration</Card.Title>
+          <Card.Title id="card-info" className="item-view-info pb-2" >{anim.Duration? anim.Duration : "No data yet"}</Card.Title>
+
+          <Card.Title id="card-info" className="item-title pt-3 pb-3" ><img className="image-sword" src={sword} style={{ width: "30px", height: "22px", "marginRight": "8px" }} />Genre Info</Card.Title>
+
+          <Card.Title id="card-info" className="item-view-info pb-2" >{anim.Genre.Description}</Card.Title>
+          <Card.Title id="card-info" className="item-title pt-3 pb-3" ><img className="image-director" src={director} style={{ width: "30px", height: "22px", "marginRight": "8px" }} />Director Info</Card.Title>
+
+          {/* <Card.Subtitle id="card-subtitle" className="item-subtitle mb-2 pt-3"><img className="image-director" src={director} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {tvser.Director.Name}, {tvser.Director.Birth ? tvser.Director.Birth : null} - {tvser.Director.Death ? tvser.Director.Death : "Present"}</Card.Subtitle> */}
           <Card.Title id="card-info" className="item-view-info pb-1 pt-3" >{anim.Director.Bio}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="item-subtitle  mb-2 pt-0"><img className="image-actors" src={actors} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> </Card.Subtitle>
+          <Card.Subtitle id="card-subtitle" className="item-title mb-2 pt-0"><img className="image-actors" src={actors} style={{ width: "30px", height: "26px", "marginRight": "8px" }} />Cast</Card.Subtitle>
           <Card.Title id="card-info" className="item-view-info pt-3 pb-2" >{anim.Actors.length > 0 ? anim.Actors.map(a => <>{a}<br /></>) : "No data yet"}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-imdb" src={imdb} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {anim.IMDbRating ? anim.IMDbRating : "No data yet"}</Card.Subtitle>
-          <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-rotten" src={rottenTomatoes} style={{ width: "30px", height: "28px", "marginRight": "8px" }} /> {anim.Rating ? anim.Rating : "No data yet"}</Card.Subtitle>
+          <Card.Title id="card-info" className="item-title pt-3 pb-1" ><img className="image-imdb" src={imdb} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> IMDb Rating</Card.Title>
+
+          <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"> {anim.IMDbRating ? anim.IMDbRating : "No data yet"}</Card.Subtitle>
+          <Card.Title id="card-info" className="item-title pt-3 pb-1" ><img className="image-rotten" src={rottenTomatoes} style={{ width: "30px", height: "28px", "marginRight": "8px" }} /> Rotten Tomatoes Audience Rating</Card.Title>
+
+          <Card.Subtitle id="card-subtitle" className="item-view-info mb-3 pt-2"> {anim.Rating ? anim.Rating : "No data yet"}</Card.Subtitle>
           <Alert
 
             className="mb-3 mt-3 pt-3 text-center " style={{ background: "#19854e" }}>Watch the official trailer</Alert>

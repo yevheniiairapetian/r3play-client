@@ -8,6 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 import imdb from '../../images/imdb.svg';
 import director from '../../images/director.svg';
 import clock from '../../images/clock.svg';
+import sword from '../../images/sword.svg';
 import actors from '../../images/actors.svg';
 import info from '../../images/info.svg';
 import rottenTomatoes from '../../images/rotten-tomatoes.svg';
@@ -36,16 +37,26 @@ export const TVseriesView = ({ tvseries }) => {
 
         <Card.Body className="" >
           <Card.Title id="card-title" className="item-title text-center fs-5 pb-3 pt-3">{tvser.Title}, {tvser.ReleaseDate ? tvser.ReleaseDate.slice(0, 4) : "No data yet"}, {tvser.Genre.Name}</Card.Title>
-          <Card.Title id="card-info" className="item-view-info pt-3 pb-3" ><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} /> </Card.Title>
+          <Card.Title id="card-info" className="item-title pt-3 pb-3" ><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} />Info</Card.Title>
           <Card.Title id="card-info" className="item-view-info pb-3" >{tvser.Description}</Card.Title>
-          <Card.Title id="card-info" className="item-title pb-3" ><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {tvser.Duration ? tvser.Duration : "No data yet"}</Card.Title>
+          <Card.Title id="card-info" className="item-title pt-3 pb-3" ><img className="image-clock" src={clock} style={{ width: "30px", height: "22px", "marginRight": "8px" }} />Duration</Card.Title>
+          <Card.Title id="card-info" className="item-view-info pb-2" >{tvser.Duration? tvser.Duration : "No data yet"}</Card.Title>
+
+          <Card.Title id="card-info" className="item-title pt-3 pb-3" ><img className="image-sword" src={sword} style={{ width: "30px", height: "22px", "marginRight": "8px" }} />Genre Info</Card.Title>
+
           <Card.Title id="card-info" className="item-view-info pb-2" >{tvser.Genre.Description}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="item-subtitle mb-2 pt-3"><img className="image-director" src={director} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {tvser.Director.Name}, {tvser.Director.Birth ? tvser.Director.Birth : null} - {tvser.Director.Death ? tvser.Director.Death : "Present"}</Card.Subtitle>
+          <Card.Title id="card-info" className="item-title pt-3 pb-3" ><img className="image-director" src={director} style={{ width: "30px", height: "22px", "marginRight": "8px" }} />Director Info</Card.Title>
+
+          {/* <Card.Subtitle id="card-subtitle" className="item-subtitle mb-2 pt-3"><img className="image-director" src={director} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {tvser.Director.Name}, {tvser.Director.Birth ? tvser.Director.Birth : null} - {tvser.Director.Death ? tvser.Director.Death : "Present"}</Card.Subtitle> */}
           <Card.Title id="card-info" className="item-view-info pb-1 pt-3" >{tvser.Director.Bio}</Card.Title><br />
-          <Card.Subtitle id="card-subtitle" className="item-subtitle mb-2 text-info pt-0"><img className="image-actors" src={actors} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> </Card.Subtitle>
+          <Card.Subtitle id="card-subtitle" className="item-title mb-2 pt-0"><img className="image-actors" src={actors} style={{ width: "30px", height: "26px", "marginRight": "8px" }} />Cast</Card.Subtitle>
           <Card.Title id="card-info" className="item-view-info pt-3 pb-2" >{tvser.Actors.length > 0 ? tvser.Actors.map(a => <>{a}<br /></>) : "No data yet"}</Card.Title>
-          <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-imdb" src={imdb} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> {tvser.IMDbRating ? tvser.IMDbRating : "No data yet"}</Card.Subtitle>
-          <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"><img className="image-rotten" src={rottenTomatoes} style={{ width: "30px", height: "28px", "marginRight": "8px" }} /> {tvser.Rating ? tvser.Rating : "No data yet"}</Card.Subtitle>
+          <Card.Title id="card-info" className="item-title pt-3 pb-1" ><img className="image-imdb" src={imdb} style={{ width: "30px", height: "26px", "marginRight": "8px" }} /> IMDb Rating</Card.Title>
+
+          <Card.Subtitle id="card-subtitle" className="item-view-info mb-2 pt-3"> {tvser.IMDbRating ? tvser.IMDbRating : "No data yet"}</Card.Subtitle>
+          <Card.Title id="card-info" className="item-title pt-3 pb-1" ><img className="image-rotten" src={rottenTomatoes} style={{ width: "30px", height: "28px", "marginRight": "8px" }} /> Rotten Tomatoes Audience Rating</Card.Title>
+
+          <Card.Subtitle id="card-subtitle" className="item-view-info mb-3 pt-2"> {tvser.Rating ? tvser.Rating : "No data yet"}</Card.Subtitle>
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
               <Accordion.Header className="accordion-title">Episodes:</Accordion.Header>

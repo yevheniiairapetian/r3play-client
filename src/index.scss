@@ -725,9 +725,38 @@ button.got-it-button {
 }
 
 
+.dark .image-info{
+  content: url("./images/info.svg"); 
+}
+
+.dark .image-clock{
+  content: url("./images/clock-2.svg"); 
+}
+
+.dark .image-work{
+  content: url("./images/work.svg"); 
+}
+
+.dark .image-birthplace{
+  content: url("./images/european-name-badge.svg"); 
+}
+
 .image-info{
   content: url("./images/info-light.svg"); 
 }
+
+.image-clock{
+  content: url("./images/clock-2-light.svg"); 
+}
+
+.image-work{
+  content: url("./images/work-light.svg"); 
+}
+
+.image-birthplace{
+  content: url("./images/european-name-badge-light.svg"); 
+}
+
 
 .dark .image-info{
   content: url("./images/info.svg"); 
@@ -739,6 +768,53 @@ button.got-it-button {
 
 .dark .image-actors{
   content: url("./images/actors.svg"); 
+}
+
+.image-flag{
+  content: url("./images/flag-light.svg"); 
+}
+
+.dark .image-flag{
+  content: url("./images/flag.svg"); 
+}
+
+.image-signature{
+  content: url("./images/signature-light.svg"); 
+}
+
+.dark .image-signature{
+  content: url("./images/signature.svg"); 
+}
+
+.image-sword{
+  content: url("./images/sword-light.svg"); 
+}
+
+.dark .image-sword{
+  content: url("./images/sword.svg"); 
+}
+
+.image-repeat{
+  content: url("./images/repeat-light.svg"); 
+}
+
+.dark .image-repeat{
+  content: url("./images/repeat.svg"); 
+}
+.image-family-restroom{
+  content: url("./images/family-restroom-light.svg"); 
+}
+
+.dark .image-family-restroom{
+  content: url("./images/family-restroom.svg"); 
+}
+
+.image-globe{
+  content: url("./images/globe-light.svg"); 
+}
+
+.dark .image-globe{
+  content: url("./images/globe.svg"); 
 }
 
 .accordion-title{
