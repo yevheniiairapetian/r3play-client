@@ -15,6 +15,8 @@ import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { TVseriesView } from '../tvseries-view/tvseries-view';
 import { AnimeCard } from '../anime-card/anime-card';
 import { AnimeView } from '../anime-view/anime-view';
+import { GenreCard } from '../genre-card/genre-card';
+import { GenreView } from '../genre-view/genre-view';
 import { ActorCard } from '../actor-card/actor-card';
 import { ActorView } from '../actor-view/actor-view';
 import { LoginView } from '../login-view/login-view';
@@ -49,6 +51,7 @@ export const MainView = () => {
   const [tvseries, setTVSeries] = useState([]);
   const [animes, setAnimes] = useState([]);
   const [actors, setActors] = useState([]);
+  const [genres, setGenres] = useState([]);
 
 
 
@@ -78,12 +81,22 @@ export const MainView = () => {
                 setAnimes(data);
 
               })
-          }).then(() => {
+          })
+          .then(() => {
             fetch("https://r3play-934f9ea5664d.herokuapp.com/actors", {
               headers: { Authorization: `Bearer ${token}` }
             }).then((response) => response.json())
               .then((data) => {
                 setActors(data);
+
+              })
+          })
+          .then(() => {
+            fetch("https://r3play-934f9ea5664d.herokuapp.com/genres", {
+              headers: { Authorization: `Bearer ${token}` }
+            }).then((response) => response.json())
+              .then((data) => {
+                setGenres(data);
 
               })
           })
@@ -451,6 +464,74 @@ export const MainView = () => {
 
 
 
+
+<Route
+                  path='/genres'
+                  element={
+                    <>
+                      {!user ? (
+                        <>
+                          <Navigate to='/login' replace />
+
+
+                        </>
+                      ) : genres.length === 0 ? (
+                        <>
+
+                        </>
+                      ) : (
+                        <div className='container-fluid'>
+                          <Row className="my-3 container-search">
+
+
+                            <input className="search-input"
+                              id="search search-input input-search"
+                              onChange={(e) => setSearch(e.target.value)}
+                              placeholder="Search (e.g. Ergo Proxy)"
+                              aria-label="Search"
+                            />
+
+
+                          </Row>
+                          <Row className="my-3 container-search ">
+
+
+                            {/* <VideoPlayerAnime /> */}
+
+
+                          </Row>
+                          <Row className='container-profile'>
+
+
+                            {genres.filter((genre) => {
+                              return search === "" ?
+                                genre :
+                                genre.Name.toLowerCase().includes(search.toLowerCase());
+                            }
+
+                            ).map((genre) => (
+                              <Col className="pl-5 pr-5 ml-5 mr-5 mt-4 all-media-container" key={genre._id} md={4} xl={2} lg={3} sm={6} xs={12}>
+                                <GenreCard
+                                  className="flexible-media ml-5 mr-5"
+                                  genre={genre}
+                                  user={user}
+                                  token={token}
+                                  setUser={setUser}
+                                />
+                              </Col>
+
+                            ))}
+
+
+                          </Row>
+                        </div>
+                      )}
+                      <FooterAuthorized />
+                    </>
+                  }
+                />
+
+
                 <Route
                   path='/movies/:movieId'
                   element={
@@ -558,6 +639,39 @@ export const MainView = () => {
                     </>
                   }
                 />
+
+
+
+
+<Route
+                  path='/genres/:genreId'
+                  element={
+                    <>
+                      {!user ? (
+                        <>
+                          <Navigate to='/login' replace />
+
+
+                        </>
+                      ) : genres.length === 0 ? (
+                        <>
+                          {/* <Col className="text-center mt-4"><Spin /></Col> */}
+                          {/* <h3 className="text-warning mt-3 mb-3 pt-3 text-center">Session expired. Please log out and then log in again</h3> */}
+
+                        </>
+                      ) : (
+                        <Col md={12} className="p-0">
+
+                          <GenreView genres={genres} />
+                        </Col>
+                      )}
+                      <FooterAuthorized />
+                    </>
+                  }
+                />
+
+
+
 
 
                 <Route

@@ -7,7 +7,7 @@ import Logo from '../../images/logo.png';
 import { Link } from "react-router-dom";
 import useDarkMode from "./../../hooks/useDarkMode";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe, faBell, faCircleInfo, faMasksTheater, faLightbulb, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faBell, faPersonRifle, faCircleInfo, faMasksTheater, faLightbulb, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faMoon, faHouseChimney, faFilm, faTv, faRobot, faUserPlus, faUser, faCircleLeft, faRightToBracket, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import Click from './src/click.wav';
@@ -150,6 +150,9 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 								</Nav.Link>
 								<Nav.Link className="navbar-icons" as={Link} to='/actors'>
 									<FontAwesomeIcon className="" size="lg" icon={faMasksTheater} /> <span className="navbar-icons-span">Actors</span>
+								</Nav.Link>
+								<Nav.Link className="navbar-icons" as={Link} to='/genres'>
+									<FontAwesomeIcon className="" size="lg" icon={faPersonRifle} /> <span className="navbar-icons-span">Genres</span>
 								</Nav.Link>
 								<Nav.Link className="navbar-icons" as={Link} to='/profile'>
 									<FontAwesomeIcon className="" size="lg" icon={faUser} />  <span className="navbar-icons-span">{user.Username}</span>

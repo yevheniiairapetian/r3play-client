@@ -47,7 +47,7 @@ export const ActorView = ({ actors, token }) => {
             {/* , 
             {movie.ReleaseDate ? movie.ReleaseDate.slice(0, 4) : "No data yet"}, {movie.Genre.Name} */}
           </Card.Title>
-          <Card.Title id="card-info" className="item-info pt-3 pb-3" ><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} /> </Card.Title>
+          <Card.Title id="card-info" className="item-info pt-3 pb-3" ><img className="image-info" src={info} style={{ width: "30px", height: "22px", "marginRight": "8px" }} />Bio</Card.Title>
           <Card.Title id="card-info" className="item-view-info pb-3">{actor.Bio}</Card.Title>
           <Card.Title id="card-info" className="item-view-info pb-3"><img className="image-clock" src={clock} style={{ width: "30px", height: "26px", "marginRight": "8px" }} />Age</Card.Title>
 
