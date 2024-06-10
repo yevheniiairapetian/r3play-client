@@ -39,27 +39,30 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 	const handleCloseUpdateFailedModal = () => setShowUpdateFailedModal(false);
 
 
-	function loadProfileSpinner (){
-        let loginButton = document.querySelector('.updateMe')
-        let updateSpan = document.querySelector('.profile-update-span')
-        let loader = document.querySelector('.update-load-spinner');
-        loginButton.addEventListener('click', function (e) {
-            e.preventDefault;
-            setTimeout(function () {
-              loader.classList.add('update-show');
-			  updateSpan.classList.add('update-span-hidden');
-            }, 400),
-             setTimeout(function () {
-                loader.classList.remove('update-show');
-				updateSpan.classList.remove('update-span-hidden');
-                
-              }, 2000)
-          })
-    }
+	
 
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
+	const handleSubmit = (e) => {
+		(function (){
+			let loginButton = document.querySelector('.updateMe')
+			let updateSpan = document.querySelector('.profile-update-span')
+			let loader = document.querySelector('.update-load-spinner');
+			loginButton.addEventListener('click', function (e) {
+				e.preventDefault;
+				setTimeout(function () {
+				  loader.classList.add('update-show');
+				  updateSpan.classList.add('update-span-hidden');
+				}, 400),
+				 setTimeout(function () {
+					loader.classList.remove('update-show');
+					updateSpan.classList.remove('update-span-hidden');
+					
+				  }, 2000)
+			  })
+		})()
+		e.preventDefault();
+
+		
 
 		let data = {
 			Username: username,
@@ -193,9 +196,11 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 						</Form.Group>
 					
 
-						<Col>
+						<Col >
 						
-							<Button className="form-submit-button w-100 mb-1 updateMe" type="submit" onClick={() =>{handleSubmit;loadProfileSpinner()}}><span className="profile-update-span">Update</span><FontAwesomeIcon className="update-load-spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} /></Button>
+							<Button className="form-submit-button w-100 mb-1 updateMe" type="submit" onClick={handleSubmit}>
+								<span className="profile-update-span">Update</span><FontAwesomeIcon className="update-load-spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} />
+								</Button>
 						</Col>
 
 						<Col className="delete-button text-center">
