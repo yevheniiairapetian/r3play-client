@@ -27,13 +27,13 @@ export const LoginView = ({ onLoggedIn }) => {
                 loader.classList.add('show');
                 loginSpan.classList.add('login-span-hidden');
 
-            }, 1500),
+            }, 400),
                 setTimeout(function () {
                     loader.classList.remove('show');
                     loginSpan.classList.remove('login-span-hidden');
 
 
-                }, 2500)
+                }, 2000)
         })
     }
 

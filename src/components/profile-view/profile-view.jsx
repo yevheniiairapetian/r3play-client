@@ -48,12 +48,12 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
             setTimeout(function () {
               loader.classList.add('update-show');
 			  updateSpan.classList.add('update-span-hidden');
-            }, 1500),
+            }, 400),
              setTimeout(function () {
                 loader.classList.remove('update-show');
 				updateSpan.classList.remove('update-span-hidden');
                 
-              }, 2500)
+              }, 2000)
           })
     }
 

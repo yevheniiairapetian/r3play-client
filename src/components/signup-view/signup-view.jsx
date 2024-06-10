@@ -27,13 +27,13 @@ export const SignupView = () => {
             setTimeout(function () {
               loader.classList.add('sign-show');
               signSpan.classList.add('sign-span-hidden');
-            }, 1500),
+            }, 400),
              setTimeout(function () {
                 loader.classList.remove('sign-show');
                 signSpan.classList.remove('sign-span-hidden');
 
                 
-              }, 2500)
+              }, 2000)
           })
     }
 
