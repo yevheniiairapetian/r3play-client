@@ -671,6 +671,12 @@ span.navbar-icons-span {
   
 }
 
+.nav-drop:hover, .dark .nav-drop:hover{
+  translate: 0px -4px;
+  transition: all 0.2s ease;
+
+}
+
 div.dropdown-menu.show{
   padding-top:0 !important;
   padding-bottom:0 !important;
