@@ -732,6 +732,7 @@ export const MainView = () => {
                             movies={movies}
                             tvseries={tvseries}
                             animes={animes}
+                            actors={actors}
                           />
                         </Col>
                       )}

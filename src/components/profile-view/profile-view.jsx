@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { AnimeCard } from '../anime-card/anime-card';
+import { ActorCard } from '../actor-card/actor-card';
 import { Button, Col, Image, Form, Row, Modal, Alert, Accordion, Card } from 'react-bootstrap';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) => {
+export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, actors }) => {
 
 	const [username, setUsername] = useState(user.Username);
 	const [password, setPassword] = useState("");
@@ -26,6 +27,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 	let resultWatchedTV = tvseries.filter((tvseries) => user.WatchedMovies.includes(tvseries._id));
 	let resultAnime = animes.filter((animes) => user.FavoriteMovies.includes(animes._id));
 	let resultWatchedAnime = animes.filter((animes) => user.WatchedMovies.includes(animes._id));
+	let resultActors = actors.filter((actor) => user.LikedActors.includes(actor._id));
 
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
@@ -167,15 +169,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 								required
 							/>
 						</Form.Group>
-						{/* <Form.Group controlId="formImage" className='form-group pb-4'>
-							<Form.Label className="profie-image form-label" >Profile Image:</Form.Label>
-							<Form.Control
-								type="file"
-								accept="image/*"
-								value={image}
-								onChange={(e) => setImage(e.target.value)}
-							/>
-						</Form.Group> */}
+					
 
 						<Col>
 							<Button className="form-submit-button w-100 mb-1" type="submit" onClick={handleSubmit}>Update</Button>
@@ -306,7 +300,56 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes }) 
 										</AnimeCard>
 									</Col>
 
-								 ))}
+								))}
+							</Row>
+						</Accordion.Body>
+					</Accordion.Item>
+				</Accordion>
+
+
+
+
+			</Row>
+
+
+			<Row>
+				<h5 className="favorites-heading pt-3 pb-3">You have <span className="favorites-data">{
+					resultActors.length > 1
+						||
+						resultActors.length == 0 ?
+						resultActors.length + " actors "
+						: 
+						resultActors.length + " actor "
+	
+				}
+				</span>in your favorites list</h5>
+				<Accordion defaultActiveKey="0">
+					<Accordion.Item eventKey="0">
+						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites List 
+						({resultActors.length > 1
+						||
+						resultActors.length == 0 ?
+						resultActors.length + " items "
+						: 
+						resultActors.length + " item "})
+						</Accordion.Header>
+						<Accordion.Body className="profile-accordion-body">
+							<Row id="card-info" secondary-color="text-secondary pb-3">
+
+								{resultActors.map((actor) => (
+
+									<Col className="all-media-container mb-4" key={actor._id} md={4} xl={2} lg={3} sm={6} xs={12}>
+										<ActorCard
+											className="flexible-media"
+											actor={actor}
+											user={user}
+											token={token}
+											setUser={setUser}
+										>
+										</ActorCard>
+									</Col>
+
+								))}
 							</Row>
 						</Accordion.Body>
 					</Accordion.Item>

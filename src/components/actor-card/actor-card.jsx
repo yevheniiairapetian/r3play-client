@@ -9,138 +9,77 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ActorCard = ({ actor, user, token, setUser }) => {
-  // const [isFavorite, setIsFavorite] = useState(
-  //   user.FavoriteMovies.includes(movie._id)
-  // );
-  // const [isWatched, setIsWatched] = useState(
-  //   user.WatchedMovies.includes(movie._id)
-  // );
-  // const [showFailedFetchModal, setShowFailedFetchModal] = useState(false);
-  // const [showAddedMovieModal, setShowAddedMovieModal] = useState(false);
-  // const [showRemovedMovieModal, setShowRemovedMovieModal] = useState(false);
-  // const [showAddedWatchedMovieModal, setShowAddedWatchedMovieModal] = useState(false);
-  // const [showRemovedWatchedMovieModal, setShowRemovedWatchedMovieModal] = useState(false);
-  // const handleShowFailedFetchModal = () => setShowFailedFetchModal(true);
-  // const handleShowAddedMovieModal = () => setShowAddedMovieModal(true);
-  // const handleShowRemovedMovieModal = () => setShowRemovedMovieModal(true);
-  // const handleShowAddedWatchedMovieModal = () => setShowAddedWatchedMovieModal(true);
-  // const handleShowRemovedWatchedMovieModal = () => setShowRemovedWatchedMovieModal(true);
-  // const handleCloseFailedFetchModal = () => setShowFailedFetchModal(false);
-  // const handleCloseAddedMovieModal = () => setShowAddedMovieModal(false);
-  // const handleCloseRemovedMovieModal = () => setShowRemovedMovieModal(false);
-  // const handleCloseAddedWatchedMovieModal = () => setShowAddedWatchedMovieModal(false);
-  // const handleCloseRemovedWatchedMovieModal = () => setShowRemovedWatchedMovieModal(false);
-  // const addFavoriteMovie = () => {
-  //   fetch(
-  //     `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/movies/${movie._id}`,
-  //     {
-  //       method: 'POST',
-  //       headers: { Authorization: `Bearer ${token}` }
-  //     }
-  //   )
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         handleShowFailedFetchModal();
-  //         return false;
-  //       }
-  //     })
-  //     .then((user) => {
-  //       if (user) {
-  //         localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-  //         setUser(user); // updating the react application
-  //         setIsFavorite(true);
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       handleShowFailedFetchModal();
-  //     });
-  // };
+      const [isFavorite, setIsFavorite] = useState(
+        user.LikedActors.includes(actor._id)
+      );
 
-  // const addWatchedMovie = () => {
-  //   fetch(
-  //     `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/movies/${movie._id}`,
-  //     {
-  //       method: 'POST',
-  //       headers: { Authorization: `Bearer ${token}` }
-  //     }
-  //   )
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         handleShowFailedFetchModal();
-  //         return false;
-  //       }
-  //     })
-  //     .then((user) => {
-  //       if (user) {
-  //         localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-  //         setUser(user); // updating the react application
-  //         setIsWatched(true);
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       handleShowFailedFetchModal();
-  //     });
-  // };
+  const [showFailedFetchModal, setShowFailedFetchModal] = useState(false);
+  const [showAddedActorModal, setShowAddedActorModal] = useState(false);
+  const [showRemovedActorModal, setShowRemovedActorModal] = useState(false);
+  const handleShowFailedFetchModal = () => setShowFailedFetchModal(true);
+  const handleShowAddedActorModal = () => setShowAddedActorModal(true);
+  const handleShowRemovedActorModal = () => setShowRemovedActorModal(true);
+  const handleCloseFailedFetchModal = () => setShowFailedFetchModal(false);
+  const handleCloseAddedActorModal = () => setShowAddedActorModal(false);
+  const handleCloseRemovedActorModal = () => setShowRemovedActorModal(false);
 
-  // const removeFavoriteMovie = () => {
-  //   fetch(
-  //     `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/movies/${movie._id}`,
-  //     {
-  //       method: 'DELETE',
-  //       headers: { Authorization: `Bearer ${token}` }
-  //     }
-  //   )
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         handleShowFailedFetchModal();
-  //         return false;
-  //       }
-  //     })
-  //     .then((user) => {
-  //       if (user) {
-  //         localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-  //         setUser(user); // updating the react application
-  //         setIsFavorite(false);
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       handleShowFailedFetchModal();
-  //     });
-  // };
+  const addFavoriteActor = () => {
+    fetch(
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/liked/actors/${actor._id}`,
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          handleShowFailedFetchModal();
+          return false;
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+          setUser(user); // updating the react application
+          setIsFavorite(true);
+        }
+      })
+      .catch((e) => {
+        handleShowFailedFetchModal();
+      });
+  };
 
-  // const removeWatchedMovie = () => {
-  //   fetch(
-  //     `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/movies/${movie._id}`,
-  //     {
-  //       method: 'DELETE',
-  //       headers: { Authorization: `Bearer ${token}` }
-  //     }
-  //   )
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         handleShowFailedFetchModal();
-  //         return false;
-  //       }
-  //     })
-  //     .then((user) => {
-  //       if (user) {
-  //         localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
-  //         setUser(user); // updating the react application
-  //         setIsWatched(false);
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       handleShowFailedFetchModal();
-  //     });
-  // };
+  
+  const removeFavoriteActor = () => {
+    fetch(
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/liked/actors/${actor._id}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          handleShowFailedFetchModal();
+          return false;
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user)); // updating user on local storage
+          setUser(user); // updating the react application
+          setIsFavorite(false);
+        }
+      })
+      .catch((e) => {
+        handleShowFailedFetchModal();
+      });
+  };
+
 
   return (
     <div className="card-container fs-5">
@@ -148,33 +87,21 @@ export const ActorCard = ({ actor, user, token, setUser }) => {
       <Card id="card" className='item card mb-3' >
 
         <Card.Img className='w-100' variant='top' src={actor.ImagePath} />
-        {/* <div className="like-button">
+
+         <div className="like-button">
           {isFavorite ? (
             <FontAwesomeIcon icon={faHeart} size="lg" beatFade style={{ color: "#24AB51", "--fa-animation-iteration-count": "2", cursor:"pointer" }}
-              onClick={() => { removeFavoriteMovie(); handleShowRemovedMovieModal() }} />
+              onClick={() => { removeFavoriteActor(); handleShowRemovedActorModal() }} />
 
 
           ) : (
 
             <FontAwesomeIcon icon={faHeart} style={{ color: "#fff", cursor:"pointer" }} size="lg"
-              onClick={() => { addFavoriteMovie(); handleShowAddedMovieModal() }} />
+              onClick={() => { addFavoriteActor(); handleShowAddedActorModal() }} />
 
           )}
         </div>
-        <div className="watched-button">
-          {isWatched ? (
-            <span style={{ color: "#24AB51", cursor:"pointer" }} onClick={() => { removeWatchedMovie(); handleShowRemovedWatchedMovieModal() }}
-            >Watched ✓
-              
-            </span>
-
-          ) : (
-            <span style={{ color: "#ffd", cursor:"pointer" }} onClick={() => { addWatchedMovie(); handleShowAddedWatchedMovieModal() }}
-            >Watch +
-              
-            </span>
-          )}
-        </div> */}
+        
         <Card.Body>
 
           <Card.Title id="card-title" className="item-title text-center fs-6 pb-3 pt-3">{actor.Name}
@@ -200,7 +127,7 @@ export const ActorCard = ({ actor, user, token, setUser }) => {
 
 
       </Card>
-      {/* <Modal
+      <Modal
         className="favorite-modal"
         show={showFailedFetchModal} onHide={handleCloseFailedFetchModal}>
         <Modal.Header closeButton>
@@ -217,56 +144,32 @@ export const ActorCard = ({ actor, user, token, setUser }) => {
 
       <Modal
 
-        className="favorite-modal" show={showAddedMovieModal} onHide={handleCloseAddedMovieModal}>
+        className="favorite-modal" show={showAddedActorModal} onHide={handleCloseAddedActorModal}>
         <Modal.Header closeButton>
         </Modal.Header>
         <Modal.Body className="login-modal-body">
           <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
 
           Added to faves</Modal.Body>
-        <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedMovieModal}>Got it!</Button>
+        <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedActorModal}>Got it!</Button>
 
       </Modal>
 
       <Modal
 
-        className="favorite-modal" show={showRemovedMovieModal} onHide={handleCloseRemovedMovieModal}>
+        className="favorite-modal" show={showRemovedActorModal} onHide={handleCloseRemovedActorModal}>
         <Modal.Header closeButton>
         </Modal.Header>
         <Modal.Body className="login-modal-body">
           <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
 
           Removed from faves</Modal.Body>
-        <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedMovieModal}>Got it!</Button>
+        <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedActorModal}>Got it!</Button>
       </Modal>
 
 
 
-
-      <Modal
-
-        className="favorite-modal" show={showAddedWatchedMovieModal} onHide={handleCloseAddedWatchedMovieModal}>
-        <Modal.Header closeButton>
-        </Modal.Header>
-        <Modal.Body className="login-modal-body">
-          <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
-
-          Added to watched</Modal.Body>
-        <Button className="got-it-button text-dark bg-white" onClick={handleCloseAddedWatchedMovieModal}>Got it!</Button>
-
-      </Modal>
-
-      <Modal
-
-        className="favorite-modal" show={showRemovedWatchedMovieModal} onHide={handleCloseRemovedWatchedMovieModal}>
-        <Modal.Header closeButton>
-        </Modal.Header>
-        <Modal.Body className="login-modal-body">
-          <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#1f8c49", }} size="lg" />
-
-          Removed from watched</Modal.Body>
-        <Button className="got-it-button text-dark bg-white" onClick={handleCloseRemovedWatchedMovieModal}>Got it!</Button>
-      </Modal> */}
+     
     </div>
   );
 };
