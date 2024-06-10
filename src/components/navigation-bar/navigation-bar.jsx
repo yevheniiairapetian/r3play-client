@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 
 import { Navbar, Container, Row, Col, Modal, Nav, Image, Button } from "react-bootstrap";
 import useSound from 'use-sound';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import Logo from '../../images/logo.png';
 import { Link } from "react-router-dom";
@@ -139,15 +140,25 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 								<Nav.Link className="navbar-icons" as={Link} to='/'>
 									<FontAwesomeIcon  className="" size="lg" icon={faHouseChimney} /> <span className="navbar-icons-span">Home</span>
 								</Nav.Link>
-								<Nav.Link className="navbar-icons" as={Link} to='/movies'>
-									<FontAwesomeIcon size="lg" icon={faFilm} /> <span className="navbar-icons-span">Movies</span>
+								<NavDropdown
+              id="nav-dropdown-dark-example"
+              title="Media" className="nav-drop"
+            >
+              <NavDropdown.Item className="media-drop-item" href="#action/3.1"><Nav.Link className="navbar-icons" as={Link} to='/movies'>									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faFilm} /> <span className="navbar-icons-span">Movies</span>
+								</Nav.Link></NavDropdown.Item>
+              <NavDropdown.Item className="media-drop-item" href="#action/3.2">
+			  <Nav.Link className="navbar-icons" as={Link} to='/tvseries'>
+									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faTv} /> <span className="navbar-icons-span">TV Series</span>
 								</Nav.Link>
-								<Nav.Link className="navbar-icons" as={Link} to='/tvseries'>
-									<FontAwesomeIcon className="" size="lg" icon={faTv} /> <span className="navbar-icons-span">TV Series</span>
-								</Nav.Link>
-								<Nav.Link className="navbar-icons" as={Link} to='/anime'>
-									<FontAwesomeIcon className="" size="lg" icon={faRobot} /> <span className="navbar-icons-span">Anime</span>
-								</Nav.Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item className="media-drop-item" href="#action/3.3"><Nav.Link className="navbar-icons" as={Link} to='/anime'>
+									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faRobot} /> <span className="navbar-icons-span">Anime</span>
+								</Nav.Link></NavDropdown.Item>
+              
+            </NavDropdown>
+								
+								
+								
 								<Nav.Link className="navbar-icons" as={Link} to='/actors'>
 									<FontAwesomeIcon className="" size="lg" icon={faMasksTheater} /> <span className="navbar-icons-span">Actors</span>
 								</Nav.Link>

@@ -655,6 +655,32 @@ span.navbar-icons-span {
   color: #fff !important;
 }
 
+.nav-drop .nav-link:hover, .nav-drop .nav-link:focus, .nav-drop .nav-link {
+  color: white !important;
+  background-color:#1f8c49;
+  
+
+  
+}
+
+.dark .nav-drop .nav-link:hover, .dark .nav-drop .nav-link:focus, .dark .nav-drop .nav-link {
+  color: white !important;
+  background-color:#000;
+  
+
+  
+}
+
+div.dropdown-menu.show{
+  padding-top:0 !important;
+  padding-bottom:0 !important;
+}
+
+.media-drop-item{
+  padding:0 !important;
+  margin:0 !important;
+}
+
 span.navbar-icons-span:hover {
   color: white !important;
   transition: all 0.2s ease;

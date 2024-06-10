@@ -78,6 +78,7 @@ export const SignupView = () => {
                         onChange={(e) => setUsername(e.target.value)}
                         required
                         minLength="5"
+                        maxLength="20"
                     />
                 </Form.Group><br />
                 <Form.Group controlId="formPassword">
@@ -88,6 +89,8 @@ export const SignupView = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
+                        minLength="8"
+                        maxLength="20"
                     />
                 </Form.Group><br />
                 <Form.Group controlId="formEmail">
