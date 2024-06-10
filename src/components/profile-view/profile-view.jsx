@@ -139,14 +139,14 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 
 					<h6
 
-						className="profile-heading mb-3 pt-3 text-center"><span className="profile-data"> Password:</span>
-						{password.replace(password, "***********")}
+						className="profile-heading mb-3 pt-3 text-center"><span className="profile-data"> Password: </span>
+						***********
 					</h6>
 
 					<h6
 
 						className="profile-heading mb-3 pt-3 text-center"><span className="profile-data"> Birthday:</span> {birthday.slice(0, 10)}</h6>
-					<p className="mb-3 pt-1 text-center"><em className="profile-tip">Don't forget to <span className="profile-tip-extra">save the changes </span>(if altered)!</em></p>
+					<p className="mb-3 pt-2 text-center"><em className="profile-tip">Please click <span className="profile-tip-extra"> "Update" </span>to save the changes</em></p>
 
 
 
