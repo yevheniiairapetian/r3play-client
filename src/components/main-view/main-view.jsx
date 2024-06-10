@@ -733,6 +733,7 @@ export const MainView = () => {
                             tvseries={tvseries}
                             animes={animes}
                             actors={actors}
+                            genres={genres}
                           />
                         </Col>
                       )}

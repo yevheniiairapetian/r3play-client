@@ -16,6 +16,23 @@ export const LoginView = ({ onLoggedIn }) => {
     const handleShowWentWrongModal = () => setShowWentWrongModal(true);
     const handleCloseWentWrongModal = () => setShowWentWrongModal(false);
     
+
+    function loadSpinner (){
+        let loginButton = document.querySelector('.logMeIn')
+        let loader = document.querySelector('.load-spinner');
+        loginButton.addEventListener('click', function (e) {
+            e.preventDefault;
+            setTimeout(function () {
+              loader.classList.add('show');
+            }, 1500),
+             setTimeout(function () {
+                loader.classList.remove('show');
+                
+              }, 2500)
+          })
+    }
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -80,9 +97,11 @@ export const LoginView = ({ onLoggedIn }) => {
                 </Form.Group><br />
                 
                     
-                    <Button className="bg-success w-100" variant="secondary" type="submit">
+                    <Button onClick={loadSpinner}
+                    className="bg-success w-100 logMeIn" variant="secondary" type="submit">
                     Log me in!
-                    {/* <FontAwesomeIcon className="spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} /> */}
+                    <FontAwesomeIcon className="load-spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} />
+                    
 </Button>
                 
                 

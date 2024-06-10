@@ -38,9 +38,12 @@ export const FooterAuthorized = (onLoggedOut) => {
           </Nav.Link>
         </button><br /><br />
 
-        <a className="text-light footer-info" target="_blank" href='https://yevheniiairapetian.github.io/portfolio-website/'>
-          Yevhenii Airapetian<br /><br />
-        </a>© 2023 Copyright: R3PLAY APP
+        <a href="https://yevheniiairapetian.com" className="text-light footer-info" target="_blank" >
+          Yevhenii Airapetian
+        </a>
+        <br />
+        <br />
+        <span>© 2024 Copyright: R3PLAY APP</span>
 
       </div>
     </MDBFooter>

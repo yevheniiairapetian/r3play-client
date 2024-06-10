@@ -3,11 +3,12 @@ import { MovieCard } from '../movie-card/movie-card';
 import { TVseriesCard } from '../tvseries-card/tvseries-card';
 import { AnimeCard } from '../anime-card/anime-card';
 import { ActorCard } from '../actor-card/actor-card';
+import { GenreCard } from '../genre-card/genre-card';
 import { Button, Col, Image, Form, Row, Modal, Alert, Accordion, Card } from 'react-bootstrap';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, actors }) => {
+export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, actors, genres }) => {
 
 	const [username, setUsername] = useState(user.Username);
 	const [password, setPassword] = useState("");
@@ -28,6 +29,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 	let resultAnime = animes.filter((animes) => user.FavoriteMovies.includes(animes._id));
 	let resultWatchedAnime = animes.filter((animes) => user.WatchedMovies.includes(animes._id));
 	let resultActors = actors.filter((actor) => user.LikedActors.includes(actor._id));
+	let resultGenres = genres.filter((genre) => user.LikedGenres.includes(genre._id));
 
 	const handleShowModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
@@ -190,7 +192,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 				<h5 className="favorites-heading pt-3 pb-3">You have <span className="favorites-data">{resultMovies.length > 1 || resultMovies.length == 0 ? resultMovies.length + " movies, " : resultMovies.length + " movie, "}</span><span className="favorites-data">{resultAnime.length > 1 ? resultAnime.length + " anime, " : resultAnime.length + " anime, "}</span> and <span className="favorites-data">{resultTV.length > 1 ? resultTV.length + " TV series" : resultTV.length + " TV series"} </span> in your favorites list</h5>
 				<Accordion defaultActiveKey="0">
 					<Accordion.Item eventKey="0">
-						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites ({resultMovies.length + resultAnime.length + resultTV.length + " items "})</Accordion.Header>
+						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites ({(resultMovies.length + resultAnime.length + resultTV.length) > 1 || (resultMovies.length + resultAnime.length + resultTV.length) == 0 ? (resultMovies.length + resultAnime.length + resultTV.length) + " items" : (resultMovies.length + resultAnime.length + resultTV.length) + " item"})</Accordion.Header>
 						<Accordion.Body className="profile-accordion-body">
 							<Row id="card-info" secondary-color="text-secondary pb-3">{resultMovies.map((movie) => (
 
@@ -257,7 +259,9 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 					in your watched list</h5>
 				<Accordion defaultActiveKey="0">
 					<Accordion.Item eventKey="0">
-						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Watched List ({resultWatchedMovies.length + resultWatchedAnime.length + resultWatchedTV.length + " items "})</Accordion.Header>
+						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Watched List 
+						({(resultWatchedMovies.length + resultWatchedAnime.length + resultWatchedTV.length) > 1 || (resultWatchedMovies.length + resultWatchedAnime.length + resultWatchedTV.length) == 0 ? (resultWatchedMovies.length + resultWatchedAnime.length + resultWatchedTV.length) + " items" : (resultWatchedMovies.length + resultWatchedAnime.length + resultWatchedTV.length) + " item"})
+						</Accordion.Header>
 						<Accordion.Body className="profile-accordion-body">
 							<Row id="card-info" secondary-color="text-secondary pb-3">{resultWatchedMovies.map((movie) => (
 
@@ -347,6 +351,55 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 											setUser={setUser}
 										>
 										</ActorCard>
+									</Col>
+
+								))}
+							</Row>
+						</Accordion.Body>
+					</Accordion.Item>
+				</Accordion>
+
+
+
+
+			</Row>
+
+
+			<Row>
+				<h5 className="favorites-heading pt-3 pb-3">You have <span className="favorites-data">{
+					resultGenres.length > 1
+						||
+						resultGenres.length == 0 ?
+						resultGenres.length + " genres "
+						: 
+						resultGenres.length + " genre "
+	
+				}
+				</span>in your favorites list</h5>
+				<Accordion defaultActiveKey="0">
+					<Accordion.Item eventKey="0">
+						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites List 
+						({resultGenres.length > 1
+						||
+						resultGenres.length == 0 ?
+						resultGenres.length + " items "
+						: 
+						resultGenres.length + " item "})
+						</Accordion.Header>
+						<Accordion.Body className="profile-accordion-body">
+							<Row id="card-info" secondary-color="text-secondary pb-3">
+
+								{resultGenres.map((genre) => (
+
+									<Col className="all-media-container mb-4" key={genre._id} md={4} xl={2} lg={3} sm={6} xs={12}>
+										<GenreCard
+											className="flexible-media"
+											genre={genre}
+											user={user}
+											token={token}
+											setUser={setUser}
+										>
+										</GenreCard>
 									</Col>
 
 								))}

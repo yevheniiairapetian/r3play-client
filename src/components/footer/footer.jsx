@@ -41,9 +41,12 @@ export const Footer = () => {
 
         </button><br />
 
-        <a target="_blank" className='footer-info' href='https://yevheniiairapetian.github.io/portfolio-website/'>
-          Yevhenii Airapetian<br />
-        </a><br/>© 2023 Copyright: R3PLAY APP
+        <a href="https://yevheniiairapetian.com" className="text-light footer-info" target="_blank" >
+          Yevhenii Airapetian
+        </a>
+        <br />
+        <br />
+        <span>© 2024 Copyright: R3PLAY APP</span>
 
       </div>
     </MDBFooter>

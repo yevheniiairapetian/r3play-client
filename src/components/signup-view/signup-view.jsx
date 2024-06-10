@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button, Form, Modal, Col, Row } from "react-bootstrap";
 import {Footer} from '../footer/footer';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const SignupView = () => {
@@ -16,6 +16,22 @@ export const SignupView = () => {
     const handleCloseSignupModal = () => setShowSignupModal(false);
     const handleShowFailedSignupModal = () => setShowFailedSignupModal(true);
     const handleCloseFailedSignupModal = () => setShowFailedSignupModal(false);
+
+    function loadSignSpinner (){
+        let loginButton = document.querySelector('.signMeUp')
+        let loader = document.querySelector('.sign-load-spinner');
+        loginButton.addEventListener('click', function (e) {
+            e.preventDefault;
+            setTimeout(function () {
+              loader.classList.add('sign-show');
+            }, 1500),
+             setTimeout(function () {
+                loader.classList.remove('sign-show');
+                
+              }, 2500)
+          })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -89,12 +105,14 @@ export const SignupView = () => {
 
                     />
                 </Form.Group><br />
-                <Button className="bg-success w-100" variant="secondary" type="submit">
-                    Sign Me Up!
-                </Button><br /><br />
-            </Form>
+                <Button onClick={loadSignSpinner}
+                    className="bg-success w-100 signMeUp" variant="secondary" type="submit">
+                    Sign me Up!
+                    <FontAwesomeIcon className="sign-load-spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} />
+                    
+</Button>
 
-            
+            </Form>
 
             <Modal 
             className="favorite-modal"

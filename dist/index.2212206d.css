@@ -179,6 +179,22 @@ div.container-profile {
   outline: none !important;
 }
 
+.load-spinner {
+  display: none;
+}
+
+.show {
+  display: inline !important;
+}
+
+.sign-load-spinner {
+  display: none;
+}
+
+.sign-show {
+  display: inline !important;
+}
+
 .search-input {
   border-radius: 7px;
   width: 100%;
