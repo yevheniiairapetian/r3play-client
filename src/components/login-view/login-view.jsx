@@ -15,21 +15,26 @@ export const LoginView = ({ onLoggedIn }) => {
     const handleCloseFailedLoginModal = () => setShowFailedLoginModal(false);
     const handleShowWentWrongModal = () => setShowWentWrongModal(true);
     const handleCloseWentWrongModal = () => setShowWentWrongModal(false);
-    
 
-    function loadSpinner (){
+
+    function loadSpinner() {
         let loginButton = document.querySelector('.logMeIn')
         let loader = document.querySelector('.load-spinner');
+        let loginSpan = document.querySelector('.login-span');
         loginButton.addEventListener('click', function (e) {
             e.preventDefault;
             setTimeout(function () {
-              loader.classList.add('show');
+                loader.classList.add('show');
+                loginSpan.classList.add('login-span-hidden');
+
             }, 1500),
-             setTimeout(function () {
-                loader.classList.remove('show');
-                
-              }, 2500)
-          })
+                setTimeout(function () {
+                    loader.classList.remove('show');
+                    loginSpan.classList.remove('login-span-hidden');
+
+
+                }, 2500)
+        })
     }
 
 
@@ -66,88 +71,88 @@ export const LoginView = ({ onLoggedIn }) => {
     return (
 
 
-        
+
         <>
-        
-        <div className="login-view container-profile  h-100">
-        <Row className="login-view container ">
-        <Col className="m-auto" md={8} xl={6} lg={6} sm={6} xs={10}>
-            <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
-                <h4 className="text-success text-center pb-4 pt-4">Login</h4>
-                <Form.Group controlId="formUsername">
-                    <Form.Label>Username:</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={username}
-                        placeholder="Your username"
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                        minLength="5"
-                    />
-                </Form.Group><br />
-                <Form.Group controlId="formPassword">
-                    <Form.Label>Password:</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={password}
-                        placeholder="Your password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </Form.Group><br />
-                
-                    
-                    <Button onClick={loadSpinner}
-                    className="bg-success w-100 logMeIn" variant="secondary" type="submit">
-                    Log me in!
-                    <FontAwesomeIcon className="load-spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} />
-                    
-</Button>
-                
-                
-                    
-                
-                    
 
-                
-               
-                
-                
-            </Form>
-            
-            <Modal
-            className="update-failed-modal"
-             show={showFailedLoginModal} onHide={handleCloseFailedLoginModal}>
-                <Modal.Header closeButton>
-                    {/* <Modal.Title className="text-danger">Login</Modal.Title> */}
-                </Modal.Header>
-                <Modal.Body className="pt-4 login-modal-body">
-                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
-                    Failed. <br/> Possible reasons: <br/> 1. Incorrect username. <br/>2. Incorrect password.</Modal.Body>
-                {/* <Modal.Footer> */}
-                    <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedLoginModal}>Got it!</Button>
+            <div className="login-view container-profile  h-100">
+                <Row className="login-view container ">
+                    <Col className="m-auto" md={8} xl={6} lg={6} sm={6} xs={10}>
+                        <Form className="pb-4 pt-4" onSubmit={handleSubmit}>
+                            <h4 className="text-success text-center pb-4 pt-4">Login</h4>
+                            <Form.Group controlId="formUsername">
+                                <Form.Label>Username:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    value={username}
+                                    placeholder="Your username"
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    required
+                                    minLength="5"
+                                />
+                            </Form.Group><br />
+                            <Form.Group controlId="formPassword">
+                                <Form.Label>Password:</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    value={password}
+                                    placeholder="Your password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </Form.Group><br />
 
-                {/* </Modal.Footer> */}
-            </Modal>
-            <Modal 
-            className="update-failed-modal"
-            show={showWentWrongModal} onHide={handleCloseWentWrongModal}>
-                <Modal.Header closeButton>
-                    {/* <Modal.Title className="text-danger">Information</Modal.Title> */}
-                </Modal.Header>
-                <Modal.Body className="pt-5 login-modal-body">
-                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
 
-                    Something went wrong. <br/> Please check your internet connection and try again.</Modal.Body>
-                {/* <Modal.Footer> */}
-                    <Button className="got-it-button text-dark bg-white" onClick={handleCloseWentWrongModal}>Got it!</Button>
+                            <Button onClick={loadSpinner}
+                                className="bg-success w-100 logMeIn" variant="secondary" type="submit">
+                                <span className="login-span">Log me in!</span>
+                                <FontAwesomeIcon className="load-spinner" icon={faSpinner} spin size="sm" style={{ color: "#f0f2f5", }} />
 
-                {/* </Modal.Footer> */}
-            </Modal>
-            
-        </Col>
-        </Row>
-        </div>
+                            </Button>
+
+
+
+
+
+
+
+
+
+
+                        </Form>
+
+                        <Modal
+                            className="update-failed-modal"
+                            show={showFailedLoginModal} onHide={handleCloseFailedLoginModal}>
+                            <Modal.Header closeButton>
+                                {/* <Modal.Title className="text-danger">Login</Modal.Title> */}
+                            </Modal.Header>
+                            <Modal.Body className="pt-4 login-modal-body">
+                                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+                                Failed. <br /> Possible reasons: <br /> 1. Incorrect username. <br />2. Incorrect password.</Modal.Body>
+                            {/* <Modal.Footer> */}
+                            <Button className="got-it-button text-dark bg-white" onClick={handleCloseFailedLoginModal}>Got it!</Button>
+
+                            {/* </Modal.Footer> */}
+                        </Modal>
+                        <Modal
+                            className="update-failed-modal"
+                            show={showWentWrongModal} onHide={handleCloseWentWrongModal}>
+                            <Modal.Header closeButton>
+                                {/* <Modal.Title className="text-danger">Information</Modal.Title> */}
+                            </Modal.Header>
+                            <Modal.Body className="pt-5 login-modal-body">
+                                <FontAwesomeIcon className="modal-info-icon" icon={faCircleInfo} fade style={{ color: "#ffd43b", }} size="lg" />
+
+                                Something went wrong. <br /> Please check your internet connection and try again.</Modal.Body>
+                            {/* <Modal.Footer> */}
+                            <Button className="got-it-button text-dark bg-white" onClick={handleCloseWentWrongModal}>Got it!</Button>
+
+                            {/* </Modal.Footer> */}
+                        </Modal>
+
+                    </Col>
+                </Row>
+            </div>
         </>
     )
 }

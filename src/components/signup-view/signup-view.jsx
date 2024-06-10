@@ -20,13 +20,18 @@ export const SignupView = () => {
     function loadSignSpinner (){
         let loginButton = document.querySelector('.signMeUp')
         let loader = document.querySelector('.sign-load-spinner');
+        let signSpan = document.querySelector('.sign-span')
+
         loginButton.addEventListener('click', function (e) {
             e.preventDefault;
             setTimeout(function () {
               loader.classList.add('sign-show');
+              signSpan.classList.add('sign-span-hidden');
             }, 1500),
              setTimeout(function () {
                 loader.classList.remove('sign-show');
+                signSpan.classList.remove('sign-span-hidden');
+
                 
               }, 2500)
           })
@@ -107,7 +112,7 @@ export const SignupView = () => {
                 </Form.Group><br />
                 <Button onClick={loadSignSpinner}
                     className="bg-success w-100 signMeUp" variant="secondary" type="submit">
-                    Sign me Up!
+                    <span className="sign-span">Sign me Up!</span>
                     <FontAwesomeIcon className="sign-load-spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} />
                     
 </Button>

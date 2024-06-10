@@ -5,7 +5,7 @@ import { AnimeCard } from '../anime-card/anime-card';
 import { ActorCard } from '../actor-card/actor-card';
 import { GenreCard } from '../genre-card/genre-card';
 import { Button, Col, Image, Form, Row, Modal, Alert, Accordion, Card } from 'react-bootstrap';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, actors, genres }) => {
@@ -37,6 +37,26 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 	const handleCloseUpdateModal = () => setShowUpdateModal(false);
 	const handleShowUpdateFailedModal = () => setShowUpdateFailedModal(true);
 	const handleCloseUpdateFailedModal = () => setShowUpdateFailedModal(false);
+
+
+	function loadProfileSpinner (){
+        let loginButton = document.querySelector('.updateMe')
+        let updateSpan = document.querySelector('.profile-update-span')
+        let loader = document.querySelector('.update-load-spinner');
+        loginButton.addEventListener('click', function (e) {
+            e.preventDefault;
+            setTimeout(function () {
+              loader.classList.add('update-show');
+			  updateSpan.classList.add('update-span-hidden');
+            }, 1500),
+             setTimeout(function () {
+                loader.classList.remove('update-show');
+				updateSpan.classList.remove('update-span-hidden');
+                
+              }, 2500)
+          })
+    }
+
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -174,13 +194,15 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 					
 
 						<Col>
-							<Button className="form-submit-button w-100 mb-1" type="submit" onClick={handleSubmit}>Update</Button>
+						
+							<Button className="form-submit-button w-100 mb-1 updateMe" type="submit" onClick={() =>{handleSubmit;loadProfileSpinner()}}><span className="profile-update-span">Update</span><FontAwesomeIcon className="update-load-spinner" icon={faSpinner} spin size="sm" style={{color: "#f0f2f5",}} /></Button>
 						</Col>
 
 						<Col className="delete-button text-center">
 							<Button variant="link" className="text-danger mt-3 mb-3" onClick={handleShowModal}>
 								Delete my account
 							</Button>
+							
 						</Col>
 
 
