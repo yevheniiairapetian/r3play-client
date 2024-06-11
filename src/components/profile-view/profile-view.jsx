@@ -362,7 +362,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 				</span>in your favorites list</h5>
 				<Accordion defaultActiveKey="0">
 					<Accordion.Item eventKey="0">
-						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites List 
+						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorite Actors 
 						({resultActors.length > 1
 						||
 						resultActors.length == 0 ?
@@ -411,7 +411,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 				</span>in your favorites list</h5>
 				<Accordion defaultActiveKey="0">
 					<Accordion.Item eventKey="0">
-						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites List 
+						<Accordion.Header title="Click to expand/collapse" className="text-success text-center">My Favorites Genres 
 						({resultGenres.length > 1
 						||
 						resultGenres.length == 0 ?
