@@ -234,7 +234,7 @@ export const TVseriesView = ({ tvseries }) => {
           ))}
         </Row>
         <Link to={`/tvseries`}>
-          <Button className="pl-5 mt-4 pr-5 w-25 media-view-back-btn" style={{ background: "white", color: "black" }}>Back</Button>
+          <Button className="pl-5 mt-2 mb-2 pr-5 w-25 media-view-back-btn" style={{ background: "white", color: "black" }}>Back</Button>
         </Link>
       </div>
 

@@ -263,7 +263,7 @@ export const MovieView = ({ movies, token }) => {
 
       </div>
       <Link to={`/movies`}>
-        <Button className="pl-5 pr-5 mt-4 w-25 media-view-back-btn" style={{ background: "white", color: "black" }}>Back</Button>
+        <Button className="pl-5 pr-5 mt-2 mb-2 w-25 media-view-back-btn" style={{ background: "white", color: "black" }}>Back</Button>
       </Link>
     </div>
 
