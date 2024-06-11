@@ -95,7 +95,7 @@ export const MovieView = ({ movies, token }) => {
           <br />
 
           <Link to={`/movies`}>
-            <Button className="pl-5 pr-5 w-25" style={{ background: "white", color: "black" }}>Back</Button>
+            <Button className="pl-5 pr-5 w-25 media-view-back-btn" style={{ background: "white", color: "black" }}>Back</Button>
           </Link>
         </Card.Body>
         <hr />
@@ -263,7 +263,7 @@ export const MovieView = ({ movies, token }) => {
 
       </div>
       <Link to={`/movies`}>
-        <Button className="pl-5 pr-5 mt-4 w-25" style={{ background: "white", color: "black" }}>Back</Button>
+        <Button className="pl-5 pr-5 mt-4 w-25 media-view-back-btn" style={{ background: "white", color: "black" }}>Back</Button>
       </Link>
     </div>
 

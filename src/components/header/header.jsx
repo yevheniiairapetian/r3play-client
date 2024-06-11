@@ -14,8 +14,8 @@ export const Header = () => {
               <h1 className='pt-4 mb-3'>Movies, Anime and TV Series</h1>
               <h4 className='pt-3 mb-3'>Explore the library</h4>
               <Link to={`/movies`}>
-              <button className="pt-2 pb-2 pl-4 pr-4 w-50" variant="outline-light">
-                Read More
+              <button className="check-more-header-btn pt-2 pb-2 pl-4 pr-4 w-50" variant="outline-light">
+                Check out more
               </button>
               </Link>
             </div>

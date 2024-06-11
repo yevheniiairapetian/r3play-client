@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box !important;
-}
 
 // $primary: black;
 // $body-bg: #181818;
@@ -21,6 +18,16 @@ $btn-secondary: rgb(54, 57, 57);
   background-color: #19854e;
   color:black;
   outline:none;
+}
+
+.carousel-button:hover {
+  background-color: whitesmoke !important;
+  color:#000 !important;
+}
+
+button.media-view-back-btn:hover {
+  background-color: #19854e !important;
+  color:whitesmoke !important;
 }
 
 .logo-pulse{
@@ -118,6 +125,29 @@ div.container-fluid{
   margin-left:0 !important;
   margin-right: 0 !important;
   width: 100% !important;
+}
+
+.check-more-header-btn{
+  background-color: #19854e;
+  color:whitesmoke;
+}
+
+.dark .check-more-header-btn{
+  background-color: #19854e;
+  color:whitesmoke;
+}
+
+
+.check-more-header-btn:hover{
+  background-color: whitesmoke;
+  color:black;
+  transition: all 0.2s ease;
+}
+
+.dark .check-more-header-btn:hover{
+  background-color: whitesmoke;
+  color:black;
+  transition: all 0.2s ease;
 }
 
 div.container{
@@ -1084,6 +1114,9 @@ div.welcome-player{
     height: 30px !important;
     font-size: 10px !important;
   }
+
+  
+
   div.container-profile, .dark div.container-profile{
     margin: 0 auto 0 auto !important;
     padding-bottom: 36px;
