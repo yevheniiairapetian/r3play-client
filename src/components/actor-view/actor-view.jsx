@@ -116,7 +116,7 @@ export const ActorView = ({ actors, token }) => {
 
           <Alert
 
-            className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Watch a related video</Alert>
+            className="mb-3 mt-3 pt-3 alert-div text-center text-white " style={{ background: "#19854e" }}>Watch a related video</Alert>
           <ReactPlayer className="m-auto w-auto" controls
 
             url={actor.Trailer}>
@@ -139,7 +139,7 @@ export const ActorView = ({ actors, token }) => {
       <div>
         <Alert
 
-          className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Notable Works</Alert>
+          className="mb-3 mt-3 pt-3 alert-div text-center text-white " style={{ background: "#19854e" }}>Notable Works</Alert>
       </div>
       <Row className=''>
 
@@ -162,7 +162,7 @@ export const ActorView = ({ actors, token }) => {
       <div>
         <Alert
 
-          className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Other Works</Alert>
+          className="mb-3 mt-3 pt-3 alert-div text-center text-white " style={{ background: "#19854e" }}>Other Works</Alert>
       </div>
       <Row className=''>
         {/* {similarMovies(movie.Genre.Name).map((movie) => (

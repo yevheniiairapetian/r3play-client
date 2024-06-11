@@ -121,7 +121,7 @@ export const GenreView = ({ genres, token }) => {
 
           <Alert
 
-            className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Watch a related video</Alert>
+            className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>Watch a related video</Alert>
           <ReactPlayer className="m-auto w-auto" controls
 
             url={genre.Trailer}>
@@ -144,7 +144,7 @@ export const GenreView = ({ genres, token }) => {
       <div>
         <Alert
 
-          className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Notable Works</Alert>
+          className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>Notable Works</Alert>
       </div>
       <Row className=''>
 
@@ -169,7 +169,7 @@ export const GenreView = ({ genres, token }) => {
       <div>
         <Alert
 
-          className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Other Works</Alert>
+          className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>Other Works</Alert>
       </div>
       <Row className=''>
         {/* {similarMovies(movie.Genre.Name).map((movie) => (
@@ -207,7 +207,7 @@ export const GenreView = ({ genres, token }) => {
       <div>
         <Alert
 
-          className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Subgenres</Alert>
+          className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>Subgenres</Alert>
       </div>
 
       <Row className=''>

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box !important;
+}
+
 // $primary: black;
 // $body-bg: #181818;
 // $body-color: whitesmoke;
@@ -150,6 +154,13 @@ div.container-profile{
   z-index:0 !important;
 
 
+}
+
+div.alert-div.alert{
+  // width:100% !important;
+  margin-top:10px !important;
+  margin-bottom: 10px !important;
+  display: block !important;
 }
 
 .dark .container-search{

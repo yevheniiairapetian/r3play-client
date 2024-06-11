@@ -87,7 +87,7 @@ export const MovieView = ({ movies, token }) => {
 
           <Alert
 
-            className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Watch the official trailer</Alert>
+            className="mb-3 mt-3 pt-3 text-center text-white alert-div " style={{ background: "#19854e" }}>Watch the official trailer</Alert>
           <ReactPlayer className="m-auto w-auto" controls
 
             url={movie.Trailer}>
@@ -105,7 +105,7 @@ export const MovieView = ({ movies, token }) => {
         <div>
           <Alert
 
-            className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>You may also like</Alert>
+            className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>You may also like</Alert>
         </div>
         <Row className=''>
           {similarMovies(movie.Genre.Name).map((movie) => (
@@ -126,7 +126,7 @@ export const MovieView = ({ movies, token }) => {
         <div>
           <Alert
 
-            className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>This director also made</Alert>
+            className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>This director also made</Alert>
         </div>
         <Row className=''>
           {similarDirector(movie.Director.Name).map((movie) => (
@@ -147,7 +147,7 @@ export const MovieView = ({ movies, token }) => {
 
         <Alert
 
-          className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Same Rotten Tomatoes Audience Rating also have</Alert>
+          className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>Same Rotten Tomatoes Audience Rating also have</Alert>
       </div>
       <Row className=''>
         {similarRating(movie.Rating).map((movie) => (
@@ -168,7 +168,7 @@ export const MovieView = ({ movies, token }) => {
 
       <Alert
 
-        className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Same IMDb rating also have</Alert>
+        className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>Same IMDb rating also have</Alert>
 
       <Row className=''>
         {similarIMDBRating(movie.IMDbRating).map((movie) => (
@@ -190,7 +190,7 @@ export const MovieView = ({ movies, token }) => {
 
       <Alert
 
-        className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Actors from this movie also play in</Alert>
+        className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>Actors from this movie also play in</Alert>
       <div>
         <Row className=''>
           {sameActors(movie.Actors).map((movie) => (
@@ -211,7 +211,7 @@ export const MovieView = ({ movies, token }) => {
 
         <Alert
 
-          className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Released in the same year</Alert>
+          className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>Released in the same year</Alert>
       </div>
       <Row className=''>
         {sameDate(movie.ReleaseDate).map((movie) => (
@@ -232,7 +232,7 @@ export const MovieView = ({ movies, token }) => {
 
       <Alert
 
-        className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Takes around the same time to watch</Alert>
+        className="mb-3 mt-3 pt-3 text-center text-white alert-div" style={{ background: "#19854e" }}>Takes around the same time to watch</Alert>
 
       <Row className=''>
         {sameDuration(movie.Duration).map((movie) => (

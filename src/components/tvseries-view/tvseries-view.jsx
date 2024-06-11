@@ -67,7 +67,7 @@ export const TVseriesView = ({ tvseries }) => {
           </Accordion>
           <Alert
 
-            className="mb-3 mt-3 pt-3 text-center text-white " style={{ background: "#19854e" }}>Watch the official trailer</Alert>
+            className="mb-3 mt-3 pt-3 text-center text-white  alert-div" style={{ background: "#19854e" }}>Watch the official trailer</Alert>
           <ReactPlayer className="m-auto w-auto" controls
 
             url={tvser.Trailer}>
@@ -88,7 +88,7 @@ export const TVseriesView = ({ tvseries }) => {
 
       <Alert
 
-        className="mb-3 mt-3 pt-3 text-center alert" >You may also like</Alert>
+        className="mb-3 mt-3 pt-3 text-center alert alert-div" >You may also like</Alert>
 
       <Row className=''>
         {similarTV(tvser.Genre.Name).map((tvser) => (
@@ -109,7 +109,7 @@ export const TVseriesView = ({ tvseries }) => {
       <div>
         <Alert
 
-          className="mb-3 mt-3 pt-3 text-center alert " >This director also made</Alert>
+          className="mb-3 mt-3 pt-3 text-center alert  alert-div" >This director also made</Alert>
       </div>
       <Row className=''>
         {similarTVDirector(tvser.Director.Name).map((tvser) => (
@@ -130,7 +130,7 @@ export const TVseriesView = ({ tvseries }) => {
 
       <Alert
 
-        className="mb-3 mt-3 pt-3 text-center alert " >Same Rotten Tomatoes Audience Rating also have</Alert>
+        className="mb-3 mt-3 pt-3 text-center alert  alert-div" >Same Rotten Tomatoes Audience Rating also have</Alert>
 
       <Row className=''>
         {similarTVRating(tvser.Rating).map((tvser) => (
@@ -152,7 +152,7 @@ export const TVseriesView = ({ tvseries }) => {
 
       <Alert
 
-        className="mb-3 mt-3 pt-3 text-center alert" >Same IMDb Rating also have</Alert>
+        className="mb-3 mt-3 pt-3 text-center alert alert-div" >Same IMDb Rating also have</Alert>
 
       <Row className=''>
         {similarTVIMDBRating(tvser.IMDbRating).map((tvser) => (
@@ -173,7 +173,7 @@ export const TVseriesView = ({ tvseries }) => {
 
       <Alert
 
-        className="mb-3 mt-3 pt-3 text-center alert" >Actors from this tv series also play in</Alert>
+        className="mb-3 mt-3 pt-3 text-center alert alert-div" >Actors from this tv series also play in</Alert>
       <div>
         <Row className=''>
           {sameTVActors(tvser.Actors).map((tvser) => (
@@ -194,7 +194,7 @@ export const TVseriesView = ({ tvseries }) => {
 
         <Alert
 
-          className="mb-3 mt-3 pt-3 text-center alert" >Released in the same year</Alert>
+          className="mb-3 mt-3 pt-3 text-center alert alert-div" >Released in the same year</Alert>
 
         <Row className=''>
           {sameDate(tvser.ReleaseDate).map((tvser) => (
@@ -215,7 +215,7 @@ export const TVseriesView = ({ tvseries }) => {
 
         <Alert
 
-          className="mb-3 mt-3 pt-3 text-center alert" >Takes around the same time to watch</Alert>
+          className="mb-3 mt-3 pt-3 text-center alert alert-div" >Takes around the same time to watch</Alert>
 
         <Row className=''>
           {sameDuration(tvser.Duration).map((tvser) => (
