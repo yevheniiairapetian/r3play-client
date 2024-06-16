@@ -113,4 +113,4 @@ To clone the app use, the following command: `console git clone git@github.com:y
 ## Contact:
 Feel free to contact me via[ LinkedIn](https://www.linkedin.com/in/yevheniiairapetian/) or  
 [email](mailto:contact@yevheniiairapetian.com) or 
-via the contact information on the [website](https://yevheniiairapetian.github.io/portfolio-website/contact.html) 
+via the contact information on the [website](https://yevheniiairapetian.com/#/contact) 
