@@ -45,7 +45,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Rating (IMDb and Rotten Tomatoes Audience rating)
 - Actors list
 - Etc, about a single movie to the user
-#### For Anime and TV series
+#### For Anime and TV-series
 ##### Returns data:
 - Title
 - Description
@@ -57,7 +57,7 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Actors list
 - Episodes list
 - Etc, for a single Anime and TV series to the user
-#### For Movie, Anime, TV series views
+#### For Movie, Anime, TV-series views
 - Displays a section with interesting facts (can be collapsed/expanded)
 - Shows a video player with the movie, anime, and TV series Youtube trailer.
 - Ability to return back to the main view (with the list of all movies, anime, and TV series)
@@ -68,11 +68,11 @@ This project contains the front-end part of the R3play back-end ([here](https://
 - Movies, anime, and TV series where the same actors are playing
 - Movies, anime, and TV series with the same IMDb Rating
 - Movies, anime, and TV series with the same Rotten Tomatoes Audience Rating
-- What to watch with the same genre
-- What to watch with the same release year
+- What to watch of the same genre
+- What to watch of the same release year
 ### Login view
 - Allows users to log in with a username and password
-- Uses user-friendly modals to show information
+- Uses user-friendly modal windows to show information
 - Uses input validation
 ### Signup view
 - Allows new users to register (username, password, email, date of birth)
@@ -105,12 +105,10 @@ _Please click on the video below to watch it_
 
 
 ## Live Version
-The App is live [here](https://r3play.netlify.app/)
+The App is live at [https://onr3peat.com/](https://onr3peat.com/)
 
 ## Clone and Preview
 To clone the app use, the following command: `console git clone git@github.com:yevheniiairapetian/r3play-client.git` Or download directly by clicking on <> Code button > Download ZIP. Navigate to the ```r3play-client``` folder with the ```cd r3play-client``` in the terminal, and install the required dependencies using the `npm install command`. Then run the app with the ```parcel src/index.html``` command and access it at ```localhost:1234``` in the browser.
 
 ## Contact:
-Feel free to contact me via[ LinkedIn](https://www.linkedin.com/in/yevheniiairapetian/) or  
-[email](mailto:contact@yevheniiairapetian.com) or 
-via the contact information on the [website](https://yevheniiairapetian.com/#/contact) 
+Feel free to contact me via[ LinkedIn](https://www.linkedin.com/in/yevheniiairapetian/) or [email](mailto:contact@yevheniiairapetian.com) or via the contact form on my [portfolio](https://yevheniiairapetian.com/#/contact) 
