@@ -528,6 +528,7 @@ div.footer {
   background-color: #1f8c49;
   width: 100%;
   justify-content: space-between !important;
+  height: 136px !important;
   padding-left: 10px !important;
   padding-right: 10px !important;
   display: flex !important;
