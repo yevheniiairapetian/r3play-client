@@ -32,7 +32,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
   const handleCloseRemovedWatchedMovieModal = () => setShowRemovedWatchedMovieModal(false);
   const addFavoriteMovie = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/movies/${movie._id}`,
+      `https://www.r3play-api.com/users/${user.Username}/favorites/movies/${movie._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -60,7 +60,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
   const addWatchedMovie = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/movies/${movie._id}`,
+      `https://www.r3play-api.com/users/${user.Username}/watched/movies/${movie._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -88,7 +88,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
   const removeFavoriteMovie = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/movies/${movie._id}`,
+      `https://www.r3play-api.com/users/${user.Username}/favorites/movies/${movie._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
@@ -116,7 +116,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
   const removeWatchedMovie = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/movies/${movie._id}`,
+      `https://www.r3play-api.com/users/${user.Username}/watched/movies/${movie._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }

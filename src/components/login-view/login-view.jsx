@@ -46,7 +46,7 @@ export const LoginView = ({ onLoggedIn }) => {
             Password: password
         }
 
-        fetch("https://r3play-934f9ea5664d.herokuapp.com/login", {
+        fetch("https://www.r3play-api.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

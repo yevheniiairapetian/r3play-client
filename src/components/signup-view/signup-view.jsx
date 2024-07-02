@@ -47,7 +47,7 @@ export const SignupView = () => {
             Birthday: birthday
         };
 
-        fetch("https://r3play-934f9ea5664d.herokuapp.com/users", {
+        fetch("https://www.r3play-api.com/users", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {

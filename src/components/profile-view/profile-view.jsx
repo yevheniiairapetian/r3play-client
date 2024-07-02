@@ -78,7 +78,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 
 		}
 
-		fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}`, {
+		fetch(`https://www.r3play-api.com/users/${user.Username}`, {
 			method: "PUT",
 			body: JSON.stringify(data),
 			headers: {
@@ -101,7 +101,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 	};
 
 	const handleDeleteUser = () => {
-		fetch(`https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}`, {
+		fetch(`https://www.r3play-api.com/users/${user.Username}`, {
 			method: "DELETE",
 			headers: {
 				Authorization: `Bearer ${token}`

@@ -59,14 +59,14 @@ export const MainView = () => {
   useEffect(() => {
     if (!token) return;
 
-    fetch('https://r3play-934f9ea5664d.herokuapp.com/movies', {
+    fetch('https://www.r3play-api.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     }).then((response) => response.json())
       .then((data) => {
         setMovies(data);
       })
       .then(() => {
-        fetch("https://r3play-934f9ea5664d.herokuapp.com/tvseries", {
+        fetch("https://www.r3play-api.com/tvseries", {
           headers: { Authorization: `Bearer ${token}` }
         }).then((response) => response.json())
           .then((data) => {
@@ -74,7 +74,7 @@ export const MainView = () => {
 
           })
           .then(() => {
-            fetch("https://r3play-934f9ea5664d.herokuapp.com/animes", {
+            fetch("https://www.r3play-api.com/animes", {
               headers: { Authorization: `Bearer ${token}` }
             }).then((response) => response.json())
               .then((data) => {
@@ -83,7 +83,7 @@ export const MainView = () => {
               })
           })
           .then(() => {
-            fetch("https://r3play-934f9ea5664d.herokuapp.com/actors", {
+            fetch("https://www.r3play-api.com/actors", {
               headers: { Authorization: `Bearer ${token}` }
             }).then((response) => response.json())
               .then((data) => {
@@ -92,7 +92,7 @@ export const MainView = () => {
               })
           })
           .then(() => {
-            fetch("https://r3play-934f9ea5664d.herokuapp.com/genres", {
+            fetch("https://www.r3play-api.com/genres", {
               headers: { Authorization: `Bearer ${token}` }
             }).then((response) => response.json())
               .then((data) => {

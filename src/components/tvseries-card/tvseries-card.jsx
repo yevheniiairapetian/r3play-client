@@ -31,7 +31,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
   const handleCloseRemovedWatchedMovieModal = () => setShowRemovedWatchedMovieModal(false);
   const addFavoriteTV = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/tvseries/${tvseries._id}`,
+      `https://www.r3play-api.com/users/${user.Username}/favorites/tvseries/${tvseries._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -59,7 +59,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
 
   const removeFavoriteTV = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/tvseries/${tvseries._id}`,
+      `https://www.r3play-api.com/users/${user.Username}/favorites/tvseries/${tvseries._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
@@ -87,7 +87,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
 
   const addWatchedTV = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/tvseries/${tvseries._id}`,
+      `https://www.r3play-api.com/users/${user.Username}/watched/tvseries/${tvseries._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -115,7 +115,7 @@ export const TVseriesCard = ({ tvseries, user, token, setUser }) => {
 
   const removeWatchedTV = () => {
     fetch(
-      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/tvseries/${tvseries._id}`,
+      `https://www.r3play-api.com/users/${user.Username}/watched/tvseries/${tvseries._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
