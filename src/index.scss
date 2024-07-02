@@ -32,12 +32,15 @@ button.media-view-back-btn:hover {
 
 .logo-pulse{
   animation: pulse 1s infinite;
-  border-radius: 60%;
-  width: 20em;
+  border-radius: 50%;
+  width: 22em;
+  padding:10px;
 }
 
 .dark .logo-pulse{
-  content: url("./images/logo.png"); 
+  content: url("./../src/components/main-view/src/logo.png");
+  
+
 }
 
 

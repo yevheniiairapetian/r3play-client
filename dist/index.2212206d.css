@@ -21,13 +21,14 @@ button.media-view-back-btn:hover {
 }
 
 .logo-pulse {
-  border-radius: 60%;
-  width: 20em;
+  border-radius: 50%;
+  width: 22em;
+  padding: 10px;
   animation: 1s infinite pulse;
 }
 
 .dark .logo-pulse {
-  content: url("logo.c493797d.png");
+  content: url("logo.531f51ab.png");
 }
 
 .clear-search {
