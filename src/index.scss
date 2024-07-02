@@ -456,26 +456,33 @@ div.card-title {
 
 
 
+/* scrollbar width */
 
-// * width *
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
-/* Track */
+/* scrollbar Track */
+
 ::-webkit-scrollbar-track {
-  background: #888;
+  background: -webkit-gradient(linear, left bottom, left top, from(#fbbc04)), to(#1d8b45);
+  background: linear-gradient(0deg, #fbbc04 0%, #1d8b45 100%);
+  border-radius: 10px;
 }
 
-/* Handle */
+/* scrollbar Handle */
+
 ::-webkit-scrollbar-thumb {
-
-  background: #19854e;
+  opacity: 0;
+  -webkit-box-shadow: 0px 0px 0px 100000vh black;
+          box-shadow: 0px 0px 0px 100000vh black;
+  border-radius: 10px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  opacity: 0.8;
+  background: rgb(111, 116, 113);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .favorite-modal .modal-header {
