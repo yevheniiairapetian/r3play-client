@@ -143,15 +143,19 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 								<NavDropdown
               id="nav-dropdown-dark-example"
               title="Media" className="nav-drop"
+			  
             >
-              <NavDropdown.Item className="media-drop-item" href="#action/3.1"><Nav.Link className="navbar-icons" as={Link} to='/movies'>									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faFilm} /> <span className="navbar-icons-span">Movies</span>
+              <NavDropdown.Item 			  
+ className="media-drop-item" href="#action/3.1"><Nav.Link className="navbar-icons" as={Link} to='/movies'>									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faFilm} /> <span className="navbar-icons-span">Movies</span>
 								</Nav.Link></NavDropdown.Item>
-              <NavDropdown.Item className="media-drop-item" href="#action/3.2">
+              <NavDropdown.Item 			  
+ className="media-drop-item" href="#action/3.2">
 			  <Nav.Link className="navbar-icons" as={Link} to='/tvseries'>
 									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faTv} /> <span className="navbar-icons-span">TV Series</span>
 								</Nav.Link>
               </NavDropdown.Item>
-              <NavDropdown.Item className="media-drop-item" href="#action/3.3"><Nav.Link className="navbar-icons" as={Link} to='/anime'>
+              <NavDropdown.Item 			  
+ className="media-drop-item" href="#action/3.3"><Nav.Link className="navbar-icons" as={Link} to='/anime'>
 									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faRobot} /> <span className="navbar-icons-span">Anime</span>
 								</Nav.Link></NavDropdown.Item>
               

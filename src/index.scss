@@ -40,6 +40,7 @@ button.media-view-back-btn:hover {
   content: url("./images/logo.png"); 
 }
 
+
 .clear-search{
   width:30px !important;
   height:30px !important;
@@ -175,15 +176,20 @@ div.container{
 div.container-profile{
   margin-left:auto !important;
   margin-right: auto !important;
-  z-index:2;
+  // z-index:2;
 }
+
 .dark div.container-profile{
   margin-left:auto !important;
   margin-right: auto !important;
   background-color: #171616 !important;
-  z-index:0 !important;
+  // z-index:0 !important;
 
 
+}
+
+div.welcome-player{
+  z-index:-1;
 }
 
 div.alert-div.alert{

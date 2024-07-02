@@ -147,16 +147,18 @@ div.container {
 }
 
 div.container-profile {
-  z-index: 2;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
 .dark div.container-profile {
-  z-index: 0 !important;
   background-color: #171616 !important;
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+div.welcome-player {
+  z-index: -1;
 }
 
 div.alert-div.alert {

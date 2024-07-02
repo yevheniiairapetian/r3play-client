@@ -120,8 +120,7 @@ export const ProfileView = ({ user, token, setUser, movies, tvseries, animes, ac
 		<div className="container-profile">
 
 			<Row className='container-profile'>
-				<Alert md={4} xl={4} lg={4} sm={8} xs={10}
-
+				<Alert  md={4} xl={4} lg={4} sm={8} xs={10}
 					className=" alert mb-3 mt-3 pt-3 text-center">My Profile</Alert>
 				<Col className="m-auto mt-3" md={4} xl={4} lg={4} sm={8} xs={10}>
 
