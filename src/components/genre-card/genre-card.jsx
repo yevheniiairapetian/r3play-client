@@ -24,7 +24,7 @@ export const GenreCard = ({ genre, user, token, setUser }) => {
   const handleCloseRemovedGenreModal = () => setShowRemovedGenreModal(false);
   const addFavoriteGenre = () => {
     fetch(
-      `https://www.r3play-api.com/users/${user.Username}/likedgenre/genres/${genre._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/likedgenre/genres/${genre._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -53,7 +53,7 @@ export const GenreCard = ({ genre, user, token, setUser }) => {
 
   const removeFavoriteGenre = () => {
     fetch(
-      `https://www.r3play-api.com/users/${user.Username}/likedgenre/genres/${genre._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/likedgenre/genres/${genre._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }

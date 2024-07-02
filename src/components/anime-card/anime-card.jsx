@@ -31,7 +31,7 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
   const handleCloseRemovedWatchedMovieModal = () => setShowRemovedWatchedMovieModal(false);
   const addFavoriteAnime = () => {
     fetch(
-      `https://www.r3play-api.com/users/${user.Username}/favorites/animes/${animes._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/animes/${animes._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -59,7 +59,7 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
 
   const removeFavoriteAnime = () => {
     fetch(
-      `https://www.r3play-api.com/users/${user.Username}/favorites/animes/${animes._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/favorites/animes/${animes._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
@@ -87,7 +87,7 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
 
   const addWatchedAnime = () => {
     fetch(
-      `https://www.r3play-api.com/users/${user.Username}/watched/animes/${animes._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/animes/${animes._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -115,7 +115,7 @@ export const AnimeCard = ({ animes, user, token, setUser }) => {
 
   const removeWatchedAnime = () => {
     fetch(
-      `https://www.r3play-api.com/users/${user.Username}/watched/animes/${animes._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/watched/animes/${animes._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }

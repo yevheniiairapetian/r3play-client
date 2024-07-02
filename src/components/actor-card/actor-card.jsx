@@ -25,7 +25,7 @@ export const ActorCard = ({ actor, user, token, setUser }) => {
 
   const addFavoriteActor = () => {
     fetch(
-      `https://www.r3play-api.com//users/${user.Username}/liked/actors/${actor._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/liked/actors/${actor._id}`,
       {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
@@ -54,7 +54,7 @@ export const ActorCard = ({ actor, user, token, setUser }) => {
   
   const removeFavoriteActor = () => {
     fetch(
-      `https://www.r3play-api.com//users/${user.Username}/liked/actors/${actor._id}`,
+      `https://r3play-934f9ea5664d.herokuapp.com/users/${user.Username}/liked/actors/${actor._id}`,
       {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
