@@ -1104,6 +1104,9 @@ div.welcome-player{
   div.container, .dark div.container{
   margin: 0 auto 240px auto !important;
 }
+div.container.main-view-div, .dark div.container.main-view-div{
+  margin: 0 auto 0 auto !important;
+}
 }
 @media screen and (max-width:770px) {
   .app-container {

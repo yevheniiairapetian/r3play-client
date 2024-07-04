@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Button, Card, Modal } from 'react-bootstrap';
 export const UncontrolledExample = () => {
     return (
-      <Carousel fade className="mb-3">
+      <Carousel fade className="">
       <Carousel.Item>
         <Image className="w-100" src={"https://wallpapercave.com/wp/UjqdzkB.jpg"} text="An image showing Ergo Proxy cyberpunk anime poster" /> 
           <Carousel.Caption>

@@ -8268,6 +8268,10 @@ button.got-it-button {
   div.container, .dark div.container {
     margin: 0 auto 240px !important;
   }
+
+  div.container.main-view-div, .dark div.container.main-view-div {
+    margin: 0 auto !important;
+  }
 }
 
 @media screen and (width <= 770px) {

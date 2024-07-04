@@ -693,7 +693,7 @@ export const MainView = () => {
 
                           </>
                         ) : (
-                          <div className="container">
+                          <div className="container main-view-div">
 
                             <UncontrolledExample ></UncontrolledExample>
                             <VideoPlayer />
