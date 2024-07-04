@@ -142,6 +142,7 @@ div.container-fluid{
 }
 
 
+
 .check-more-header-btn:hover{
   background-color: whitesmoke;
   color:black;
@@ -664,7 +665,7 @@ div.footer {
   padding-left:10px !important;
   padding-right:10px !important;
   z-index:2;
-  height:136px !important;
+  // height:136px !important;
 
 }
 
@@ -1065,6 +1066,7 @@ div.welcome-player{
   
   .navbar-expand-lg .navigation, .navbar-collapse.show{
     flex-direction: row !important;
+    z-index:3;
   }
   div.welcome-player{
     position: fixed !important;

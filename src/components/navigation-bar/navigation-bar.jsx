@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Navbar, Container, Row, Col, Modal, Nav, Image, Button } from "react-bootstrap";
 import useSound from 'use-sound';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from '../../images/logo.png';
 import { Link } from "react-router-dom";
 import useDarkMode from "./../../hooks/useDarkMode";
