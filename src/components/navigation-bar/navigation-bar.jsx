@@ -126,18 +126,18 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 	}, [theme]);
 	return (
 <>
-		<Navbar id="navigation" className="navigation " data-bs-theme="light" expand="lg">
+		<Navbar expanded={expanded} id="navigation" className="navigation " data-bs-theme="light" expand="lg">
 			<div className="navigation ">
 				<Navbar.Brand className="p-2" as={Link} to="/">
 					<Image width="105px" height="auto" className="logo img-responsive" alt="logo" src={Logo} />
 				</Navbar.Brand>
-				<Navbar.Toggle id="collapse-button" aria-controls="basic-navbar-nav" />
+				<Navbar.Toggle onClick={() => setExpanded(!expanded)} id="collapse-button" aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="justify-content-end w-100 ">
 						{user && (
 							<>
 
-								<Nav.Link className="navbar-icons" as={Link} to='/'>
+								<Nav.Link className="navbar-icons" onClick={() => setExpanded(false)} as={Link} to='/'>
 									<FontAwesomeIcon  className="" size="lg" icon={faHouseChimney} /> <span className="navbar-icons-span">Home</span>
 								</Nav.Link>
 								<NavDropdown
@@ -146,16 +146,16 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 			  
             >
               <NavDropdown.Item 			  
- className="media-drop-item" href="#action/3.1"><Nav.Link className="navbar-icons" as={Link} to='/movies'>									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faFilm} /> <span className="navbar-icons-span">Movies</span>
+ className="media-drop-item" href="#action/3.1"><Nav.Link className="navbar-icons" onClick={() => setExpanded(false)} as={Link} to='/movies'>									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faFilm} /> <span className="navbar-icons-span">Movies</span>
 								</Nav.Link></NavDropdown.Item>
               <NavDropdown.Item 			  
  className="media-drop-item" href="#action/3.2">
-			  <Nav.Link className="navbar-icons" as={Link} to='/tvseries'>
+			  <Nav.Link className="navbar-icons" onClick={() => setExpanded(false)} as={Link} to='/tvseries'>
 									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faTv} /> <span className="navbar-icons-span">TV Series</span>
 								</Nav.Link>
               </NavDropdown.Item>
               <NavDropdown.Item 			  
- className="media-drop-item" href="#action/3.3"><Nav.Link className="navbar-icons" as={Link} to='/anime'>
+ className="media-drop-item" href="#action/3.3"><Nav.Link className="navbar-icons" onClick={() => setExpanded(false)} as={Link} to='/anime'>
 									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faRobot} /> <span className="navbar-icons-span">Anime</span>
 								</Nav.Link></NavDropdown.Item>
               
@@ -163,13 +163,13 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 								
 								
 								
-								<Nav.Link className="navbar-icons" as={Link} to='/actors'>
+								<Nav.Link className="navbar-icons" onClick={() => setExpanded(false)} as={Link} to='/actors'>
 									<FontAwesomeIcon className="" size="lg" icon={faMasksTheater} /> <span className="navbar-icons-span">Actors</span>
 								</Nav.Link>
-								<Nav.Link className="navbar-icons" as={Link} to='/genres'>
+								<Nav.Link className="navbar-icons" onClick={() => setExpanded(false)} as={Link} to='/genres'>
 									<FontAwesomeIcon className="" size="lg" icon={faPersonRifle} /> <span className="navbar-icons-span">Genres</span>
 								</Nav.Link>
-								<Nav.Link className="navbar-icons" as={Link} to='/profile'>
+								<Nav.Link className="navbar-icons" onClick={() => setExpanded(false)} as={Link} to='/profile'>
 									<FontAwesomeIcon className="" size="lg" icon={faUser} />  <span className="navbar-icons-span">{user.Username}</span>
 								</Nav.Link>
 
@@ -192,15 +192,15 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 							)}
 							
 								</Nav.Link>
-								<Nav.Link className="navbar-icons" onClick={onLoggedOut}><FontAwesomeIcon icon={faCircleLeft} />  <span className="navbar-icons-span">Logout</span></Nav.Link>
+								<Nav.Link className="navbar-icons" onClick={()=>{onLoggedOut(); setExpanded(false)}}><FontAwesomeIcon icon={faCircleLeft} />  <span className="navbar-icons-span">Logout</span></Nav.Link>
 							</>
 						)}
 						{!user && (
 							<>
-								<Nav.Link className="" as={Link} to='/login'>
+								<Nav.Link className="" onClick={() => setExpanded(false)} as={Link} to='/login'>
 									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faRightToBracket} />  <span className="navbar-icons-span">Login</span>
 								</Nav.Link>
-								<Nav.Link className="" as={Link} to='/signup'>
+								<Nav.Link className="" onClick={() => setExpanded(false)} as={Link} to='/signup'>
 									<FontAwesomeIcon className="navbar-icons" size="lg" icon={faUserPlus} />  <span className="navbar-icons-span">Sign up</span>
 								</Nav.Link>
 								
