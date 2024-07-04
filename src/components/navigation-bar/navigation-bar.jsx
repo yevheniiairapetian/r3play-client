@@ -129,7 +129,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 		<Navbar expanded={expanded} id="navigation" className="navigation " data-bs-theme="light" expand="lg">
 			<div className="navigation ">
 				<Navbar.Brand className="p-2" as={Link} to="/">
-					<Image width="105px" height="auto" className="logo img-responsive" alt="logo" src={Logo} />
+					<Image onClick={() => setExpanded(false)} width="105px" height="auto" className="logo img-responsive" alt="logo" src={Logo} />
 				</Navbar.Brand>
 				<Navbar.Toggle onClick={() => setExpanded(!expanded)} id="collapse-button" aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
